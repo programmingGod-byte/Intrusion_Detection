@@ -1,6 +1,7 @@
 #include <array>
 #include <atomic>
 #include <cstdint>
+#include <deque>
 #include <iostream>
 #include <mutex>
 #include <pthread.h>
@@ -41,6 +42,56 @@ void set_thread_affinity_and_rt_priority(int core_id) {
 }
 
 namespace QueueBenchmarks {
+
+void benchmark_std_deque() {
+  std::cout << "\n----------------------------------------\n";
+  std::cout << "  Benchmarking std::deque + mutex (10M Ops) [Pinned Core 2 & 3]\n";
+  std::cout << "----------------------------------------\n";
+
+  std::deque<uint64_t> deq;
+  std::mutex mtx;
+
+  uint64_t start_cycles = rdtsc();
+
+  std::thread producer([&]() {
+    set_thread_affinity_and_rt_priority(2);
+    for (uint64_t i = 0; i < QUEUE_NUM_OPS; ++i) {
+      std::lock_guard<std::mutex> lock(mtx);
+      deq.push_back(i);
+    }
+  });
+
+  std::thread consumer([&]() {
+    set_thread_affinity_and_rt_priority(3);
+    uint64_t items_read = 0;
+    while (items_read < QUEUE_NUM_OPS) {
+      bool popped = false;
+      uint64_t val = 0;
+      {
+        std::lock_guard<std::mutex> lock(mtx);
+        if (!deq.empty()) {
+          val = deq.front();
+          deq.pop_front();
+          popped = true;
+          ++items_read;
+        }
+      }
+      if (!popped) {
+        AETHON_PAUSE_CPU_INSTRUCTION;
+      }
+    }
+  });
+
+  producer.join();
+  consumer.join();
+
+  uint64_t end_cycles = rdtsc();
+  uint64_t total_cycles = end_cycles - start_cycles;
+  double avg_cycles_per_op = static_cast<double>(total_cycles) / QUEUE_NUM_OPS;
+
+  std::cout << "std::deque Total CPU Cycles: " << total_cycles << " cycles\n";
+  std::cout << "std::deque Avg Cycles / Op : " << avg_cycles_per_op << " cycles/op\n";
+}
 
 void benchmark_spsc() {
   std::cout << "\n----------------------------------------\n";
@@ -248,7 +299,7 @@ void benchmark_aethon_lockfree_hashmap() {
   std::cout << "  Benchmarking aethon::LockFreeHashMap (10M Concurrent Ops, 4 Threads)\n";
   std::cout << "----------------------------------------\n";
 
-  aethon::LockFreeHashMap<uint64_t, uint64_t> map(16777216); // 16M capacity
+  aethon::LockFreeHashMap<uint64_t, uint64_t> map(16777216);
 
   constexpr size_t THREADS = 4;
   constexpr size_t OPS_PER_THREAD = MAP_NUM_OPS / THREADS;
@@ -282,13 +333,12 @@ void benchmark_aethon_lockfree_hashmap() {
 } // namespace HashMapBenchmarks
 
 int main() {
-    // g++ -O3 -std=c++20 -DAETHON_NO_MAIN -Wno-interference-size -I. benchmark.cpp -o benchmark -lpthread
-
   std::cout << "=====================================================\n";
   std::cout << "  AETHON HIGH-PERFORMANCE SUITE RDTSC BENCHMARKS    \n";
   std::cout << "=====================================================\n";
 
   // 1. Lock-Free Queue Benchmarks
+  QueueBenchmarks::benchmark_std_deque();
   QueueBenchmarks::benchmark_spsc();
   QueueBenchmarks::benchmark_mpmc();
 
