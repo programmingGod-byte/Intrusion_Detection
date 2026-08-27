@@ -6,7 +6,7 @@
 #include <cstdint>
 #include <cstdlib>
 #include <new>
-#include <stdexcept>x
+#include <stdexcept>
 #include <utility>
 
 namespace aethon {
