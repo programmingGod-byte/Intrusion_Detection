@@ -2,18 +2,22 @@
 #include <atomic>
 #include <cstdint>
 #include <iostream>
+#include <mutex>
 #include <pthread.h>
 #include <sched.h>
 #include <thread>
+#include <unordered_map>
 #include <vector>
 #include <x86intrin.h>
 
+#include "FastHashMap.h"
 #include "FastVector.h"
 #include "mpmcQueue.h"
 #include "spscQueue.cpp"
 
 static constexpr size_t QUEUE_NUM_OPS = 10'000'000;
 static constexpr size_t VECTOR_NUM_OPS = 100'000'000;
+static constexpr size_t MAP_NUM_OPS = 10'000'000;
 static constexpr size_t QUEUE_CAPACITY = 65536;
 
 inline uint64_t rdtsc() {
@@ -199,7 +203,87 @@ void benchmark_aethon_small_vector() {
 
 } // namespace VectorBenchmarks
 
+namespace HashMapBenchmarks {
+
+void benchmark_std_unordered_map() {
+  std::cout << "\n----------------------------------------\n";
+  std::cout << "  Benchmarking std::unordered_map + mutex (10M Concurrent Ops, 4 Threads)\n";
+  std::cout << "----------------------------------------\n";
+
+  std::unordered_map<uint64_t, uint64_t> map;
+  std::mutex mtx;
+
+  constexpr size_t THREADS = 4;
+  constexpr size_t OPS_PER_THREAD = MAP_NUM_OPS / THREADS;
+  std::vector<std::thread> threads;
+
+  uint64_t start_cycles = rdtsc();
+
+  for (size_t t = 0; t < THREADS; ++t) {
+    threads.emplace_back([&, t]() {
+      set_thread_affinity_and_rt_priority(t % 4);
+      for (size_t i = 0; i < OPS_PER_THREAD; ++i) {
+        uint64_t key = (t * OPS_PER_THREAD) + i + 1;
+        std::lock_guard<std::mutex> lock(mtx);
+        map[key] = key * 10;
+      }
+    });
+  }
+
+  for (auto &th : threads) {
+    th.join();
+  }
+
+  uint64_t end_cycles = rdtsc();
+  uint64_t total_cycles = end_cycles - start_cycles;
+  double avg_cycles_per_op = static_cast<double>(total_cycles) / MAP_NUM_OPS;
+
+  std::cout << "std::unordered_map Total Cycles: " << total_cycles << " cycles\n";
+  std::cout << "std::unordered_map Avg Cycles / Insert: "
+            << avg_cycles_per_op << " cycles/op\n";
+}
+
+void benchmark_aethon_lockfree_hashmap() {
+  std::cout << "\n----------------------------------------\n";
+  std::cout << "  Benchmarking aethon::LockFreeHashMap (10M Concurrent Ops, 4 Threads)\n";
+  std::cout << "----------------------------------------\n";
+
+  aethon::LockFreeHashMap<uint64_t, uint64_t> map(16777216); // 16M capacity
+
+  constexpr size_t THREADS = 4;
+  constexpr size_t OPS_PER_THREAD = MAP_NUM_OPS / THREADS;
+  std::vector<std::thread> threads;
+
+  uint64_t start_cycles = rdtsc();
+
+  for (size_t t = 0; t < THREADS; ++t) {
+    threads.emplace_back([&, t]() {
+      set_thread_affinity_and_rt_priority(t % 4);
+      for (size_t i = 0; i < OPS_PER_THREAD; ++i) {
+        uint64_t key = (t * OPS_PER_THREAD) + i + 1;
+        map.insert(key, key * 10);
+      }
+    });
+  }
+
+  for (auto &th : threads) {
+    th.join();
+  }
+
+  uint64_t end_cycles = rdtsc();
+  uint64_t total_cycles = end_cycles - start_cycles;
+  double avg_cycles_per_op = static_cast<double>(total_cycles) / MAP_NUM_OPS;
+
+  std::cout << "aethon::LockFreeHashMap Total Cycles: " << total_cycles << " cycles\n";
+  std::cout << "aethon::LockFreeHashMap Avg Cycles / Insert: "
+            << avg_cycles_per_op << " cycles/op\n";
+}
+
+} // namespace HashMapBenchmarks
+
 int main() {
+    // g++ -O3 -std=c++20 -DAETHON_NO_MAIN -Wno-interference-size -I. benchmark.cpp -o benchmark -lpthread
+
   std::cout << "=====================================================\n";
   std::cout << "  AETHON HIGH-PERFORMANCE SUITE RDTSC BENCHMARKS    \n";
   std::cout << "=====================================================\n";
@@ -208,10 +292,14 @@ int main() {
   QueueBenchmarks::benchmark_spsc();
   QueueBenchmarks::benchmark_mpmc();
 
-  // 2. Small Buffer Optimization Vector Benchmarks (with Memory Barrier)
+  // 2. Small Buffer Optimization Vector Benchmarks
   VectorBenchmarks::benchmark_std_array();
   VectorBenchmarks::benchmark_std_vector();
   VectorBenchmarks::benchmark_aethon_small_vector();
+
+  // 3. Lock-Free Concurrent Hash Map Benchmarks
+  HashMapBenchmarks::benchmark_std_unordered_map();
+  HashMapBenchmarks::benchmark_aethon_lockfree_hashmap();
 
   std::cout << "\n=====================================================\n";
   std::cout << "  ALL BENCHMARKS COMPLETED SUCCESSFULLY!            \n";
