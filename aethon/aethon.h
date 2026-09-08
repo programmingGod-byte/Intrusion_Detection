@@ -1,4 +1,3 @@
-
 #pragma once
 #include <bits/stdc++.h>
 #include <cassert>
@@ -37,9 +36,9 @@ inline void safe_write_all(const char *str, Rest... rest) {
 #endif
 
 #ifdef _MSC_VER
-constexpr auto kMscVer = _MSC_VER; // True on Windows / MSVC
+constexpr auto kMscVer = _MSC_VER;
 #else
-constexpr auto kMscVer = 0; // False on Linux / GCC / Clang
+constexpr auto kMscVer = 0;
 #endif
 
 #if defined(__linux__)
@@ -171,7 +170,6 @@ constexpr bool kIsLinux = false;
 #define AETHON_ATTR_GNU_COLD
 #endif
 
-
 namespace Trait {
 
 template <typename...> inline constexpr bool always_false = false;
@@ -196,33 +194,23 @@ template <auto V1, auto V2> constexpr auto get_value_sum(vtag_t<V1, V2>) {
 }
 
 template <typename T> inline constexpr bool is_bounded_array_v = false;
-
 template <typename T, std::size_t S>
 inline constexpr bool is_bounded_array_v<T[S]> = true;
 
 template <typename T> inline constexpr bool is_unbounded_array_v = false;
-
 template <typename T> inline constexpr bool is_unbounded_array_v<T[]> = true;
 
 } // namespace Trait
 
 namespace implementation {
 
-
-// FUTEX
-
-// sleep when * addr == val
-
 AETHON_ALWAYS_INLINE void futex_wait(std::atomic<uint32_t>*addr, uint32_t val){
   syscall(SYS_futex,reinterpret_cast<int*>(addr),FUTEX_WAIT_PRIVATE,val,nullptr,nullptr,0);
 }
 
-// wakeuo one thread sleeping on addr
 AETHON_ALWAYS_INLINE void futex_wake(std::atomic<uint32_t>* addr) {
     syscall(SYS_futex, reinterpret_cast<int*>(addr), FUTEX_WAKE_PRIVATE, 1, nullptr, nullptr, 0);
 }
-
-// Signal-safe variadic writer helper
 
 constexpr std::size_t register_pass_max_size =
     (kMscVer ? 1u : 2u) * sizeof(void *);
@@ -269,7 +257,6 @@ T *smart_allocate(std::size_t count = 1) {
   if constexpr (Alignment <= max_align_v_) {
     raw_ptr = std::malloc(total_bytes);
   } else {
-    // alligned_alloc required total_bytes to be a multiple of alignment
     std::size_t padded_bytes = (total_bytes + Alignment - 1) & ~(Alignment - 1);
     raw_ptr = std::aligned_alloc(Alignment, padded_bytes);
   }
@@ -304,7 +291,6 @@ constexpr std::size_t cacheline_disalign_v =
 struct alignas(cacheline_disalign_v) cacheline_disalign_t {};
 
 struct valid_align_value_fn {
-  // alignment must be of power of 2
   static_assert(sizeof(std::size_t) <= sizeof(std::uintptr_t));
   constexpr bool operator()(std::size_t align) const noexcept {
     return align && !(align & (align - 1));
@@ -348,64 +334,20 @@ struct align_ceil_fn {
 inline constexpr align_ceil_fn align_ceil;
 
 AETHON_DISABLE_ADDRESS_SANITIZER
-void custom_unaligned_raw_memory_access(void *ptr) {
+inline void custom_unaligned_raw_memory_access(void *ptr) {
   std::uintptr_t addr = reinterpret_cast<std::uintptr_t>(ptr);
   (void)addr;
 }
 
-int factorial_tail(int n, int acc = 1) {
+inline int factorial_tail(int n, int acc = 1) {
   if (n <= 1)
     return acc;
   AETHON_ATTR_MUSTTAIL return factorial_tail(n - 1, n * acc);
 }
 
 } // namespace implementation
+
 namespace variableTemplates {
-
-template <typename T>
-constexpr bool is_pointer =
-    false; // not not constexpr then you can chage is_pointer<int> = true
-
+template <typename T> constexpr bool is_pointer = false;
 template <typename T> constexpr bool is_pointer<T *> = true;
 } // namespace variableTemplates
-
-#ifdef AETHON_ENABLE_STANDALONE_MAIN
-int main() {
-  std::cout << "Testing lock-free Aethon framework...\n";
-
-  int x = 42;
-  implementation::custom_unaligned_raw_memory_access(&x);
-
-  if (AETHON_LIKELY(x == 42)) {
-    std::cout << "Fast path executed: x == 42 (Likely branch!)\n";
-  }
-
-  if (AETHON_UNLIKELY(x == 0)) {
-    std::cout << "Unlikely branch executed!\n";
-  }
-
-  int val = rand() % 2;
-  if (AETHON_BUILTIN_UNPREDICTABLE(val == 1)) {
-    std::cout << "Random 50/50 branch evaluated (Branchless CMOV executed!)\n";
-  }
-
-  int data_array[100] = {0};
-  AETHON_BUILTIN_PREFETCH(&data_array[50], 0, 3);
-  std::cout << "Hardware prefetch instruction issued for L1 cache!\n";
-
-  int fact_res = implementation::factorial_tail(5);
-  std::cout << "Tail-call optimized factorial(5) = " << fact_res << "\n";
-
-  // Testing Trait::tag (Type tag dispatching without object creation):
-  constexpr auto combined_size = Trait::get_type_size(Trait::tag<int, double>);
-  std::cout << "Trait::tag combined size (int + double) = " << combined_size
-            << " bytes\n";
-
-  // Testing Trait::vtag (Compile-time value list):
-  constexpr auto val_sum = Trait::get_value_sum(Trait::vtag<10, 32>);
-  std::cout << "Trait::vtag combined sum (10 + 32) = " << val_sum << "\n";
-
-  std::cout << "Aethon framework compiled and executed successfully!\n";
-  return 0;
-}
-#endif

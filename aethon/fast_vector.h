@@ -1,5 +1,6 @@
 #pragma once
-#include "aethon.h"
+
+#include "aethon/aethon.h"
 #include <cmath>
 #include <cstddef>
 #include <cstdlib>
@@ -34,7 +35,6 @@ private:
     if constexpr (std::is_trivially_copyable<T>::value) {
       std::memcpy(new_data, data_, sizeof(T) * size_);
     } else {
-      // Placement new move path for complex types
       for (size_t i = 0; i < size_; i++) {
         new (new_data + i) T(std::move(data_[i]));
         data_[i].~T();
@@ -50,7 +50,6 @@ private:
   }
 
   AETHON_ALWAYS_INLINE void grow() {
-    // 1.5x allocator can reuse previous pages sometimes
     size_t new_capacity = (capacity_ * 3 + 1) / 2;
     reallocate(new_capacity);
   }
@@ -63,7 +62,6 @@ public:
       : size_(0), capacity_(InlineCapacity),
         data_(reinterpret_cast<T *>(inlineBuffer_)) {}
 
-  // Move constructor
   SmallVector(SmallVector &&other) noexcept
       : size_(0), capacity_(InlineCapacity),
         data_(reinterpret_cast<T *>(inlineBuffer_)) {
@@ -89,7 +87,6 @@ public:
     }
   }
 
-  // Copy constructor
   SmallVector(const SmallVector &other)
       : size_(0), capacity_(InlineCapacity),
         data_(reinterpret_cast<T *>(inlineBuffer_)) {
@@ -104,7 +101,6 @@ public:
     }
   }
 
-  // Move assignment
   SmallVector &operator=(SmallVector &&other) noexcept {
     if (AETHON_LIKELY(this != &other)) {
       clear();
@@ -137,7 +133,6 @@ public:
     return *this;
   }
 
-  // Copy assignment
   SmallVector &operator=(const SmallVector &other) {
     if (AETHON_LIKELY(this != &other)) {
       clear();
