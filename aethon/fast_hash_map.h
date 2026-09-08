@@ -1,5 +1,6 @@
 #pragma once
-#include "aethon.h"
+
+#include "aethon/aethon.h"
 #include <atomic>
 #include <cstddef>
 #include <cstdint>

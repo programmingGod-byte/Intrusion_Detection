@@ -4,50 +4,64 @@ This project implements a high-performance network security engine leveraging Li
 
 ---
 
-## 🏗️ System Architecture
+### 🏗️ System Architecture (Dual-Plane Design)
 
-To process packets at line rate without degrading system performance, the pipeline splits responsibilities into three distinct tiers across the Kernel and User-space boundaries:
+To process packets at line rate without degrading system performance, Aethon XDP-Sentinel splits responsibilities into a **Data Plane** (Kernel eBPF) and an **Analytics/Control Plane** (User-space C++), connected via highly optimized BPF Maps and AF_XDP Zero-Copy rings.
 
-```
+```text
                      [ Incoming Traffic ]
                               │
   ┌───────────────────────────┴───────────────────────────┐
-  │  TIER 1: DDoS Prevention (Kernel BPF)                 │
-  │  - Instantly drops blacklisted IPs (XDP_DROP)         │
-  │  - Mitigates volumetric floods (SYN/UDP floods)       │
+  │  DATA PLANE: XDP Kernel space (af_xdp_kern.c)         │
+  │  - Parses Eth/IP/TCP headers using pointer arithmetic │
+  │  - Checks `ip_blocklist` BPF map (O(1) lookup)        │
+  │  - Applies Token Bucket rate limiting via BPF maps    │
+  │  - Drops Malicious Packets instantly (XDP_DROP)       │
+  │  - Redirects suspicious/HTTP traffic to User-space    │
   └───────────────────────────┬───────────────────────────┘
-                              ▼
-  ┌───────────────────────────────────────────────────────┐
-  │  TIER 2: Load Balancer / Routing (Kernel BPF)         │
-  │  - Forwards non-inspected traffic via XDP_TX          │
-  │  - Redirects target HTTP traffic to AF_XDP Socket     │
-  └───────────────────────────┬───────────────────────────┘
-                              ▼
-  ┌───────────────────────────────────────────────────────┐
-  │  TIER 3: Web Application Firewall / IPS (User-Space)   │
-  │  - Performs deep packet inspection (DPI)              │
-  │  - Scans TCP/UDP payloads (SQLi, XSS, DNS Tunneling)  │
-  │  - If Clean: Zero-Copy forwards to backend via TX Ring │
-  │  - If Malicious: Drops packet + Blacklists IP in BPF  │
+                              ▼ (AF_XDP RX Ring - Zero Copy DMA)
+  ┌───────────────────────────┴───────────────────────────┐
+  │  ANALYTICS PLANE: User-space C++ (af_xdp_user.c)      │
+  │  - Receives packets via AF_XDP into UMEM              │
+  │  - EWMA Spike Detection for sudden traffic bursts     │
+  │  - SIMD (AVX2) Payload Parsing & Signature Matching   │
+  │  - Updates `ip_blocklist` Map for closed-loop block   │
+  │  - io_uring for async, zero-syscall disk logging      │
   └───────────────────────────┬───────────────────────────┘
 ```
 
-### **1. Tier 1: Volumetric DDoS Mitigation (Kernel space)**
+### 🧠 How It's Implemented: Component Breakdown
 
-- **Component:** `af_xdp_kern.c`
-- **Mechanism:** Checks the source IP of every incoming packet against a shared BPF Hash Map (`blacklist_map`).
-- **Performance:** If matched, it returns `XDP_DROP` immediately at the network driver level. This runs in **~10 nanoseconds**, discarding millions of malicious packets before they consume CPU or RAM allocations.
+#### 1. eBPF / XDP Data Plane (`af_xdp_kern.c`)
+- **Execution:** Runs directly in the NIC driver. Executes in nanoseconds.
+- **BPF Maps:**
+  - `ip_blocklist` (`BPF_MAP_TYPE_HASH`): Maps Source IP to an expiration timestamp. If XDP sees an IP in this map, it instantly returns `XDP_DROP`.
+  - `ip_counters` (`BPF_MAP_TYPE_PERCPU_HASH`): Stores `packet_count` and `last_updated`. Used to track traffic rates per IP.
+  - `admin_config` (`BPF_MAP_TYPE_ARRAY`): Allows the user-space administrator to dynamically adjust the global rate limit (e.g., 60 packets/sec).
+- **Rate Limiting:** Implements a Token Bucket algorithm inside the kernel. If an IP exceeds the token limit within a timeframe, packets are dropped.
 
-### **2. Tier 2: Stateful Load Balancing (Kernel space)**
+#### 2. AF_XDP Zero-Copy Pipeline
+- Instead of using standard Linux sockets (which require memory copies and context switches), unhandled or suspicious packets are sent directly to user-space memory (UMEM) via **AF_XDP**.
+- The `AF_XDP` sockets use lock-free rings (RX, TX, FILL, COMPLETION) to pass packet offsets between the kernel and the C++ application.
 
-- **Component:** `af_xdp_kern.c`
-- **Mechanism:** Routes standard verified traffic or non-HTTP traffic directly to target backend servers by rewriting MAC/IP addresses and utilizing `XDP_TX` (hairpin routing). It forwards HTTP packets (TCP Port 80/443) to user-space for inspection.
+#### 3. Spike Detection via EWMA (User-space Analytics, `af_xdp_user.c`)
+- The C++ analytics engine computes an **Exponentially Weighted Moving Average (EWMA)** of traffic per IP using fast bitwise shifts instead of floating-point math:
+  `old_ewma = old_ewma - (old_ewma >> 3) + (current_rate >> 3);`
+- If the `current_rate` suddenly spikes beyond the EWMA (e.g., a 3x multiplier), the engine flags the IP as anomalous and dynamically writes it into the `ip_blocklist` BPF Map. The next packet from that IP is instantly dropped by the kernel.
 
-### **3. Tier 3: Zero-Copy Intrusion Prevention (User-space)**
+#### 4. SIMD (AVX2) Deep Packet Inspection (`af_xdp_user.c`)
+- For HTTP/DNS traffic, the payload must be inspected for signatures (like SQL injection `1=1` or XSS scripts).
+- Standard string searching is too slow for 10Gbps+ networks.
+- Aethon utilizes **AVX2 SIMD Intrinsics** (`_mm256_cmpeq_epi8`, `_mm256_movemask_epi8`) to search 32 bytes of payload simultaneously in a single CPU cycle. It flattens Aho-Corasick automata into SIMD-friendly vector operations.
 
-- **Component:** `af_xdp_user.c`
-- **Mechanism:** Receives packets from the network interface queue directly into page-aligned **UMEM** via DMA with **zero memory copies**. A multi-threaded engine parses headers (Ethernet, IPv4, TCP/UDP, ICMP, ARP, DNS) and runs string-matching searches on the payloads.
-- **IP Blocking Feedback Loop:** If an exploit (like SQL Injection `"1=1"`) is detected, the program drops the packet and adds the attacker's IP to the kernel's BPF `blacklist_map`. Subsequent packets from that attacker are blocked in Tier 1 at line rate.
+#### 5. io_uring Asynchronous Logging
+- Every dropped packet or blocked IP must be logged for auditing.
+- Standard file I/O (`write()`) involves expensive syscalls and thread blocking.
+- Aethon uses **`io_uring` in SQPOLL (Zero-Syscall) mode** to asynchronously flush logs to disk. The C++ app enqueues log entries into a lock-free submission queue, and a kernel thread writes them to disk in the background, achieving millions of log events per second with zero application overhead.
+
+#### 6. Lock-Free Concurrency (`aethon::MpmcQueue`, `aethon::SpscQueue`)
+- To scale across multiple CPU cores, the system distributes packet processing tasks among worker threads.
+- Instead of standard mutexes (which cause context-switch latency), thread communication relies on **Aethon's Lock-Free queues**. Bounded queues use atomic compare-and-swap (CAS) and memory barriers (`std::memory_order_release` / `acquire`) to achieve sub-20-nanosecond inter-thread latencies.
 
 ---
 
