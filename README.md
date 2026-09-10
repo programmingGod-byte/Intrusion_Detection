@@ -211,3 +211,15 @@ g++ -O3 -std=c++20 -DAETHON_NO_MAIN -Wno-interference-size -I. benchmark.cpp -o 
 # Run benchmark suite with real-time OS permissions
 sudo ./benchmark
 ```
+
+## Academic Research & Architecture References
+The Aethon architecture is heavily inspired by the following foundational papers in high-performance networking and DPI:
+
+* **The Security Foundation (TCP Evasion):**
+  [Insertion, Evasion, and Denial of Service: Eluding Network Intrusion Detection](https://users.ece.cmu.edu/~adrian/731-sp04/readings/Ptacek-Newsham-ids98.pdf) (Ptacek & Newsham, 1998)
+* **User-Space TCP Architecture:**
+  [mTCP: a Highly Scalable User-level TCP Stack for Multicore Systems](https://www.usenix.org/system/files/conference/nsdi14/nsdi14-paper-jeong.pdf) (NSDI '14)
+* **GPU-Accelerated DPI:**
+  [Kargus: A Highly-Scalable Software-based Intrusion Detection System](https://dl.acm.org/doi/pdf/10.1145/2382196.2382232) (ACM CCS '12)
+* **Modern eBPF/XDP Edge Architecture:**
+  [Unimog: Cloudflare's Edge Load Balancer](https://blog.cloudflare.com/unimog-cloudflares-edge-load-balancer/) (Cloudflare Engineering)
