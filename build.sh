@@ -35,6 +35,7 @@ echo "🚀 Compiling with all available cores..."
 cmake --build build -j
 
 echo "✅ Build completed successfully!"
-echo "   - Library:    build/aethon/libaethon_lib.a"
-echo "   - Executable: build/benchmarks/aethon_benchmark"
+echo "   - Library:       build/aethon/libaethon_lib.a"
+echo "   - Benchmark:     build/benchmarks/aethon_benchmark"
+echo "   - AF_XDP Engine: build/src/afxdp_control"
 

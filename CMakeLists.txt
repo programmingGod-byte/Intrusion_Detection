@@ -28,3 +28,4 @@ FetchContent_MakeAvailable(CLI11)
 # Facebook Folly-Style Root CMake Architecture
 add_subdirectory(aethon)
 add_subdirectory(benchmarks)
+add_subdirectory(src)
