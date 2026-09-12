@@ -253,6 +253,7 @@ public:
       }
     }
     size_ = 0;
+  }
   AETHON_ALWAYS_INLINE ~SmallVector() {
     clear();
     if (AETHON_UNLIKELY(!is_inline())) {
