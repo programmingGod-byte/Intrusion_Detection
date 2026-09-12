@@ -223,3 +223,10 @@ The Aethon architecture is heavily inspired by the following foundational papers
   [Kargus: A Highly-Scalable Software-based Intrusion Detection System](https://dl.acm.org/doi/pdf/10.1145/2382196.2382232) (ACM CCS '12)
 * **Modern eBPF/XDP Edge Architecture:**
   [Unimog: Cloudflare's Edge Load Balancer](https://blog.cloudflare.com/unimog-cloudflares-edge-load-balancer/) (Cloudflare Engineering)
+
+### 🛡️ Overcoming the 1998 IDS Evasion Dilemmas
+The original 1998 Ptacek & Newsham research highlighted several structural vulnerabilities in passive network sniffers (traditional IDSs). Aethon's modern **Inline AF_XDP Architecture** natively mitigates these historic attack vectors:
+
+* **TCB Poisoning (Fake Handshakes):** Traditional passive IDSs can be tricked by forged `SYN-ACK` packets, causing desynchronization from the real TCP stream. Because Aethon acts as an **Active Inline Gatekeeper** directly on the host NIC, an attacker cannot spoof the backend server's `SYN-ACK` response without physically compromising the server itself. 
+* **PAWS (Protect Against Wrapped Sequences):** Passive IDSs that miss the 3-Way Handshake cannot determine if TCP Timestamps (Kind 8) were negotiated, leading to evasion via overlapping fragments. Aethon aggressively enforces 3-Way Handshake tracking via eBPF LRU maps. If the handshake is missed or invalid, data packets are dropped at the driver level (`XDP_DROP`).
+* **Restart Blindness:** When a passive IDS restarts, it becomes "blind" to existing mid-stream connections and can be exploited. Because Aethon controls the packet flow natively, restarting the engine securely drops the in-memory state. This actively forces legitimate clients to re-initiate a valid `SYN`, quickly restoring 100% verified state tracking without leaving the engine vulnerable to mid-stream TCP injections.

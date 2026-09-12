@@ -11,6 +11,7 @@ namespace aethon {
 
 template <typename Signature>
 class Function;
+// extract <int(double,float)>
 
 template <typename R, typename... Args>
 class Function<R(Args...)> {

@@ -140,6 +140,8 @@ constexpr bool kIsLinux = false;
 #define AETHON_LIKELY(...) AETHON_BUILTIN_EXPECT((__VA_ARGS__), 1)
 #define AETHON_UNLIKELY(...) AETHON_BUILTIN_EXPECT((__VA_ARGS__), 0)
 
+
+// call in tail call return next_step();
 #if AETHON_HAS_CPP_ATTRIBUTE(gnu::musttail)
 #define AETHON_ATTR_MUSTTAIL [[gnu::musttail]]
 #elif AETHON_HAS_CPP_ATTRIBUTE(clang::musttail)
@@ -150,6 +152,15 @@ constexpr bool kIsLinux = false;
 #define AETHON_ATTR_MUSTTAIL
 #endif
 
+// in cpp every object must have a unique memory address and every type must have a size of at least 1 byte 
+/*
+struct StatelessAllocator {}  ---? 1 byte
+struct Buffer {
+    [[no_unique_address]] StatelessAllocator alloc; // Takes 0 bytes!
+    int* data;
+    size_t size;
+};
+*/
 #if AETHON_HAS_CPP_ATTRIBUTE(no_unique_address)
 #define AETHON_ATTR_NO_UNIQUE_ADDRESS [[no_unique_address]]
 #elif AETHON_HAS_CPP_ATTRIBUTE(msvc::no_unique_address)
@@ -204,6 +215,8 @@ template <typename T> inline constexpr bool is_unbounded_array_v<T[]> = true;
 
 namespace implementation {
 
+// if the value at memory adrr adrr is val put the thread to sleep until someone wakeup me
+// sizeof(std::mutex) = 40 bytes suze
 AETHON_ALWAYS_INLINE void futex_wait(std::atomic<uint32_t>*addr, uint32_t val){
   syscall(SYS_futex,reinterpret_cast<int*>(addr),FUTEX_WAIT_PRIVATE,val,nullptr,nullptr,0);
 }
