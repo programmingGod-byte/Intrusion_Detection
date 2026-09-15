@@ -1,0 +1,1650 @@
+[
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious Registrar Nameservers in DNS Response (carbon2u)",
+      "classtype": "bad-unknown",
+      "sid": 2027471,
+      "rev": 1,
+      "metadata": "created_at 2019_06_14, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 02 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|03|ns1|08|carbon2u|03|com|00|",
+          "modifiers": {
+            "distance": "14",
+            "within": "18",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET HUNTING Suspicious Registrar Nameservers in DNS Response (carbon2u)\"; content:\"|00 02 00 01|\"; content:\"|03|ns1|08|carbon2u|03|com|00|\"; distance:14; within:18; fast_pattern; classtype:bad-unknown; sid:2027471; rev:1; metadata:created_at 2019_06_14, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious Domain Request for Possible COVID-19 Domain M1",
+      "dns.query": true,
+      "classtype": "bad-unknown",
+      "sid": 2029709,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_03_23",
+      "contents": [
+        {
+          "pattern": "covid",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Suspicious Domain Request for Possible COVID-19 Domain M1\"; dns.query; content:\"covid\"; nocase; classtype:bad-unknown; sid:2029709; rev:2; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_03_23;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.o)",
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029962,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|01|o|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.o)\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|01|o|00|\"; nocase; distance:0; fast_pattern; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029962; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.chan)",
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029965,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|04|chan|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.chan)\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|04|chan|00|\"; nocase; distance:0; fast_pattern; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029965; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 111,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.dyn)",
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029959,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|03|dyn|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.dyn)\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|03|dyn|00|\"; nocase; distance:0; fast_pattern; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029959; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 113,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for EmerDNS TLD (.lib)",
+      "reference": [
+        "url,wiki.opennic.org/opennic/dot",
+        "url,emercoin.com/en/documentation/blockchain-services/emerdns/emerdns-introduction"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2029970,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_04_20",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|03|lib|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for EmerDNS TLD (.lib)\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|03|lib|00|\"; nocase; distance:0; fast_pattern; reference:url,wiki.opennic.org/opennic/dot; reference:url,emercoin.com/en/documentation/blockchain-services/emerdns/emerdns-introduction; classtype:bad-unknown; sid:2029970; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_04_20;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 117,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.cyb)",
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029956,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|03|cyb|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.cyb)\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|03|cyb|00|\"; nocase; distance:0; fast_pattern; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029956; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 119,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.neo)",
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029961,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|03|neo|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.neo)\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|03|neo|00|\"; nocase; distance:0; fast_pattern; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029961; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 121,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.geek)",
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029957,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|04|geek|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.geek)\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|04|geek|00|\"; nocase; distance:0; fast_pattern; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029957; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.oz)",
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029955,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|02|oz|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.oz)\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|02|oz|00|\"; nocase; distance:0; fast_pattern; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029955; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_04_20;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 125,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious NULL DNS Request",
+      "classtype": "misc-activity",
+      "sid": 2029994,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target DNS_Server, created_at 2020_04_22, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_04_22",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|00 0a 00 01|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Suspicious NULL DNS Request\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|00 0a 00 01|\"; fast_pattern; distance:0; classtype:misc-activity; sid:2029994; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target DNS_Server, created_at 2020_04_22, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_04_22;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 279,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.parody)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029954,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".parody",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.parody)\"; dns.query; content:\".parody\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029954; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 281,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.libre)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029958,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".libre",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.libre)\"; dns.query; content:\".libre\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029958; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 283,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.bbs)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029960,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".bbs",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.bbs)\"; dns.query; content:\".bbs\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029960; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 285,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.null)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029963,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".null",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.null)\"; dns.query; content:\".null\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029963; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 287,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.pirate)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029964,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".pirate",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.pirate)\"; dns.query; content:\".pirate\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029964; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 289,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.oss)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029966,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".oss",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.oss)\"; dns.query; content:\".oss\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029966; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 291,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.epic)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029967,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".epic",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.epic)\"; dns.query; content:\".epic\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029967; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 293,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.indy)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029968,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".indy",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.indy)\"; dns.query; content:\".indy\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029968; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 295,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.gopher)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029969,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".gopher",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for OpenNIC Alternative DNS TLD (.gopher)\"; dns.query; content:\".gopher\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029969; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 297,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for EmerDNS TLD (.coin)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": [
+        "url,wiki.opennic.org/opennic/dot",
+        "url,emercoin.com/en/documentation/blockchain-services/emerdns/emerdns-introduction"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2029971,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".coin",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for EmerDNS TLD (.coin)\"; dns.query; content:\".coin\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; reference:url,emercoin.com/en/documentation/blockchain-services/emerdns/emerdns-introduction; classtype:bad-unknown; sid:2029971; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 299,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for EmerDNS TLD (.emc)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": [
+        "url,wiki.opennic.org/opennic/dot",
+        "url,emercoin.com/en/documentation/blockchain-services/emerdns/emerdns-introduction"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2029972,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".emc",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for EmerDNS TLD (.emc)\"; dns.query; content:\".emc\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; reference:url,emercoin.com/en/documentation/blockchain-services/emerdns/emerdns-introduction; classtype:bad-unknown; sid:2029972; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 301,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for EmerDNS TLD (.bazar)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": [
+        "url,wiki.opennic.org/opennic/dot",
+        "url,emercoin.com/en/documentation/blockchain-services/emerdns/emerdns-introduction"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2029973,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".bazar",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for EmerDNS TLD (.bazar)\"; dns.query; content:\".bazar\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; reference:url,emercoin.com/en/documentation/blockchain-services/emerdns/emerdns-introduction; classtype:bad-unknown; sid:2029973; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 303,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query for FurNIC TLD (.fur)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,wiki.opennic.org/opennic/dot",
+      "classtype": "bad-unknown",
+      "sid": 2029974,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16",
+      "contents": [
+        {
+          "pattern": ".fur",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query for FurNIC TLD (.fur)\"; dns.query; content:\".fur\"; nocase; endswith; reference:url,wiki.opennic.org/opennic/dot; classtype:bad-unknown; sid:2029974; rev:2; metadata:attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_11_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 327,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious Glitch Hosted DNS Request - Possible Phishing Landing",
+      "dns.query": true,
+      "pcre": "/^[a-z]+\\-[a-z]+\\-[a-z]+\\.glitch\\.me$/",
+      "classtype": "social-engineering",
+      "sid": 2031918,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_03_10, deployment Perimeter, confidence Low, signature_severity Minor, tag Phishing, updated_at 2021_03_10, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": ".glitch.me",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Suspicious Glitch Hosted DNS Request - Possible Phishing Landing\"; dns.query; content:\".glitch.me\"; pcre:\"/^[a-z]+\\-[a-z]+\\-[a-z]+\\.glitch\\.me$/\"; classtype:social-engineering; sid:2031918; rev:1; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_03_10, deployment Perimeter, confidence Low, signature_severity Minor, tag Phishing, updated_at 2021_03_10, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 339,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious Netlify Hosted DNS Request - Possible Phishing Landing",
+      "dns.query": true,
+      "pcre": "/^[a-z0-9]+\\-[a-z0-9]+\\-[a-f0-9]{6}\\.netlify\\.app$/",
+      "classtype": "social-engineering",
+      "sid": 2032759,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_04_14, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2021_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": ".netlify.app",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Suspicious Netlify Hosted DNS Request - Possible Phishing Landing\"; dns.query; content:\".netlify.app\"; pcre:\"/^[a-z0-9]+\\-[a-z0-9]+\\-[a-f0-9]{6}\\.netlify\\.app$/\"; classtype:social-engineering; sid:2032759; rev:1; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_04_14, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2021_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 371,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING DNS Lookup for 8+ hexadecimal only duckdns domain",
+      "dns.query": true,
+      "pcre": "/^[a-f0-9]{8,}\\.duckdns\\.org$/",
+      "reference": "url,raw.githubusercontent.com/MISP/misp-warninglists/main/lists/dynamic-dns/list.json",
+      "classtype": "bad-unknown",
+      "sid": 2033959,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_09_16, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_09_16",
+      "contents": [
+        {
+          "pattern": ".duckdns.org",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING DNS Lookup for 8+ hexadecimal only duckdns domain\"; dns.query; content:\".duckdns.org\"; fast_pattern; pcre:\"/^[a-f0-9]{8,}\\.duckdns\\.org$/\"; reference:url,raw.githubusercontent.com/MISP/misp-warninglists/main/lists/dynamic-dns/list.json; classtype:bad-unknown; sid:2033959; rev:1; metadata:attack_target Client_Endpoint, created_at 2021_09_16, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_09_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 441,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING [TW] Internet Computer Domain Observed",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,internetcomputer.org",
+      "classtype": "misc-activity",
+      "sid": 2036464,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_05, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_05_05",
+      "contents": [
+        {
+          "pattern": ".ic0.app",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING [TW] Internet Computer Domain Observed\"; dns.query; content:\".ic0.app\"; endswith; reference:url,internetcomputer.org; classtype:misc-activity; sid:2036464; rev:1; metadata:attack_target Client_Endpoint, created_at 2022_05_05, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_05_05;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1547,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Windows Commands and Variables in DNS Reply",
+      "classtype": "bad-unknown",
+      "sid": 2038931,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22",
+      "contents": [
+        {
+          "pattern": "|00 10 00 01|",
+          "modifiers": {
+            "offset": "2"
+          }
+        },
+        {
+          "pattern": "|24|env|3a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "copy|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "cd|20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET HUNTING Windows Commands and Variables in DNS Reply\"; content:\"|00 10 00 01|\"; offset:2; content:\"|24|env|3a|\"; fast_pattern; content:\"copy|20|\"; content:\"cd|20|\"; classtype:bad-unknown; sid:2038931; rev:1; metadata:attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1587,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious Domain Request for Possible COVID-19 Domain M2",
+      "dns.query": true,
+      "isdataat": [
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2029710,
+      "rev": 6,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_12_13",
+      "contents": [
+        {
+          "pattern": "corona",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\".jhu.edu",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".ncsc.gov.ie",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhs.wales",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".govt.nz",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhp.gov.in",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".oracle.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".cdc.gov",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"covid19.wisc.edu",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"services.corona.be",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".coronawarn.app",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Suspicious Domain Request for Possible COVID-19 Domain M2\"; dns.query; content:\"corona\"; nocase; content:!\".jhu.edu\"; isdataat:!1,relative; content:!\".ncsc.gov.ie\"; isdataat:!1,relative; content:!\".nhs.wales\"; isdataat:!1,relative; content:!\".govt.nz\"; isdataat:!1,relative; content:!\".nhp.gov.in\"; isdataat:!1,relative; content:!\".oracle.com\"; isdataat:!1,relative; content:!\".cdc.gov\"; isdataat:!1,relative; content:!\"covid19.wisc.edu\"; isdataat:!1,relative; content:!\"services.corona.be\"; isdataat:!1,relative; content:!\".coronawarn.app\"; isdataat:!1,relative; classtype:bad-unknown; sid:2029710; rev:6; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_12_13;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1597,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Query to .beauty TLD",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,www.spamhaus.org/statistics/tlds/",
+      "classtype": "bad-unknown",
+      "sid": 2044179,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_13, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_13",
+      "contents": [
+        {
+          "pattern": ".beauty",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed Query to .beauty TLD\"; dns.query; content:\".beauty\"; nocase; endswith; fast_pattern; reference:url,www.spamhaus.org/statistics/tlds/; classtype:bad-unknown; sid:2044179; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_02_13, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_13;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1675,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query to autoitscript .com",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2045140,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21",
+      "contents": [
+        {
+          "pattern": ".autoitscript.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query to autoitscript .com\"; dns.query; dotprefix; content:\".autoitscript.com\"; nocase; endswith; classtype:misc-activity; sid:2045140; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1679,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING IPFS Gateway Domain in DNS Lookup (ipfs .w3s .link)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,ipfs.github.io/public-gateway-checker/",
+        "url,unit42.paloaltonetworks.com/ipfs-used-maliciously/"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2045142,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21, reviewed_at 2023_08_21",
+      "contents": [
+        {
+          "pattern": ".ipfs.w3s.link",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING IPFS Gateway Domain in DNS Lookup (ipfs .w3s .link)\"; dns.query; dotprefix; content:\".ipfs.w3s.link\"; nocase; endswith; reference:url,ipfs.github.io/public-gateway-checker/; reference:url,unit42.paloaltonetworks.com/ipfs-used-maliciously/; classtype:misc-activity; sid:2045142; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21, reviewed_at 2023_08_21;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1681,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING IPFS Gateway Domain in DNS Lookup (ipfs .dweb .link)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,ipfs.github.io/public-gateway-checker/",
+        "url,unit42.paloaltonetworks.com/ipfs-used-maliciously/"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2045143,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21, reviewed_at 2023_08_21",
+      "contents": [
+        {
+          "pattern": ".ipfs.dweb.link",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING IPFS Gateway Domain in DNS Lookup (ipfs .dweb .link)\"; dns.query; dotprefix; content:\".ipfs.dweb.link\"; nocase; endswith; reference:url,ipfs.github.io/public-gateway-checker/; reference:url,unit42.paloaltonetworks.com/ipfs-used-maliciously/; classtype:misc-activity; sid:2045143; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21, reviewed_at 2023_08_21;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1683,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING IPFS Gateway Domain in DNS Lookup (gateway .pinata .cloud)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,ipfs.github.io/public-gateway-checker/",
+        "url,unit42.paloaltonetworks.com/ipfs-used-maliciously/"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2045144,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21, reviewed_at 2023_08_21",
+      "contents": [
+        {
+          "pattern": ".gateway.pinata.cloud",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING IPFS Gateway Domain in DNS Lookup (gateway .pinata .cloud)\"; dns.query; dotprefix; content:\".gateway.pinata.cloud\"; nocase; endswith; reference:url,ipfs.github.io/public-gateway-checker/; reference:url,unit42.paloaltonetworks.com/ipfs-used-maliciously/; classtype:misc-activity; sid:2045144; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21, reviewed_at 2023_08_21;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1773,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING curl in DNS TXT Response",
+      "reference": [
+        "url,www.malware-traffic-analysis.net/2023/12/07/index.html",
+        "url,x.com/unit42_intel/status/1732857094167023618"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2049647,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2023_12_12, deployment Perimeter, deployment Internal, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2023_12_12",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01 00 00 00 00|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00 10|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "curl|20|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET HUNTING curl in DNS TXT Response\"; content:\"|00 01 00 01 00 00 00 00|\"; offset:4; depth:8; content:\"|00 10|\"; distance:0; content:\"curl|20|\"; fast_pattern; distance:0; reference:url,www.malware-traffic-analysis.net/2023/12/07/index.html; reference:url,x.com/unit42_intel/status/1732857094167023618; classtype:bad-unknown; sid:2049647; rev:1; metadata:attack_target Client_and_Server, created_at 2023_12_12, deployment Perimeter, deployment Internal, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2023_12_12; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1775,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING wget in DNS TXT Response",
+      "reference": [
+        "url,www.malware-traffic-analysis.net/2023/12/07/index.html",
+        "url,x.com/unit42_intel/status/1732857094167023618"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2049648,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2023_12_12, deployment Perimeter, deployment Internal, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2023_12_12",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01 00 00 00 00|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00 10|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "wget|20|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET HUNTING wget in DNS TXT Response\"; content:\"|00 01 00 01 00 00 00 00|\"; offset:4; depth:8; content:\"|00 10|\"; distance:0; content:\"wget|20|\"; fast_pattern; distance:0; reference:url,www.malware-traffic-analysis.net/2023/12/07/index.html; reference:url,x.com/unit42_intel/status/1732857094167023618; classtype:bad-unknown; sid:2049648; rev:1; metadata:attack_target Client_and_Server, created_at 2023_12_12, deployment Perimeter, deployment Internal, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2023_12_12; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1777,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING PDF extension in DNS TXT Response",
+      "reference": [
+        "url,www.malware-traffic-analysis.net/2023/12/07/index.html",
+        "url,x.com/unit42_intel/status/1732857094167023618"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2049649,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2023_12_12, deployment Perimeter, deployment Internal, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2023_12_12",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01 00 00 00 00|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00 10|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|2e|pdf|20|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET HUNTING PDF extension in DNS TXT Response\"; content:\"|00 01 00 01 00 00 00 00|\"; offset:4; depth:8; content:\"|00 10|\"; distance:0; content:\"|2e|pdf|20|\"; fast_pattern; distance:0; reference:url,www.malware-traffic-analysis.net/2023/12/07/index.html; reference:url,x.com/unit42_intel/status/1732857094167023618; classtype:bad-unknown; sid:2049649; rev:1; metadata:attack_target Client_and_Server, created_at 2023_12_12, deployment Perimeter, deployment Internal, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2023_12_12; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1779,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING EXE extension in DNS TXT Response",
+      "reference": [
+        "url,www.malware-traffic-analysis.net/2023/12/07/index.html",
+        "url,x.com/unit42_intel/status/1732857094167023618"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2049650,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2023_12_12, deployment Perimeter, deployment Internal, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2023_12_12",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01 00 00 00 00|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00 10|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|2e|exe|20|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET HUNTING EXE extension in DNS TXT Response\"; content:\"|00 01 00 01 00 00 00 00|\"; offset:4; depth:8; content:\"|00 10|\"; distance:0; content:\"|2e|exe|20|\"; fast_pattern; distance:0; reference:url,www.malware-traffic-analysis.net/2023/12/07/index.html; reference:url,x.com/unit42_intel/status/1732857094167023618; classtype:bad-unknown; sid:2049650; rev:1; metadata:attack_target Client_and_Server, created_at 2023_12_12, deployment Perimeter, deployment Internal, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2023_12_12; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2039,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Telegram API Domain in DNS Lookup",
+      "dns.query": true,
+      "bsize": "16",
+      "classtype": "misc-activity",
+      "sid": 2033966,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_09_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "api.telegram.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Telegram API Domain in DNS Lookup\"; dns.query; bsize:16; content:\"api.telegram.org\"; nocase; classtype:misc-activity; sid:2033966; rev:2; metadata:attack_target Client_Endpoint, created_at 2021_09_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2051,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING File Sharing Related Domain (www .mediafire .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "17",
+      "classtype": "bad-unknown",
+      "sid": 2043259,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_01_10, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26, reviewed_at 2024_09_23",
+      "contents": [
+        {
+          "pattern": "www.mediafire.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING File Sharing Related Domain (www .mediafire .com) in DNS Lookup\"; dns.query; bsize:17; content:\"www.mediafire.com\"; nocase; classtype:bad-unknown; sid:2043259; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_01_10, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26, reviewed_at 2024_09_23;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2643,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query to Fake Updates/Login Domain (security-check-...)",
+      "dns.query": true,
+      "startswith": true,
+      "reference": "url,urlscan.io/search/#page.domain%3A*security-check-*%20AND%20page.status%3A200",
+      "classtype": "misc-activity",
+      "sid": 2062221,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, tls_state plaintext, created_at 2025_05_09, deployment Perimeter, confidence Medium, signature_severity Informational, updated_at 2025_05_09",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "security-check-",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query to Fake Updates/Login Domain (security-check-...)\"; dns.query; content:\"security-check-\"; nocase; startswith; reference:url,urlscan.io/search/#page.domain%3A*security-check-*%20AND%20page.status%3A200; classtype:misc-activity; sid:2062221; rev:1; metadata:attack_target Client_Endpoint, tls_state plaintext, created_at 2025_05_09, deployment Perimeter, confidence Medium, signature_severity Informational, updated_at 2025_05_09; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2697,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query to Valve Steam Store (store .steampowered .com)",
+      "dns.query": true,
+      "bsize": "24",
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "classtype": "misc-activity",
+      "sid": 2064971,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_08_11, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_09_30",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "store.steampowered.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query to Valve Steam Store (store .steampowered .com)\"; dns.query; bsize:24; content:\"store.steampowered.com\"; nocase; threshold:type limit,count 1,seconds 300,track by_src; classtype:misc-activity; sid:2064971; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_08_11, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_09_30; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2823,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Deprecated Github URL Shortener Domain in DNS Lookup (git .io)",
+      "dns.query": true,
+      "bsize": "6",
+      "reference": "url,git.io",
+      "classtype": "bad-unknown",
+      "sid": 2067829,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_18, deployment Perimeter, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2026_02_18",
+      "contents": [
+        {
+          "pattern": "git.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Deprecated Github URL Shortener Domain in DNS Lookup (git .io)\"; dns.query; bsize:6; content:\"git.io\"; nocase; reference:url,git.io; classtype:bad-unknown; sid:2067829; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_18, deployment Perimeter, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2026_02_18;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2863,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Internet Computer Domain Observed (dfinity .network)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,dfinity.org/",
+      "classtype": "misc-activity",
+      "sid": 2068903,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_04_22, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2026_04_22",
+      "contents": [
+        {
+          "pattern": ".dfinity.network",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Internet Computer Domain Observed (dfinity .network)\"; dns.query; dotprefix; content:\".dfinity.network\"; nocase; endswith; reference:url,dfinity.org/; classtype:misc-activity; sid:2068903; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_04_22, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2026_04_22;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2867,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed DNS Query to Suspicious Domain (bromechoku .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2069381,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_05_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_05_20",
+      "contents": [
+        {
+          "pattern": ".bromechoku.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET HUNTING Observed DNS Query to Suspicious Domain (bromechoku .com)\"; dns.query; dotprefix; content:\".bromechoku.com\"; nocase; endswith; classtype:misc-activity; sid:2069381; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_05_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_05_20;)"
+  }
+]

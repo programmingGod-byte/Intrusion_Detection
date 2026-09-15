@@ -1,0 +1,1054 @@
+[
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 143,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Pando Client User-Agent Detected",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "classtype": "policy-violation",
+      "sid": 2008625,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2020_08_27",
+      "contents": [
+        {
+          "pattern": "Pando/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Pando Client User-Agent Detected\"; flow:established,to_server; http.user_agent; content:\"Pando/\"; classtype:policy-violation; sid:2008625; rev:8; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2020_08_27;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 145,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Tor Get Server Request",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": "url,tor.eff.org",
+      "classtype": "policy-violation",
+      "sid": 2008113,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_01",
+      "contents": [
+        {
+          "pattern": "/tor/server/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Tor Get Server Request\"; flow:established,to_server; http.uri; content:\"/tor/server/\"; nocase; reference:url,tor.eff.org; classtype:policy-violation; sid:2008113; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_01;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 147,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Tor Get Status Request",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": "url,tor.eff.org",
+      "classtype": "policy-violation",
+      "sid": 2008115,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_02",
+      "contents": [
+        {
+          "pattern": "/tor/status/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Tor Get Status Request\"; flow:established,to_server; http.uri; content:\"/tor/status/\"; nocase; reference:url,tor.eff.org; classtype:policy-violation; sid:2008115; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_02;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 149,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BTWebClient UA uTorrent in use",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "classtype": "policy-violation",
+      "sid": 2012247,
+      "rev": 6,
+      "metadata": "created_at 2011_01_27, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_14",
+      "contents": [
+        {
+          "pattern": "BTWebClient",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P BTWebClient UA uTorrent in use\"; flow:established,to_server; http.user_agent; content:\"BTWebClient\"; classtype:policy-violation; sid:2012247; rev:6; metadata:created_at 2011_01_27, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_14;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Ares traffic",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,www.aresgalaxy.org",
+      "classtype": "policy-violation",
+      "sid": 2001059,
+      "rev": 11,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_10_19",
+      "contents": [
+        {
+          "pattern": "Ares",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Ares traffic\"; flow:established,to_server; http.user_agent; content:\"Ares\"; startswith; reference:url,www.aresgalaxy.org; classtype:policy-violation; sid:2001059; rev:11; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_10_19;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Possible Torrent Download via HTTP Request",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "endswith": true,
+      "http.host": true,
+      "classtype": "policy-violation",
+      "sid": 2007727,
+      "rev": 12,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_11_21, reviewed_at 2024_05_01",
+      "contents": [
+        {
+          "pattern": ".torrent",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"mapfactor.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"verismic.blob.core.windows.net",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Possible Torrent Download via HTTP Request\"; flow:established,to_server; http.uri; content:\".torrent\"; nocase; endswith; http.host; content:!\"mapfactor.com\"; content:!\"verismic.blob.core.windows.net\"; classtype:policy-violation; sid:2007727; rev:12; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_11_21, reviewed_at 2024_05_01;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 163,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client HTTP Request",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "classtype": "trojan-activity",
+      "sid": 2006375,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "/trackerphp/announce.php?",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "?port=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&peer_id=",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client HTTP Request\"; flow:established,to_server; http.uri; content:\"/trackerphp/announce.php?\"; nocase; content:\"?port=\"; nocase; content:\"&peer_id=\"; classtype:trojan-activity; sid:2006375; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 165,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BearShare P2P Gnutella Client HTTP Request",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "classtype": "trojan-activity",
+      "sid": 2006379,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "/gnutella/",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "?client=BEAR",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&version=",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P BearShare P2P Gnutella Client HTTP Request\"; flow:established,to_server; http.uri; content:\"/gnutella/\"; nocase; content:\"?client=BEAR\"; nocase; content:\"&version=\"; classtype:trojan-activity; sid:2006379; rev:8; metadata:created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 169,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (Opera/10.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "reference": "url,www.opera.com",
+      "classtype": "policy-violation",
+      "sid": 2011701,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "Opera BitTorrent, Opera/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (Opera/10.x)\"; flow:established,to_server; http.user_agent; content:\"Opera BitTorrent, Opera/\"; reference:url,www.opera.com; classtype:policy-violation; sid:2011701; rev:8; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 171,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (Enhanced CTorrent 3.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "reference": "url,www.rahul.net/dholmes/ctorrent",
+      "classtype": "policy-violation",
+      "sid": 2011703,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "Enhanced-CTorrent",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (Enhanced CTorrent 3.x)\"; flow:established,to_server; http.user_agent; content:\"Enhanced-CTorrent\"; reference:url,www.rahul.net/dholmes/ctorrent; classtype:policy-violation; sid:2011703; rev:8; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 173,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Libtorrent User-Agent",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "classtype": "policy-violation",
+      "sid": 2012390,
+      "rev": 7,
+      "metadata": "created_at 2011_02_27, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "libtorrent",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Libtorrent User-Agent\"; flow:established,to_server; http.user_agent; content:\"libtorrent\"; nocase; classtype:policy-violation; sid:2012390; rev:7; metadata:created_at 2011_02_27, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Morpheus Install",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": "url,www.morpheus.com",
+      "classtype": "policy-violation",
+      "sid": 2001035,
+      "rev": 12,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "/morpheus/morpheus.exe",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Morpheus Install\"; flow:established,to_server; http.uri; content:\"/morpheus/morpheus.exe\"; nocase; reference:url,www.morpheus.com; classtype:policy-violation; sid:2001035; rev:12; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 185,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Morpheus Install ini Download",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": "url,www.morpheus.com",
+      "classtype": "policy-violation",
+      "sid": 2001036,
+      "rev": 12,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "/morpheus/morpheus_sm.ini",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Morpheus Install ini Download\"; flow:established,to_server; http.uri; content:\"/morpheus/morpheus_sm.ini\"; nocase; reference:url,www.morpheus.com; classtype:policy-violation; sid:2001036; rev:12; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 187,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Morpheus Update Request",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": "url,www.morpheus.com",
+      "classtype": "policy-violation",
+      "sid": 2001037,
+      "rev": 12,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "/gwebcache/gcache.asg?hostfile=",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Morpheus Update Request\"; flow:established,to_server; http.uri; content:\"/gwebcache/gcache.asg?hostfile=\"; nocase; reference:url,www.morpheus.com; classtype:policy-violation; sid:2001037; rev:12; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 203,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL P2P BitTorrent announce request",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "classtype": "policy-violation",
+      "sid": 2102180,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/announce",
+          "modifiers": {}
+        },
+        {
+          "pattern": "info_hash=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "event=started",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"GPL P2P BitTorrent announce request\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/announce\"; content:\"info_hash=\"; content:\"event=started\"; classtype:policy-violation; sid:2102180; rev:8; metadata:created_at 2010_09_23, signature_severity Unknown, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 213,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (uTorrent)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,www.utorrent.com",
+      "classtype": "policy-violation",
+      "sid": 2011706,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_12",
+      "contents": [
+        {
+          "pattern": "uTorrent",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (uTorrent)\"; flow:established,to_server; http.user_agent; content:\"uTorrent\"; startswith; reference:url,www.utorrent.com; classtype:policy-violation; sid:2011706; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_12;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 215,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BitTorrent - Torrent File Downloaded",
+      "flow": "established,to_client",
+      "file.data": true,
+      "classtype": "policy-violation",
+      "sid": 2014734,
+      "rev": 6,
+      "metadata": "created_at 2012_05_11, confidence High, signature_severity Informational, updated_at 2024_03_13",
+      "contents": [
+        {
+          "pattern": "d8|3a|announce",
+          "modifiers": {
+            "within": "11"
+          }
+        },
+        {
+          "pattern": "!\"mapfactor.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET P2P BitTorrent - Torrent File Downloaded\"; flow:established,to_client; file.data; content:\"d8|3a|announce\"; within:11; content:!\"mapfactor.com\"; classtype:policy-violation; sid:2014734; rev:6; metadata:created_at 2012_05_11, confidence High, signature_severity Informational, updated_at 2024_03_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 223,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Soulseek",
+      "flow": "established",
+      "reference": "url,www.slsknet.org",
+      "classtype": "policy-violation",
+      "sid": 2001188,
+      "rev": 10,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17",
+      "contents": [
+        {
+          "pattern": "slsknet",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET P2P Soulseek\"; flow:established; content:\"slsknet\"; reference:url,www.slsknet.org; classtype:policy-violation; sid:2001188; rev:10; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 239,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P QVOD P2P Sharing Traffic detected (tcp)",
+      "flow": "established,to_server",
+      "urilen": "8",
+      "http.method": true,
+      "http.uri": true,
+      "http.request_body": true,
+      "classtype": "policy-violation",
+      "sid": 2014459,
+      "rev": 5,
+      "metadata": "created_at 2012_04_03, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_08",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/service",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|13|QVOD protocol|00 00 00 00 00 00 00 00 00 00 00 00 00 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P QVOD P2P Sharing Traffic detected (tcp)\"; flow:established,to_server; urilen:8; http.method; content:\"POST\"; http.uri; content:\"/service\"; http.request_body; content:\"|13|QVOD protocol|00 00 00 00 00 00 00 00 00 00 00 00 00 00|\"; fast_pattern; classtype:policy-violation; sid:2014459; rev:5; metadata:created_at 2012_04_03, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_08;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 241,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (Transmission/1.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,www.transmissionbt.com",
+      "classtype": "policy-violation",
+      "sid": 2011699,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_12",
+      "contents": [
+        {
+          "pattern": "Transmission/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (Transmission/1.x)\"; flow:established,to_server; http.user_agent; content:\"Transmission/\"; startswith; reference:url,www.transmissionbt.com; classtype:policy-violation; sid:2011699; rev:8; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_12;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 243,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BearShare P2P Gnutella Client User-Agent (BearShare 6.x.x.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2006371,
+      "rev": 12,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "BearShare",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P BearShare P2P Gnutella Client User-Agent (BearShare 6.x.x.x)\"; flow:established,to_server; http.user_agent; content:\"BearShare\"; startswith; classtype:trojan-activity; sid:2006371; rev:12; metadata:created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 245,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (Bittorrent/5.x.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2006372,
+      "rev": 12,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "Bittorrent",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (Bittorrent/5.x.x)\"; flow:established,to_server; http.user_agent; content:\"Bittorrent\"; startswith; classtype:trojan-activity; sid:2006372; rev:12; metadata:created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 247,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Azureus P2P Client User-Agent",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "classtype": "policy-violation",
+      "sid": 2007799,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "Azureus",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Azureus P2P Client User-Agent\"; flow:established,to_server; http.user_agent; content:\"Azureus\"; startswith; classtype:policy-violation; sid:2007799; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 249,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P p2p Related User-Agent (eChanblard)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2011232,
+      "rev": 11,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "eChanblard",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P p2p Related User-Agent (eChanblard)\"; flow:established,to_server; http.user_agent; content:\"eChanblard\"; startswith; endswith; classtype:trojan-activity; sid:2011232; rev:11; metadata:created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 251,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (KTorrent/3.x.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,ktorrent.org",
+      "classtype": "policy-violation",
+      "sid": 2011700,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "KTorrent/3",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (KTorrent/3.x.x)\"; flow:established,to_server; http.user_agent; content:\"KTorrent/3\"; startswith; reference:url,ktorrent.org; classtype:policy-violation; sid:2011700; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 253,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (BitTornado)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,www.bittornado.com",
+      "classtype": "policy-violation",
+      "sid": 2011702,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "BitTornado/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (BitTornado)\"; flow:established,to_server; http.user_agent; content:\"BitTornado/\"; startswith; reference:url,www.bittornado.com; classtype:policy-violation; sid:2011702; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 255,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (Deluge 1.x.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,deluge-torrent.org",
+      "classtype": "policy-violation",
+      "sid": 2011704,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "Deluge",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (Deluge 1.x.x)\"; flow:established,to_server; http.user_agent; content:\"Deluge\"; startswith; reference:url,deluge-torrent.org; classtype:policy-violation; sid:2011704; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 257,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (rTorrent)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,libtorrent.rakshasa.no",
+      "classtype": "policy-violation",
+      "sid": 2011705,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "rtorrent/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (rTorrent)\"; flow:established,to_server; http.user_agent; content:\"rtorrent/\"; startswith; reference:url,libtorrent.rakshasa.no; classtype:policy-violation; sid:2011705; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 259,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Client User-Agent (Shareaza 2.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,shareaza.sourceforge.net",
+      "classtype": "policy-violation",
+      "sid": 2011707,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "Shareaza 2.",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Client User-Agent (Shareaza 2.x)\"; flow:established,to_server; http.user_agent; content:\"Shareaza 2.\"; startswith; reference:url,shareaza.sourceforge.net; classtype:policy-violation; sid:2011707; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 261,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (BitComet)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,www.bitcomet.com",
+      "classtype": "policy-violation",
+      "sid": 2011710,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "BitComet/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (BitComet)\"; flow:established,to_server; http.user_agent; content:\"BitComet/\"; startswith; reference:url,www.bitcomet.com; classtype:policy-violation; sid:2011710; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 265,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (FDM 3.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,www.freedownloadmanager.org",
+      "classtype": "policy-violation",
+      "sid": 2011712,
+      "rev": 10,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "FDM 3.",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (FDM 3.x)\"; flow:established,to_server; http.user_agent; content:\"FDM 3.\"; startswith; reference:url,www.freedownloadmanager.org; classtype:policy-violation; sid:2011712; rev:10; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 267,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Bittorrent P2P Client User-Agent (BTSP)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "classtype": "policy-violation",
+      "sid": 2011713,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "BTSP/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Bittorrent P2P Client User-Agent (BTSP)\"; flow:established,to_server; http.user_agent; content:\"BTSP/\"; startswith; classtype:policy-violation; sid:2011713; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 269,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P FFTorrent P2P Client User-Agent (FFTorrent/x.x.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "classtype": "policy-violation",
+      "sid": 2028942,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_11_05, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "FFTorrent/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P FFTorrent P2P Client User-Agent (FFTorrent/x.x.x)\"; flow:established,to_server; http.user_agent; content:\"FFTorrent/\"; startswith; classtype:policy-violation; sid:2028942; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_11_05, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 273,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P zzima_loader",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "startswith": true,
+      "http.header_names": true,
+      "to_lowercase": true,
+      "reference": "md5,810b4464785d8d007ca0c86c046ac0ef",
+      "classtype": "trojan-activity",
+      "sid": 2018532,
+      "rev": 8,
+      "metadata": "created_at 2014_06_05, confidence High, signature_severity Major, updated_at 2024_05_04",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/zzima_loader/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "zzima-nloader/ 1.0.3.1",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|referer|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P zzima_loader\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/zzima_loader/\"; fast_pattern; http.user_agent; content:\"zzima-nloader/ 1.0.3.1\"; startswith; http.header_names; to_lowercase; content:!\"|0d 0a|referer|0d 0a|\"; reference:md5,810b4464785d8d007ca0c86c046ac0ef; classtype:trojan-activity; sid:2018532; rev:8; metadata:created_at 2014_06_05, confidence High, signature_severity Major, updated_at 2024_05_04;)"
+  }
+]

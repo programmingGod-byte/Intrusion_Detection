@@ -1,0 +1,400 @@
+[
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "options": {
+      "msg": "ET TFTP Outbound TFTP Data Transfer",
+      "classtype": "policy-violation",
+      "sid": 2008117,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 03|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 69 (msg:\"ET TFTP Outbound TFTP Data Transfer\"; content:\"|00 03|\"; depth:2; classtype:policy-violation; sid:2008117; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "options": {
+      "msg": "ET TFTP Outbound TFTP ACK",
+      "classtype": "policy-violation",
+      "sid": 2008118,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 04|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 69 (msg:\"ET TFTP Outbound TFTP ACK\"; content:\"|00 04|\"; depth:2; classtype:policy-violation; sid:2008118; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "options": {
+      "msg": "ET TFTP Outbound TFTP Error Message",
+      "classtype": "policy-violation",
+      "sid": 2008119,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 05|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 69 (msg:\"ET TFTP Outbound TFTP Error Message\"; content:\"|00 05|\"; depth:2; classtype:policy-violation; sid:2008119; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "69",
+    "options": {
+      "msg": "GPL TFTP Put",
+      "reference": "cve,1999-0183",
+      "classtype": "bad-unknown",
+      "sid": 2100518,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0183, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 02|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 69 (msg:\"GPL TFTP Put\"; content:\"|00 02|\"; depth:2; reference:cve,1999-0183; classtype:bad-unknown; sid:2100518; rev:8; metadata:created_at 2010_09_23, cve CVE_1999_0183, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "69",
+    "options": {
+      "msg": "GPL TFTP GET shadow",
+      "classtype": "successful-admin",
+      "sid": 2101442,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 01|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "shadow",
+          "modifiers": {
+            "offset": "2",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> any 69 (msg:\"GPL TFTP GET shadow\"; content:\"|00 01|\"; depth:2; content:\"shadow\"; offset:2; nocase; classtype:successful-admin; sid:2101442; rev:5; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "69",
+    "options": {
+      "msg": "GPL TFTP GET passwd",
+      "classtype": "successful-admin",
+      "sid": 2101443,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 01|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "passwd",
+          "modifiers": {
+            "offset": "2",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> any 69 (msg:\"GPL TFTP GET passwd\"; content:\"|00 01|\"; depth:2; content:\"passwd\"; offset:2; nocase; classtype:successful-admin; sid:2101443; rev:5; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "69",
+    "options": {
+      "msg": "GPL TFTP GET Admin.dll",
+      "reference": "url,www.cert.org/advisories/CA-2001-26.html",
+      "classtype": "successful-admin",
+      "sid": 2101289,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 01|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "admin.dll",
+          "modifiers": {
+            "offset": "2",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> any 69 (msg:\"GPL TFTP GET Admin.dll\"; content:\"|00 01|\"; depth:2; content:\"admin.dll\"; offset:2; nocase; reference:url,www.cert.org/advisories/CA-2001-26.html; classtype:successful-admin; sid:2101289; rev:5; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "69",
+    "options": {
+      "msg": "GPL TFTP GET nc.exe",
+      "classtype": "successful-admin",
+      "sid": 2101441,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 01|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "nc.exe",
+          "modifiers": {
+            "offset": "2",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> any 69 (msg:\"GPL TFTP GET nc.exe\"; content:\"|00 01|\"; depth:2; content:\"nc.exe\"; offset:2; nocase; classtype:successful-admin; sid:2101441; rev:5; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "69",
+    "options": {
+      "msg": "GPL TFTP MISC TFTP32 Get Format string attempt",
+      "reference": [
+        "url,www.securityfocus.com/archive/1/422405/30/0/threaded",
+        "url,www.critical.lt/?vulnerabilities/200"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101222,
+      "rev": 3,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 01 25 2E|",
+          "modifiers": {
+            "depth": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 69 (msg:\"GPL TFTP MISC TFTP32 Get Format string attempt\"; content:\"|00 01 25 2E|\"; depth:4; reference:url,www.securityfocus.com/archive/1/422405/30/0/threaded; reference:url,www.critical.lt/?vulnerabilities/200; classtype:attempted-admin; sid:2101222; rev:3; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$EXTERNAL_NET,!255.255.255.255]",
+    "dst_port": "69",
+    "options": {
+      "msg": "ET TFTP Outbound TFTP Read Request",
+      "classtype": "policy-violation",
+      "sid": 2008120,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 01|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> [$EXTERNAL_NET,!255.255.255.255] 69 (msg:\"ET TFTP Outbound TFTP Read Request\"; content:\"|00 01|\"; depth:2; classtype:policy-violation; sid:2008120; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$EXTERNAL_NET,!255.255.255.255]",
+    "dst_port": "69",
+    "options": {
+      "msg": "ET TFTP Outbound TFTP Write Request",
+      "classtype": "policy-violation",
+      "sid": 2008116,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 02|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> [$EXTERNAL_NET,!255.255.255.255] 69 (msg:\"ET TFTP Outbound TFTP Write Request\"; content:\"|00 02|\"; depth:2; classtype:policy-violation; sid:2008116; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "options": {
+      "msg": "ET TFTP Outbound TFTP Data Transfer with Cisco config",
+      "classtype": "policy-violation",
+      "sid": 2015857,
+      "rev": 5,
+      "metadata": "created_at 2012_11_01, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 03|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|0a 21 20|version|20|",
+          "modifiers": {
+            "distance": "2",
+            "within": "12"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 69 (msg:\"ET TFTP Outbound TFTP Data Transfer with Cisco config\"; content:\"|00 03|\"; depth:2; content:\"|0a 21 20|version|20|\"; distance:2; within:12; classtype:policy-violation; sid:2015857; rev:5; metadata:created_at 2012_11_01, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-tftp.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "options": {
+      "msg": "ET TFTP Outbound TFTP Data Transfer With Cisco Config 2",
+      "classtype": "policy-violation",
+      "sid": 2024481,
+      "rev": 2,
+      "metadata": "affected_product Cisco_ASA, affected_product Cisco_PIX, affected_product CISCO_Catalyst, attack_target Networking_Equipment, created_at 2017_07_19, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 03|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "NVRAM config last update",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 69 (msg:\"ET TFTP Outbound TFTP Data Transfer With Cisco Config 2\"; content:\"|00 03|\"; depth:2; content:\"NVRAM config last update\"; distance:0; classtype:policy-violation; sid:2024481; rev:2; metadata:affected_product Cisco_ASA, affected_product Cisco_PIX, affected_product CISCO_Catalyst, attack_target Networking_Equipment, created_at 2017_07_19, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  }
+]

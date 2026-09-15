@@ -1,0 +1,253 @@
+[
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 605,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN Simple Slowloris Flooder",
+      "flow": "established,to_server",
+      "threshold": "type limit, track by_src, count 1, seconds 300",
+      "http.method": true,
+      "http.header": true,
+      "http.header_names": true,
+      "reference": "url,www.imperva.com/docs/HII_Denial_of_Service_Attacks-Trends_Techniques_and_Technologies.pdf",
+      "classtype": "web-application-attack",
+      "sid": 2016033,
+      "rev": 6,
+      "metadata": "created_at 2012_12_14, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_07",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Content-length|3a 20|5235|0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"User-Agent|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET SCAN Simple Slowloris Flooder\"; flow:established,to_server; threshold:type limit, track by_src, count 1, seconds 300; http.method; content:\"POST\"; http.header; content:\"Content-length|3a 20|5235|0d 0a|\"; fast_pattern; http.header_names; content:!\"User-Agent|0d 0a|\"; reference:url,www.imperva.com/docs/HII_Denial_of_Service_Attacks-Trends_Techniques_and_Technologies.pdf; classtype:web-application-attack; sid:2016033; rev:6; metadata:created_at 2012_12_14, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_07;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 609,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN Havij SQL Injection Tool User-Agent Inbound",
+      "flow": "established,to_server",
+      "http.header": true,
+      "reference": "url,itsecteam.com/en/projects/project1.htm",
+      "classtype": "web-application-attack",
+      "sid": 2012606,
+      "rev": 5,
+      "metadata": "affected_product Web_Server_Applications, attack_target Web_Server, created_at 2011_03_31, deployment Datacenter, confidence High, signature_severity Major, tag SQL_Injection, updated_at 2024_04_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "|29 20|Havij|0d 0a|Connection|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCAN Havij SQL Injection Tool User-Agent Inbound\"; flow:established,to_server; http.header; content:\"|29 20|Havij|0d 0a|Connection|3a 20|\"; reference:url,itsecteam.com/en/projects/project1.htm; classtype:web-application-attack; sid:2012606; rev:5; metadata:affected_product Web_Server_Applications, attack_target Web_Server, created_at 2011_03_31, deployment Datacenter, confidence High, signature_severity Major, tag SQL_Injection, updated_at 2024_04_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 611,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN Metasploit WMAP GET len 0 and type",
+      "flow": "established,to_server",
+      "threshold": "type limit, track by_src,count 1,seconds 60",
+      "http.method": true,
+      "http.header": true,
+      "classtype": "attempted-recon",
+      "sid": 2011974,
+      "rev": 6,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2010_11_24, deployment Perimeter, deployment Internet, deployment Internal, deployment Datacenter, confidence Medium, signature_severity Critical, tag Metasploit, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Content-Type|3A 20|text/plain|0d 0a|Content-Length|3A 20|0|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCAN Metasploit WMAP GET len 0 and type\"; flow:established,to_server; threshold: type limit, track by_src,count 1,seconds 60; http.method; content:\"GET\"; http.header; content:\"|0d 0a|Content-Type|3A 20|text/plain|0d 0a|Content-Length|3A 20|0|0d 0a|\"; classtype:attempted-recon; sid:2011974; rev:6; metadata:affected_product Any, attack_target Client_and_Server, created_at 2010_11_24, deployment Perimeter, deployment Internet, deployment Internal, deployment Datacenter, confidence Medium, signature_severity Critical, tag Metasploit, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 613,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN Havij SQL Injection Tool User-Agent Outbound",
+      "flow": "established,to_server",
+      "http.header": true,
+      "reference": "url,itsecteam.com/en/projects/project1.htm",
+      "classtype": "web-application-attack",
+      "sid": 2011924,
+      "rev": 4,
+      "metadata": "affected_product Web_Server_Applications, attack_target Web_Server, created_at 2010_11_12, deployment Datacenter, confidence High, signature_severity Major, tag SQL_Injection, updated_at 2024_04_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "|29 20|Havij|0d 0a|Connection|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET SCAN Havij SQL Injection Tool User-Agent Outbound\"; flow:established,to_server; http.header; content:\"|29 20|Havij|0d 0a|Connection|3a 20|\"; reference:url,itsecteam.com/en/projects/project1.htm; classtype:web-application-attack; sid:2011924; rev:4; metadata:affected_product Web_Server_Applications, attack_target Web_Server, created_at 2010_11_12, deployment Datacenter, confidence High, signature_severity Major, tag SQL_Injection, updated_at 2024_04_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 701,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN abdullkarem Wordpress PHP Scanner",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.protocol": true,
+      "startswith": true,
+      "endswith": true,
+      "http.header_names": true,
+      "classtype": "web-application-attack",
+      "sid": 2021949,
+      "rev": 6,
+      "metadata": "affected_product Wordpress, affected_product Wordpress_Plugins, attack_target Web_Server, created_at 2015_10_14, deployment Datacenter, confidence Medium, signature_severity Major, tag Wordpress, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php?",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&php",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&wphp",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&abdullkarem=",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "HTTP/1.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCAN abdullkarem Wordpress PHP Scanner\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\".php?\"; nocase; content:\"&php\"; nocase; distance:0; content:\"&wphp\"; nocase; distance:0; content:\"&abdullkarem=\"; nocase; fast_pattern; distance:0; http.protocol; content:\"HTTP/1.0\"; startswith; endswith; http.header_names; content:\"|0d 0a|Host|0d 0a|\"; startswith; classtype:web-application-attack; sid:2021949; rev:6; metadata:affected_product Wordpress, affected_product Wordpress_Plugins, attack_target Web_Server, created_at 2015_10_14, deployment Datacenter, confidence Medium, signature_severity Major, tag Wordpress, updated_at 2024_04_14;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 703,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN libwww-perl GET to // with specific HTTP header ordering without libwww-perl User-Agent",
+      "flow": "established,to_server",
+      "http.header": true,
+      "startswith": true,
+      "http.user_agent": true,
+      "http.request_line": true,
+      "http.header_names": true,
+      "bsize": "26",
+      "threshold": "type threshold, track by_dst, count 10, seconds 20",
+      "classtype": "attempted-recon",
+      "sid": 2013416,
+      "rev": 14,
+      "metadata": "created_at 2011_08_17, performance_impact Moderate, confidence High, signature_severity Informational, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "TE|3a 20|deflate,gzip|3b|q=0.3|0d 0a|Connection|3a 20|TE, close|0d 0a|Host|3a 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "User-Agent|3a 20|",
+          "modifiers": {
+            "within": "100"
+          }
+        },
+        {
+          "pattern": "!\"libwww-perl/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "GET //",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|TE|0d 0a|Host|0d 0a|User-Agent|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET SCAN libwww-perl GET to // with specific HTTP header ordering without libwww-perl User-Agent\"; flow:established,to_server; http.header; content:\"TE|3a 20|deflate,gzip|3b|q=0.3|0d 0a|Connection|3a 20|TE, close|0d 0a|Host|3a 20|\"; startswith; content:\"User-Agent|3a 20|\"; within:100; http.user_agent; content:!\"libwww-perl/\"; http.request_line; content:\"GET //\"; fast_pattern; startswith; http.header_names; bsize:26; content:\"|0d 0a|TE|0d 0a|Host|0d 0a|User-Agent|0d 0a 0d 0a|\"; threshold:type threshold, track by_dst, count 10, seconds 20; classtype:attempted-recon; sid:2013416; rev:14; metadata:created_at 2011_08_17, performance_impact Moderate, confidence High, signature_severity Informational, updated_at 2024_04_14;)"
+  }
+]

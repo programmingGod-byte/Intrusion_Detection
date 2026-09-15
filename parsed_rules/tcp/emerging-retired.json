@@ -1,0 +1,2096 @@
+[
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED RShell Backdoor Initial CnC Checkin",
+      "flow": "established,to_server",
+      "pcre": "/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/R",
+      "reference": [
+        "url,blog.sekoia.io/luckymouse-uses-a-backdoored-electron-app-to-target-macos",
+        "url,www.trendmicro.com/en_us/research/22/h/irontiger-compromises-chat-app-Mimi-targets-windows-mac-linux-users.html"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2038540,
+      "rev": 3,
+      "metadata": "attack_target Client_and_Server, created_at 2022_08_16, deployment Perimeter, former_category MALWARE, malware_family Rshell, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "|00 00 00 02|guid|00 25 00 00 00|",
+          "modifiers": {
+            "offset": "1",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|00 02|hostname",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|00 02|lan",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|00 02|type",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "login",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|00 02|username",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|00 02|version",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED RShell Backdoor Initial CnC Checkin\"; flow:established,to_server; content:\"|00 00 00 02|guid|00 25 00 00 00|\"; offset:1; fast_pattern; pcre:\"/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/R\"; content:\"|00 02|hostname\"; distance:0; content:\"|00 02|lan\"; distance:0; content:\"|00 02|type\"; distance:0; content:\"login\"; distance:0; content:\"|00 02|username\"; distance:0; content:\"|00 02|version\"; distance:0; reference:url,blog.sekoia.io/luckymouse-uses-a-backdoored-electron-app-to-target-macos; reference:url,www.trendmicro.com/en_us/research/22/h/irontiger-compromises-chat-app-Mimi-targets-windows-mac-linux-users.html; classtype:command-and-control; sid:2038540; rev:3; metadata:attack_target Client_and_Server, created_at 2022_08_16, deployment Perimeter, former_category MALWARE, malware_family Rshell, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 211,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$SQL_SERVERS]",
+    "dst_port": "1433",
+    "options": {
+      "msg": "ET RETIRED MSSQL maggie backdoor ls Query Observed",
+      "flow": "established,to_server",
+      "reference": "url,medium.com/@DCSO_CyTec/mssql-meet-maggie-898773df3b01",
+      "classtype": "trojan-activity",
+      "sid": 2039184,
+      "rev": 4,
+      "metadata": "affected_product Microsoft_SQL_Server, attack_target SQL_Server, created_at 2022_10_12, deployment Perimeter, deployment Internal, deployment Datacenter, former_category MALWARE, malware_family maggie, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19",
+      "contents": [
+        {
+          "pattern": "e|00|x|00|e|00|c",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "m|00|a|00|g|00|g|00|i|00|e|00 20 00 27 00|l|00|s|00|",
+          "modifiers": {
+            "nocase": true,
+            "within": "200",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> [$HOME_NET,$SQL_SERVERS] 1433 (msg:\"ET RETIRED MSSQL maggie backdoor ls Query Observed\"; flow:established,to_server; content:\"e|00|x|00|e|00|c\"; nocase; content:\"m|00|a|00|g|00|g|00|i|00|e|00 20 00 27 00|l|00|s|00|\"; nocase; within:200; fast_pattern; reference:url,medium.com/@DCSO_CyTec/mssql-meet-maggie-898773df3b01; classtype:trojan-activity; sid:2039184; rev:4; metadata:affected_product Microsoft_SQL_Server, attack_target SQL_Server, created_at 2022_10_12, deployment Perimeter, deployment Internal, deployment Datacenter, former_category MALWARE, malware_family maggie, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 213,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$SQL_SERVERS]",
+    "dst_port": "1433",
+    "options": {
+      "msg": "ET RETIRED MSSQL maggie backdoor Query Observed (other functions)",
+      "flow": "established,to_server",
+      "reference": "url,medium.com/@DCSO_CyTec/mssql-meet-maggie-898773df3b01",
+      "classtype": "trojan-activity",
+      "sid": 2039415,
+      "rev": 6,
+      "metadata": "affected_product Microsoft_SQL_Server, attack_target SQL_Server, created_at 2022_10_13, deployment Perimeter, deployment Internal, deployment Datacenter, former_category MALWARE, malware_family maggie, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19",
+      "contents": [
+        {
+          "pattern": "e|00|x|00|e|00|c|00 20 00|m|00|a|00|g|00|g|00|i|00|e|00 20 00 27 00|",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> [$HOME_NET,$SQL_SERVERS] 1433 (msg:\"ET RETIRED MSSQL maggie backdoor Query Observed (other functions)\"; flow:established,to_server; content:\"e|00|x|00|e|00|c|00 20 00|m|00|a|00|g|00|g|00|i|00|e|00 20 00 27 00|\"; nocase; fast_pattern; reference:url,medium.com/@DCSO_CyTec/mssql-meet-maggie-898773df3b01; classtype:trojan-activity; sid:2039415; rev:6; metadata:affected_product Microsoft_SQL_Server, attack_target SQL_Server, created_at 2022_10_13, deployment Perimeter, deployment Internal, deployment Datacenter, former_category MALWARE, malware_family maggie, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 243,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Confucious APT CnC Checkin",
+      "flow": "established,to_server",
+      "pcre": "/^(?:[A-F0-9]{2}-){5}[A-F0-9]{2}/R",
+      "reference": "md5,23537d81e9cd285b41185a0e4c3d37c1",
+      "classtype": "trojan-activity",
+      "sid": 2041928,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_12_06, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_23, reviewed_at 2024_09_23",
+      "contents": [
+        {
+          "pattern": "XOXO",
+          "modifiers": {}
+        },
+        {
+          "pattern": "XOXO",
+          "modifiers": {
+            "within": "50"
+          }
+        },
+        {
+          "pattern": "XOXO|20|Host|20|Name|3a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Confucious APT CnC Checkin\"; flow:established,to_server; content:\"XOXO\"; content:\"XOXO\"; within:50; pcre:\"/^(?:[A-F0-9]{2}-){5}[A-F0-9]{2}/R\"; content:\"XOXO|20|Host|20|Name|3a|\"; fast_pattern; reference:md5,23537d81e9cd285b41185a0e4c3d37c1; classtype:trojan-activity; sid:2041928; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_12_06, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_23, reviewed_at 2024_09_23;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 251,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Wacatac.B!ml Data Exfiltration",
+      "flow": "established,to_server",
+      "flowbits": "isset,ET.Wacatac_B_Checkin",
+      "byte_test": "1,<=,20,0,relative",
+      "reference": "md5,082ba31c83e3fc1114b6444111e88019",
+      "classtype": "trojan-activity",
+      "sid": 2037236,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_30, deployment Perimeter, former_category MALWARE, malware_family Wacatac_B_ml, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "|23 23 23|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|23 23 23|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|23 23 23|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PK|03 04|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Google/Chrome/User|20|Data/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/Wacatac.B!ml Data Exfiltration\"; flow:established,to_server; flowbits:isset,ET.Wacatac_B_Checkin; content:\"|23 23 23|\"; content:\"|23 23 23|\"; distance:0; content:\"|23 23 23|\"; distance:0; content:\"PK|03 04|\"; distance:0; byte_test:1,<=,20,0,relative; content:\"Google/Chrome/User|20|Data/\"; fast_pattern; reference:md5,082ba31c83e3fc1114b6444111e88019; classtype:trojan-activity; sid:2037236; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_30, deployment Perimeter, former_category MALWARE, malware_family Wacatac_B_ml, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 255,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Malvirt/KoiVM Downloader Variant Payload Retrieval Request",
+      "flow": "established,to_server",
+      "dsize": "38",
+      "stream_size": "client,=,39",
+      "startswith": true,
+      "pcre": "/^[a-f0-9]{32}\\x0d\\x0a$/R",
+      "reference": [
+        "md5,dad996ac644cafb4c238bbd162945114",
+        "url,scribe.froth.zone/walmartglobaltech/malvert-koivm-downloader-variant-ed4a88920b8c",
+        "url,www.sentinelone.com/labs/malvirt-net-virtualization-thrives-in-malvertising-attacks/"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2044003,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_01_26, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "get_",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Malvirt/KoiVM Downloader Variant Payload Retrieval Request\"; flow:established,to_server; dsize:38; stream_size: client,=,39; content:\"get_\"; fast_pattern; startswith; pcre:\"/^[a-f0-9]{32}\\x0d\\x0a$/R\"; reference:md5,dad996ac644cafb4c238bbd162945114; reference:url,scribe.froth.zone/walmartglobaltech/malvert-koivm-downloader-variant-ed4a88920b8c; reference:url,www.sentinelone.com/labs/malvirt-net-virtualization-thrives-in-malvertising-attacks/; classtype:trojan-activity; sid:2044003; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_01_26, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 299,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Parallax CnC Activity M18 (set)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,ET.Parallax-18",
+        "noalert"
+      ],
+      "startswith": true,
+      "reference": [
+        "md5,40256ea622aa1d0678f5bde48b9aa0fb",
+        "url,www.uptycs.com/blog/cryptocurrency-entities-at-risk-threat-actor-uses-parallax-rat-for-infiltration"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2044449,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_06, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "|a2 b7 1e a8|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|c7 ba d0|",
+          "modifiers": {
+            "distance": "1",
+            "within": "3"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Parallax CnC Activity M18 (set)\"; flow:established,to_server; flowbits:set,ET.Parallax-18; flowbits:noalert; content:\"|a2 b7 1e a8|\"; startswith; fast_pattern; content:\"|c7 ba d0|\"; distance:1; within:3; reference:md5,40256ea622aa1d0678f5bde48b9aa0fb; reference:url,www.uptycs.com/blog/cryptocurrency-entities-at-risk-threat-actor-uses-parallax-rat-for-infiltration; classtype:command-and-control; sid:2044449; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_06, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 301,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Parallax CnC Response Activity M18",
+      "flow": "established,to_client",
+      "flowbits": "isset,ET.Parallax-18",
+      "startswith": true,
+      "reference": [
+        "md5,40256ea622aa1d0678f5bde48b9aa0fb",
+        "url,www.uptycs.com/blog/cryptocurrency-entities-at-risk-threat-actor-uses-parallax-rat-for-infiltration"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2044450,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_06, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "|a2 b7 1e a8|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|c7 ba d0|",
+          "modifiers": {
+            "distance": "1",
+            "within": "3"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED Parallax CnC Response Activity M18\"; flow:established,to_client; flowbits:isset,ET.Parallax-18; content:\"|a2 b7 1e a8|\"; startswith; fast_pattern; content:\"|c7 ba d0|\"; distance:1; within:3; reference:md5,40256ea622aa1d0678f5bde48b9aa0fb; reference:url,www.uptycs.com/blog/cryptocurrency-entities-at-risk-threat-actor-uses-parallax-rat-for-infiltration; classtype:command-and-control; sid:2044450; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_06, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 371,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZenRAT Ping Command",
+      "flow": "established,to_server",
+      "flowbits": "set,ET.ZenRATPing",
+      "dsize": "73",
+      "startswith": true,
+      "pcre": "/([\\x00-\\xff]\\x00{7}){2}$/R",
+      "reference": "md5,6f809b1c82d9fb6cd277c6b645ecaf84",
+      "classtype": "trojan-activity",
+      "sid": 2047754,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|09 49 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED ZenRAT Ping Command\"; flow:established,to_server; flowbits:set,ET.ZenRATPing; dsize:73; content:\"|09 49 00 00 00 00 00 00 00|\"; startswith; pcre:\"/([\\x00-\\xff]\\x00{7}){2}$/R\"; reference:md5,6f809b1c82d9fb6cd277c6b645ecaf84; classtype:trojan-activity; sid:2047754; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 373,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZenRAT Get Status Command",
+      "flow": "established,to_server",
+      "flowbits": "set,ET.ZenRATStatus",
+      "startswith": true,
+      "pcre": "/([\\x00-\\xff]\\x00{7}){2}/R",
+      "reference": "md5,6f809b1c82d9fb6cd277c6b645ecaf84",
+      "classtype": "trojan-activity",
+      "sid": 2047756,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|0a 51 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED ZenRAT Get Status Command\"; flow:established,to_server; flowbits:set,ET.ZenRATStatus; content:\"|0a 51 00 00 00 00 00 00 00|\"; startswith; pcre:\"/([\\x00-\\xff]\\x00{7}){2}/R\"; reference:md5,6f809b1c82d9fb6cd277c6b645ecaf84; classtype:trojan-activity; sid:2047756; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 375,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZenRAT Request Module CnC Response",
+      "flow": "established,to_client",
+      "flowbits": "isset,ET.ZenRATModuleRequest",
+      "reference": "md5,6f809b1c82d9fb6cd277c6b645ecaf84",
+      "classtype": "trojan-activity",
+      "sid": 2047760,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|00 29 08 01 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED ZenRAT Request Module CnC Response\"; flow:established,to_client; flowbits:isset,ET.ZenRATModuleRequest; content:\"|00 29 08 01 00 00 00 00 00|\"; reference:md5,6f809b1c82d9fb6cd277c6b645ecaf84; classtype:trojan-activity; sid:2047760; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_02, reviewed_at 2024_10_02; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 377,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZenRAT Update Command",
+      "flow": "established,to_server",
+      "flowbits": "set,ET.ZenRATUpdate",
+      "dsize": "73",
+      "startswith": true,
+      "pcre": "/([\\x00-\\xff]\\x00{7}){2}/R",
+      "reference": "md5,6f809b1c82d9fb6cd277c6b645ecaf84",
+      "classtype": "trojan-activity",
+      "sid": 2047761,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|05 49 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED ZenRAT Update Command\"; flow:established,to_server; flowbits:set,ET.ZenRATUpdate; dsize:73; content:\"|05 49 00 00 00 00 00 00 00|\"; startswith; pcre:\"/([\\x00-\\xff]\\x00{7}){2}/R\"; reference:md5,6f809b1c82d9fb6cd277c6b645ecaf84; classtype:trojan-activity; sid:2047761; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 547,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZenRAT Update CnC Response (Already Actual)",
+      "flow": "established,to_client",
+      "flowbits": "isset,ET.ZenRATUpdate",
+      "dsize": "9",
+      "reference": "md5,6f809b1c82d9fb6cd277c6b645ecaf84",
+      "classtype": "trojan-activity",
+      "sid": 2047762,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_11_24",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|0a 09 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED ZenRAT Update CnC Response (Already Actual)\"; flow:established,to_client; flowbits:isset,ET.ZenRATUpdate; dsize:9; content:\"|0a 09 00 00 00 00 00 00 00|\"; reference:md5,6f809b1c82d9fb6cd277c6b645ecaf84; classtype:trojan-activity; sid:2047762; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_11_24; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 549,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZenRAT Status Response",
+      "flow": "established,to_client",
+      "flowbits": "isset,ET.ZenRATStatus",
+      "startswith": true,
+      "pcre": "/^[\\x00-\\xff]\\x00{3}$/R",
+      "reference": "md5,6f809b1c82d9fb6cd277c6b645ecaf84",
+      "classtype": "trojan-activity",
+      "sid": 2047757,
+      "rev": 2,
+      "metadata": "attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_11_24, reviewed_at 2023_08_25",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|00 0d 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED ZenRAT Status Response\"; flow:established,to_client; flowbits:isset,ET.ZenRATStatus; content:\"|00 0d 00 00 00 00 00 00 00|\"; startswith; pcre:\"/^[\\x00-\\xff]\\x00{3}$/R\"; reference:md5,6f809b1c82d9fb6cd277c6b645ecaf84; classtype:trojan-activity; sid:2047757; rev:2; metadata:attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_11_24, reviewed_at 2023_08_25; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 551,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZenRAT CnC OK Response",
+      "flow": "established,to_client",
+      "flowbits": "isset,ET.ZenRATPing",
+      "dsize": "9",
+      "reference": "md5,6f809b1c82d9fb6cd277c6b645ecaf84",
+      "classtype": "trojan-activity",
+      "sid": 2047755,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_11_24",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|00 09 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED ZenRAT CnC OK Response\"; flow:established,to_client; flowbits:isset,ET.ZenRATPing; dsize:9; content:\"|00 09 00 00 00 00 00 00 00|\"; reference:md5,6f809b1c82d9fb6cd277c6b645ecaf84; classtype:trojan-activity; sid:2047755; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2023_08_25, deployment Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_11_24; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 553,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET RETIRED Night Dragon CnC Beacon Outbound",
+      "flow": "established,to_server",
+      "dsize": "16",
+      "threshold": "type limit, count 1, seconds 60, track by_src",
+      "reference": "url,www.mcafee.com/us/resources/white-papers/wp-global-energy-cyberattacks-night-dragon.pdf",
+      "classtype": "command-and-control",
+      "sid": 2012303,
+      "rev": 5,
+      "metadata": "attack_target Client_Endpoint, created_at 2011_02_10, deployment Perimeter, former_category MALWARE, confidence High, signature_severity Major, tag c2, updated_at 2024_12_03, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "|01 50 00 00 00 00 00 00 00 00 00 01 68 57 24 13|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:\"ET RETIRED Night Dragon CnC Beacon Outbound\"; flow:established,to_server; dsize:16; content:\"|01 50 00 00 00 00 00 00 00 00 00 01 68 57 24 13|\"; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.mcafee.com/us/resources/white-papers/wp-global-energy-cyberattacks-night-dragon.pdf; classtype:command-and-control; sid:2012303; rev:5; metadata:attack_target Client_Endpoint, created_at 2011_02_10, deployment Perimeter, former_category MALWARE, confidence High, signature_severity Major, tag c2, updated_at 2024_12_03, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 555,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET RETIRED Night Dragon CnC Traffic Outbound 2",
+      "flow": "established,to_server",
+      "dsize": "16",
+      "threshold": "type limit, count 1, seconds 60, track by_dst",
+      "reference": "url,www.mcafee.com/us/resources/white-papers/wp-global-energy-cyberattacks-Night-dragon.pdf",
+      "classtype": "command-and-control",
+      "sid": 2012306,
+      "rev": 7,
+      "metadata": "created_at 2011_02_10, former_category MALWARE, confidence Low, signature_severity Major, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "|68 57 24 13|",
+          "modifiers": {
+            "offset": "12",
+            "depth": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:\"ET RETIRED Night Dragon CnC Traffic Outbound 2\"; flow:established,to_server; dsize:16; content:\"|68 57 24 13|\"; offset:12; depth:4; threshold: type limit, count 1, seconds 60, track by_dst; reference:url,www.mcafee.com/us/resources/white-papers/wp-global-energy-cyberattacks-Night-dragon.pdf; classtype:command-and-control; sid:2012306; rev:7; metadata:created_at 2011_02_10, former_category MALWARE, confidence Low, signature_severity Major, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 557,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Windows 7 CMD Shell from Local System",
+      "flow": "established",
+      "dsize": "<160",
+      "classtype": "successful-admin",
+      "sid": 2012690,
+      "rev": 2,
+      "metadata": "created_at 2011_04_17, former_category ATTACK_RESPONSE, confidence Low, signature_severity Minor, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "Microsoft Windows [Version ",
+          "modifiers": {
+            "depth": "30"
+          }
+        },
+        {
+          "pattern": "Copyright (c)",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Microsoft Corp",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> any any (msg:\"ET RETIRED Windows 7 CMD Shell from Local System\"; flow:established; dsize:<160; content:\"Microsoft Windows [Version \"; depth:30; content:\"Copyright (c)\"; distance:0; content:\"Microsoft Corp\"; distance:0; classtype:successful-admin; sid:2012690; rev:2; metadata:created_at 2011_04_17, former_category ATTACK_RESPONSE, confidence Low, signature_severity Minor, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 559,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET RETIRED Dropper.Win32.Agent.bpxo Checkin",
+      "flow": "established,to_server",
+      "reference": [
+        "md5,02e447b347a90680e03c8b7d843a8e46",
+        "url,www.antivirus365.org/PCAntivirus/37128.html"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2012894,
+      "rev": 5,
+      "metadata": "created_at 2011_05_31, former_category MALWARE, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "|71 4E 6C 39 34 65 66 59 41 7A 32 32 37 4F 71 45 44 4D 50 0A|",
+          "modifiers": {
+            "depth": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 1024: (msg:\"ET RETIRED Dropper.Win32.Agent.bpxo Checkin\"; flow:established,to_server; content:\"|71 4E 6C 39 34 65 66 59 41 7A 32 32 37 4F 71 45 44 4D 50 0A|\"; depth:20; reference:md5,02e447b347a90680e03c8b7d843a8e46; reference:url,www.antivirus365.org/PCAntivirus/37128.html; classtype:command-and-control; sid:2012894; rev:5; metadata:created_at 2011_05_31, former_category MALWARE, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 561,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "288",
+    "options": {
+      "msg": "ET RETIRED Dropper.Win32.Agent.ahju Checkin",
+      "flow": "established,to_server",
+      "reference": [
+        "md5,48ad09c574a4bd3bb24d007005382e63",
+        "md5,a264690a775a4e1b3d91c2dbcd850ce9"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2012895,
+      "rev": 3,
+      "metadata": "created_at 2011_05_31, former_category MALWARE, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "|44 78 47 54 33 43 6D 42 66 39 73 39 6C 74 62 6A 35 61 4A 7C 0A|",
+          "modifiers": {
+            "depth": "21"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 288 (msg:\"ET RETIRED Dropper.Win32.Agent.ahju Checkin\"; flow:established,to_server; content:\"|44 78 47 54 33 43 6D 42 66 39 73 39 6C 74 62 6A 35 61 4A 7C 0A|\"; depth:21; reference:md5,48ad09c574a4bd3bb24d007005382e63; reference:md5,a264690a775a4e1b3d91c2dbcd850ce9; classtype:command-and-control; sid:2012895; rev:3; metadata:created_at 2011_05_31, former_category MALWARE, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 563,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Backdoor.Win32.ZZSlash/Redosdru.E checkin",
+      "flow": "established,to_server",
+      "reference": [
+        "md5,3b0299d72c853f56a1595c855776f89f",
+        "md5,adc3a35d1244c9129be6edd6ccfaec5b"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2012957,
+      "rev": 3,
+      "metadata": "created_at 2011_06_08, former_category MALWARE, confidence High, signature_severity Major, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "|14 00 00 00 04 00 00 00 78 9C 63 60 60 60 00 00 00 04 00 01|",
+          "modifiers": {
+            "depth": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Backdoor.Win32.ZZSlash/Redosdru.E checkin\"; flow:established,to_server; content:\"|14 00 00 00 04 00 00 00 78 9C 63 60 60 60 00 00 00 04 00 01|\"; depth:20; reference:md5,3b0299d72c853f56a1595c855776f89f; reference:md5,adc3a35d1244c9129be6edd6ccfaec5b; classtype:command-and-control; sid:2012957; rev:3; metadata:created_at 2011_06_08, former_category MALWARE, confidence High, signature_severity Major, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 565,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET RETIRED Ruskill/Palevo Download Command",
+      "flow": "established,to_server",
+      "reference": [
+        "md5,2d69d8d243499ab53b840c64f68cc830",
+        "url,sebdraven.tumblr.com/post/6769853139/palevo-analysises"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2013245,
+      "rev": 4,
+      "metadata": "created_at 2011_07_11, former_category MALWARE, confidence Low, signature_severity Unknown, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "PRIVMSG #",
+          "modifiers": {
+            "depth": "9"
+          }
+        },
+        {
+          "pattern": "|3a 5b|d=|22|http|3a|//",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 1024: -> $EXTERNAL_NET 1024: (msg:\"ET RETIRED Ruskill/Palevo Download Command\"; flow:established,to_server; content:\"PRIVMSG #\"; depth:9; content:\"|3a 5b|d=|22|http|3a|//\"; distance:0; reference:md5,2d69d8d243499ab53b840c64f68cc830; reference:url,sebdraven.tumblr.com/post/6769853139/palevo-analysises; classtype:trojan-activity; sid:2013245; rev:4; metadata:created_at 2011_07_11, former_category MALWARE, confidence Low, signature_severity Unknown, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 567,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET RETIRED Ruskill/Palevo KCIK IRC Command",
+      "flow": "established,to_server",
+      "reference": [
+        "url,ore.carnivore.it/malware/hash/d4dc8459a34ea14d856e529d3a9e0362",
+        "url,sebdraven.tumblr.com/post/6769853139/palevo-analysises"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2013247,
+      "rev": 6,
+      "metadata": "created_at 2011_07_11, former_category MALWARE, confidence Low, signature_severity Major, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "KCIK |7b|",
+          "modifiers": {
+            "depth": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 1024: -> $EXTERNAL_NET 1024: (msg:\"ET RETIRED Ruskill/Palevo KCIK IRC Command\"; flow:established,to_server; content:\"KCIK |7b|\"; depth:6; reference:url,ore.carnivore.it/malware/hash/d4dc8459a34ea14d856e529d3a9e0362; reference:url,sebdraven.tumblr.com/post/6769853139/palevo-analysises; classtype:trojan-activity; sid:2013247; rev:6; metadata:created_at 2011_07_11, former_category MALWARE, confidence Low, signature_severity Major, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 569,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Bifrose Client Checkin",
+      "flow": "established,to_server",
+      "classtype": "command-and-control",
+      "sid": 2013338,
+      "rev": 3,
+      "metadata": "created_at 2011_08_02, former_category MALWARE, confidence Medium, signature_severity Major, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "|00 00 99 4F B9 74 E2 75 94 0A 5A|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "11"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Bifrose Client Checkin\"; flow:established,to_server; content:\"|00 00 99 4F B9 74 E2 75 94 0A 5A|\"; offset:2; depth:11; classtype:command-and-control; sid:2013338; rev:3; metadata:created_at 2011_08_02, former_category MALWARE, confidence Medium, signature_severity Major, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 571,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "11.11.11.11",
+    "dst_port": "55611",
+    "options": {
+      "msg": "ET RETIRED W32/Badlib Connectivity Check To Department of Defense Intelligence Information Systems",
+      "flow": "to_server",
+      "flags": "S",
+      "reference": [
+        "url,blog.eset.com/2011/08/03/win32delf-qcztrust-me-i%E2%80%99m-your-anti-virus",
+        "url,www.eset.com/about/blog/blog/article/win32delf-qcz-additional-details"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2013506,
+      "rev": 2,
+      "metadata": "created_at 2011_08_31, former_category MALWARE, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03"
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> 11.11.11.11 55611 (msg:\"ET RETIRED W32/Badlib Connectivity Check To Department of Defense Intelligence Information Systems\"; flow:to_server; flags:S; reference:url,blog.eset.com/2011/08/03/win32delf-qcztrust-me-i%E2%80%99m-your-anti-virus; reference:url,www.eset.com/about/blog/blog/article/win32delf-qcz-additional-details; classtype:trojan-activity; sid:2013506; rev:2; metadata:created_at 2011_08_31, former_category MALWARE, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 573,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32.Cerberus RAT Checkin Outbound",
+      "flow": "established,to_server",
+      "reference": "md5,76e084e9420bfaa31c0f0bf000f1c301",
+      "classtype": "command-and-control",
+      "sid": 2013771,
+      "rev": 5,
+      "metadata": "created_at 2011_10_14, former_category MALWARE, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "Ypmw1Syv023QZD",
+          "modifiers": {
+            "depth": "30"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32.Cerberus RAT Checkin Outbound\"; flow:established,to_server; content:\"Ypmw1Syv023QZD\"; depth:30; reference:md5,76e084e9420bfaa31c0f0bf000f1c301; classtype:command-and-control; sid:2013771; rev:5; metadata:created_at 2011_10_14, former_category MALWARE, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 575,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32.Cerberus RAT Checkin Response",
+      "flow": "established,to_client",
+      "reference": "md5,76e084e9420bfaa31c0f0bf000f1c301",
+      "classtype": "command-and-control",
+      "sid": 2013772,
+      "rev": 3,
+      "metadata": "created_at 2011_10_14, former_category MALWARE, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "Ypmw1Syv023QZD",
+          "modifiers": {
+            "depth": "30"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED Win32.Cerberus RAT Checkin Response\"; flow:established,to_client; content:\"Ypmw1Syv023QZD\"; depth:30; reference:md5,76e084e9420bfaa31c0f0bf000f1c301; classtype:command-and-control; sid:2013772; rev:3; metadata:created_at 2011_10_14, former_category MALWARE, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 599,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Blackshades Payload Download Command",
+      "flow": "established,to_client",
+      "classtype": "trojan-activity",
+      "sid": 2014101,
+      "rev": 3,
+      "metadata": "tls_state plaintext, created_at 2012_01_05, former_category MALWARE, confidence High, signature_severity Major, updated_at 2024_12_05",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "x74|0C|64|0C|",
+          "modifiers": {
+            "depth": "7"
+          }
+        },
+        {
+          "pattern": "x49|0C|",
+          "modifiers": {
+            "distance": "64"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED Blackshades Payload Download Command\"; flow:established,to_client; content:\"x74|0C|64|0C|\"; depth:7; content:\"x49|0C|\"; distance:64; classtype:trojan-activity; sid:2014101; rev:3; metadata:tls_state plaintext, created_at 2012_01_05, former_category MALWARE, confidence High, signature_severity Major, updated_at 2024_12_05; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 607,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET RETIRED PoisonIvy RAT/Backdoor follow on POST Data PUSH Packet",
+      "flow": "established,to_server",
+      "flags": "AP,12",
+      "reference": [
+        "url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Backdoor%3AWin32%2FPoisonivy.I&ThreatID=-2147363597",
+        "url,www.viruslist.com/en/viruses/encyclopedia?virusid=133781"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2009806,
+      "rev": 7,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, former_category MALWARE, malware_family PoisonIvy, confidence Low, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05",
+      "contents": [
+        {
+          "pattern": "op=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&servidor=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&senha=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&usuario=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&base=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&sgdb=",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:\"ET RETIRED PoisonIvy RAT/Backdoor follow on POST Data PUSH Packet\"; flow:established,to_server; flags:AP,12; content:\"op=\"; nocase; content:\"&servidor=\"; nocase; content:\"&senha=\"; nocase; content:\"&usuario=\"; nocase; content:\"&base=\"; nocase; content:\"&sgdb=\"; nocase; reference:url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Backdoor%3AWin32%2FPoisonivy.I&ThreatID=-2147363597; reference:url,www.viruslist.com/en/viruses/encyclopedia?virusid=133781; classtype:trojan-activity; sid:2009806; rev:7; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, former_category MALWARE, malware_family PoisonIvy, confidence Low, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 611,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED PoisonIvy.E Keepalive to CnC",
+      "flow": "established,to_server",
+      "dsize": ">30",
+      "reference": "md5,fc414168a5b4ca074ea6e03f770659ef",
+      "classtype": "command-and-control",
+      "sid": 2013337,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_08_01, deployment Perimeter, former_category MALWARE, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05",
+      "contents": [
+        {
+          "pattern": "|90 48 5c d5 ec 70 a3 8b 41 72 28 50 ec f6 d5 2a|",
+          "modifiers": {
+            "offset": "16",
+            "depth": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED PoisonIvy.E Keepalive to CnC\"; flow:established,to_server; dsize:>30; content:\"|90 48 5c d5 ec 70 a3 8b 41 72 28 50 ec f6 d5 2a|\"; offset:16; depth:16; reference:md5,fc414168a5b4ca074ea6e03f770659ef; classtype:command-and-control; sid:2013337; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_08_01, deployment Perimeter, former_category MALWARE, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 627,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED PoisonIvy.Esf Keepalive to CnC",
+      "flow": "established,to_server",
+      "dsize": "48",
+      "reference": "md5,e6ca06e9b000933567a8604300094a85",
+      "classtype": "command-and-control",
+      "sid": 2014143,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2012_01_24, deployment Perimeter, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05",
+      "contents": [
+        {
+          "pattern": "|ad 4a 6c bb a7 9c 30 3e 44 bc cf a5 db 77 3c 62|",
+          "modifiers": {
+            "offset": "16",
+            "depth": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED PoisonIvy.Esf Keepalive to CnC\"; flow:established,to_server; content:\"|ad 4a 6c bb a7 9c 30 3e 44 bc cf a5 db 77 3c 62|\"; offset:16; depth:16; dsize:48; reference:md5,e6ca06e9b000933567a8604300094a85; classtype:command-and-control; sid:2014143; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2012_01_24, deployment Perimeter, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 629,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED PoisonIvy.Eks Keepalive to CnC",
+      "flow": "established,to_server",
+      "dsize": "48",
+      "reference": "md5,9a494e7a48436e6defcb44dd6f053b33",
+      "classtype": "command-and-control",
+      "sid": 2014144,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2012_01_24, deployment Perimeter, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05",
+      "contents": [
+        {
+          "pattern": "|82 ca 6f eb 66 ed 9e 86 dc 95 29 f0 68 a2 5d b8|",
+          "modifiers": {
+            "offset": "16",
+            "depth": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED PoisonIvy.Eks Keepalive to CnC\"; flow:established,to_server; content:\"|82 ca 6f eb 66 ed 9e 86 dc 95 29 f0 68 a2 5d b8|\"; offset:16; depth:16; dsize:48; reference:md5,9a494e7a48436e6defcb44dd6f053b33; classtype:command-and-control; sid:2014144; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2012_01_24, deployment Perimeter, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 673,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED PoisonIvy.fishplay Keepalive to CnC",
+      "flow": "established,to_server",
+      "dsize": "48",
+      "reference": "url,www.fireeye.com/resources/pdfs/fireeye-poison-ivy-report.pdf",
+      "classtype": "command-and-control",
+      "sid": 2017361,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2013_08_21, deployment Perimeter, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05",
+      "contents": [
+        {
+          "pattern": "|77 1b 13 19 a2 d1 8d a1 b5 05 8f fa 3f aa c0 8a|",
+          "modifiers": {
+            "offset": "16",
+            "depth": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED PoisonIvy.fishplay Keepalive to CnC\"; flow:established,to_server; content:\"|77 1b 13 19 a2 d1 8d a1 b5 05 8f fa 3f aa c0 8a|\"; offset:16; depth:16; dsize:48; reference:url,www.fireeye.com/resources/pdfs/fireeye-poison-ivy-report.pdf; classtype:command-and-control; sid:2017361; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2013_08_21, deployment Perimeter, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 679,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED PoisonIvy Keepalive to CnC (Operation SMN Variant)",
+      "flow": "established,to_server",
+      "dsize": "48",
+      "reference": "md5,ca22207c5441a100437b75d7ce0d3fe2",
+      "classtype": "command-and-control",
+      "sid": 2019591,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2014_10_29, deployment Perimeter, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05",
+      "contents": [
+        {
+          "pattern": "|52 13 34 da 18 3d 2f 45 a2 09 93 52 01 23 51 e3|",
+          "modifiers": {
+            "offset": "16",
+            "depth": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED PoisonIvy Keepalive to CnC (Operation SMN Variant)\"; flow:established,to_server; dsize:48; content:\"|52 13 34 da 18 3d 2f 45 a2 09 93 52 01 23 51 e3|\"; offset:16; depth:16; reference:md5,ca22207c5441a100437b75d7ce0d3fe2; classtype:command-and-control; sid:2019591; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2014_10_29, deployment Perimeter, malware_family PoisonIvy, confidence Medium, signature_severity Critical, tag PoisonIvy, updated_at 2024_12_05;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 693,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Backdoor.Win32.RShot Checkin",
+      "flow": "established,to_server",
+      "dsize": "<120",
+      "reference": "md5,c0aadd5594d340d8a4909d172017e5d0",
+      "classtype": "command-and-control",
+      "sid": 2014268,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, tls_state plaintext, created_at 2012_02_21, deployment Perimeter, deployment Internal, former_category MALWARE, malware_family Backdoor_Win32_RShot, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_12_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "connected#",
+          "modifiers": {
+            "depth": "10"
+          }
+        },
+        {
+          "pattern": "#Windows ",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "##",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Backdoor.Win32.RShot Checkin\"; flow:established,to_server; content:\"connected#\"; depth:10; content:\"#Windows \"; fast_pattern; content:\"##\"; distance:0; dsize:<120; reference:md5,c0aadd5594d340d8a4909d172017e5d0; classtype:command-and-control; sid:2014268; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, tls_state plaintext, created_at 2012_02_21, deployment Perimeter, deployment Internal, former_category MALWARE, malware_family Backdoor_Win32_RShot, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_12_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 695,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED W32/NSIS.TrojanDownloader Second Stage Download Instructions from Server",
+      "flow": "established,to_client",
+      "pcre": "/FileName\\x3D[^\\r\\n]*\\x2E(dll|exe)/i",
+      "reference": "md5,3ce5da32903b52394cff2517df51f599",
+      "classtype": "trojan-activity",
+      "sid": 2014312,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, tls_state plaintext, created_at 2012_03_06, deployment Perimeter, deployment Internal, former_category MALWARE, malware_family W32_NSIS_TrojanDownloader, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|3B 20|Ini download file modue",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "DownUrl=",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "FileName=",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "SaveType=",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET RETIRED W32/NSIS.TrojanDownloader Second Stage Download Instructions from Server\"; flow:established,to_client; content:\"|3B 20|Ini download file modue\"; nocase; fast_pattern; content:\"DownUrl=\"; nocase; distance:0; content:\"FileName=\"; nocase; distance:0; content:\"SaveType=\"; nocase; distance:0; pcre:\"/FileName\\x3D[^\\r\\n]*\\x2E(dll|exe)/i\"; reference:md5,3ce5da32903b52394cff2517df51f599; classtype:trojan-activity; sid:2014312; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, tls_state plaintext, created_at 2012_03_06, deployment Perimeter, deployment Internal, former_category MALWARE, malware_family W32_NSIS_TrojanDownloader, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 707,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "!$HTTP_PORTS",
+    "options": {
+      "msg": "ET RETIRED Malformed HeartBeat Request",
+      "flow": "established,to_server",
+      "flowbits": "set,ET.MalformedTLSHB",
+      "byte_test": [
+        "1,<,4,2",
+        "2,>,2,3",
+        "2,>,record_len,6"
+      ],
+      "byte_extract": "2,3,record_len",
+      "threshold": "type limit,track by_src,count 1,seconds 120",
+      "reference": [
+        "cve,2014-0160",
+        "url,blog.inliniac.net/2014/04/08/detecting-openssl-heartbleed-with-suricata/",
+        "url,heartbleed.com/",
+        "url,blog.fox-it.com/2014/04/08/openssl-heartbleed-bug-live-blog/"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2018372,
+      "rev": 5,
+      "metadata": "created_at 2014_04_08, cve CVE_2014_0160, former_category EXPLOIT, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "|18 03|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "5",
+            "depth": "1"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET !$HTTP_PORTS (msg:\"ET RETIRED Malformed HeartBeat Request\"; flow:established,to_server; flowbits:set,ET.MalformedTLSHB; content:\"|18 03|\"; depth:2; byte_test:1,<,4,2; content:\"|01|\"; offset:5; depth:1; byte_extract:2,3,record_len; byte_test:2,>,2,3; byte_test:2,>,record_len,6; threshold:type limit,track by_src,count 1,seconds 120; reference:cve,2014-0160; reference:url,blog.inliniac.net/2014/04/08/detecting-openssl-heartbleed-with-suricata/; reference:url,heartbleed.com/; reference:url,blog.fox-it.com/2014/04/08/openssl-heartbleed-bug-live-blog/; classtype:bad-unknown; sid:2018372; rev:5; metadata:created_at 2014_04_08, cve CVE_2014_0160, former_category EXPLOIT, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 709,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "[!$HTTP_PORTS,!445,!22]",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Malformed HeartBeat Response",
+      "flow": "established,to_client",
+      "flowbits": "isset,ET.MalformedTLSHB",
+      "byte_test": [
+        "1,<,4,2",
+        "2,>,200,3"
+      ],
+      "threshold": "type limit,track by_src,count 1,seconds 120",
+      "reference": [
+        "cve,2014-0160",
+        "url,blog.inliniac.net/2014/04/08/detecting-openssl-heartbleed-with-suricata/",
+        "url,heartbleed.com/",
+        "url,blog.fox-it.com/2014/04/08/openssl-heartbleed-bug-live-blog/"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2018373,
+      "rev": 7,
+      "metadata": "created_at 2014_04_08, cve CVE_2014_0160, former_category EXPLOIT, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "|18 03|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET [!$HTTP_PORTS,!445,!22] -> any any (msg:\"ET RETIRED Malformed HeartBeat Response\"; flow:established,to_client; flowbits:isset,ET.MalformedTLSHB; content:\"|18 03|\"; depth:2; byte_test:1,<,4,2; byte_test:2,>,200,3; threshold:type limit,track by_src,count 1,seconds 120; reference:cve,2014-0160; reference:url,blog.inliniac.net/2014/04/08/detecting-openssl-heartbleed-with-suricata/; reference:url,heartbleed.com/; reference:url,blog.fox-it.com/2014/04/08/openssl-heartbleed-bug-live-blog/; classtype:bad-unknown; sid:2018373; rev:7; metadata:created_at 2014_04_08, cve CVE_2014_0160, former_category EXPLOIT, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 711,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "!$HTTP_PORTS",
+    "options": {
+      "msg": "ET RETIRED Malformed HeartBeat Request method 2",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,ET.MalformedTLSHB",
+        "noalert"
+      ],
+      "byte_test": [
+        "1,<,4,2",
+        "2,>,2,3",
+        "2,>,200,6"
+      ],
+      "threshold": "type limit,track by_src,count 1,seconds 120",
+      "reference": [
+        "cve,2014-0160",
+        "url,blog.inliniac.net/2014/04/08/detecting-openssl-heartbleed-with-suricata/",
+        "url,heartbleed.com/",
+        "url,blog.fox-it.com/2014/04/08/openssl-heartbleed-bug-live-blog/"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2018374,
+      "rev": 5,
+      "metadata": "created_at 2014_04_08, cve CVE_2014_0160, former_category EXPLOIT, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "|18 03|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "5",
+            "depth": "1"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET !$HTTP_PORTS (msg:\"ET RETIRED Malformed HeartBeat Request method 2\"; flow:established,to_server; flowbits:set,ET.MalformedTLSHB; flowbits:noalert; content:\"|18 03|\"; depth:2; byte_test:1,<,4,2; content:\"|01|\"; offset:5; depth:1; byte_test:2,>,2,3; byte_test:2,>,200,6; threshold:type limit,track by_src,count 1,seconds 120; reference:cve,2014-0160; reference:url,blog.inliniac.net/2014/04/08/detecting-openssl-heartbleed-with-suricata/; reference:url,heartbleed.com/; reference:url,blog.fox-it.com/2014/04/08/openssl-heartbleed-bug-live-blog/; classtype:bad-unknown; sid:2018374; rev:5; metadata:created_at 2014_04_08, cve CVE_2014_0160, former_category EXPLOIT, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 767,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [ANY.RUN] Remcos RAT Checkin 861",
+      "flow": "established,to_server",
+      "startswith": true,
+      "reference": [
+        "md5,fcee7ed5ecf26ed1d4287e41df99bfbb",
+        "url,app.any.run/tasks/80e04690-c0c0-4bb7-91d3-5e4fb9d215be"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2046729,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family Remcos, performance_impact Low, confidence High, signature_severity Major, tag RAT, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|ba 49 b2 3c 5e 7e 69 43 28 63 8e|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|39 84|",
+          "modifiers": {
+            "distance": "2",
+            "within": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [ANY.RUN] Remcos RAT Checkin 861\"; flow:established,to_server; content:\"|ba 49 b2 3c 5e 7e 69 43 28 63 8e|\"; fast_pattern; startswith; content:\"|39 84|\"; distance:2; within:2; reference:md5,fcee7ed5ecf26ed1d4287e41df99bfbb; reference:url,app.any.run/tasks/80e04690-c0c0-4bb7-91d3-5e4fb9d215be; classtype:command-and-control; sid:2046729; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family Remcos, performance_impact Low, confidence High, signature_severity Major, tag RAT, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 817,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Earth Lusca/SprySOCKS CnC Checkin",
+      "flow": "established,to_server",
+      "byte_jump": "4,0,relative, post_offset -1",
+      "isdataat": "!2,relative",
+      "reference": "url,www.trendmicro.com/en_us/research/23/i/earth-lusca-employs-new-linux-backdoor.html",
+      "classtype": "trojan-activity",
+      "sid": 2048118,
+      "rev": 3,
+      "metadata": "affected_product Linux, attack_target Client_and_Server, created_at 2023_09_19, deployment Perimeter, former_category MALWARE, malware_family SprySOCKS, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|bc bc ac ac|",
+          "modifiers": {
+            "fast_pattern": true,
+            "offset": "4",
+            "depth": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Earth Lusca/SprySOCKS CnC Checkin\"; flow:established,to_server; content:\"|bc bc ac ac|\"; fast_pattern; offset:4; depth:4; byte_jump:4,0,relative, post_offset -1; isdataat:!2,relative; reference:url,www.trendmicro.com/en_us/research/23/i/earth-lusca-employs-new-linux-backdoor.html; classtype:trojan-activity; sid:2048118; rev:3; metadata:affected_product Linux, attack_target Client_and_Server, created_at 2023_09_19, deployment Perimeter, former_category MALWARE, malware_family SprySOCKS, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 835,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Unknown RAT CnC Checkin",
+      "flow": "established,to_server",
+      "stream_size": "client,>,600",
+      "startswith": true,
+      "byte_jump": "4,0,relative,little,from_beginning,post_offset -1",
+      "isdataat": "!2,relative",
+      "reference": [
+        "md5,324877533d7f0c4014e0f046d0c28d39",
+        "md5,dd43c6237024d7867e5e441871c64402"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049152,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_and_Server, created_at 2023_11_10, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|29 01 00 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/Unknown RAT CnC Checkin\"; flow:established,to_server; stream_size:client,>,600; content:\"|29 01 00 00|\"; startswith; fast_pattern; byte_jump:4,0,relative,little,from_beginning,post_offset -1; isdataat:!2,relative; reference:md5,324877533d7f0c4014e0f046d0c28d39; reference:md5,dd43c6237024d7867e5e441871c64402; classtype:trojan-activity; sid:2049152; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_and_Server, created_at 2023_11_10, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 877,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZenRAT Request Module Command",
+      "flow": "established,to_server",
+      "flowbits": "set,ET.ZenRATModuleRequest",
+      "dsize": "<100",
+      "stream_size": "client,<,100",
+      "startswith": true,
+      "pcre": "/([\\x00-\\xff]\\x00{7}){2}[\\x00-\\xff]\\x00{3}$/R",
+      "reference": "md5,6f809b1c82d9fb6cd277c6b645ecaf84",
+      "classtype": "trojan-activity",
+      "sid": 2047759,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_05_02, reviewed_at 2025_07_14",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|02 4d 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED ZenRAT Request Module Command\"; flow:established,to_server; flowbits:set,ET.ZenRATModuleRequest; dsize:<100; stream_size:client,<,100; content:\"|02 4d 00 00 00 00 00 00 00|\"; startswith; pcre:\"/([\\x00-\\xff]\\x00{7}){2}[\\x00-\\xff]\\x00{3}$/R\"; reference:md5,6f809b1c82d9fb6cd277c6b645ecaf84; classtype:trojan-activity; sid:2047759; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_08_25, deployment Perimeter, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_05_02, reviewed_at 2025_07_14; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 923,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "15194",
+    "options": {
+      "msg": "ET RETIRED TheMoon CnC Checkin",
+      "flow": "established,to_server",
+      "stream_size": "client,=,13",
+      "dsize": "12",
+      "reference": "url,blog.lumen.com/the-darkside-of-themoon/",
+      "classtype": "trojan-activity",
+      "sid": 2051806,
+      "rev": 3,
+      "metadata": "affected_product IoT, attack_target IoT, tls_state plaintext, created_at 2024_03_26, deployment Perimeter, former_category MALWARE, malware_family TheMoon, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|08 00 00 c2 5a c2 c7 8c 00 00 00 18|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 15194 (msg:\"ET RETIRED TheMoon CnC Checkin\"; flow:established,to_server; stream_size:client,=,13; dsize:12; content:\"|08 00 00 c2 5a c2 c7 8c 00 00 00 18|\"; fast_pattern; reference:url,blog.lumen.com/the-darkside-of-themoon/; classtype:trojan-activity; sid:2051806; rev:3; metadata:affected_product IoT, attack_target IoT, tls_state plaintext, created_at 2024_03_26, deployment Perimeter, former_category MALWARE, malware_family TheMoon, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 949,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "5050",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Yahoo IM successful logon",
+      "flow": "from_server,established",
+      "classtype": "policy-violation",
+      "sid": 2001253,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "nocase": true,
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|00 01|",
+          "modifiers": {
+            "offset": "10",
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 5050 -> $HOME_NET any (msg:\"ET RETIRED Yahoo IM successful logon\"; flow: from_server,established; content:\"YMSG\"; nocase; depth: 4; content:\"|00 01|\"; offset: 10; depth: 2; classtype:policy-violation; sid:2001253; rev:8; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 951,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Yahoo IM voicechat",
+      "flow": "established,to_client",
+      "classtype": "policy-violation",
+      "sid": 2001254,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "nocase": true,
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|00|J",
+          "modifiers": {
+            "offset": "10",
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED Yahoo IM voicechat\"; flow:established,to_client; content:\"YMSG\"; nocase; depth: 4; content:\"|00|J\"; offset: 10; depth: 2; classtype:policy-violation; sid:2001254; rev:7; metadata:created_at 2010_07_30, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 961,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "<>",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Yahoo IM file transfer request",
+      "flow": "established",
+      "classtype": "policy-violation",
+      "sid": 2001259,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "nocase": true,
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|00 dc|",
+          "modifiers": {
+            "offset": "10",
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any <> $EXTERNAL_NET any (msg:\"ET RETIRED Yahoo IM file transfer request\"; flow:established; content:\"YMSG\"; nocase; depth: 4; content:\"|00 dc|\"; offset: 10; depth: 2; classtype:policy-violation; sid:2001259; rev:9; metadata:created_at 2010_07_30, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 965,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Yahoo IM successful chat join",
+      "flow": "from_server,established",
+      "classtype": "policy-violation",
+      "sid": 2001261,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "nocase": true,
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|00 98|",
+          "modifiers": {
+            "offset": "10",
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED Yahoo IM successful chat join\"; flow: from_server,established; content:\"YMSG\"; nocase; depth: 4; content:\"|00 98|\"; offset: 10; depth: 2; classtype:policy-violation; sid:2001261; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 973,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Yahoo IM Unavailable Status",
+      "flow": "established,to_server",
+      "classtype": "policy-violation",
+      "sid": 2001427,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "|59 47 00 0b 00 00 00 00 00 12 00 00 00 00|",
+          "modifiers": {
+            "depth": "55"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Yahoo IM Unavailable Status\"; flow:established,to_server; content:\"|59 47 00 0b 00 00 00 00 00 12 00 00 00 00|\"; depth: 55; classtype:policy-violation; sid:2001427; rev:7; metadata:created_at 2010_07_30, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 979,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "5050",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL RETIRED Yahoo IM voicechat",
+      "flow": "established,to_client",
+      "classtype": "policy-violation",
+      "sid": 2102451,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "depth": "4",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|00|J",
+          "modifiers": {
+            "depth": "2",
+            "offset": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 5050 -> $HOME_NET any (msg:\"GPL RETIRED Yahoo IM voicechat\"; flow:established,to_client; content:\"YMSG\"; depth:4; nocase; content:\"|00|J\"; depth:2; offset:10; classtype:policy-violation; sid:2102451; rev:6; metadata:created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 981,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "5050",
+    "options": {
+      "msg": "GPL RETIRED Yahoo IM ping",
+      "flow": "established,to_server",
+      "classtype": "policy-violation",
+      "sid": 2102452,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "depth": "4",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|00 12|",
+          "modifiers": {
+            "depth": "2",
+            "offset": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 5050 (msg:\"GPL RETIRED Yahoo IM ping\"; flow:established,to_server; content:\"YMSG\"; depth:4; nocase; content:\"|00 12|\"; depth:2; offset:10; classtype:policy-violation; sid:2102452; rev:7; metadata:created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 983,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "5050",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL RETIRED Yahoo IM conference invitation",
+      "flow": "established,to_client",
+      "classtype": "policy-violation",
+      "sid": 2102453,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "depth": "4",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|00 18|",
+          "modifiers": {
+            "depth": "2",
+            "offset": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 5050 -> $HOME_NET any (msg:\"GPL RETIRED Yahoo IM conference invitation\"; flow:established,to_client; content:\"YMSG\"; depth:4; nocase; content:\"|00 18|\"; depth:2; offset:10; classtype:policy-violation; sid:2102453; rev:6; metadata:created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 985,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "5050",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL RETIRED Yahoo IM conference logon success",
+      "flow": "established,to_client",
+      "classtype": "policy-violation",
+      "sid": 2102454,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "depth": "4",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|00 19|",
+          "modifiers": {
+            "depth": "2",
+            "offset": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 5050 -> $HOME_NET any (msg:\"GPL RETIRED Yahoo IM conference logon success\"; flow:established,to_client; content:\"YMSG\"; depth:4; nocase; content:\"|00 19|\"; depth:2; offset:10; classtype:policy-violation; sid:2102454; rev:6; metadata:created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 987,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "5050",
+    "options": {
+      "msg": "GPL RETIRED Yahoo IM conference message",
+      "flow": "established,to_server",
+      "classtype": "policy-violation",
+      "sid": 2102455,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "depth": "4",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|00 1D|",
+          "modifiers": {
+            "depth": "2",
+            "offset": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 5050 (msg:\"GPL RETIRED Yahoo IM conference message\"; flow:established,to_server; content:\"YMSG\"; depth:4; nocase; content:\"|00 1D|\"; depth:2; offset:10; classtype:policy-violation; sid:2102455; rev:6; metadata:created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 989,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "5050",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL RETIRED Yahoo IM successful chat join",
+      "flow": "established,to_client",
+      "classtype": "policy-violation",
+      "sid": 2102458,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "depth": "4",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|00 98|",
+          "modifiers": {
+            "depth": "2",
+            "offset": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 5050 -> $HOME_NET any (msg:\"GPL RETIRED Yahoo IM successful chat join\"; flow:established,to_client; content:\"YMSG\"; depth:4; nocase; content:\"|00 98|\"; depth:2; offset:10; classtype:policy-violation; sid:2102458; rev:7; metadata:created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 991,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "5050",
+    "options": {
+      "msg": "GPL RETIRED Yahoo IM conference offer invitation",
+      "flow": "established,to_server",
+      "classtype": "policy-violation",
+      "sid": 2102459,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "YMSG",
+          "modifiers": {
+            "depth": "4",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|00|P",
+          "modifiers": {
+            "depth": "2",
+            "offset": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 5050 (msg:\"GPL RETIRED Yahoo IM conference offer invitation\"; flow:established,to_server; content:\"YMSG\"; depth:4; nocase; content:\"|00|P\"; depth:2; offset:10; classtype:policy-violation; sid:2102459; rev:7; metadata:created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 993,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "5100",
+    "options": {
+      "msg": "GPL RETIRED Yahoo IM conference request",
+      "flow": "established,to_server",
+      "pcre": "/^\\x3c(REQIMG|RVWCFG)\\x3e/ism",
+      "classtype": "policy-violation",
+      "sid": 2102460,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "<R",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 5100 (msg:\"GPL RETIRED Yahoo IM conference request\"; flow:established,to_server; content:\"<R\"; depth:2; pcre:\"/^\\x3c(REQIMG|RVWCFG)\\x3e/ism\"; classtype:policy-violation; sid:2102460; rev:7; metadata:created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, updated_at 2026_08_28;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 995,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "5100",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL RETIRED Yahoo IM conference watch",
+      "flow": "established,to_client",
+      "classtype": "policy-violation",
+      "sid": 2102461,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28",
+      "contents": [
+        {
+          "pattern": "|0D 00 05 00|",
+          "modifiers": {
+            "depth": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 5100 -> $HOME_NET any (msg:\"GPL RETIRED Yahoo IM conference watch\"; flow:established,to_client; content:\"|0D 00 05 00|\"; depth:4; classtype:policy-violation; sid:2102461; rev:7; metadata:created_at 2010_09_23, former_category CHAT, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_08_28;)"
+  }
+]

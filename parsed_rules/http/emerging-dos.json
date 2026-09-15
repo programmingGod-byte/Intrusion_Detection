@@ -1,0 +1,500 @@
+[
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 145,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS LOIC GET",
+      "flow": "established,to_server",
+      "threshold": "type limit, track by_src, count 1, seconds 300",
+      "http.method": true,
+      "http.uri": true,
+      "classtype": "web-application-attack",
+      "sid": 2016031,
+      "rev": 4,
+      "metadata": "created_at 2012_12_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_05_06",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/?msg=MSG",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET DOS LOIC GET\"; flow:established,to_server; threshold:type limit, track by_src, count 1, seconds 300; http.method; content:\"GET\"; http.uri; content:\"/?msg=MSG\"; classtype:web-application-attack; sid:2016031; rev:4; metadata:created_at 2012_12_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_05_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 147,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS User-Agent used in known DDoS Attacks Detected outbound",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "reference": "url,www.linuxquestions.org/questions/linux-security-4/massive-ddos-need-advice-help-795298/",
+      "classtype": "denial-of-service",
+      "sid": 2011821,
+      "rev": 4,
+      "metadata": "created_at 2010_10_18, confidence High, signature_severity Major, updated_at 2020_05_06",
+      "contents": [
+        {
+          "pattern": "Mozilla/5.0 (Windows|3b 20|U|3b 20|Windows NT 5.1|3b 20|ru|3b 20|rv|3a|1.8.1.1) Gecko/20061204 Firefox/2.0.0.1",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET DOS User-Agent used in known DDoS Attacks Detected outbound\"; flow:established,to_server; http.user_agent; content:\"Mozilla/5.0 (Windows|3b 20|U|3b 20|Windows NT 5.1|3b 20|ru|3b 20|rv|3a|1.8.1.1) Gecko/20061204 Firefox/2.0.0.1\"; reference:url,www.linuxquestions.org/questions/linux-security-4/massive-ddos-need-advice-help-795298/; classtype:denial-of-service; sid:2011821; rev:4; metadata:created_at 2010_10_18, confidence High, signature_severity Major, updated_at 2020_05_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 149,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS User-Agent used in known DDoS Attacks Detected inbound",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "reference": "url,www.linuxquestions.org/questions/linux-security-4/massive-ddos-need-advice-help-795298/",
+      "classtype": "denial-of-service",
+      "sid": 2011822,
+      "rev": 4,
+      "metadata": "created_at 2010_10_18, confidence High, signature_severity Major, updated_at 2020_05_06",
+      "contents": [
+        {
+          "pattern": "Mozilla/5.0 (Windows|3b 20|U|3b 20|Windows NT 5.1|3b 20|ru|3b 20|rv|3a|1.8.1.1) Gecko/20061204 Firefox/2.0.0.1",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET DOS User-Agent used in known DDoS Attacks Detected inbound\"; flow:established,to_server; http.user_agent; content:\"Mozilla/5.0 (Windows|3b 20|U|3b 20|Windows NT 5.1|3b 20|ru|3b 20|rv|3a|1.8.1.1) Gecko/20061204 Firefox/2.0.0.1\"; reference:url,www.linuxquestions.org/questions/linux-security-4/massive-ddos-need-advice-help-795298/; classtype:denial-of-service; sid:2011822; rev:4; metadata:created_at 2010_10_18, confidence High, signature_severity Major, updated_at 2020_05_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS User-Agent used in known DDoS Attacks Detected outbound 2",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "reference": "url,www.linuxquestions.org/questions/linux-security-4/massive-ddos-need-advice-help-795298/",
+      "classtype": "denial-of-service",
+      "sid": 2011823,
+      "rev": 4,
+      "metadata": "created_at 2010_10_18, confidence High, signature_severity Major, updated_at 2020_05_06",
+      "contents": [
+        {
+          "pattern": "Opera/9.02 (Windows NT 5.1|3b 20|U|3b 20|ru)",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET DOS User-Agent used in known DDoS Attacks Detected outbound 2\"; flow:established,to_server; http.user_agent; content:\"Opera/9.02 (Windows NT 5.1|3b 20|U|3b 20|ru)\"; reference:url,www.linuxquestions.org/questions/linux-security-4/massive-ddos-need-advice-help-795298/; classtype:denial-of-service; sid:2011823; rev:4; metadata:created_at 2010_10_18, confidence High, signature_severity Major, updated_at 2020_05_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS User-Agent used in known DDoS Attacks Detected inbound 2",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "reference": "url,www.linuxquestions.org/questions/linux-security-4/massive-ddos-need-advice-help-795298/",
+      "classtype": "denial-of-service",
+      "sid": 2011824,
+      "rev": 5,
+      "metadata": "created_at 2010_10_18, confidence High, signature_severity Major, updated_at 2020_05_06",
+      "contents": [
+        {
+          "pattern": "Opera/9.02 (Windows NT 5.1|3b 20|U|3b 20|ru)",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET DOS User-Agent used in known DDoS Attacks Detected inbound 2\"; flow:established,to_server; http.user_agent; content:\"Opera/9.02 (Windows NT 5.1|3b 20|U|3b 20|ru)\"; reference:url,www.linuxquestions.org/questions/linux-security-4/massive-ddos-need-advice-help-795298/; classtype:denial-of-service; sid:2011824; rev:5; metadata:created_at 2010_10_18, confidence High, signature_severity Major, updated_at 2020_05_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS Possible WordPress Pingback DDoS in Progress (Inbound)",
+      "flow": "established,to_server",
+      "threshold": "type both, track  by_src, count 5, seconds 90",
+      "http.uri": true,
+      "http.request_body": true,
+      "classtype": "attempted-dos",
+      "sid": 2018277,
+      "rev": 4,
+      "metadata": "affected_product Wordpress, affected_product Wordpress_Plugins, attack_target Web_Server, created_at 2014_03_14, deployment Datacenter, confidence Medium, signature_severity Major, tag Wordpress, updated_at 2020_05_14",
+      "contents": [
+        {
+          "pattern": "/xmlrpc.php",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "pingback.ping",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET DOS Possible WordPress Pingback DDoS in Progress (Inbound)\"; flow:established,to_server; threshold:type both, track  by_src, count 5, seconds 90; http.uri; content:\"/xmlrpc.php\"; nocase; http.request_body; content:\"pingback.ping\"; nocase; fast_pattern; classtype:attempted-dos; sid:2018277; rev:4; metadata:affected_product Wordpress, affected_product Wordpress_Plugins, attack_target Web_Server, created_at 2014_03_14, deployment Datacenter, confidence Medium, signature_severity Major, tag Wordpress, updated_at 2020_05_14;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 213,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS Linux/Tsunami DOS User-Agent (x00_-gawa.sa.pilipinas.2015) INBOUND",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "reference": "url,vms.drweb.com/virus/?i=4656268",
+      "classtype": "attempted-dos",
+      "sid": 2022760,
+      "rev": 4,
+      "metadata": "created_at 2016_04_26, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "x00_-gawa.sa.pilipinas.2015",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET DOS Linux/Tsunami DOS User-Agent (x00_-gawa.sa.pilipinas.2015) INBOUND\"; flow:established,to_server; http.user_agent; content:\"x00_-gawa.sa.pilipinas.2015\"; reference:url,vms.drweb.com/virus/?i=4656268; classtype:attempted-dos; sid:2022760; rev:4; metadata:created_at 2016_04_26, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 223,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS High Orbit Ion Cannon (HOIC) Attack Inbound Generic Detection Double Spaced UA",
+      "flow": "established,to_server",
+      "http.header.raw": true,
+      "threshold": "type both, track by_src, count 225, seconds 60",
+      "reference": "url,blog.spiderlabs.com/2012/01/hoic-ddos-analysis-and-detection.html",
+      "classtype": "attempted-dos",
+      "sid": 2014153,
+      "rev": 9,
+      "metadata": "created_at 2012_01_28, confidence Medium, signature_severity Major, updated_at 2024_03_11",
+      "contents": [
+        {
+          "pattern": "User-Agent|3a 20 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET DOS High Orbit Ion Cannon (HOIC) Attack Inbound Generic Detection Double Spaced UA\"; flow:established,to_server; http.header.raw; content:\"User-Agent|3a 20 20|\"; fast_pattern; threshold:type both, track by_src, count 225, seconds 60; reference:url,blog.spiderlabs.com/2012/01/hoic-ddos-analysis-and-detection.html; classtype:attempted-dos; sid:2014153; rev:9; metadata:created_at 2012_01_28, confidence Medium, signature_severity Major, updated_at 2024_03_11;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 251,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS Trojan.BlackRev V1.Botnet HTTP Login POST Flood Traffic Inbound",
+      "flow": "established,to_server",
+      "threshold": "type both, count 5, seconds 60, track by_src",
+      "http.method": true,
+      "http.user_agent": true,
+      "http.request_body": true,
+      "startswith": true,
+      "reference": "url,www.btpro.net/blog/2013/05/black-revolution-botnet-trojan/",
+      "classtype": "attempted-dos",
+      "sid": 2017722,
+      "rev": 5,
+      "metadata": "created_at 2013_11_15, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/4.0 (compatible|3b 20|Synapse)",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "login=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "$pass=",
+          "modifiers": {
+            "within": "50"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET DOS Trojan.BlackRev V1.Botnet HTTP Login POST Flood Traffic Inbound\"; flow:established,to_server; threshold: type both, count 5, seconds 60, track by_src; http.method; content:\"POST\"; http.user_agent; content:\"Mozilla/4.0 (compatible|3b 20|Synapse)\"; fast_pattern; http.request_body; content:\"login=\"; startswith; content:\"$pass=\"; within:50; reference:url,www.btpro.net/blog/2013/05/black-revolution-botnet-trojan/; classtype:attempted-dos; sid:2017722; rev:5; metadata:created_at 2013_11_15, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_12;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 253,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS LOIC Javascript DDoS Outbound",
+      "flow": "established,to_server",
+      "threshold": "type both, track by_src, count 5, seconds 60",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/^\\/\\?id=[0-9]{13}&msg=/",
+      "reference": [
+        "url,isc.sans.org/diary/Javascript+DDoS+Tool+Analysis/12442",
+        "url,www.wired.com/threatlevel/2012/01/anons-rickroll-botnet"
+      ],
+      "classtype": "attempted-dos",
+      "sid": 2014141,
+      "rev": 7,
+      "metadata": "created_at 2012_01_23, confidence Medium, signature_severity Major, updated_at 2024_04_12",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/?id=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&msg=",
+          "modifiers": {
+            "distance": "13",
+            "within": "5"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET DOS LOIC Javascript DDoS Outbound\"; flow:established,to_server; threshold: type both, track by_src, count 5, seconds 60; http.method; content:\"GET\"; http.uri; content:\"/?id=\"; fast_pattern; startswith; content:\"&msg=\"; distance:13; within:5; pcre:\"/^\\/\\?id=[0-9]{13}&msg=/\"; reference:url,isc.sans.org/diary/Javascript+DDoS+Tool+Analysis/12442; reference:url,www.wired.com/threatlevel/2012/01/anons-rickroll-botnet; classtype:attempted-dos; sid:2014141; rev:7; metadata:created_at 2012_01_23, confidence Medium, signature_severity Major, updated_at 2024_04_12;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 255,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS LOIC POST",
+      "flow": "established,to_server",
+      "threshold": "type limit, track by_src, count 1, seconds 300",
+      "http.method": true,
+      "http.request_body": true,
+      "startswith": true,
+      "pcre": "/^13\\d{11}/",
+      "classtype": "web-application-attack",
+      "sid": 2016030,
+      "rev": 6,
+      "metadata": "created_at 2012_12_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "13",
+          "modifiers": {}
+        },
+        {
+          "pattern": "=MSG",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "11",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET DOS LOIC POST\"; flow:established,to_server; threshold:type limit, track by_src, count 1, seconds 300; http.method; content:\"POST\"; http.request_body; content:\"13\"; startswith; content:\"=MSG\"; fast_pattern; distance:11; within:4; pcre:\"/^13\\d{11}/\"; classtype:web-application-attack; sid:2016030; rev:6; metadata:created_at 2012_12_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_12;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 257,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS Bittorrent User-Agent inbound - possible DDOS",
+      "flow": "established,to_server",
+      "threshold": "type both, count 1, seconds 60, track by_src",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,torrentfreak.com/zombie-pirate-bay-tracker-fuels-chinese-ddos-attacks-150124/",
+      "classtype": "attempted-dos",
+      "sid": 2020702,
+      "rev": 5,
+      "metadata": "created_at 2015_03_18, confidence High, signature_severity Major, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "Bittorrent",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET DOS Bittorrent User-Agent inbound - possible DDOS\"; flow:established,to_server; threshold: type both, count 1, seconds 60, track by_src; http.user_agent; content:\"Bittorrent\"; startswith; reference:url,torrentfreak.com/zombie-pirate-bay-tracker-fuels-chinese-ddos-attacks-150124/; classtype:attempted-dos; sid:2020702; rev:5; metadata:created_at 2015_03_18, confidence High, signature_severity Major, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 261,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS CallStranger - Attempted UPnP Reflected Amplified TCP with Multiple Callbacks (CVE-2020-12695)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.request_header": true,
+      "header_lowercase": true,
+      "startswith": true,
+      "reference": [
+        "url,github.com/yunuscadirci/CallStranger",
+        "cve,2020-12695"
+      ],
+      "classtype": "attempted-dos",
+      "sid": 2030339,
+      "rev": 3,
+      "metadata": "affected_product UPnP, attack_target IoT, created_at 2020_06_15, cve CVE_2020_12695, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_22",
+      "contents": [
+        {
+          "pattern": "SUBSCRIBE",
+          "modifiers": {}
+        },
+        {
+          "pattern": "callback|3a 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "<http",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "><http",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> any any (msg:\"ET DOS CallStranger - Attempted UPnP Reflected Amplified TCP with Multiple Callbacks (CVE-2020-12695)\"; flow:established,to_server; http.method; content:\"SUBSCRIBE\"; http.request_header; header_lowercase; content:\"callback|3a 20|\"; fast_pattern; startswith; content:\"<http\"; distance:0; content:\"><http\"; distance:0; reference:url,github.com/yunuscadirci/CallStranger; reference:cve,2020-12695; classtype:attempted-dos; sid:2030339; rev:3; metadata:affected_product UPnP, attack_target IoT, created_at 2020_06_15, cve CVE_2020_12695, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_22;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 267,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HTTP_SERVERS,$HOME_NET]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS Possible Brute Force Attack Using FastHTTP",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "bsize": "8",
+      "threshold": "type both,track by_src,count 1000,seconds 5",
+      "reference": [
+        "url,github.com/valyala/fasthttp",
+        "url,speartip.com/fasthttp-used-in-new-bruteforce-campaign"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2059376,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, tls_state plaintext, created_at 2025_01_21, deployment Perimeter, former_category MALWARE, confidence Medium, signature_severity Minor, tag DDoS, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_01_22",
+      "contents": [
+        {
+          "pattern": "fasthttp",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> [$HTTP_SERVERS,$HOME_NET] any (msg:\"ET DOS Possible Brute Force Attack Using FastHTTP\"; flow:established,to_server; http.user_agent; bsize:8; content:\"fasthttp\"; fast_pattern; threshold:type both,track by_src,count 1000,seconds 5; reference:url,github.com/valyala/fasthttp; reference:url,speartip.com/fasthttp-used-in-new-bruteforce-campaign; classtype:misc-activity; sid:2059376; rev:2; metadata:attack_target Client_Endpoint, tls_state plaintext, created_at 2025_01_21, deployment Perimeter, former_category MALWARE, confidence Medium, signature_severity Minor, tag DDoS, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_01_22;)"
+  }
+]

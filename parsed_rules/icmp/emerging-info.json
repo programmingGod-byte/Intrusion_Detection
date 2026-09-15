@@ -1,0 +1,207 @@
+[
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO PTUNNEL OUTBOUND",
+      "itype": "8",
+      "icode": "0",
+      "reference": [
+        "url,github.com/madeye/ptunnel",
+        "url,cs.uit.no/~daniels/PingTunnel/#protocol"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2016145,
+      "rev": 2,
+      "metadata": "created_at 2013_01_03, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|D5 20 08 80|",
+          "modifiers": {
+            "depth": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO PTUNNEL OUTBOUND\"; itype:8; icode:0; content:\"|D5 20 08 80|\"; depth:4; reference:url,github.com/madeye/ptunnel; reference:url,cs.uit.no/~daniels/PingTunnel/#protocol; classtype:protocol-command-decode; sid:2016145; rev:2; metadata:created_at 2013_01_03, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO PTUNNEL INBOUND",
+      "itype": "0",
+      "icode": "0",
+      "reference": [
+        "url,github.com/madeye/ptunnel",
+        "url,cs.uit.no/~daniels/PingTunnel/#protocol"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2016146,
+      "rev": 3,
+      "metadata": "created_at 2013_01_03, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|D5 20 08 80|",
+          "modifiers": {
+            "depth": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET INFO PTUNNEL INBOUND\"; itype:0; icode:0; content:\"|D5 20 08 80|\"; depth:4; reference:url,github.com/madeye/ptunnel; reference:url,cs.uit.no/~daniels/PingTunnel/#protocol; classtype:protocol-command-decode; sid:2016146; rev:3; metadata:created_at 2013_01_03, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8589,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed dir Command via Inbound ICMP",
+      "classtype": "misc-activity",
+      "sid": 2062639,
+      "rev": 1,
+      "metadata": "created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30",
+      "contents": [
+        {
+          "pattern": "dir|20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|3a 5c|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert icmp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET INFO Observed dir Command via Inbound ICMP\"; content:\"dir|20|\"; fast_pattern; content:\"|3a 5c|\"; classtype:misc-activity; sid:2062639; rev:1; metadata:created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8591,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed ipconfig Command via Inbound ICMP",
+      "classtype": "misc-activity",
+      "sid": 2062640,
+      "rev": 1,
+      "metadata": "created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30",
+      "contents": [
+        {
+          "pattern": "ipconfig|20|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET INFO Observed ipconfig Command via Inbound ICMP\"; content:\"ipconfig|20|\"; nocase; classtype:misc-activity; sid:2062640; rev:1; metadata:created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8593,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed netstat Command via Inbound ICMP",
+      "classtype": "misc-activity",
+      "sid": 2062641,
+      "rev": 1,
+      "metadata": "created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30",
+      "contents": [
+        {
+          "pattern": "netstat|20|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET INFO Observed netstat Command via Inbound ICMP\"; content:\"netstat|20|\"; nocase; classtype:misc-activity; sid:2062641; rev:1; metadata:created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8595,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed tasklist Command via Inbound ICMP",
+      "classtype": "misc-activity",
+      "sid": 2062642,
+      "rev": 1,
+      "metadata": "created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30",
+      "contents": [
+        {
+          "pattern": "tasklist|20|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET INFO Observed tasklist Command via Inbound ICMP\"; content:\"tasklist|20|\"; nocase; classtype:misc-activity; sid:2062642; rev:1; metadata:created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8597,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed powershell Command via Inbound ICMP",
+      "classtype": "misc-activity",
+      "sid": 2062643,
+      "rev": 1,
+      "metadata": "created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30",
+      "contents": [
+        {
+          "pattern": "powershell|20|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET INFO Observed powershell Command via Inbound ICMP\"; content:\"powershell|20|\"; nocase; classtype:misc-activity; sid:2062643; rev:1; metadata:created_at 2025_05_30, signature_severity Unknown, updated_at 2025_05_30;)"
+  }
+]

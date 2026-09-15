@@ -1,0 +1,3404 @@
+[
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Matrix Max Stealer Exfiltration Observed",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header_names": true,
+      "bsize": "60",
+      "http.request_body": true,
+      "startswith": true,
+      "reference": [
+        "md5,e8573f06d342ae05ece8d1be111669c4",
+        "url,twitter.com/James_inthe_box/status/1516049381539004418"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2036245,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_18, deployment SSLDecrypt, former_category MALWARE, malware_family Matrix_Max, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/gate.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "zipx=UEsDBBQ",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Matrix Max Stealer Exfiltration Observed\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/gate.php\"; http.header_names; bsize:60; content:\"|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Connection|0d 0a 0d 0a|\"; http.request_body; content:\"zipx=UEsDBBQ\"; startswith; fast_pattern; reference:md5,e8573f06d342ae05ece8d1be111669c4; reference:url,twitter.com/James_inthe_box/status/1516049381539004418; classtype:trojan-activity; sid:2036245; rev:4; metadata:attack_target Client_Endpoint, created_at 2022_04_18, deployment SSLDecrypt, former_category MALWARE, malware_family Matrix_Max, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Zingo/GinzoStealer Stealer Exfiltration Observed",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.header_names": true,
+      "bsize": "60",
+      "reference": [
+        "md5,b918a1b21063907a9bbf4dda8259bd78",
+        "url,blog.talosintelligence.com/2022/04/haskers-gang-zingostealer.html"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2036246,
+      "rev": 5,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_18, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family ZingoStealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/g1nzo.php?",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "data=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "countc=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "countp=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "country=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ip=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Zingo/GinzoStealer Stealer Exfiltration Observed\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/g1nzo.php?\"; startswith; fast_pattern; content:\"data=\"; content:\"countc=\"; content:\"countp=\"; content:\"country=\"; content:\"ip=\"; http.header_names; bsize:60; content:\"|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Connection|0d 0a 0d 0a|\"; reference:md5,b918a1b21063907a9bbf4dda8259bd78; reference:url,blog.talosintelligence.com/2022/04/haskers-gang-zingostealer.html; classtype:trojan-activity; sid:2036246; rev:5; metadata:attack_target Client_Endpoint, created_at 2022_04_18, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family ZingoStealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED 000Stealer Data Exfiltration M2",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": [
+        "42",
+        "69"
+      ],
+      "http.header_names": true,
+      "http.request_body": true,
+      "byte_test": "1,<=,20,0,relative",
+      "reference": "md5,3f9c1455992239f4efe31f0e56773433",
+      "classtype": "trojan-activity",
+      "sid": 2036321,
+      "rev": 7,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_04_22, deployment Perimeter, former_category MALWARE, malware_family 000Stealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/call?key=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Content-Type|0d 0a|Accept-Encoding|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "PK|03 04|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ProcessList.txt",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Screenshot.png",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED 000Stealer Data Exfiltration M2\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:42; content:\"/call?key=\"; http.header_names; bsize:69; content:\"|0d 0a|Host|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Content-Type|0d 0a|Accept-Encoding|0d 0a 0d 0a|\"; http.request_body; content:\"PK|03 04|\"; byte_test:1,<=,20,0,relative; content:\"ProcessList.txt\"; fast_pattern; distance:0; content:\"Screenshot.png\"; distance:0; reference:md5,3f9c1455992239f4efe31f0e56773433; classtype:trojan-activity; sid:2036321; rev:7; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_04_22, deployment Perimeter, former_category MALWARE, malware_family 000Stealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Nerbian RAT CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": [
+        "21",
+        "18",
+        "39"
+      ],
+      "http.user_agent": true,
+      "http.header_names": true,
+      "reference": [
+        "md5,9cca59eec5af63e42cd845b67cf6df89",
+        "md5,5d5bc970f975341558b8d2c225ca0115",
+        "url,twitter.com/pr0xylife/status/1519704793593307136"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2036426,
+      "rev": 5,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_29, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/pub/health_check.php",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Go-http-client/1.1",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept-Encoding|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Nerbian RAT CnC Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; bsize:21; content:\"/pub/health_check.php\"; fast_pattern; http.user_agent; bsize:18; content:\"Go-http-client/1.1\"; http.header_names; bsize:39; content:\"|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept-Encoding|0d 0a 0d 0a|\"; reference:md5,9cca59eec5af63e42cd845b67cf6df89; reference:md5,5d5bc970f975341558b8d2c225ca0115; reference:url,twitter.com/pr0xylife/status/1519704793593307136; classtype:trojan-activity; sid:2036426; rev:5; metadata:attack_target Client_Endpoint, created_at 2022_04_29, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Eternity Stealer Screen Capture Activity",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.host": true,
+      "endswith": true,
+      "http.header_names": true,
+      "bsize": "52",
+      "http.request_body": true,
+      "reference": "md5,c4b46a2d0898e9ba438366f878cd74bd",
+      "classtype": "trojan-activity",
+      "sid": 2036541,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_06, deployment Perimeter, former_category MALWARE, malware_family Eternity_Stealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/clipper/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "install=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "wallets=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "user=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "comp=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ip=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "country=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "city=",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".onion",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Proxy-Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|ff d8 ff e0|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "JFIF",
+          "modifiers": {
+            "distance": "2",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Eternity Stealer Screen Capture Activity\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/clipper/\"; startswith; fast_pattern; content:\"install=\"; content:\"wallets=\"; content:\"user=\"; content:\"comp=\"; content:\"ip=\"; content:\"country=\"; content:\"city=\"; http.host; content:\".onion\"; endswith; http.header_names; bsize:52; content:\"|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Proxy-Connection|0d 0a 0d 0a|\"; http.request_body; content:\"|ff d8 ff e0|\"; content:\"JFIF\"; distance:2; within:4; reference:md5,c4b46a2d0898e9ba438366f878cd74bd; classtype:trojan-activity; sid:2036541; rev:4; metadata:attack_target Client_Endpoint, created_at 2022_05_06, deployment Perimeter, former_category MALWARE, malware_family Eternity_Stealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Eternity Stealer Data Exfiltration Activity",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.host": true,
+      "endswith": true,
+      "http.header_names": true,
+      "bsize": "52",
+      "http.request_body": true,
+      "byte_test": "1,<=,20,0,relative",
+      "reference": "md5,c4b46a2d0898e9ba438366f878cd74bd",
+      "classtype": "trojan-activity",
+      "sid": 2036542,
+      "rev": 6,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_06, deployment Perimeter, former_category MALWARE, malware_family Eternity_Stealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/stealer/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "pwds=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "cards=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "wlts=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "files=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "user=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "comp=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ip=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "country=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "city=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "tag=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "domains=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ad=",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".onion",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Proxy-Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "PK|03 04|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Information.txt",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Eternity Stealer Data Exfiltration Activity\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/stealer/\"; startswith; fast_pattern; content:\"pwds=\"; content:\"cards=\"; content:\"wlts=\"; content:\"files=\"; content:\"user=\"; content:\"comp=\"; content:\"ip=\"; content:\"country=\"; content:\"city=\"; content:\"tag=\"; content:\"domains=\"; content:\"ad=\"; http.host; content:\".onion\"; endswith; http.header_names; bsize:52; content:\"|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Proxy-Connection|0d 0a 0d 0a|\"; http.request_body; content:\"PK|03 04|\"; byte_test:1,<=,20,0,relative; content:\"Information.txt\"; distance:0; reference:md5,c4b46a2d0898e9ba438366f878cd74bd; classtype:trojan-activity; sid:2036542; rev:6; metadata:attack_target Client_Endpoint, created_at 2022_05_06, deployment Perimeter, former_category MALWARE, malware_family Eternity_Stealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED PennyWise Stealer Data Exfil M1",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": [
+        "8",
+        "60"
+      ],
+      "http.header_names": true,
+      "http.request_body": true,
+      "byte_test": "1,<=,20,0,relative",
+      "reference": "md5,6aa187bd65ee038e2e8c895a0b6a2977",
+      "classtype": "trojan-activity",
+      "sid": 2036597,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_05_16, deployment Perimeter, former_category MALWARE, malware_family pennywise_stealer, confidence High, signature_severity Critical, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/getfile",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*PennyWise v",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "*Browsers:*",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "*Wallets:*",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "*YouTube:*",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "*Grabber:*",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PK|03 04|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Information.txt",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED PennyWise Stealer Data Exfil M1\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:8; content:\"/getfile\"; http.header_names; bsize:60; content:\"|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Connection|0d 0a 0d 0a|\"; http.request_body; content:\"*PennyWise v\"; fast_pattern; content:\"*Browsers:*\"; distance:0; content:\"*Wallets:*\"; distance:0; content:\"*YouTube:*\"; distance:0; content:\"*Grabber:*\"; distance:0; content:\"PK|03 04|\"; distance:0; byte_test:1,<=,20,0,relative; content:\"Information.txt\"; distance:0; reference:md5,6aa187bd65ee038e2e8c895a0b6a2977; classtype:trojan-activity; sid:2036597; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_05_16, deployment Perimeter, former_category MALWARE, malware_family pennywise_stealer, confidence High, signature_severity Critical, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED BlueShtorm Infostealer Data Exfiltration",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.header_names": true,
+      "bsize": "60",
+      "http.request_body": true,
+      "byte_test": "1,<=,20,0,relative",
+      "reference": [
+        "md5,1b02c34f6a49e9ba0c9b9a834a052c13",
+        "url,twitter.com/3xp0rtblog/status/1526603444898959362"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2036610,
+      "rev": 6,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_17, deployment Perimeter, former_category MALWARE, malware_family BlueShtorm_Stealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/upload.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "filename|3d 22|Log.zip|22 0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "PK|03 04|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "System Info.txt",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED BlueShtorm Infostealer Data Exfiltration\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/upload.php\"; endswith; http.header_names; bsize:60; content:\"|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a|Connection|0d 0a 0d 0a|\"; http.request_body; content:\"filename|3d 22|Log.zip|22 0d 0a|\"; fast_pattern; content:\"PK|03 04|\"; distance:0; byte_test:1,<=,20,0,relative; content:\"System Info.txt\"; distance:0; reference:md5,1b02c34f6a49e9ba0c9b9a834a052c13; reference:url,twitter.com/3xp0rtblog/status/1526603444898959362; classtype:trojan-activity; sid:2036610; rev:6; metadata:attack_target Client_Endpoint, created_at 2022_05_17, deployment Perimeter, former_category MALWARE, malware_family BlueShtorm_Stealer, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 113,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Agent.Fish Data Exfiltration",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "http.user_agent": true,
+      "http.header": true,
+      "http.header_names": true,
+      "http.request_body": true,
+      "reference": "md5,0768fd9a6c0344944a223b28eedff41f",
+      "classtype": "trojan-activity",
+      "sid": 2036959,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2022_06_10, deployment Perimeter, former_category MALWARE, malware_family Win32_Agent_Fish, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "POST /data/collect  HTTP/1.1",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "data-collect",
+          "modifiers": {}
+        },
+        {
+          "pattern": "HOST|3a 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|HostName|22 3a 22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|UserName|22 3a 22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|AdapterDescription|22 3a 22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|DhcpEnabled|22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|IpAddresses|22 3a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/Agent.Fish Data Exfiltration\"; flow:established,to_server; http.request_line; content:\"POST /data/collect  HTTP/1.1\"; fast_pattern; http.user_agent; content:\"data-collect\"; http.header; content:\"HOST|3a 20|\"; http.header_names; content:!\"Referer\"; http.request_body; content:\"|22|HostName|22 3a 22|\"; content:\"|22|UserName|22 3a 22|\"; content:\"|22|AdapterDescription|22 3a 22|\"; content:\"|22|DhcpEnabled|22|\"; content:\"|22|IpAddresses|22 3a|\"; reference:md5,0768fd9a6c0344944a223b28eedff41f; classtype:trojan-activity; sid:2036959; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2022_06_10, deployment Perimeter, former_category MALWARE, malware_family Win32_Agent_Fish, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZuoRAT GoBeacon CnC",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "http.connection": true,
+      "http.header_names": true,
+      "http.request_body": true,
+      "pcre": "/^[A-Za-z0-9=/+]{100}/",
+      "reference": "url,blog.lumen.com/zuorat-hijacks-soho-routers-to-silently-stalk-networks/",
+      "classtype": "targeted-activity",
+      "sid": 2037144,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_28, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family ZuoRAT, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/api",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Go-http-client/1.1",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Keep-Alive",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Connection|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED ZuoRAT GoBeacon CnC\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/api\"; http.user_agent; content:\"Go-http-client/1.1\"; fast_pattern; http.connection; content:\"Keep-Alive\"; http.header_names; content:!\"Referer\"; content:\"Connection|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Host|0d 0a 0d 0a|\"; http.request_body; pcre:\"/^[A-Za-z0-9=/+]{100}/\"; reference:url,blog.lumen.com/zuorat-hijacks-soho-routers-to-silently-stalk-networks/; classtype:targeted-activity; sid:2037144; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_06_28, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family ZuoRAT, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 127,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Fynloski.AA CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/^[A-F0-9]{8}-(?:[A-F0-9]{4}-){3}[A-F0-9]{12}\\}/R",
+      "http.header_names": true,
+      "reference": "md5,082ba31c83e3fc1114b6444111e88019",
+      "classtype": "trojan-activity",
+      "sid": 2037234,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_30, deployment Perimeter, former_category MALWARE, malware_family Win32_Fynloski_AA, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/ok?hw=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "uuid={",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ver=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "name=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "system=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "sysdate=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "act=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "str1=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "str2=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "str3=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "User-Agent|0d 0a|Host|0d 0a|Cache-Control|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/Fynloski.AA CnC Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/ok?hw=\"; fast_pattern; startswith; content:\"uuid={\"; pcre:\"/^[A-F0-9]{8}-(?:[A-F0-9]{4}-){3}[A-F0-9]{12}\\}/R\"; content:\"ver=\"; content:\"name=\"; content:\"system=\"; content:\"sysdate=\"; content:\"act=\"; content:\"str1=\"; content:\"str2=\"; content:\"str3=\"; http.header_names; content:!\"Referer\"; content:\"User-Agent|0d 0a|Host|0d 0a|Cache-Control|0d 0a 0d 0a|\"; reference:md5,082ba31c83e3fc1114b6444111e88019; classtype:trojan-activity; sid:2037234; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_30, deployment Perimeter, former_category MALWARE, malware_family Win32_Fynloski_AA, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 143,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Woody RAT CnC Checkin",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "http.cookie": true,
+      "startswith": true,
+      "pcre": "/[a-f0-9]{24}\\.[a-f0-9]{16}/R",
+      "http.header_names": true,
+      "reference": "url,blog.malwarebytes.com/threat-intelligence/2022/08/woody-rat-a-new-feature-rich-malware-spotted-in-the-wild",
+      "classtype": "trojan-activity",
+      "sid": 2037941,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_04, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family WoodyRAT, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "POST /knock HTTP/1.1",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "as=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Woody RAT CnC Checkin\"; flow:established,to_server; http.request_line; content:\"POST /knock HTTP/1.1\"; fast_pattern; http.cookie; content:\"as=\"; startswith; pcre:\"/[a-f0-9]{24}\\.[a-f0-9]{16}/R\"; http.header_names; content:!\"Referer\"; reference:url,blog.malwarebytes.com/threat-intelligence/2022/08/woody-rat-a-new-feature-rich-malware-spotted-in-the-wild; classtype:trojan-activity; sid:2037941; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_08_04, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family WoodyRAT, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Swjoy.A Telemetry Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.header_names": true,
+      "threshold": "type limit,track by_src,seconds 180,count 1",
+      "reference": "md5,1ef95745c1fa6ddb9db0ad496b1da5ed",
+      "classtype": "pup-activity",
+      "sid": 2038570,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_08_19, deployment Perimeter, former_category ADWARE_PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/desktop/v1/reportTrace",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "tid=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "sid=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "a=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "msg=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "c=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "d=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "b=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Host|0d 0a|Accept|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/Swjoy.A Telemetry Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/desktop/v1/reportTrace\"; fast_pattern; startswith; content:\"tid=\"; content:\"sid=\"; content:\"a=\"; content:\"msg=\"; content:\"c=\"; content:\"d=\"; content:\"b=\"; http.header_names; content:\"Host|0d 0a|Accept|0d 0a 0d 0a|\"; threshold:type limit,track by_src,seconds 180,count 1; reference:md5,1ef95745c1fa6ddb9db0ad496b1da5ed; classtype:pup-activity; sid:2038570; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_08_19, deployment Perimeter, former_category ADWARE_PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 159,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED SAFIB Assistant Remote Administration Tool CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "9",
+      "http.header_names": true,
+      "http.request_body": true,
+      "reference": "md5,7a40cf7374eb22988a32f47a433a76fe",
+      "classtype": "misc-activity",
+      "sid": 2038600,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_23, deployment Perimeter, deployment SSLDecrypt, former_category INFO, performance_impact Low, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/api/exec",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|31 00 00|",
+          "modifiers": {
+            "offset": "1"
+          }
+        },
+        {
+          "pattern": "|01 00 00|",
+          "modifiers": {
+            "distance": "1"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED SAFIB Assistant Remote Administration Tool CnC Checkin\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:9; content:\"/api/exec\"; fast_pattern; http.header_names; content:\"Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; http.request_body; content:\"|31 00 00|\"; offset:1; content:\"|01 00 00|\"; distance:1; reference:md5,7a40cf7374eb22988a32f47a433a76fe; classtype:misc-activity; sid:2038600; rev:4; metadata:attack_target Client_Endpoint, created_at 2022_08_23, deployment Perimeter, deployment SSLDecrypt, former_category INFO, performance_impact Low, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 167,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED MuLauncher Telemetry Gathering Attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "26",
+      "http.header_names": true,
+      "http.request_body": true,
+      "pcre": "/^(?:[A-F0-9]{2}\\:){5}[A-F0-9]{2}/R",
+      "reference": "md5,78a3bfeecc7aa2d053c532a6165a4aec",
+      "classtype": "pup-activity",
+      "sid": 2038703,
+      "rev": 6,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_31, deployment Perimeter, former_category ADWARE_PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/kingapi?action=MobileData",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "type=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "platform=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "mobile=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "uname=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ip=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "version=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "model=",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED MuLauncher Telemetry Gathering Attempt\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:26; content:\"/kingapi?action=MobileData\"; fast_pattern; http.header_names; content:\"Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Connection|0d 0a 0d 0a|\"; http.request_body; content:\"type=\"; content:\"platform=\"; content:\"mobile=\"; pcre:\"/^(?:[A-F0-9]{2}\\:){5}[A-F0-9]{2}/R\"; content:\"uname=\"; content:\"ip=\"; content:\"version=\"; content:\"model=\"; reference:md5,78a3bfeecc7aa2d053c532a6165a4aec; classtype:pup-activity; sid:2038703; rev:6; metadata:attack_target Client_Endpoint, created_at 2022_08_31, deployment Perimeter, former_category ADWARE_PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_17, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 219,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Suspected Polonium CnC Initial Checkin M1",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.user_agent": true,
+      "bsize": "11",
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "reference": [
+        "url,twitter.com/InQuest/status/1582114710740008960",
+        "md5,340f96f2f56c7734a5d0011662232c23",
+        "md5,afd04a701ab4f65ceaa3660cded3bb9a"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2039478,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/register.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/5.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "data|3d 0a|Hostname|3a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Betriebssystemname|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Betriebssystemversion|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Suspected Polonium CnC Initial Checkin M1\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/register.php\"; endswith; http.user_agent; bsize:11; content:\"Mozilla/5.0\"; http.header_names; content:!\"Referer\"; content:\"Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; http.request_body; content:\"data|3d 0a|Hostname|3a|\"; fast_pattern; startswith; content:\"Betriebssystemname|3a|\"; distance:0; content:\"Betriebssystemversion|3a|\"; distance:0; reference:url,twitter.com/InQuest/status/1582114710740008960; reference:md5,340f96f2f56c7734a5d0011662232c23; reference:md5,afd04a701ab4f65ceaa3660cded3bb9a; classtype:trojan-activity; sid:2039478; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 221,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Suspected Polonium CnC Initial Checkin M2",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.user_agent": true,
+      "bsize": "11",
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "reference": [
+        "url,twitter.com/InQuest/status/1582114710740008960",
+        "md5,340f96f2f56c7734a5d0011662232c23",
+        "md5,afd04a701ab4f65ceaa3660cded3bb9a"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2039479,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/register.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/5.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "data|3d 0a|Host|20|Name|3a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "OS|20|Name|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "OS|20|Version|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Suspected Polonium CnC Initial Checkin M2\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/register.php\"; endswith; http.user_agent; bsize:11; content:\"Mozilla/5.0\"; http.header_names; content:!\"Referer\"; content:\"Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; http.request_body; content:\"data|3d 0a|Host|20|Name|3a|\"; fast_pattern; startswith; content:\"OS|20|Name|3a|\"; distance:0; content:\"OS|20|Version|3a|\"; distance:0; reference:url,twitter.com/InQuest/status/1582114710740008960; reference:md5,340f96f2f56c7734a5d0011662232c23; reference:md5,afd04a701ab4f65ceaa3660cded3bb9a; classtype:trojan-activity; sid:2039479; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 223,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Suspected Polonium CnC Checkin (get_cmd)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "bsize": "11",
+      "http.header_names": true,
+      "reference": [
+        "url,twitter.com/InQuest/status/1582114710740008960",
+        "md5,340f96f2f56c7734a5d0011662232c23",
+        "md5,afd04a701ab4f65ceaa3660cded3bb9a"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2039480,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/get_cmd.php?hdd=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Mozilla/5.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Suspected Polonium CnC Checkin (get_cmd)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/get_cmd.php?hdd=\"; fast_pattern; http.user_agent; bsize:11; content:\"Mozilla/5.0\"; http.header_names; content:\"User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; reference:url,twitter.com/InQuest/status/1582114710740008960; reference:md5,340f96f2f56c7734a5d0011662232c23; reference:md5,afd04a701ab4f65ceaa3660cded3bb9a; classtype:trojan-activity; sid:2039480; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 225,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Suspected Polonium CnC Checkin (result.php - process list) M1",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.user_agent": true,
+      "bsize": "11",
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "reference": [
+        "url,twitter.com/InQuest/status/1582114710740008960",
+        "md5,340f96f2f56c7734a5d0011662232c23",
+        "md5,afd04a701ab4f65ceaa3660cded3bb9a"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2039481,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/result.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/5.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "data|3d 0a|Abbildname",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&hdd=",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Suspected Polonium CnC Checkin (result.php - process list) M1\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/result.php\"; endswith; http.user_agent; bsize:11; content:\"Mozilla/5.0\"; http.header_names; content:!\"Referer\"; content:\"Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; http.request_body; content:\"data|3d 0a|Abbildname\"; fast_pattern; startswith; content:\"&hdd=\"; distance:0; reference:url,twitter.com/InQuest/status/1582114710740008960; reference:md5,340f96f2f56c7734a5d0011662232c23; reference:md5,afd04a701ab4f65ceaa3660cded3bb9a; classtype:trojan-activity; sid:2039481; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 227,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Suspected Polonium CnC Checkin (result.php - process list) M2",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.user_agent": true,
+      "bsize": "11",
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "reference": [
+        "url,twitter.com/InQuest/status/1582114710740008960",
+        "md5,340f96f2f56c7734a5d0011662232c23",
+        "md5,afd04a701ab4f65ceaa3660cded3bb9a"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2039482,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/result.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/5.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "data|3d 0a|Image|20|Name",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&hdd=",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Suspected Polonium CnC Checkin (result.php - process list) M2\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/result.php\"; endswith; http.user_agent; bsize:11; content:\"Mozilla/5.0\"; http.header_names; content:!\"Referer\"; content:\"Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; http.request_body; content:\"data|3d 0a|Image|20|Name\"; fast_pattern; startswith; content:\"&hdd=\"; distance:0; reference:url,twitter.com/InQuest/status/1582114710740008960; reference:md5,340f96f2f56c7734a5d0011662232c23; reference:md5,afd04a701ab4f65ceaa3660cded3bb9a; classtype:trojan-activity; sid:2039482; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 231,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/TyphonReborn Telegram CnC Checkin",
+      "flow": "established,to_client",
+      "http.response_line": true,
+      "http.response_body": true,
+      "startswith": true,
+      "reference": [
+        "md5,d1d84c844681fe3c672a713c1a3bf52c",
+        "url,unit42.paloaltonetworks.com/typhon-reborn-stealer/"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2039785,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_11_15, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family Win32_TyphonReborn, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_23, reviewed_at 2024_09_23",
+      "contents": [
+        {
+          "pattern": "HTTP/1.1 200 OK",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|7b 22|ok|22 3a|true|2c 22|result|22 3a 7b 22|message_id|22 3a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|is_bot|22 3a|true|2c 22|first_name|22 3a 22|Typhon|22 2c|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|22|username|22 3a 22|TyphonSyphonBot|22 7d 2c|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "New TyphonReborn log",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED Win32/TyphonReborn Telegram CnC Checkin\"; flow:established,to_client; http.response_line; content:\"HTTP/1.1 200 OK\"; http.response_body; content:\"|7b 22|ok|22 3a|true|2c 22|result|22 3a 7b 22|message_id|22 3a|\"; startswith; content:\"|22|is_bot|22 3a|true|2c 22|first_name|22 3a 22|Typhon|22 2c|\"; distance:0; content:\"|22|username|22 3a 22|TyphonSyphonBot|22 7d 2c|\"; distance:0; content:\"New TyphonReborn log\"; distance:0; fast_pattern; reference:md5,d1d84c844681fe3c672a713c1a3bf52c; reference:url,unit42.paloaltonetworks.com/typhon-reborn-stealer/; classtype:trojan-activity; sid:2039785; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_11_15, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family Win32_TyphonReborn, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_23, reviewed_at 2024_09_23;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 245,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED CIA Ransomware - wallpaper/readme retrieval attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "pcre": "/^\\/(?:image|readme)$/",
+      "http.user_agent": true,
+      "startswith": true,
+      "http.header_names": true,
+      "reference": "url,blog.phylum.io/phylum-detects-active-typosquatting-campaign-in-pypi",
+      "classtype": "trojan-activity",
+      "sid": 2042950,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2022_12_15, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_23, reviewed_at 2024_09_23",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Go-http-client/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|0d 0a|Referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept-Encoding|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED CIA Ransomware - wallpaper/readme retrieval attempt\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; pcre:\"/^\\/(?:image|readme)$/\"; http.user_agent; content:\"Go-http-client/\"; startswith; fast_pattern; http.header_names; content:!\"|0d 0a|Referer|0d 0a|\"; content:\"|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept-Encoding|0d 0a 0d 0a|\"; reference:url,blog.phylum.io/phylum-detects-active-typosquatting-campaign-in-pypi; classtype:trojan-activity; sid:2042950; rev:3; metadata:affected_product Any, attack_target Client_and_Server, created_at 2022_12_15, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_23, reviewed_at 2024_09_23;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 257,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED GCleaner CnC Checkin M1",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": [
+        "17",
+        "2"
+      ],
+      "http.header_names": true,
+      "http.user_agent": true,
+      "reference": "url,tria.ge/230130-trm29acf8w",
+      "classtype": "trojan-activity",
+      "sid": 2044031,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_01_31, deployment Perimeter, former_category MALWARE, malware_family GCleaner, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|2f|default|2f|stuk|2e|php",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Accept|0d 0a|Accept|2d|Language|0d 0a|Accept|2d|Charset|0d 0a|Accept|2d|Encoding|0d 0a|User|2d|Agent|0d 0a|Host|0d 0a|Connection|0d 0a|Cache|2d|Control|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "OK",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED GCleaner CnC Checkin M1\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; bsize:17; content:\"|2f|default|2f|stuk|2e|php\"; fast_pattern; http.header_names; content:\"|0d 0a|Accept|0d 0a|Accept|2d|Language|0d 0a|Accept|2d|Charset|0d 0a|Accept|2d|Encoding|0d 0a|User|2d|Agent|0d 0a|Host|0d 0a|Connection|0d 0a|Cache|2d|Control|0d 0a 0d 0a|\"; http.user_agent; bsize:2; content:\"OK\"; reference:url,tria.ge/230130-trm29acf8w; classtype:trojan-activity; sid:2044031; rev:4; metadata:attack_target Client_Endpoint, created_at 2023_01_31, deployment Perimeter, former_category MALWARE, malware_family GCleaner, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 259,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED GCleaner Payload Retrieval Attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": [
+        "16",
+        "2"
+      ],
+      "http.header_names": true,
+      "http.user_agent": true,
+      "reference": "url,tria.ge/230130-trm29acf8w",
+      "classtype": "trojan-activity",
+      "sid": 2044032,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_01_31, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|2f|default|2f|puk|2e|php",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Accept|0d 0a|Accept|2d|Language|0d 0a|Accept|2d|Charset|0d 0a|Accept|2d|Encoding|0d 0a|User|2d|Agent|0d 0a|Host|0d 0a|Connection|0d 0a|Cache|2d|Control|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "OK",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED GCleaner Payload Retrieval Attempt\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; bsize:16; content:\"|2f|default|2f|puk|2e|php\"; fast_pattern; http.header_names; content:\"|0d 0a|Accept|0d 0a|Accept|2d|Language|0d 0a|Accept|2d|Charset|0d 0a|Accept|2d|Encoding|0d 0a|User|2d|Agent|0d 0a|Host|0d 0a|Connection|0d 0a|Cache|2d|Control|0d 0a 0d 0a|\"; http.user_agent; bsize:2; content:\"OK\"; reference:url,tria.ge/230130-trm29acf8w; classtype:trojan-activity; sid:2044032; rev:4; metadata:attack_target Client_Endpoint, created_at 2023_01_31, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 261,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED GCleaner CnC Checkin M2",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": [
+        "8",
+        "1"
+      ],
+      "http.header_names": true,
+      "http.user_agent": true,
+      "reference": "url,tria.ge/230130-trm29acf8w",
+      "classtype": "trojan-activity",
+      "sid": 2044033,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_01_31, deployment Perimeter, former_category MALWARE, malware_family GCleaner, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|2f|dll|2e|php",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Accept|0d 0a|Accept-Language|0d 0a|Accept-Charset|0d 0a|Accept-Encoding|0d 0a|User-Agent|0d 0a|Host|0d 0a|Connection|0d 0a|Cache-Control|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "B",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED GCleaner CnC Checkin M2\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; bsize:8; content:\"|2f|dll|2e|php\"; fast_pattern; http.header_names; content:\"Accept|0d 0a|Accept-Language|0d 0a|Accept-Charset|0d 0a|Accept-Encoding|0d 0a|User-Agent|0d 0a|Host|0d 0a|Connection|0d 0a|Cache-Control|0d 0a|\"; http.user_agent; bsize:1; content:\"B\"; reference:url,tria.ge/230130-trm29acf8w; classtype:trojan-activity; sid:2044033; rev:4; metadata:attack_target Client_Endpoint, created_at 2023_01_31, deployment Perimeter, former_category MALWARE, malware_family GCleaner, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 263,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Potential GCleaner CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "56",
+      "startswith": true,
+      "http.header_names": true,
+      "http.user_agent": true,
+      "reference": "md5,1f5428d10a51b1247cd0b2565d709264",
+      "classtype": "trojan-activity",
+      "sid": 2044034,
+      "rev": 7,
+      "metadata": "attack_target Client_and_Server, created_at 2023_01_31, deployment Perimeter, former_category MALWARE, malware_family GCleaner, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|2f|advertisting|2f|plus|2e|php|3f|s|3d|NOSUB",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "str|3d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "substr|3d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Accept|0d 0a|Accept|2d|Language|0d 0a|Accept|2d|Charset|0d 0a|Accept|2d|Encoding|0d 0a|User|2d|Agent|0d 0a|Host|0d 0a|Connection|0d 0a|Cache|2d|Control|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "OK",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Potential GCleaner CnC Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; bsize:56; content:\"|2f|advertisting|2f|plus|2e|php|3f|s|3d|NOSUB\"; fast_pattern; startswith; content:\"str|3d|\"; content:\"substr|3d|\"; http.header_names; content:\"|0d 0a|Accept|0d 0a|Accept|2d|Language|0d 0a|Accept|2d|Charset|0d 0a|Accept|2d|Encoding|0d 0a|User|2d|Agent|0d 0a|Host|0d 0a|Connection|0d 0a|Cache|2d|Control|0d 0a 0d 0a|\"; http.user_agent; content:\"OK\"; reference:md5,1f5428d10a51b1247cd0b2565d709264; classtype:trojan-activity; sid:2044034; rev:7; metadata:attack_target Client_and_Server, created_at 2023_01_31, deployment Perimeter, former_category MALWARE, malware_family GCleaner, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 269,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Patchwork APT BADNEWS Variant CnC Checkin M1",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.user_agent": true,
+      "bsize": [
+        "11",
+        "52"
+      ],
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "threshold": "type limit, track by_src, count 1, seconds 120",
+      "reference": "md5,26139754438dac37114fe4d273547078",
+      "classtype": "trojan-activity",
+      "sid": 2044111,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_03, deployment Perimeter, former_category MALWARE, malware_family Patchwork, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/5.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "qadc=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&ghjk=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&edcaa=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&qcsnry=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&zqxwce=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&ghffh=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&olmn=",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Patchwork APT BADNEWS Variant CnC Checkin M1\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php\"; endswith; http.user_agent; bsize:11; content:\"Mozilla/5.0\"; http.header_names; bsize:52; content:\"|0d 0a|Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; http.request_body; content:\"qadc=\"; fast_pattern; startswith; content:\"&ghjk=\"; distance:0; content:\"&edcaa=\"; distance:0; content:\"&qcsnry=\"; distance:0; content:\"&zqxwce=\"; distance:0; content:\"&ghffh=\"; distance:0; content:\"&olmn=\"; distance:0; threshold:type limit, track by_src, count 1, seconds 120; reference:md5,26139754438dac37114fe4d273547078; classtype:trojan-activity; sid:2044111; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_03, deployment Perimeter, former_category MALWARE, malware_family Patchwork, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 271,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Patchwork APT BADNEWS Variant CnC Checkin M2",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.user_agent": true,
+      "bsize": [
+        "16",
+        "52"
+      ],
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "threshold": "type limit, track by_src, count 1, seconds 120",
+      "reference": "md5,26139754438dac37114fe4d273547078",
+      "classtype": "trojan-activity",
+      "sid": 2044112,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_03, deployment Perimeter, former_category MALWARE, malware_family Patchwork, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|e6 bd 8d e6 a5 ba e6 b1 ac e2 bd a1 e2 b8 b5 30|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "SL=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "&jsve=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&qadc=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&qcsnry=",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Patchwork APT BADNEWS Variant CnC Checkin M2\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php\"; endswith; http.user_agent; bsize:16; content:\"|e6 bd 8d e6 a5 ba e6 b1 ac e2 bd a1 e2 b8 b5 30|\"; fast_pattern; http.header_names; bsize:52; content:\"|0d 0a|Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; http.request_body; content:\"SL=\"; startswith; content:\"&jsve=\"; distance:0; content:\"&qadc=\"; distance:0; content:\"&qcsnry=\"; distance:0; threshold:type limit, track by_src, count 1, seconds 120; reference:md5,26139754438dac37114fe4d273547078; classtype:trojan-activity; sid:2044112; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_03, deployment Perimeter, former_category MALWARE, malware_family Patchwork, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 293,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/S1deload Stealer CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": [
+        "/^(?:[A-F0-9]{4}-){7}[A-F0-9]{4}/R",
+        "/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/R"
+      ],
+      "http.header_names": true,
+      "bsize": "22",
+      "reference": "url,www.bitdefender.com/files/News/CaseStudies/study/428/Bitdefender-PR-Whitepaper-S1deloadStealer-creat6669-en-EN.pdf",
+      "classtype": "trojan-activity",
+      "sid": 2044359,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_27, deployment Perimeter, former_category MALWARE, malware_family Win32_S1deload, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/commonupdate?version=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&uuid=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/S1deload Stealer CnC Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/commonupdate?version=\"; startswith; fast_pattern; pcre:\"/^(?:[A-F0-9]{4}-){7}[A-F0-9]{4}/R\"; content:\"&uuid=\"; distance:0; pcre:\"/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/R\"; http.header_names; bsize:22; content:\"|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; reference:url,www.bitdefender.com/files/News/CaseStudies/study/428/Bitdefender-PR-Whitepaper-S1deloadStealer-creat6669-en-EN.pdf; classtype:trojan-activity; sid:2044359; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_27, deployment Perimeter, former_category MALWARE, malware_family Win32_S1deload, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 295,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/S1deload Stealer CnC Checkin - Get Tasking",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.header_names": true,
+      "bsize": "10",
+      "reference": "url,www.bitdefender.com/files/News/CaseStudies/study/428/Bitdefender-PR-Whitepaper-S1deloadStealer-creat6669-en-EN.pdf",
+      "classtype": "trojan-activity",
+      "sid": 2044360,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_27, deployment Perimeter, former_category MALWARE, malware_family Win32_S1deload, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/api/task/update?id=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/S1deload Stealer CnC Checkin - Get Tasking\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/api/task/update?id=\"; startswith; fast_pattern; http.header_names; bsize:10; content:\"|0d 0a|Host|0d 0a 0d 0a|\"; reference:url,www.bitdefender.com/files/News/CaseStudies/study/428/Bitdefender-PR-Whitepaper-S1deloadStealer-creat6669-en-EN.pdf; classtype:trojan-activity; sid:2044360; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_27, deployment Perimeter, former_category MALWARE, malware_family Win32_S1deload, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 303,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Hiatus RAT CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/^[a-f0-9]{12}/R",
+      "http.header_names": true,
+      "bsize": "74",
+      "reference": "url,blog.lumen.com/new-hiatusrat-router-malware-covertly-spies-on-victims/",
+      "classtype": "trojan-activity",
+      "sid": 2044503,
+      "rev": 4,
+      "metadata": "affected_product IoT, attack_target Networking_Equipment, created_at 2023_03_07, deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/master/Api/active?uuid=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Accept|0d 0a|Content-Type|0d 0a|X_UTIME|0d 0a|X_UUID|0d 0a|X_TOKEN|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Hiatus RAT CnC Checkin\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/master/Api/active?uuid=\"; startswith; fast_pattern; pcre:\"/^[a-f0-9]{12}/R\"; http.header_names; bsize:74; content:\"|0d 0a|Host|0d 0a|Accept|0d 0a|Content-Type|0d 0a|X_UTIME|0d 0a|X_UUID|0d 0a|X_TOKEN|0d 0a|Content-Length|0d 0a 0d 0a|\"; reference:url,blog.lumen.com/new-hiatusrat-router-malware-covertly-spies-on-victims/; classtype:trojan-activity; sid:2044503; rev:4; metadata:affected_product IoT, attack_target Networking_Equipment, created_at 2023_03_07, deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 319,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED LogStih Stealer CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": [
+        "17",
+        "36"
+      ],
+      "http.header_names": true,
+      "reference": "md5,8cc77ab1ed572bca0d9b5aef722f7802",
+      "classtype": "trojan-activity",
+      "sid": 2044763,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_24, deployment Perimeter, former_category MALWARE, malware_family LogStih_Stealer, performance_impact Low, confidence High, signature_severity Major, tag LogStih_Stealer, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/get_function.php",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Content-Type|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED LogStih Stealer CnC Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; bsize:17; content:\"/get_function.php\"; fast_pattern; http.header_names; bsize:36; content:\"|0d 0a|Content-Type|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; reference:md5,8cc77ab1ed572bca0d9b5aef722f7802; classtype:trojan-activity; sid:2044763; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_24, deployment Perimeter, former_category MALWARE, malware_family LogStih_Stealer, performance_impact Low, confidence High, signature_severity Major, tag LogStih_Stealer, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 323,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Vidar Stealer CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "pcre": "/^[a-f0-9]{32}\\r\\n/R",
+      "http.header_names": true,
+      "classtype": "trojan-activity",
+      "sid": 2044788,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_27, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|X-Id|3a 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|X-ID|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Vidar Stealer CnC Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/\"; http.header; content:\"|0d 0a|X-Id|3a 20|\"; fast_pattern; pcre:\"/^[a-f0-9]{32}\\r\\n/R\"; http.header_names; content:\"|0d 0a|X-ID|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|\"; content:!\"Referer\"; classtype:trojan-activity; sid:2044788; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_27, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 337,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Camaro Dragon APT - Horse Shell CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "http.header_names": true,
+      "reference": "url,research.checkpoint.com/2023/the-dragon-who-sold-his-camaro-analyzing-custom-router-implant/",
+      "classtype": "trojan-activity",
+      "sid": 2045753,
+      "rev": 3,
+      "metadata": "affected_product Router, attack_target IoT, created_at 2023_05_17, deployment Perimeter, former_category MALWARE, malware_family Horse_Shell, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/index.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/4.0|20 28|compatible|3b 20|MSIE 8.0|3b 20|Windows NT 6.1|3b 20|Trident/4.0|3b 20|qdesk 2.4.1265.203|3b 20|SLCC2|3b 20 2e|NET CLR 2.0.50727|3b 20 2e|NET CLR 3.5.30729|3b 20 2e|NET CLR 3.0.30729|3b 20|InfoPath.3|29|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Accept|0d 0a|Accept-Language|0d 0a|User-Agent|0d 0a|Accept-Encoding|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Camaro Dragon APT - Horse Shell CnC Checkin\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/index.php\"; http.user_agent; content:\"Mozilla/4.0|20 28|compatible|3b 20|MSIE 8.0|3b 20|Windows NT 6.1|3b 20|Trident/4.0|3b 20|qdesk 2.4.1265.203|3b 20|SLCC2|3b 20 2e|NET CLR 2.0.50727|3b 20 2e|NET CLR 3.5.30729|3b 20 2e|NET CLR 3.0.30729|3b 20|InfoPath.3|29|\"; fast_pattern; http.header_names; content:\"|0d 0a|Accept|0d 0a|Accept-Language|0d 0a|User-Agent|0d 0a|Accept-Encoding|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; reference:url,research.checkpoint.com/2023/the-dragon-who-sold-his-camaro-analyzing-custom-router-implant/; classtype:trojan-activity; sid:2045753; rev:3; metadata:affected_product Router, attack_target IoT, created_at 2023_05_17, deployment Perimeter, former_category MALWARE, malware_family Horse_Shell, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 353,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED pswshopro_bot Stealer CnC Checkin",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "http.header_names": true,
+      "reference": "md5,8ace7745ab25bee814881d9cc398fc04",
+      "classtype": "trojan-activity",
+      "sid": 2045873,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_05_26, deployment Perimeter, former_category MALWARE, malware_family pswshopro_bot, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET /ai.php HTTP/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED pswshopro_bot Stealer CnC Checkin\"; flow:established,to_server; http.request_line; content:\"GET /ai.php HTTP/\"; fast_pattern; http.header_names; content:\"|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; reference:md5,8ace7745ab25bee814881d9cc398fc04; classtype:trojan-activity; sid:2045873; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_05_26, deployment Perimeter, former_category MALWARE, malware_family pswshopro_bot, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 359,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Trojan.PSW.Autoit Data Exfiltration Attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "http.header_names": true,
+      "reference": [
+        "url,twitter.com/Jane_0sint/status/1666706752367124483",
+        "url,tria.ge/230612-wyjphsdg8y"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2046234,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_06_12, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/db.php?cmd=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "AutoIt",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|User-Agent|0d 0a|Host|0d 0a|Cache-Control|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Trojan.PSW.Autoit Data Exfiltration Attempt\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/db.php?cmd=\"; fast_pattern; http.user_agent; content:\"AutoIt\"; http.header_names; content:\"|0d 0a|User-Agent|0d 0a|Host|0d 0a|Cache-Control|0d 0a 0d 0a|\"; reference:url,twitter.com/Jane_0sint/status/1666706752367124483; reference:url,tria.ge/230612-wyjphsdg8y; classtype:trojan-activity; sid:2046234; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_06_12, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 361,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Zenlod System Information Retrieval",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/\\d{10}$/R",
+      "http.header_names": true,
+      "http.request_body": true,
+      "reference": "md5,4a6607b893f3351f79a545861e08e329",
+      "classtype": "trojan-activity",
+      "sid": 2046299,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_06_16, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family Zenlod, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/J?",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Accept|0d 0a|Host|0d 0a|Content-Length|0d 0a|Cache-Control|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "W1N5c3RlbSBQcm9jZXNzXT",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Zenlod System Information Retrieval\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/J?\"; startswith; pcre:\"/\\d{10}$/R\"; http.header_names; content:\"|0d 0a|Accept|0d 0a|Host|0d 0a|Content-Length|0d 0a|Cache-Control|0d 0a 0d 0a|\"; http.request_body; content:\"W1N5c3RlbSBQcm9jZXNzXT\"; startswith; fast_pattern; reference:md5,4a6607b893f3351f79a545861e08e329; classtype:trojan-activity; sid:2046299; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_06_16, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family Zenlod, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 363,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED DDoSia Client CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "http.header": true,
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "reference": "url,blog.sekoia.io/following-noname05716-ddosia-projects-targets",
+      "classtype": "trojan-activity",
+      "sid": 2046697,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Linux, attack_target Client_and_Server, created_at 2023_06_29, deployment Perimeter, former_category MALWARE, malware_family DDoSia, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/client/login",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Go-http-client/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "User-Hash|3a 20 24|2a|24|16|24|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Client-Hash|0d 0a|Content-Type|0d 0a|User-Hash|0d 0a|Accept-Encoding|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|7b 22|location|22 3a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED DDoSia Client CnC Checkin\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/client/login\"; http.user_agent; content:\"Go-http-client/\"; http.header; content:\"User-Hash|3a 20 24|2a|24|16|24|\"; fast_pattern; http.header_names; content:\"|0d 0a|Host|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Client-Hash|0d 0a|Content-Type|0d 0a|User-Hash|0d 0a|Accept-Encoding|0d 0a 0d 0a|\"; http.request_body; content:\"|7b 22|location|22 3a|\"; startswith; reference:url,blog.sekoia.io/following-noname05716-ddosia-projects-targets; classtype:trojan-activity; sid:2046697; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Linux, attack_target Client_and_Server, created_at 2023_06_29, deployment Perimeter, former_category MALWARE, malware_family DDoSia, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 365,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED DDoSia Client Target Retrieval",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "http.header": true,
+      "pcre": "/^[0-9]{9}/R",
+      "http.header_names": true,
+      "reference": "url,blog.sekoia.io/following-noname05716-ddosia-projects-targets",
+      "classtype": "trojan-activity",
+      "sid": 2046698,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Linux, attack_target Client_and_Server, created_at 2023_06_29, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/client/get_targets",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Go-http-client/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Time|3a 20|1",
+          "modifiers": {}
+        },
+        {
+          "pattern": "User-Hash|3a 20 24|2a|24|16|24|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|User-Agent|0d 0a|Client-Hash|0d 0a|Content-Type|0d 0a|Time|0d 0a|User-Hash|0d 0a|Accept-Encoding|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED DDoSia Client Target Retrieval\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/client/get_targets\"; http.user_agent; content:\"Go-http-client/\"; http.header; content:\"Time|3a 20|1\"; pcre:\"/^[0-9]{9}/R\"; content:\"User-Hash|3a 20 24|2a|24|16|24|\"; fast_pattern; http.header_names; content:\"|0d 0a|Host|0d 0a|User-Agent|0d 0a|Client-Hash|0d 0a|Content-Type|0d 0a|Time|0d 0a|User-Hash|0d 0a|Accept-Encoding|0d 0a 0d 0a|\"; reference:url,blog.sekoia.io/following-noname05716-ddosia-projects-targets; classtype:trojan-activity; sid:2046698; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Linux, attack_target Client_and_Server, created_at 2023_06_29, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 369,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED QwixxRAT - Telegram CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.host": true,
+      "http.header_names": true,
+      "reference": "url,www.uptycs.com/blog/remote-access-trojan-qwixx-telegram",
+      "classtype": "trojan-activity",
+      "sid": 2047647,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family QwixxStealer, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/bot",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/sendMessage?chat_id=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "text|3d e2 98 a0 20|Qwixx|20|Steal",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "api.telegram.org",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED QwixxRAT - Telegram CnC Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/bot\"; startswith; content:\"/sendMessage?chat_id=\"; distance:0; content:\"text|3d e2 98 a0 20|Qwixx|20|Steal\"; distance:0; fast_pattern; http.host; content:\"api.telegram.org\"; http.header_names; content:\"|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; reference:url,www.uptycs.com/blog/remote-access-trojan-qwixx-telegram; classtype:trojan-activity; sid:2047647; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family QwixxStealer, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_01, reviewed_at 2024_10_01; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 383,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Possible ToneShell CnC Checkin M3",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.header": true,
+      "http.header_names": true,
+      "reference": "url,www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html",
+      "classtype": "trojan-activity",
+      "sid": 2048265,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_26, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/index.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Guid|3a 20|id|3d|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|0d 0a|Referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Connection|0d 0a|Guid|0d 0a|Content-Length|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Possible ToneShell CnC Checkin M3\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/index.php\"; endswith; http.header; content:\"Guid|3a 20|id|3d|\"; fast_pattern; http.header_names; content:!\"|0d 0a|Referer|0d 0a|\"; content:\"|0d 0a|Connection|0d 0a|Guid|0d 0a|Content-Length|0d 0a|Host|0d 0a 0d 0a|\"; reference:url,www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html; classtype:trojan-activity; sid:2048265; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_26, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_02, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 397,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Andariel Group Nukesped Variant CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.host": true,
+      "http.header": true,
+      "http.header_names": true,
+      "reference": [
+        "url,asec.ahnlab.com/en/59318/",
+        "md5,7699ba4eab5837a4ad9d5d6bbedffc18"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049380,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_and_Server, created_at 2023_11_28, deployment Perimeter, former_category MALWARE, malware_family NukeSped, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_03, reviewed_at 2024_10_03",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/login.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "www.google.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Sec-Fetch-Mode|3a 20|10",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Sec-Fetch-Dest|3a 20|01",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Connection|0d 0a|Cache-Control|0d 0a|Sec-Fetch-Mode|0d 0a|Sec-Fetch-User|0d 0a|Sec-Fetch-Dest|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Andariel Group Nukesped Variant CnC Checkin\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/login.php\"; http.host; content:\"www.google.com\"; http.header; content:\"Sec-Fetch-Mode|3a 20|10\"; fast_pattern; content:\"Sec-Fetch-Dest|3a 20|01\"; http.header_names; content:\"|0d 0a|Host|0d 0a|Connection|0d 0a|Cache-Control|0d 0a|Sec-Fetch-Mode|0d 0a|Sec-Fetch-User|0d 0a|Sec-Fetch-Dest|0d 0a 0d 0a|\"; reference:url,asec.ahnlab.com/en/59318/; reference:md5,7699ba4eab5837a4ad9d5d6bbedffc18; classtype:trojan-activity; sid:2049380; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_and_Server, created_at 2023_11_28, deployment Perimeter, former_category MALWARE, malware_family NukeSped, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_03, reviewed_at 2024_10_03; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 399,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Sharp Panda APT Related Activity M3",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.header_names": true,
+      "reference": "md5,37e8ba415702f9f24e497bf6111e3e0c",
+      "classtype": "trojan-activity",
+      "sid": 2049931,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, created_at 2024_01_08, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_03, reviewed_at 2024_10_03",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/org/background.php?Data=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Connection|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Sharp Panda APT Related Activity M3\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/org/background.php?Data=\"; fast_pattern; startswith; http.header_names; content:\"|0d 0a|Connection|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|\"; reference:md5,37e8ba415702f9f24e497bf6111e3e0c; classtype:trojan-activity; sid:2049931; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, created_at 2024_01_08, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_03, reviewed_at 2024_10_03; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 455,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Mispadu Stealer CnC Checkin M1",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header_names": true,
+      "reference": "url,unit42.paloaltonetworks.com/mispadu-infostealer-variant/",
+      "classtype": "trojan-activity",
+      "sid": 2050708,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_02_05, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family mispadu_stealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_03, reviewed_at 2024_10_03",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/it.php?f=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&w=Windows",
+          "modifiers": {
+            "distance": "1",
+            "within": "10"
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Mispadu Stealer CnC Checkin M1\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/it.php?f=\"; fast_pattern; content:\"&w=Windows\"; distance:1; within:10; http.header_names; content:\"|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept|0d 0a 0d 0a|\"; reference:url,unit42.paloaltonetworks.com/mispadu-infostealer-variant/; classtype:trojan-activity; sid:2050708; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_02_05, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family mispadu_stealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_03, reviewed_at 2024_10_03; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 457,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Mispadu Stealer CnC Checkin M2",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header_names": true,
+      "reference": "url,unit42.paloaltonetworks.com/mispadu-infostealer-variant",
+      "classtype": "trojan-activity",
+      "sid": 2050709,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_02_05, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family mispadu_stealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_03, reviewed_at 2024_10_03",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/it.php?v1=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "v2=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "v4=Windows",
+          "modifiers": {}
+        },
+        {
+          "pattern": "v5=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "v6=X",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Mispadu Stealer CnC Checkin M2\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/it.php?v1=\"; fast_pattern; content:\"v2=\"; content:\"v4=Windows\"; content:\"v5=\"; content:\"v6=X\"; http.header_names; content:\"|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept|0d 0a 0d 0a|\"; reference:url,unit42.paloaltonetworks.com/mispadu-infostealer-variant; classtype:trojan-activity; sid:2050709; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_02_05, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family mispadu_stealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_03, reviewed_at 2024_10_03; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 459,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Bitter APT Related Activity (GET)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "http.header_names": true,
+      "reference": [
+        "url,infosec.exchange/@ginkgo/112047866464514906",
+        "md5,10f4479d5f531def842a712277ae9611"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2051513,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state plaintext, created_at 2024_03_06, deployment Perimeter, former_category MALWARE, malware_family Bitter_APT, performance_impact Low, confidence High, signature_severity Major, tag Bitter_APT, tag Malicious_LNK, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_03, reviewed_at 2024_10_03",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/mml.php",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "curl/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Bitter APT Related Activity (GET)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/mml.php\"; fast_pattern; http.user_agent; content:\"curl/\"; http.header_names; content:\"|0d 0a|Host|0d 0a|User-Agent|0d 0a|Accept|0d 0a 0d 0a|\"; reference:url,infosec.exchange/@ginkgo/112047866464514906; reference:md5,10f4479d5f531def842a712277ae9611; classtype:trojan-activity; sid:2051513; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state plaintext, created_at 2024_03_06, deployment Perimeter, former_category MALWARE, malware_family Bitter_APT, performance_impact Low, confidence High, signature_severity Major, tag Bitter_APT, tag Malicious_LNK, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_03, reviewed_at 2024_10_03; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 687,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED PoisonIvy HTTP CnC Beacon",
+      "flow": "established,to_server",
+      "http.start": true,
+      "pcre": "/^[0-9A-F]{12}/R",
+      "reference": [
+        "md5,1aca09c5eefb37539e86ec86dd3be72f",
+        "url,blog.jpcert.or.jp/2015/07/poisonivy-adapts-to-communicate-through-authentication-proxies.html"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2021523,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2015_07_23, deployment Perimeter, former_category MALWARE, malware_family PoisonIvy, signature_severity Major, tag PoisonIvy, tag c2, updated_at 2024_12_05, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "|20|HTTP|3a 2f 2f|",
+          "modifiers": {
+            "offset": "3",
+            "depth": "9"
+          }
+        },
+        {
+          "pattern": "!\"Host|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"User-Agent|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"Accept",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"Referer|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "HTTP/1.1|0d 0a|Cookie|3a 20|id=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED PoisonIvy HTTP CnC Beacon\"; flow:established,to_server; http.start; content:\"|20|HTTP|3a 2f 2f|\"; offset:3; depth:9; content:!\"Host|3a|\"; distance:0; content:!\"User-Agent|3a|\"; distance:0; content:!\"Accept\"; distance:0; content:!\"Referer|3a|\"; distance:0; content:\"HTTP/1.1|0d 0a|Cookie|3a 20|id=\"; fast_pattern; pcre:\"/^[0-9A-F]{12}/R\"; reference:md5,1aca09c5eefb37539e86ec86dd3be72f; reference:url,blog.jpcert.or.jp/2015/07/poisonivy-adapts-to-communicate-through-authentication-proxies.html; classtype:command-and-control; sid:2021523; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2015_07_23, deployment Perimeter, former_category MALWARE, malware_family PoisonIvy, signature_severity Major, tag PoisonIvy, tag c2, updated_at 2024_12_05, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 715,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Checkin M1",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/^\\d{3,6}$/R",
+      "http.header_names": true,
+      "http.user_agent": true,
+      "reference": "md5,2e7b9acaf5725c84c9ec9687af15d48e",
+      "classtype": "trojan-activity",
+      "sid": 2037107,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/index/getcfg?id=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Accept|0d 0a|Accept-Encoding|0d 0a|User-Agent|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/3.0|20 28|compatible|3b 20|Indy Library|29|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Checkin M1\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/index/getcfg?id=\"; fast_pattern; startswith; pcre:\"/^\\d{3,6}$/R\"; http.header_names; content:!\"Referer\"; content:\"|0d 0a|Host|0d 0a|Accept|0d 0a|Accept-Encoding|0d 0a|User-Agent|0d 0a 0d 0a|\"; http.user_agent; content:\"Mozilla/3.0|20 28|compatible|3b 20|Indy Library|29|\"; reference:md5,2e7b9acaf5725c84c9ec9687af15d48e; classtype:trojan-activity; sid:2037107; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 717,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Checkin M2",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "http.user_agent": true,
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "reference": "md5,2e7b9acaf5725c84c9ec9687af15d48e",
+      "classtype": "trojan-activity",
+      "sid": 2037108,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "POST /index/eventup.html HTTP/1.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/3.0|20 28|compatible|3b 20|Indy Library|29|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "event|3d 7b 22|info|22 3a 7b 22|pid|22 3a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Checkin M2\"; flow:established,to_server; http.request_line; content:\"POST /index/eventup.html HTTP/1.0\"; http.user_agent; content:\"Mozilla/3.0|20 28|compatible|3b 20|Indy Library|29|\"; http.header_names; content:!\"Referer\"; http.request_body; content:\"event|3d 7b 22|info|22 3a 7b 22|pid|22 3a|\"; fast_pattern; startswith; reference:md5,2e7b9acaf5725c84c9ec9687af15d48e; classtype:trojan-activity; sid:2037108; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 735,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ZuoRAT CBeacon CnC",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "http.connection": true,
+      "http.header_names": true,
+      "http.request_body": true,
+      "pcre": "/^[A-Za-z0-9=/+]{100}/",
+      "reference": "url,blog.lumen.com/zuorat-hijacks-soho-routers-to-silently-stalk-networks/",
+      "classtype": "targeted-activity",
+      "sid": 2037143,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_28, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family ZuoRAT, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/api",
+          "modifiers": {}
+        },
+        {
+          "pattern": "WinHTTP",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Keep-Alive",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|Referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Connection|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED ZuoRAT CBeacon CnC\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/api\"; http.user_agent; content:\"WinHTTP\"; fast_pattern; http.connection; content:\"Keep-Alive\"; http.header_names; content:!\"|0d 0a|Referer|0d 0a|\"; content:\"|0d 0a|Connection|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Host|0d 0a 0d 0a|\"; http.request_body; pcre:\"/^[A-Za-z0-9=/+]{100}/\"; reference:url,blog.lumen.com/zuorat-hijacks-soho-routers-to-silently-stalk-networks/; classtype:targeted-activity; sid:2037143; rev:4; metadata:attack_target Client_Endpoint, created_at 2022_06_28, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family ZuoRAT, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 785,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/OriginLoader CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "pcre": "/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/R",
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "threshold": "type limit, count 5, seconds 300, track by_src",
+      "reference": [
+        "md5,ecfb74b93750609b906f519809d45556",
+        "url,tria.ge/230728-zryfwaac8y/",
+        "url,www.fortinet.com/blog/threat-research/originbotnet-spreads-via-malicious-word-document"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2047004,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_07_31, deployment Perimeter, former_category MALWARE, malware_family Win32_OriginLoader, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/gate",
+          "modifiers": {}
+        },
+        {
+          "pattern": "x-key|3a 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|0d 0a|Referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|x-key|0d 0a|User-Agent|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "p=",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/OriginLoader CnC Checkin\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/gate\"; http.header; content:\"x-key|3a 20|\"; fast_pattern; pcre:\"/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/R\"; http.header_names; content:!\"|0d 0a|Referer|0d 0a|\"; content:\"|0d 0a|x-key|0d 0a|User-Agent|0d 0a|Content-Type|0d 0a|Host|0d 0a|Content-Length|0d 0a|Expect|0d 0a 0d 0a|\"; http.request_body; content:\"p=\"; startswith; threshold:type limit, count 5, seconds 300, track by_src; reference:md5,ecfb74b93750609b906f519809d45556; reference:url,tria.ge/230728-zryfwaac8y/; reference:url,www.fortinet.com/blog/threat-research/originbotnet-spreads-via-malicious-word-document; classtype:trojan-activity; sid:2047004; rev:4; metadata:attack_target Client_Endpoint, created_at 2023_07_31, deployment Perimeter, former_category MALWARE, malware_family Win32_OriginLoader, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 805,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Red Wolf/RedCurl Payload Retrieval Attempt M5",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.header_names": true,
+      "http.content_type": true,
+      "http.user_agent": true,
+      "http.content_len": true,
+      "byte_test": "0,=,0,0,string,dec",
+      "reference": [
+        "md5,b7a633613d95dedd57775dcbb72accc7",
+        "url,bi.zone/eng/expertise/blog/red-wolf-vnov-shpionit-za-kommercheskimi-organizatsiyami/",
+        "url,www.facct.ru/blog/redcurl-2023/"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2047959,
+      "rev": 4,
+      "metadata": "created_at 2023_09_07, former_category MALWARE, confidence High, signature_severity Major, tag Red_Wolf, tag RedCurl, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/ldn",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Content-type|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "application/x-www-form-urlencoded",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/5.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "WindowsPowerShell/",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Red Wolf/RedCurl Payload Retrieval Attempt M5\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/ldn\"; startswith; fast_pattern; http.header_names; content:\"|0d 0a|Content-type|0d 0a|\"; http.content_type; content:\"application/x-www-form-urlencoded\"; http.user_agent; content:\"Mozilla/5.0\"; startswith; content:\"WindowsPowerShell/\"; distance:0; http.content_len; byte_test:0,=,0,0,string,dec; reference:md5,b7a633613d95dedd57775dcbb72accc7; reference:url,bi.zone/eng/expertise/blog/red-wolf-vnov-shpionit-za-kommercheskimi-organizatsiyami/; reference:url,www.facct.ru/blog/redcurl-2023/; classtype:trojan-activity; sid:2047959; rev:4; metadata:created_at 2023_09_07, former_category MALWARE, confidence High, signature_severity Major, tag Red_Wolf, tag RedCurl, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 807,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Red Wolf/RedCurl Payload Retrieval Attempt M6",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header_names": true,
+      "http.content_type": true,
+      "http.user_agent": true,
+      "startswith": true,
+      "http.content_len": true,
+      "byte_test": "0,=,0,0,string,dec",
+      "reference": [
+        "md5,6ece95df231083c37ecf9a39c324e2bb",
+        "url,bi.zone/eng/expertise/blog/red-wolf-vnov-shpionit-za-kommercheskimi-organizatsiyami/",
+        "url,www.facct.ru/blog/redcurl-2023/"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2047960,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_07, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Red_Wolf, tag RedCurl, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/dn01",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Content-type|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "application/x-www-form-urlencoded",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/5.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "WindowsPowerShell/",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Red Wolf/RedCurl Payload Retrieval Attempt M6\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/dn01\"; fast_pattern; http.header_names; content:\"|0d 0a|Content-type|0d 0a|\"; http.content_type; content:\"application/x-www-form-urlencoded\"; http.user_agent; content:\"Mozilla/5.0\"; startswith; content:\"WindowsPowerShell/\"; distance:0; http.content_len; byte_test:0,=,0,0,string,dec; reference:md5,6ece95df231083c37ecf9a39c324e2bb; reference:url,bi.zone/eng/expertise/blog/red-wolf-vnov-shpionit-za-kommercheskimi-organizatsiyami/; reference:url,www.facct.ru/blog/redcurl-2023/; classtype:trojan-activity; sid:2047960; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_07, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Red_Wolf, tag RedCurl, updated_at 2025_04_17, reviewed_at 2025_04_17; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 845,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Koi Stealer CnC Checkin (POST) M1",
+      "flow": "established,to_server",
+      "urilen": "65",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/^\\/index\\.php\\?id=[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12}\\&subid=[a-zA-Z0-9]{8}$/",
+      "http.header_names": true,
+      "bsize": "22",
+      "reference": "md5,ef24aa4c496b5d9803e7e37ae0f8e649",
+      "classtype": "trojan-activity",
+      "sid": 2049816,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, created_at 2023_12_21, deployment Perimeter, former_category MALWARE, malware_family Win32_Koi, performance_impact Moderate, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/index.php?id=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&subid=",
+          "modifiers": {
+            "distance": "36",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/Koi Stealer CnC Checkin (POST) M1\"; flow:established,to_server; urilen:65; http.method; content:\"GET\"; http.uri; content:\"/index.php?id=\"; startswith; fast_pattern; content:\"&subid=\"; distance:36; within:7; pcre:\"/^\\/index\\.php\\?id=[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12}\\&subid=[a-zA-Z0-9]{8}$/\"; http.header_names; bsize:22; content:\"|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; reference:md5,ef24aa4c496b5d9803e7e37ae0f8e649; classtype:trojan-activity; sid:2049816; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, created_at 2023_12_21, deployment Perimeter, former_category MALWARE, malware_family Win32_Koi, performance_impact Moderate, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 871,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Suspicious Request for bd.log",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "trojan-activity",
+      "sid": 2050248,
+      "rev": 3,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category HUNTING, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/bd.log",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "HOST|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Suspicious Request for bd.log\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/bd.log\"; fast_pattern; http.header; content:\"HOST|3a 20|\"; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:trojan-activity; sid:2050248; rev:3; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category HUNTING, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 873,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Suspicious Request for fs.log",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "trojan-activity",
+      "sid": 2050249,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category HUNTING, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/fs.log",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "HOST|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Suspicious Request for fs.log\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/fs.log\"; fast_pattern; http.header; content:\"HOST|3a 20|\"; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:trojan-activity; sid:2050249; rev:3; metadata:attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category HUNTING, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 891,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED JynxLoaderV2 CnC Checkin",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "http.user_agent": true,
+      "startswith": true,
+      "http.header_names": true,
+      "http.content_len": true,
+      "byte_test": [
+        "0,>,200,0,string,dec",
+        "0,<,300,0,string,dec"
+      ],
+      "http.request_body": true,
+      "pcre": "/^[a-f0-9]{200}/",
+      "reference": [
+        "url,twitter.com/Unit42_Intel/status/1730237085246775562",
+        "md5,46ce034ff575452d1d26c2002788f403"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049408,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_and_Server, created_at 2023_11_30, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "POST / HTTP/1.1",
+          "modifiers": {}
+        },
+        {
+          "pattern": "4a696e785632",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|0d 0a|Referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "7c31",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED JynxLoaderV2 CnC Checkin\"; flow:established,to_server; http.request_line; content:\"POST / HTTP/1.1\"; http.user_agent; content:\"4a696e785632\"; startswith; fast_pattern; http.header_names; content:!\"|0d 0a|Referer|0d 0a|\"; http.content_len; byte_test:0,>,200,0,string,dec; byte_test:0,<,300,0,string,dec; http.request_body; pcre:\"/^[a-f0-9]{200}/\"; content:\"7c31\"; reference:url,twitter.com/Unit42_Intel/status/1730237085246775562; reference:md5,46ce034ff575452d1d26c2002788f403; classtype:trojan-activity; sid:2049408; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_and_Server, created_at 2023_11_30, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_07_14, reviewed_at 2025_07_14; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 925,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/SSLoad Module Request (GET)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.header_names": true,
+      "reference": "md5,ca303668b5420c022ef9c78ce1f2bfb7",
+      "classtype": "trojan-activity",
+      "sid": 2052119,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state plaintext, created_at 2024_04_16, deployment Perimeter, former_category MALWARE, malware_family SSLoad, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/download?id=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&module=",
+          "modifiers": {
+            "within": "50"
+          }
+        },
+        {
+          "pattern": "&filename=",
+          "modifiers": {
+            "within": "12"
+          }
+        },
+        {
+          "pattern": "|0d 0a|Connection|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/SSLoad Module Request (GET)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/download?id=\"; fast_pattern; startswith; content:\"&module=\"; within:50; content:\"&filename=\"; within:12; http.header_names; content:\"|0d 0a|Connection|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|\"; reference:md5,ca303668b5420c022ef9c78ce1f2bfb7; classtype:trojan-activity; sid:2052119; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state plaintext, created_at 2024_04_16, deployment Perimeter, former_category MALWARE, malware_family SSLoad, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 927,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/SSLoad Payload Request (GET)",
+      "flow": "established,to_server",
+      "flowbits": "set,ET.SSLoad1_1.PayloadRetrieval",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "6",
+      "startswith": true,
+      "http.header_names": true,
+      "reference": "md5,ca303668b5420c022ef9c78ce1f2bfb7",
+      "classtype": "trojan-activity",
+      "sid": 2052120,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state plaintext, created_at 2024_04_16, deployment Perimeter, former_category MALWARE, malware_family SSLoad, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/api/g",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Connection|0d 0a|Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Win32/SSLoad Payload Request (GET)\"; flow:established,to_server; flowbits:set,ET.SSLoad1_1.PayloadRetrieval; http.method; content:\"GET\"; http.uri; bsize:6; content:\"/api/g\"; fast_pattern; startswith; http.header_names; content:\"|0d 0a|Connection|0d 0a|Content-Type|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|\"; reference:md5,ca303668b5420c022ef9c78ce1f2bfb7; classtype:trojan-activity; sid:2052120; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state plaintext, created_at 2024_04_16, deployment Perimeter, former_category MALWARE, malware_family SSLoad, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14; target:src_ip;)"
+  }
+]

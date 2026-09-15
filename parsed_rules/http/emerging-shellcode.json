@@ -1,0 +1,1270 @@
+[
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 299,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Hex Obfuscated JavaScript Heap Spray 0b0b0b0b",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013268,
+      "rev": 5,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_03_13, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C|x0b|5C|x0b|5C|x0b|5C|x0b",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Hex Obfuscated JavaScript Heap Spray 0b0b0b0b\"; flow:established,to_client; file.data; content:\"|5C|x0b|5C|x0b|5C|x0b|5C|x0b\"; nocase; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013268; rev:5; metadata:created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_03_13, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 301,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible Backslash Escaped UTF-8 0c0c Heap Spray",
+      "flow": "established,to_client",
+      "file.data": true,
+      "classtype": "bad-unknown",
+      "sid": 2016714,
+      "rev": 3,
+      "metadata": "created_at 2013_04_04, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_13",
+      "contents": [
+        {
+          "pattern": "|5C|0c|5C|0c",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible Backslash Escaped UTF-8 0c0c Heap Spray\"; flow:established,to_client; file.data; content:\"|5C|0c|5C|0c\"; nocase; distance:0; classtype:bad-unknown; sid:2016714; rev:3; metadata:created_at 2013_04_04, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_13;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 305,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible UTF-16 u9090 NOP SLED",
+      "file.data": true,
+      "flow": "established,to_client",
+      "pcre": "/^[a-f0-9]{4}/Ri",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html",
+        "url,www.windowsecurity.com/articles/Obfuscated-Shellcode-Part1.html"
+      ],
+      "classtype": "shellcode-detect",
+      "sid": 2017345,
+      "rev": 5,
+      "metadata": "created_at 2013_08_19, confidence Medium, signature_severity Major, tag possible_exploitation, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_13",
+      "contents": [
+        {
+          "pattern": "|5c|u9090|5c|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible UTF-16 u9090 NOP SLED\"; file.data; flow:established,to_client; content:\"|5c|u9090|5c|\"; nocase; pcre:\"/^[a-f0-9]{4}/Ri\"; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; reference:url,www.windowsecurity.com/articles/Obfuscated-Shellcode-Part1.html; classtype:shellcode-detect; sid:2017345; rev:5; metadata:created_at 2013_08_19, confidence Medium, signature_severity Major, tag possible_exploitation, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_13;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 311,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 41414141",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013279,
+      "rev": 4,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C 5C|x41|5C 5C|x41|5C 5C|x41|5C 5C|x41",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 41414141\"; flow:established,to_client; file.data; content:\"|5C 5C|x41|5C 5C|x41|5C 5C|x41|5C 5C|x41\"; nocase; fast_pattern; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013279; rev:4; metadata:created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 313,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript NOP SLED",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013278,
+      "rev": 4,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C 5C|x90|5C 5C|x90|5C 5C|x90|5C 5C|x90",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript NOP SLED\"; flow:established,to_client; file.data; content:\"|5C 5C|x90|5C 5C|x90|5C 5C|x90|5C 5C|x90\"; nocase; fast_pattern; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013278; rev:4; metadata:created_at 2011_07_14, confidence High, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 315,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 0d0d0d0d",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013277,
+      "rev": 4,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C 5C|x0d|5C 5C|x0d|5C 5C|x0d|5C 5C|x0d",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 0d0d0d0d\"; flow:established,to_client; file.data; content:\"|5C 5C|x0d|5C 5C|x0d|5C 5C|x0d|5C 5C|x0d\"; nocase; fast_pattern; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013277; rev:4; metadata:created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 317,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 0c0c0c0c",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013276,
+      "rev": 4,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C 5C|x0c|5C 5C|x0c|5C 5C|x0c|5C 5C|x0c",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 0c0c0c0c\"; flow:established,to_client; file.data; content:\"|5C 5C|x0c|5C 5C|x0c|5C 5C|x0c|5C 5C|x0c\"; nocase; fast_pattern; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013276; rev:4; metadata:created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 319,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 0b0b0b0b",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013275,
+      "rev": 4,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C 5C|x0b|5C 5C|x0b|5C 5C|x0b|5C 5C|x0b",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 0b0b0b0b\"; flow:established,to_client; file.data; content:\"|5C 5C|x0b|5C 5C|x0b|5C 5C|x0b|5C 5C|x0b\"; nocase; fast_pattern; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013275; rev:4; metadata:created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 323,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Unescape Hex Obfuscated Content",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/unescape\\x28(\\x22|\\x27)\\x5Cx[a-f,0-9]{2}\\x5Cx[a-f,0-9]{2}\\x5Cx[a-f,0-9]{2}/smi",
+      "classtype": "shellcode-detect",
+      "sid": 2013272,
+      "rev": 4,
+      "metadata": "created_at 2011_07_14, performance_impact Significant, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "unescape|28|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|5C|x",
+          "modifiers": {
+            "distance": "1",
+            "within": "2"
+          }
+        },
+        {
+          "pattern": "|5C|x",
+          "modifiers": {
+            "distance": "2",
+            "within": "2"
+          }
+        },
+        {
+          "pattern": "|5C|x",
+          "modifiers": {
+            "distance": "2",
+            "within": "2"
+          }
+        },
+        {
+          "pattern": "|5C|x",
+          "modifiers": {
+            "distance": "2",
+            "within": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Unescape Hex Obfuscated Content\"; flow:established,to_client; file.data; content:\"unescape|28|\"; fast_pattern; content:\"|5C|x\"; distance:1; within:2; content:\"|5C|x\"; distance:2; within:2; content:\"|5C|x\"; distance:2; within:2; content:\"|5C|x\"; distance:2; within:2; pcre:\"/unescape\\x28(\\x22|\\x27)\\x5Cx[a-f,0-9]{2}\\x5Cx[a-f,0-9]{2}\\x5Cx[a-f,0-9]{2}/smi\"; classtype:shellcode-detect; sid:2013272; rev:4; metadata:created_at 2011_07_14, performance_impact Significant, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 325,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Hex Obfuscated JavaScript NOP SLED",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013271,
+      "rev": 4,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C|x90|5C|x90|5C|x90|5C|x90",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Hex Obfuscated JavaScript NOP SLED\"; flow:established,to_client; file.data; content:\"|5C|x90|5C|x90|5C|x90|5C|x90\"; nocase; fast_pattern; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013271; rev:4; metadata:created_at 2011_07_14, confidence High, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 327,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Hex Obfuscated JavaScript Heap Spray 0d0d0d0d",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013270,
+      "rev": 4,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C|x0d|5C|x0d|5C|x0d|5C|x0d",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Hex Obfuscated JavaScript Heap Spray 0d0d0d0d\"; flow:established,to_client; file.data; content:\"|5C|x0d|5C|x0d|5C|x0d|5C|x0d\"; nocase; fast_pattern; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013270; rev:4; metadata:created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 329,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Hex Obfuscated JavaScript Heap Spray 0c0c0c0c",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013269,
+      "rev": 4,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C|x0c|5C|x0c|5C|x0c|5C|x0c",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Hex Obfuscated JavaScript Heap Spray 0c0c0c0c\"; flow:established,to_client; file.data; content:\"|5C|x0c|5C|x0c|5C|x0c|5C|x0c\"; nocase; fast_pattern; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013269; rev:4; metadata:created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2024_04_09, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 333,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible %u4141%u4141 UTF-16 Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "classtype": "shellcode-detect",
+      "sid": 2013147,
+      "rev": 4,
+      "metadata": "created_at 2011_06_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u4141%u4141",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible %u4141%u4141 UTF-16 Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"%u4141%u4141\"; nocase; fast_pattern; classtype:shellcode-detect; sid:2013147; rev:4; metadata:created_at 2011_06_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 335,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible %u41%u41%u41%u41 UTF-8 Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "classtype": "shellcode-detect",
+      "sid": 2013146,
+      "rev": 4,
+      "metadata": "created_at 2011_06_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u41%u41%u41%u41",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible %u41%u41%u41%u41 UTF-8 Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"%u41%u41%u41%u41\"; nocase; fast_pattern; classtype:shellcode-detect; sid:2013146; rev:4; metadata:created_at 2011_06_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 337,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible %41%41%41%41 Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "classtype": "shellcode-detect",
+      "sid": 2013145,
+      "rev": 4,
+      "metadata": "created_at 2011_06_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%41%41%41%41",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible %41%41%41%41 Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"%41%41%41%41\"; fast_pattern; classtype:shellcode-detect; sid:2013145; rev:4; metadata:created_at 2011_06_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 339,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible Backslash Unicode Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/\\x5Cu0[a-d](\\x5Cu0|0)[a-d]/\\x5Cu0[a-d](\\x5Cu0|0)[a-d]/i",
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2012970,
+      "rev": 3,
+      "metadata": "created_at 2011_06_09, performance_impact Significant, confidence Medium, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "|5C|u0",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|5C|u0",
+          "modifiers": {
+            "distance": "1",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible Backslash Unicode Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"|5C|u0\"; fast_pattern; nocase; content:\"|5C|u0\"; distance:1; within:4; pcre:\"/\\x5Cu0[a-d](\\x5Cu0|0)[a-d]/\\x5Cu0[a-d](\\x5Cu0|0)[a-d]/i\"; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2012970; rev:3; metadata:created_at 2011_06_09, performance_impact Significant, confidence Medium, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 341,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible Vertical Slash Unicode Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/\\x7Cu0[a-d](\\x7Cu0|0)[a-d]/\\x7Cu0[a-d](\\x7Cu0|0)[a-d]/i",
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2012969,
+      "rev": 3,
+      "metadata": "created_at 2011_06_09, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "|7C|u0",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|7C|u0",
+          "modifiers": {
+            "distance": "1",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible Vertical Slash Unicode Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"|7C|u0\"; fast_pattern; nocase; content:\"|7C|u0\"; distance:1; within:4; pcre:\"/\\x7Cu0[a-d](\\x7Cu0|0)[a-d]/\\x7Cu0[a-d](\\x7Cu0|0)[a-d]/i\"; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2012969; rev:3; metadata:created_at 2011_06_09, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 343,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible %u0d0d%u0d0d UTF-16 Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2012968,
+      "rev": 4,
+      "metadata": "created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u0d0d%u0d0d",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible %u0d0d%u0d0d UTF-16 Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"%u0d0d%u0d0d\"; nocase; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2012968; rev:4; metadata:created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 345,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible %u0d%u0d%u0d%u0d UTF-8 Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2012967,
+      "rev": 4,
+      "metadata": "created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u0d%u0d%u0d%u0d",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible %u0d%u0d%u0d%u0d UTF-8 Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"%u0d%u0d%u0d%u0d\"; nocase; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2012967; rev:4; metadata:created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 349,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible 0x0d0d0d0d Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "classtype": "shellcode-detect",
+      "sid": 2012965,
+      "rev": 4,
+      "metadata": "created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "0x0d0d0d0d",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible 0x0d0d0d0d Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"0x0d0d0d0d\"; nocase; classtype:shellcode-detect; sid:2012965; rev:4; metadata:created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 351,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible 0x0c0c0c0c Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "classtype": "shellcode-detect",
+      "sid": 2012964,
+      "rev": 4,
+      "metadata": "created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "0x0c0c0c0c",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible 0x0c0c0c0c Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"0x0c0c0c0c\"; nocase; classtype:shellcode-detect; sid:2012964; rev:4; metadata:created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 353,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible 0x0b0b0b0b Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "classtype": "shellcode-detect",
+      "sid": 2012963,
+      "rev": 3,
+      "metadata": "created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "0x0b0b0b0b",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible 0x0b0b0b0b Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"0x0b0b0b0b\"; nocase; classtype:shellcode-detect; sid:2012963; rev:3; metadata:created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 355,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Javascript Split String Unicode Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/\\x220\\x22\\x20\\x2B\\x20\\x22[a-d]\\x22\\x20\\x2B\\x20\\x22/smi",
+      "classtype": "shellcode-detect",
+      "sid": 2012925,
+      "rev": 3,
+      "metadata": "created_at 2011_06_02, confidence High, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "|22|u|22 20|+|20 22|0|22 20|+|20 22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|22 20|+|20 22|",
+          "modifiers": {
+            "distance": "1",
+            "within": "5"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Javascript Split String Unicode Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"|22|u|22 20|+|20 22|0|22 20|+|20 22|\"; fast_pattern; content:\"|22 20|+|20 22|\"; distance:1; within:5; pcre:\"/\\x220\\x22\\x20\\x2B\\x20\\x22[a-d]\\x22\\x20\\x2B\\x20\\x22/smi\"; classtype:shellcode-detect; sid:2012925; rev:3; metadata:created_at 2011_06_02, confidence High, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 357,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Unescape Variable Unicode Shellcode",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/var\\x20[a-z,0-9]{1,30}\\x20\\x3D\\x20unescape\\x28.\\x5Cu[a-f,0-9]{2,4}\\x5Cu[a-f,0-9]{2,4}/i",
+      "reference": "url,www.symantec.com/avcenter/reference/evolving.shell.code.pdf",
+      "classtype": "shellcode-detect",
+      "sid": 2012535,
+      "rev": 3,
+      "metadata": "created_at 2011_03_22, performance_impact Significant, confidence High, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "= unescape|28|",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|5C|u",
+          "modifiers": {
+            "nocase": true,
+            "within": "3"
+          }
+        },
+        {
+          "pattern": "|5C|u",
+          "modifiers": {
+            "nocase": true,
+            "within": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Unescape Variable Unicode Shellcode\"; flow:established,to_client; file.data; content:\"= unescape|28|\"; fast_pattern; nocase; content:\"|5C|u\"; nocase; within:3; content:\"|5C|u\"; nocase; within:6; pcre:\"/var\\x20[a-z,0-9]{1,30}\\x20\\x3D\\x20unescape\\x28.\\x5Cu[a-f,0-9]{2,4}\\x5Cu[a-f,0-9]{2,4}/i\"; reference:url,www.symantec.com/avcenter/reference/evolving.shell.code.pdf; classtype:shellcode-detect; sid:2012535; rev:3; metadata:created_at 2011_03_22, performance_impact Significant, confidence High, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 363,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Common %u0c%u0c%u0c%u0c UTF-8 Heap Spray String",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2012259,
+      "rev": 5,
+      "metadata": "created_at 2011_02_03, confidence High, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u0c%u0c%u0c%u0c",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Common %u0c%u0c%u0c%u0c UTF-8 Heap Spray String\"; flow:established,to_client; file.data; content:\"%u0c%u0c%u0c%u0c\"; nocase; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2012259; rev:5; metadata:created_at 2011_02_03, confidence High, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 365,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Common %u0c0c%u0c0c UTF-16 Heap Spray String",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2012258,
+      "rev": 5,
+      "metadata": "created_at 2011_02_03, confidence High, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u0c0c%u0c0c",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Common %u0c0c%u0c0c UTF-16 Heap Spray String\"; flow:established,to_client; file.data; content:\"%u0c0c%u0c0c\"; nocase; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2012258; rev:5; metadata:created_at 2011_02_03, confidence High, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 367,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Common %0c%0c%0c%0c Heap Spray String",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2012257,
+      "rev": 5,
+      "metadata": "created_at 2011_02_03, confidence High, signature_severity Major, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%0c%0c%0c%0c",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Common %0c%0c%0c%0c Heap Spray String\"; flow:established,to_client; file.data; content:\"%0c%0c%0c%0c\"; nocase; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2012257; rev:5; metadata:created_at 2011_02_03, confidence High, signature_severity Major, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 371,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Common %u0a%u0a%u0a%u0a UTF-8 Heap Spray String",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2012255,
+      "rev": 5,
+      "metadata": "created_at 2011_02_03, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u0a%u0a%u0a%u0a",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Common %u0a%u0a%u0a%u0a UTF-8 Heap Spray String\"; flow:established,to_client; file.data; content:\"%u0a%u0a%u0a%u0a\"; nocase; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2012255; rev:5; metadata:created_at 2011_02_03, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 373,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Common %u0a0a%u0a0a UTF-16 Heap Spray String",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2012254,
+      "rev": 5,
+      "metadata": "created_at 2011_02_03, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u0a0a%u0a0a",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Common %u0a0a%u0a0a UTF-16 Heap Spray String\"; flow:established,to_client; file.data; content:\"%u0a0a%u0a0a\"; nocase; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2012254; rev:5; metadata:created_at 2011_02_03, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 377,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible Unescape Encoded Content With Split String Obfuscation 2",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "shellcode-detect",
+      "sid": 2012197,
+      "rev": 6,
+      "metadata": "created_at 2011_01_17, performance_impact Significant, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "unescape|28 27|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|29|",
+          "modifiers": {
+            "within": "100"
+          }
+        },
+        {
+          "pattern": "|27| +|0a|",
+          "modifiers": {
+            "within": "80"
+          }
+        },
+        {
+          "pattern": "|27| +|0a|",
+          "modifiers": {
+            "within": "80"
+          }
+        },
+        {
+          "pattern": "|27| +|0a|",
+          "modifiers": {
+            "within": "80"
+          }
+        },
+        {
+          "pattern": "|27| +|0a|",
+          "modifiers": {
+            "within": "80"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible Unescape Encoded Content With Split String Obfuscation 2\"; flow:established,to_client; file.data; content:\"unescape|28 27|\"; fast_pattern; content:!\"|29|\"; within:100; content:\"|27| +|0a|\"; within:80; content:\"|27| +|0a|\"; within:80; content:\"|27| +|0a|\"; within:80; content:\"|27| +|0a|\"; within:80; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:shellcode-detect; sid:2012197; rev:6; metadata:created_at 2011_01_17, performance_impact Significant, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 379,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible Unescape Encoded Content With Split String Obfuscation",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "shellcode-detect",
+      "sid": 2012196,
+      "rev": 5,
+      "metadata": "created_at 2011_01_17, performance_impact Significant, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "unescape|28 22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|29|",
+          "modifiers": {
+            "within": "100"
+          }
+        },
+        {
+          "pattern": "|22| +|0a|",
+          "modifiers": {
+            "within": "80"
+          }
+        },
+        {
+          "pattern": "|22| +|0a|",
+          "modifiers": {
+            "within": "80"
+          }
+        },
+        {
+          "pattern": "|22| ",
+          "modifiers": {
+            "within": "80"
+          }
+        },
+        {
+          "pattern": "|22| +|0a|",
+          "modifiers": {
+            "within": "80"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible Unescape Encoded Content With Split String Obfuscation\"; flow:established,to_client; file.data; content:\"unescape|28 22|\"; fast_pattern; content:!\"|29|\"; within:100; content:\"|22| +|0a|\"; within:80; content:\"|22| +|0a|\"; within:80; content:\"|22| \"; within:80; content:\"|22| +|0a|\"; within:80; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:shellcode-detect; sid:2012196; rev:5; metadata:created_at 2011_01_17, performance_impact Significant, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 381,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible Encoded %90 NOP SLED",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html",
+        "url,www.windowsecurity.com/articles/Obfuscated-Shellcode-Part1.html"
+      ],
+      "classtype": "shellcode-detect",
+      "sid": 2012112,
+      "rev": 6,
+      "metadata": "created_at 2010_12_28, confidence Medium, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%90%90%90%90",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible Encoded %90 NOP SLED\"; flow:established,to_client; file.data; content:\"%90%90%90%90\"; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; reference:url,www.windowsecurity.com/articles/Obfuscated-Shellcode-Part1.html; classtype:shellcode-detect; sid:2012112; rev:6; metadata:created_at 2010_12_28, confidence Medium, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 383,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible UTF-16 %u9090 NOP SLED",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/^[a-f0-9]{4}/Ri",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html",
+        "url,www.windowsecurity.com/articles/Obfuscated-Shellcode-Part1.html"
+      ],
+      "classtype": "shellcode-detect",
+      "sid": 2012111,
+      "rev": 6,
+      "metadata": "created_at 2010_12_28, confidence Medium, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u9090%u",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible UTF-16 %u9090 NOP SLED\"; flow:established,to_client; file.data; content:\"%u9090%u\"; nocase; pcre:\"/^[a-f0-9]{4}/Ri\"; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; reference:url,www.windowsecurity.com/articles/Obfuscated-Shellcode-Part1.html; classtype:shellcode-detect; sid:2012111; rev:6; metadata:created_at 2010_12_28, confidence Medium, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 385,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible UTF-8 %u90 NOP SLED",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html",
+        "url,www.windowsecurity.com/articles/Obfuscated-Shellcode-Part1.html"
+      ],
+      "classtype": "shellcode-detect",
+      "sid": 2012110,
+      "rev": 5,
+      "metadata": "created_at 2010_12_28, confidence Medium, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "%u90%u90",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible UTF-8 %u90 NOP SLED\"; flow:established,to_client; file.data; content:\"%u90%u90\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; reference:url,www.windowsecurity.com/articles/Obfuscated-Shellcode-Part1.html; classtype:shellcode-detect; sid:2012110; rev:5; metadata:created_at 2010_12_28, confidence Medium, signature_severity Major, tag possible_exploitation, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 389,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 0a0a0a0a",
+      "flow": "established,to_client",
+      "file.data": true,
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "reference": "url,www.darkreading.com/security/vulnerabilities/221901428/index.html",
+      "classtype": "shellcode-detect",
+      "sid": 2013274,
+      "rev": 5,
+      "metadata": "created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2025_02_04, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information",
+      "contents": [
+        {
+          "pattern": "|5C 5C|x0a|5C 5C|x0a|5C 5C|x0a|5C 5C|x0a",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Double BackSlash Hex Obfuscated JavaScript Heap Spray 0a0a0a0a\"; flow:established,to_client; file.data; content:\"|5C 5C|x0a|5C 5C|x0a|5C 5C|x0a|5C 5C|x0a\"; nocase; fast_pattern; threshold:type limit,count 1,seconds 300,track by_src; reference:url,www.darkreading.com/security/vulnerabilities/221901428/index.html; classtype:shellcode-detect; sid:2013274; rev:5; metadata:created_at 2011_07_14, confidence High, signature_severity Major, updated_at 2025_02_04, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 391,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Common 0a0a0a0a Heap Spray String",
+      "flow": "established,to_client",
+      "file.data": true,
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "reference": "url,www.darkreading.com/vulnerabilities---threats/heap-spraying-attackers-latest-weapon-of-choice/d/d-id/1132487",
+      "classtype": "shellcode-detect",
+      "sid": 2012252,
+      "rev": 7,
+      "metadata": "created_at 2011_02_03, deployment alert_only, confidence Low, signature_severity Major, updated_at 2025_02_04",
+      "contents": [
+        {
+          "pattern": "0a0a0a0a",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Common 0a0a0a0a Heap Spray String\"; flow:established,to_client; file.data; content:\"0a0a0a0a\"; nocase; threshold:type limit,count 1,seconds 300,track by_src; reference:url,www.darkreading.com/vulnerabilities---threats/heap-spraying-attackers-latest-weapon-of-choice/d/d-id/1132487; classtype:shellcode-detect; sid:2012252; rev:7; metadata:created_at 2011_02_03, deployment alert_only, confidence Low, signature_severity Major, updated_at 2025_02_04;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 393,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Possible 0x0a0a0a0a Heap Spray Attempt",
+      "flow": "established,to_client",
+      "file.data": true,
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "classtype": "shellcode-detect",
+      "sid": 2012962,
+      "rev": 5,
+      "metadata": "created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2025_02_04",
+      "contents": [
+        {
+          "pattern": "0x0a0a0a0a",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SHELLCODE Possible 0x0a0a0a0a Heap Spray Attempt\"; flow:established,to_client; file.data; content:\"0x0a0a0a0a\"; nocase; threshold:type limit,count 1,seconds 300,track by_src; classtype:shellcode-detect; sid:2012962; rev:5; metadata:created_at 2011_06_09, confidence Medium, signature_severity Major, updated_at 2025_02_04;)"
+  }
+]

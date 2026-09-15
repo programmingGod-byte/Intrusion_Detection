@@ -1,0 +1,381 @@
+[
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER W32/BitCoinMiner.MultiThreat Stratum Protocol Mining.Notify Initial Connection Server Response",
+      "flow": "established,to_client",
+      "reference": [
+        "url,research.zscaler.com/2013/12/bitcoin-mining-operation-seen-across.html",
+        "url,www.btcguild.com/new_protocol.php",
+        "url,mining.bitcoin.cz/stratum-mining"
+      ],
+      "classtype": "coin-mining",
+      "sid": 2017872,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": "|22|result|22 3A| [[|22|mining.notify|22|",
+          "modifiers": {
+            "depth": "120"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET COINMINER W32/BitCoinMiner.MultiThreat Stratum Protocol Mining.Notify Initial Connection Server Response\"; flow:established,to_client; content:\"|22|result|22 3A| [[|22|mining.notify|22|\"; depth:120; reference:url,research.zscaler.com/2013/12/bitcoin-mining-operation-seen-across.html; reference:url,www.btcguild.com/new_protocol.php; reference:url,mining.bitcoin.cz/stratum-mining; classtype:coin-mining; sid:2017872; rev:2; metadata:attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER W32/BitCoinMiner.MultiThreat Stratum Protocol Mining.Notify Work Server Response",
+      "flow": "established,to_client",
+      "reference": [
+        "url,research.zscaler.com/2013/12/bitcoin-mining-operation-seen-across.html",
+        "url,www.btcguild.com/new_protocol.php",
+        "url,mining.bitcoin.cz/stratum-mining"
+      ],
+      "classtype": "coin-mining",
+      "sid": 2017873,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": "|22|params|22 3A| [|22|",
+          "modifiers": {
+            "depth": "120"
+          }
+        },
+        {
+          "pattern": "|22|method|22 3A| |22|mining.notify|22|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET COINMINER W32/BitCoinMiner.MultiThreat Stratum Protocol Mining.Notify Work Server Response\"; flow:established,to_client; content:\"|22|params|22 3A| [|22|\"; depth:120; content:\"|22|method|22 3A| |22|mining.notify|22|\"; distance:0; reference:url,research.zscaler.com/2013/12/bitcoin-mining-operation-seen-across.html; reference:url,www.btcguild.com/new_protocol.php; reference:url,mining.bitcoin.cz/stratum-mining; classtype:coin-mining; sid:2017873; rev:3; metadata:attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER W32/BitCoinMiner.MultiThreat Getblocktemplate Protocol Server Connection",
+      "flow": "established,to_server",
+      "reference": "url,en.bitcoin.it/wiki/Getblocktemplate",
+      "classtype": "coin-mining",
+      "sid": 2017878,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": "{|22|id|22 3A|",
+          "modifiers": {
+            "depth": "6"
+          }
+        },
+        {
+          "pattern": "|22|method|22 3A| |22|getblocktemplate|22|",
+          "modifiers": {
+            "within": "40"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET COINMINER W32/BitCoinMiner.MultiThreat Getblocktemplate Protocol Server Connection\"; flow:established,to_server; content:\"{|22|id|22 3A|\"; depth:6; content:\"|22|method|22 3A| |22|getblocktemplate|22|\"; within:40; reference:url,en.bitcoin.it/wiki/Getblocktemplate; classtype:coin-mining; sid:2017878; rev:3; metadata:attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER W32/BitCoinMiner.MultiThreat Getblocktemplate Protocol Server Coinbasetxn Begin Mining Response",
+      "flow": "established,to_client",
+      "reference": "url,en.bitcoin.it/wiki/Getblocktemplate",
+      "classtype": "coin-mining",
+      "sid": 2017879,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": "|22|result|22 3A| {",
+          "modifiers": {
+            "depth": "50"
+          }
+        },
+        {
+          "pattern": "|22|coinbasetxn|22 3A| {",
+          "modifiers": {
+            "within": "30"
+          }
+        },
+        {
+          "pattern": "|22|data|22 3A| |22|",
+          "modifiers": {
+            "within": "30"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET COINMINER W32/BitCoinMiner.MultiThreat Getblocktemplate Protocol Server Coinbasetxn Begin Mining Response\"; flow:established,to_client; content:\"|22|result|22 3A| {\"; depth:50; content:\"|22|coinbasetxn|22 3A| {\"; within:30; content:\"|22|data|22 3A| |22|\"; within:30; reference:url,en.bitcoin.it/wiki/Getblocktemplate; classtype:coin-mining; sid:2017879; rev:3; metadata:attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER CoinMiner Malicious Authline Seen After CVE-2017-10271 Exploit",
+      "flow": "established,to_server",
+      "reference": "url,otx.alienvault.com/pulse/5a4e1c4993199b299f90a212",
+      "classtype": "coin-mining",
+      "sid": 2025186,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2018_01_04, cve CVE_2017_10271, deployment Perimeter, deployment Datacenter, malware_family CoinMiner, confidence High, signature_severity Major, tag Coinminer, tag CISA_KEV, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": "{|22|id|22 3A|",
+          "modifiers": {
+            "depth": "6"
+          }
+        },
+        {
+          "pattern": "|22|method|22 3a 20 22|mining.authorize|22 2c|",
+          "modifiers": {
+            "within": "100"
+          }
+        },
+        {
+          "pattern": "|22|params|22|",
+          "modifiers": {
+            "within": "50"
+          }
+        },
+        {
+          "pattern": "|5b 22|4AQe5sAFWZKECiaeNTt59LG7kVtqRoSRJMjrmQ6GiMFAeUvoL3MFeTE6zwwHkFPrAyNw2JHDxUSWL82RiZThPpk4SEg7Vqe|22 2c 20 22|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET COINMINER CoinMiner Malicious Authline Seen After CVE-2017-10271 Exploit\"; flow:established,to_server; content:\"{|22|id|22 3A|\"; depth:6; content:\"|22|method|22 3a 20 22|mining.authorize|22 2c|\"; within:100; content:\"|22|params|22|\"; within:50; content:\"|5b 22|4AQe5sAFWZKECiaeNTt59LG7kVtqRoSRJMjrmQ6GiMFAeUvoL3MFeTE6zwwHkFPrAyNw2JHDxUSWL82RiZThPpk4SEg7Vqe|22 2c 20 22|\"; distance:0; reference:url,otx.alienvault.com/pulse/5a4e1c4993199b299f90a212; classtype:coin-mining; sid:2025186; rev:1; metadata:attack_target Client_Endpoint, created_at 2018_01_04, cve CVE_2017_10271, deployment Perimeter, deployment Datacenter, malware_family CoinMiner, confidence High, signature_severity Major, tag Coinminer, tag CISA_KEV, updated_at 2019_07_26, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET COINMINER Random Hash Pascalcoin Miner Checkin",
+      "flow": "established,to_server",
+      "classtype": "coin-mining",
+      "sid": 2026750,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_01_02, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "{|22|params|22|:[|22|rhminer/",
+          "modifiers": {
+            "depth": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 1024: (msg:\"ET COINMINER Random Hash Pascalcoin Miner Checkin\"; flow:established,to_server; content:\"{|22|params|22|:[|22|rhminer/\"; depth:20; classtype:coin-mining; sid:2026750; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_01_02, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "8080:",
+    "options": {
+      "msg": "ET COINMINER PrimeCoinMiner.Protominer",
+      "flow": "established,to_server",
+      "reference": "md5,4cab48eec2b882ec33db2e2a13ecffe6",
+      "classtype": "coin-mining",
+      "sid": 2018014,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2014_01_27, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2020_08_19, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": "|01 27 00 00 05 00 00 00 09|",
+          "modifiers": {
+            "depth": "9"
+          }
+        },
+        {
+          "pattern": "node",
+          "modifiers": {
+            "nocase": true,
+            "within": "4"
+          }
+        },
+        {
+          "pattern": "Protominer",
+          "modifiers": {
+            "distance": "14",
+            "within": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 8080: (msg:\"ET COINMINER PrimeCoinMiner.Protominer\"; flow:established,to_server; content:\"|01 27 00 00 05 00 00 00 09|\"; depth:9; content:\"node\"; nocase; within:4; content:\"Protominer\"; distance:14; within:10; reference:md5,4cab48eec2b882ec33db2e2a13ecffe6; classtype:coin-mining; sid:2018014; rev:2; metadata:attack_target Client_Endpoint, created_at 2014_01_27, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2020_08_19, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER W32/BitCoinMiner.MultiThreat Subscribe/Authorize Stratum Protocol Message",
+      "flow": "established,to_server",
+      "startswith": true,
+      "pcre": "/\\x22mining\\x2E(subscribe|authorize)\\x22/",
+      "reference": [
+        "url,research.zscaler.com/2013/12/bitcoin-mining-operation-seen-across.html",
+        "url,www.btcguild.com/new_protocol.php",
+        "url,mining.bitcoin.cz/stratum-mining"
+      ],
+      "classtype": "coin-mining",
+      "sid": 2017871,
+      "rev": 8,
+      "metadata": "attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2023_01_24, reviewed_at 2024_04_19, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": "!\"EHLO",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|id|22 3A|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|method|22 3A|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|mining.",
+          "modifiers": {
+            "within": "9"
+          }
+        },
+        {
+          "pattern": "|22|params|22|",
+          "modifiers": {
+            "within": "50"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET COINMINER W32/BitCoinMiner.MultiThreat Subscribe/Authorize Stratum Protocol Message\"; flow:established,to_server; content:!\"EHLO\"; startswith; content:\"|22|id|22 3A|\"; content:\"|22|method|22 3A|\"; content:\"|22|mining.\"; within:9; content:\"|22|params|22|\"; within:50; pcre:\"/\\x22mining\\x2E(subscribe|authorize)\\x22/\"; reference:url,research.zscaler.com/2013/12/bitcoin-mining-operation-seen-across.html; reference:url,www.btcguild.com/new_protocol.php; reference:url,mining.bitcoin.cz/stratum-mining; classtype:coin-mining; sid:2017871; rev:8; metadata:attack_target Client_Endpoint, created_at 2013_12_17, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2023_01_24, reviewed_at 2024_04_19, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER Crypto Coin Miner Login",
+      "flow": "established,to_server",
+      "reference": [
+        "md5,d1082e445f932938366a449631b82946",
+        "md5,33d7a82fe13c9737a103bcc4a21f9425",
+        "md5,ebe1aeb5dd692b222f8cf964e7785a55"
+      ],
+      "classtype": "coin-mining",
+      "sid": 2022886,
+      "rev": 5,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2016_06_09, deployment Perimeter, malware_family CoinMiner, performance_impact Low, signature_severity Informational, tag Bitcoin_Miner, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "|7b 22|method|22 3a|",
+          "modifiers": {
+            "depth": "10",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|22|login|22 2c|",
+          "modifiers": {
+            "within": "9"
+          }
+        },
+        {
+          "pattern": "|22|params|22 3a|",
+          "modifiers": {
+            "within": "10"
+          }
+        },
+        {
+          "pattern": "|7b 22|login",
+          "modifiers": {
+            "nocase": true,
+            "within": "8"
+          }
+        },
+        {
+          "pattern": "agent|22 3a|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET COINMINER Crypto Coin Miner Login\"; flow:established,to_server; content:\"|7b 22|method|22 3a|\"; depth:10; fast_pattern; content:\"|22|login|22 2c|\"; within:9; content:\"|22|params|22 3a|\"; within:10; content:\"|7b 22|login\"; nocase; within:8; content:\"agent|22 3a|\"; nocase; distance:0; reference:md5,d1082e445f932938366a449631b82946; reference:md5,33d7a82fe13c9737a103bcc4a21f9425; reference:md5,ebe1aeb5dd692b222f8cf964e7785a55; classtype:coin-mining; sid:2022886; rev:5; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2016_06_09, deployment Perimeter, malware_family CoinMiner, performance_impact Low, signature_severity Informational, tag Bitcoin_Miner, updated_at 2024_03_07;)"
+  }
+]

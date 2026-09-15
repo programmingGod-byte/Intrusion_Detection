@@ -1,0 +1,481 @@
+[
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "5938",
+    "options": {
+      "msg": "ET REMOTE_ACCESS TeamViewer Keep-alive outbound",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,ET.teamviewerkeepaliveout",
+        "noalert"
+      ],
+      "dsize": "5",
+      "reference": [
+        "url,www.teamviewer.com",
+        "url,en.wikipedia.org/wiki/TeamViewer"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2008794,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, former_category POLICY, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10",
+      "contents": [
+        {
+          "pattern": "|17 24 1B 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 5938 (msg:\"ET REMOTE_ACCESS TeamViewer Keep-alive outbound\"; flow:established,to_server; flowbits:set,ET.teamviewerkeepaliveout; flowbits:noalert; dsize:5; content:\"|17 24 1B 00 00|\"; reference:url,www.teamviewer.com; reference:url,en.wikipedia.org/wiki/TeamViewer; classtype:misc-activity; sid:2008794; rev:5; metadata:created_at 2010_07_30, former_category POLICY, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "5938",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS TeamViewer Keep-alive inbound",
+      "flow": "established,to_client",
+      "flowbits": "isset,ET.teamviewerkeepaliveout",
+      "dsize": "5",
+      "threshold": "type limit, count 1, seconds 120, track by_src",
+      "reference": [
+        "url,www.teamviewer.com",
+        "url,en.wikipedia.org/wiki/TeamViewer"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2008795,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, former_category POLICY, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10",
+      "contents": [
+        {
+          "pattern": "|17 24 1B 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 5938 -> $HOME_NET any (msg:\"ET REMOTE_ACCESS TeamViewer Keep-alive inbound\"; flow:established,to_client; flowbits:isset,ET.teamviewerkeepaliveout; dsize:5; content:\"|17 24 1B 00 00|\"; threshold:type limit, count 1, seconds 120, track by_src; reference:url,www.teamviewer.com; reference:url,en.wikipedia.org/wiki/TeamViewer; classtype:misc-activity; sid:2008795; rev:6; metadata:created_at 2010_07_30, former_category POLICY, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS AnyDesk Revoked Code Signing Certificate Observed",
+      "flow": "established,to_client",
+      "reference": "url,anydesk.com/en/public-statement",
+      "classtype": "misc-activity",
+      "sid": 2050707,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_02_05, deployment Perimeter, deployment SSLDecrypt, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_10",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|30 82|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0D BF 15 2D EA F0 B9 81 A8 A9 38 D5 3F 76 9D B8|",
+          "modifiers": {
+            "distance": "9",
+            "within": "16",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|1e 17 0d|211213000000Z|17 0d|250108235959Z0",
+          "modifiers": {
+            "distance": "123",
+            "within": "32"
+          }
+        },
+        {
+          "pattern": "philandro Software GmbH",
+          "modifiers": {
+            "distance": "75",
+            "within": "23"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET REMOTE_ACCESS AnyDesk Revoked Code Signing Certificate Observed\"; flow:established,to_client; content:\"|30 82|\"; content:\"|0D BF 15 2D EA F0 B9 81 A8 A9 38 D5 3F 76 9D B8|\"; distance:9; within:16; fast_pattern; content:\"|1e 17 0d|211213000000Z|17 0d|250108235959Z0\"; distance:123; within:32; content:\"philandro Software GmbH\"; distance:75; within:23; reference:url,anydesk.com/en/public-statement; classtype:misc-activity; sid:2050707; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_02_05, deployment Perimeter, deployment SSLDecrypt, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_10; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "[21,22,23,25,53,80,443,8080]",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "!3389",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Tunneled RDP msts Handshake",
+      "dsize": "<65",
+      "reference": "url,www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html",
+      "classtype": "bad-unknown",
+      "sid": 2027192,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_11, deployment Perimeter, former_category POLICY, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10",
+      "contents": [
+        {
+          "pattern": "|03 00 00|",
+          "modifiers": {
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": "|e0|",
+          "modifiers": {
+            "distance": "2",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "Cookie|3a 20|mstshash=",
+          "modifiers": {
+            "distance": "5",
+            "within": "17"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any [21,22,23,25,53,80,443,8080] -> any !3389 (msg:\"ET REMOTE_ACCESS Tunneled RDP msts Handshake\"; dsize:<65; content:\"|03 00 00|\"; depth:3; content:\"|e0|\"; distance:2; within:1; content:\"Cookie|3a 20|mstshash=\"; distance:5; within:17; reference:url,www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html; classtype:bad-unknown; sid:2027192; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_11, deployment Perimeter, former_category POLICY, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "[21,22,23,25,53,80,443,8080]",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "!3389",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Tunneled RDP Handshake",
+      "flow": "established",
+      "reference": "url,www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html",
+      "classtype": "bad-unknown",
+      "sid": 2027193,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_11, deployment Perimeter, former_category POLICY, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10",
+      "contents": [
+        {
+          "pattern": "|c0 00|Duca",
+          "modifiers": {
+            "depth": "250"
+          }
+        },
+        {
+          "pattern": "rdpdr",
+          "modifiers": {}
+        },
+        {
+          "pattern": "cliprdr",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any [21,22,23,25,53,80,443,8080] -> any !3389 (msg:\"ET REMOTE_ACCESS Tunneled RDP Handshake\"; flow:established; content:\"|c0 00|Duca\"; depth:250; content:\"rdpdr\"; content:\"cliprdr\"; reference:url,www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html; classtype:bad-unknown; sid:2027193; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_11, deployment Perimeter, former_category POLICY, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "3389",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Inbound RDP Connection with TLS Security Protocol Requested",
+      "flow": "established,to_server",
+      "dsize": "<30",
+      "endswith": true,
+      "reference": "url,medium.com/@bromiley/what-happens-before-hello-ce9f29fa0cef",
+      "classtype": "bad-unknown",
+      "sid": 2027412,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_05_31, deployment Perimeter, former_category POLICY, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2024_06_10",
+      "contents": [
+        {
+          "pattern": "|00 00|",
+          "modifiers": {
+            "offset": "1",
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|e0|",
+          "modifiers": {
+            "distance": "2",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|01 00 08 00 01 00 00 00|",
+          "modifiers": {
+            "within": "15",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> any 3389 (msg:\"ET REMOTE_ACCESS Inbound RDP Connection with TLS Security Protocol Requested\"; flow:established,to_server; dsize:<30; content:\"|00 00|\"; offset:1; depth:2; content:\"|e0|\"; distance:2; within:1; content:\"|01 00 08 00 01 00 00 00|\"; within:15; fast_pattern; endswith; reference:url,medium.com/@bromiley/what-happens-before-hello-ce9f29fa0cef; classtype:bad-unknown; sid:2027412; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_05_31, deployment Perimeter, former_category POLICY, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2024_06_10;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "3389",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Inbound RDP Connection with Minimal Security Protocol Requested",
+      "flow": "established,to_server",
+      "endswith": true,
+      "reference": "url,medium.com/@bromiley/what-happens-before-hello-ce9f29fa0cef",
+      "classtype": "bad-unknown",
+      "sid": 2027413,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_05_31, deployment Perimeter, former_category POLICY, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2024_06_10",
+      "contents": [
+        {
+          "pattern": "|00 00|",
+          "modifiers": {
+            "offset": "1",
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|e0|",
+          "modifiers": {
+            "distance": "2",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|01 00 08 00 00 00 00 00|",
+          "modifiers": {
+            "within": "15",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> any 3389 (msg:\"ET REMOTE_ACCESS Inbound RDP Connection with Minimal Security Protocol Requested\"; flow:established,to_server; content:\"|00 00|\"; offset:1; depth:2; content:\"|e0|\"; distance:2; within:1; content:\"|01 00 08 00 00 00 00 00|\"; within:15; fast_pattern; endswith; reference:url,medium.com/@bromiley/what-happens-before-hello-ce9f29fa0cef; classtype:bad-unknown; sid:2027413; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_05_31, deployment Perimeter, former_category POLICY, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2024_06_10;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS ScreenConnect/ConnectWise Initial Checkin Packet M3",
+      "dsize": "<600",
+      "stream_size": "server,<,5",
+      "startswith": true,
+      "byte_jump": "1,0,relative",
+      "reference": "md5,2a90199b9386d9aafbab41a7972398c9",
+      "classtype": "misc-activity",
+      "sid": 2048143,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_09_21, deployment Perimeter, deployment Internal, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10, reviewed_at 2023_09_21",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|87 12 10 00 00 00 00 00 00 00 00 00 00 00 00 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "distance": "7",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "within": "1"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET REMOTE_ACCESS ScreenConnect/ConnectWise Initial Checkin Packet M3\"; dsize:<600; stream_size:server,<,5; content:\"|87 12 10 00 00 00 00 00 00 00 00 00 00 00 00 00|\"; startswith; fast_pattern; content:\"|01|\"; distance:7; within:1; byte_jump:1,0,relative; content:\"|01|\"; within:1; reference:md5,2a90199b9386d9aafbab41a7972398c9; classtype:misc-activity; sid:2048143; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_09_21, deployment Perimeter, deployment Internal, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10, reviewed_at 2023_09_21; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS ScreenConnect/ConnectWise Initial Checkin Packet M1",
+      "dsize": "<600",
+      "startswith": true,
+      "classtype": "misc-activity",
+      "sid": 2036627,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_19, deployment Perimeter, deployment Internal, former_category INFO, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10",
+      "contents": [
+        {
+          "pattern": "|87 15 10 00 00 00 00 00 00 00 00 00 00 00 00 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET REMOTE_ACCESS ScreenConnect/ConnectWise Initial Checkin Packet M1\"; dsize:<600; content:\"|87 15 10 00 00 00 00 00 00 00 00 00 00 00 00 00|\"; startswith; fast_pattern; classtype:misc-activity; sid:2036627; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_19, deployment Perimeter, deployment Internal, former_category INFO, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS ScreenConnect/ConnectWise Initial Checkin Packet M2",
+      "dsize": "<600",
+      "startswith": true,
+      "reference": "url,community.emergingthreats.net/t/update-new-rule-needed-for-screenconnect-sid-2036627/938",
+      "classtype": "misc-activity",
+      "sid": 2048051,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, deployment Internal, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10",
+      "contents": [
+        {
+          "pattern": "|87 1C 10 00 00 00 00 00 00 00 00 00 00 00 00 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET REMOTE_ACCESS ScreenConnect/ConnectWise Initial Checkin Packet M2\"; dsize:<600; content:\"|87 1C 10 00 00 00 00 00 00 00 00 00 00 00 00 00|\"; startswith; fast_pattern; reference:url,community.emergingthreats.net/t/update-new-rule-needed-for-screenconnect-sid-2036627/938; classtype:misc-activity; sid:2048051; rev:4; metadata:attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, deployment Internal, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_10;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "3389",
+    "options": {
+      "msg": "ET REMOTE_ACCESS MS Remote Desktop Administrator Login Request",
+      "flow": "established,to_server",
+      "reference": "cve,CAN-2001-0540",
+      "classtype": "protocol-command-decode",
+      "sid": 2012709,
+      "rev": 6,
+      "metadata": "created_at 2011_04_22, former_category INFO, confidence Medium, signature_severity Unknown, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "|03 00 00|",
+          "modifiers": {
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": "|e0 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "2",
+            "within": "6"
+          }
+        },
+        {
+          "pattern": "Cookie|3a| mstshash=admin",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 3389 (msg:\"ET REMOTE_ACCESS MS Remote Desktop Administrator Login Request\"; flow:established,to_server; content:\"|03 00 00|\"; depth:3; content:\"|e0 00 00 00 00 00|\"; distance:2; within:6; content:\"Cookie|3a| mstshash=admin\"; distance:0; nocase; reference:cve,CAN-2001-0540; classtype:protocol-command-decode; sid:2012709; rev:6; metadata:created_at 2011_04_22, former_category INFO, confidence Medium, signature_severity Unknown, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "3389",
+    "options": {
+      "msg": "ET REMOTE_ACCESS MS Terminal Server Root login",
+      "flow": "established,to_server",
+      "reference": "cve,2001-0540",
+      "classtype": "protocol-command-decode",
+      "sid": 2012710,
+      "rev": 2,
+      "metadata": "created_at 2011_04_22, cve CVE_2001_0540, former_category INFO, confidence Medium, signature_severity Unknown, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "|03 00 00|",
+          "modifiers": {
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": "|e0 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "2",
+            "within": "6"
+          }
+        },
+        {
+          "pattern": "Cookie|3a| mstshash=root|0d 0a|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 3389 (msg:\"ET REMOTE_ACCESS MS Terminal Server Root login\"; flow:established,to_server; content:\"|03 00 00|\"; depth:3; content:\"|e0 00 00 00 00 00|\"; distance:2; within:6; content:\"Cookie|3a| mstshash=root|0d 0a|\"; nocase; reference:cve,2001-0540; classtype:protocol-command-decode; sid:2012710; rev:2; metadata:created_at 2011_04_22, cve CVE_2001_0540, former_category INFO, confidence Medium, signature_severity Unknown, updated_at 2024_06_27;)"
+  }
+]

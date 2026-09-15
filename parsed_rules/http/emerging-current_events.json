@@ -1,0 +1,875 @@
+[
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 221,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle USAToday Server]",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031273,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_07, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "{|22|navgd|22 3a 22|<div class=gnt_n_dd_ls_w><div class=gnt_n_dd_nt>ONLY AT USA TODAY:</div><div class=gnt_n_dd_ls><a class=gnt_n_dd_ls_a href=https|3a|//supportlocal.usatoday.com/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle USAToday Server]\"; flow:established,to_client; file.data; content:\"{|22|navgd|22 3a 22|<div class=gnt_n_dd_ls_w><div class=gnt_n_dd_nt>ONLY AT USA TODAY:</div><div class=gnt_n_dd_ls><a class=gnt_n_dd_ls_a href=https|3a|//supportlocal.usatoday.com/\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031273; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_07, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 223,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle NYTIMES Server]",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031294,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag c2, updated_at 2024_03_07, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "|7b 22|meta|22 3a 7b 7d 2c 22|status|22 3a 22|OK|22 2c 22|saved|22 3a 22|1|22 2c 22|starttime|22 3a|17656184060|2c 22|id|22 3a 22 22 2c 22|vims|22 3a 7b 22|dtc|22 3a 22|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle NYTIMES Server]\"; flow:established,to_client; file.data; content:\"|7b 22|meta|22 3a 7b 7d 2c 22|status|22 3a 22|OK|22 2c 22|saved|22 3a 22|1|22 2c 22|starttime|22 3a|17656184060|2c 22|id|22 3a 22 22 2c 22|vims|22 3a 7b 22|dtc|22 3a 22|\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031294; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag c2, updated_at 2024_03_07, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 395,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle MSOffice POST]",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.accept": true,
+      "http.accept_enc": true,
+      "http.accept_lang": true,
+      "bsize": "5",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031292,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_25, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "|7b 22|locale|22 3a 22|en|22 2c 22|channel|22 3a 22|prod|22 2c 22|addon|22 3a 22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "nid",
+          "modifiers": {}
+        },
+        {
+          "pattern": "msg-",
+          "modifiers": {}
+        },
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/notification",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gzip, deflate, br",
+          "modifiers": {}
+        },
+        {
+          "pattern": "en-US",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle MSOffice POST]\"; flow:established,to_server; content:\"|7b 22|locale|22 3a 22|en|22 2c 22|channel|22 3a 22|prod|22 2c 22|addon|22 3a 22|\"; fast_pattern; content:\"nid\"; content:\"msg-\"; http.method; content:\"POST\"; http.uri; content:\"/notification\"; startswith; http.accept; content:\"*/*\"; http.accept_enc; content:\"gzip, deflate, br\"; startswith; http.accept_lang; bsize:5; content:\"en-US\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031292; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_25, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 397,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle MSOffice GET]",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "pcre": "/^(?:\\/updates|\\/license\\/eula|\\/docs\\/office|\\/software-activation)/",
+      "http.accept": true,
+      "http.accept_enc": true,
+      "startswith": true,
+      "http.accept_lang": true,
+      "bsize": "5",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031290,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_25, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "sess-=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "auth=0|3b|loc=US|7d|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gzip, deflate, br",
+          "modifiers": {}
+        },
+        {
+          "pattern": "en-US",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle MSOffice GET]\"; flow:established,to_server; content:\"sess-=\"; content:\"auth=0|3b|loc=US|7d|\"; fast_pattern; http.method; content:\"GET\"; http.uri; pcre:\"/^(?:\\/updates|\\/license\\/eula|\\/docs\\/office|\\/software-activation)/\"; http.accept; content:\"*/*\"; http.accept_enc; content:\"gzip, deflate, br\"; startswith; http.accept_lang; bsize:5; content:\"en-US\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031290; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_25, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 399,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle USAToday GET]",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.connection": true,
+      "bsize": [
+        "5",
+        "3"
+      ],
+      "http.accept": true,
+      "http.header": true,
+      "http.request_line": true,
+      "pcre": "/^GET\\s(?:\\/USAT-GUP\\/user\\/|\\/entertainment\\/|\\/entertainment\\/navdd-q1a2z3Z6TET4gv2PNfXpaJAniOzOajK7M\\.min\\.json|\\/global-q1a2z3C4M2nNlQYzWhCC0oMSEFjQbW1KA\\.min\\.json|\\/life\\/|\\/news\\/weather\\/|\\/opinion\\/|\\/sports\\/|\\/sports\\/navdd-q1a2z3JHa8KzCRLOQAnDoVywVWF7UwxJs\\.min\\.json|\\/tangstatic\\/js\\/main-q1a2z3b37df2b1\\.min\\.js|\\/tangstatic\\/js\\/pbjsandwich-q1a2z300ab4198\\.min\\.js|\\/tangstatic\\/js\\/pg-q1a2z3bbc110a4\\.min\\.js|\\/tangsvc\\/pg\\/3221104001\\/|\\/tangsvc\\/pg\\/5059005002\\/|\\/tangsvc\\/pg\\/5066496002\\/|\\/tech\\/|\\/travel\\/)/",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031283,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_25, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "gnt_ub=86|3b|gnt_sb=18|3b|usprivacy=1YNY|3b|DigiTrust.v1.identity=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "%3D|3b|GED_PLAYLIST_ACTIVITY=W3sidSI6IkZtTWUiLCJ0c2wiOjE1OTMwM|3b|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "close",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Cookie|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle USAToday GET]\"; flow:established,to_server; content:\"gnt_ub=86|3b|gnt_sb=18|3b|usprivacy=1YNY|3b|DigiTrust.v1.identity=\"; fast_pattern; content:\"%3D|3b|GED_PLAYLIST_ACTIVITY=W3sidSI6IkZtTWUiLCJ0c2wiOjE1OTMwM|3b|\"; http.method; content:\"GET\"; http.connection; bsize:5; content:\"close\"; http.accept; bsize:3; content:\"*/*\"; http.header; content:\"Cookie|3a 20|\"; http.request_line; pcre:\"/^GET\\s(?:\\/USAT-GUP\\/user\\/|\\/entertainment\\/|\\/entertainment\\/navdd-q1a2z3Z6TET4gv2PNfXpaJAniOzOajK7M\\.min\\.json|\\/global-q1a2z3C4M2nNlQYzWhCC0oMSEFjQbW1KA\\.min\\.json|\\/life\\/|\\/news\\/weather\\/|\\/opinion\\/|\\/sports\\/|\\/sports\\/navdd-q1a2z3JHa8KzCRLOQAnDoVywVWF7UwxJs\\.min\\.json|\\/tangstatic\\/js\\/main-q1a2z3b37df2b1\\.min\\.js|\\/tangstatic\\/js\\/pbjsandwich-q1a2z300ab4198\\.min\\.js|\\/tangstatic\\/js\\/pg-q1a2z3bbc110a4\\.min\\.js|\\/tangsvc\\/pg\\/3221104001\\/|\\/tangsvc\\/pg\\/5059005002\\/|\\/tangsvc\\/pg\\/5066496002\\/|\\/tech\\/|\\/travel\\/)/\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031283; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_25, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 401,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original POST]",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.accept": true,
+      "bsize": [
+        "3",
+        "5",
+        "13"
+      ],
+      "http.accept_lang": true,
+      "http.accept_enc": true,
+      "http.request_line": true,
+      "pcre": "/^POST\\s(?:\\/v4\\/links\\/check-activity\\/check|\\/v1\\/stats|\\/gql|\\/api2\\/json\\/check\\/ticket|\\/1.5\\/95648064\\/storage\\/history|\\/1.5\\/95648064\\/storage\\/tabs|\\/u\\/0\\/_\\/og\\/botguard\\/get|\\/ev\\/prd001001|\\/ev\\/ext001001|\\/gp\\/aw\\/ybh\\/handlers|\\/v3\\/links\\/ping-beat\\/check)/",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031284,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_25, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "ses-",
+          "modifiers": {}
+        },
+        {
+          "pattern": "{|22|locale|22 3a 22|en|22|,|22|channel|22 3a 22|prod|22|,|22|addon|22 3a 22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "en-US",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gzip, deflate",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original POST]\"; flow:established,to_server; content:\"ses-\"; content:\"{|22|locale|22 3a 22|en|22|,|22|channel|22 3a 22|prod|22|,|22|addon|22 3a 22|\"; fast_pattern; http.method; content:\"POST\"; http.accept; bsize:3; content:\"*/*\"; http.accept_lang; bsize:5; content:\"en-US\"; http.accept_enc; bsize:13; content:\"gzip, deflate\"; http.request_line; pcre:\"/^POST\\s(?:\\/v4\\/links\\/check-activity\\/check|\\/v1\\/stats|\\/gql|\\/api2\\/json\\/check\\/ticket|\\/1.5\\/95648064\\/storage\\/history|\\/1.5\\/95648064\\/storage\\/tabs|\\/u\\/0\\/_\\/og\\/botguard\\/get|\\/ev\\/prd001001|\\/ev\\/ext001001|\\/gp\\/aw\\/ybh\\/handlers|\\/v3\\/links\\/ping-beat\\/check)/\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031284; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_25, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 413,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original GET]",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.accept": true,
+      "bsize": [
+        "3",
+        "5",
+        "13"
+      ],
+      "http.accept_lang": true,
+      "http.accept_enc": true,
+      "http.cookie": true,
+      "http.uri": true,
+      "pcre": "/^\\/(?:v(?:1\\/buckets\\/default\\/ext-5dkJ19tFufpMZjVJbsWCiqDcclDw\\/records|4\\/links\\/activity-stream|3\\/links\\/ping-centre)|gp\\/(?:aj\\/private\\/reviewsGallery\\/get-(?:application-resource|image-gallery-asset)s|cerberus\\/gv)|en-us\\/(?:p\\/(?:onerf\\/MeSilentPassport|book-2\\/8MCPZJJCC98C)|store\\/api\\/checkproductinwishlist)|wp-(?:content\\/themes\\/am43-6\\/dist\\/records|includes\\/js\\/script\\/indigo-migrate)|api2\\/json\\/(?:cluster\\/(?:resource|task)s|access\\/ticket))/",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031264,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_27, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "en-US",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gzip, deflate",
+          "modifiers": {}
+        },
+        {
+          "pattern": "display-culture=en|3b|check=true|3b|lbcs=0|3b|sess-id=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3b|SIDCC=AN0-TY21iJHH32j2m|3b|FHBv3=B",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original GET]\"; flow:established,to_server; http.method; content:\"GET\"; http.accept; bsize:3; content:\"*/*\"; http.accept_lang; bsize:5; content:\"en-US\"; http.accept_enc; bsize:13; content:\"gzip, deflate\"; http.cookie; content:\"display-culture=en|3b|check=true|3b|lbcs=0|3b|sess-id=\"; content:\"|3b|SIDCC=AN0-TY21iJHH32j2m|3b|FHBv3=B\"; fast_pattern; http.uri; pcre:\"/^\\/(?:v(?:1\\/buckets\\/default\\/ext-5dkJ19tFufpMZjVJbsWCiqDcclDw\\/records|4\\/links\\/activity-stream|3\\/links\\/ping-centre)|gp\\/(?:aj\\/private\\/reviewsGallery\\/get-(?:application-resource|image-gallery-asset)s|cerberus\\/gv)|en-us\\/(?:p\\/(?:onerf\\/MeSilentPassport|book-2\\/8MCPZJJCC98C)|store\\/api\\/checkproductinwishlist)|wp-(?:content\\/themes\\/am43-6\\/dist\\/records|includes\\/js\\/script\\/indigo-migrate)|api2\\/json\\/(?:cluster\\/(?:resource|task)s|access\\/ticket))/\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031264; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_03_27, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 419,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle MSOffice Server]",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031293,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "|7b 22|meta|22 3a 7b 7d 2c 22|status|22 3a 22|OK|22 2c 22|saved|22 3a 22|1|22 2c 22|starttime|22 3a|17656184060|2c 22|id|22 3a 22 22 2c 22|vims|22 3a 7b 22|dtc|22 3a 22|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle MSOffice Server]\"; flow:established,to_client; file.data; content:\"|7b 22|meta|22 3a 7b 7d 2c 22|status|22 3a 22|OK|22 2c 22|saved|22 3a 22|1|22 2c 22|starttime|22 3a|17656184060|2c 22|id|22 3a 22 22 2c 22|vims|22 3a 7b 22|dtc|22 3a 22|\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031293; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 421,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original Server 2]",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031291,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "|7b 22|meta|22 3a 7b 7d 2c 22|status|22 3a 22|OK|22 2c 22|saved|22 3a 22|1|22 2c 22|starttime|22 3a|17656184060|2c 22|id|22 3a 22 22 2c 22|vims|22 3a 7b 22|dtc|22 3a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original Server 2]\"; flow:established,to_client; file.data; content:\"|7b 22|meta|22 3a 7b 7d 2c 22|status|22 3a 22|OK|22 2c 22|saved|22 3a 22|1|22 2c 22|starttime|22 3a|17656184060|2c 22|id|22 3a 22 22 2c 22|vims|22 3a 7b 22|dtc|22 3a|\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031291; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 423,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle NYTIMES POST]",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "pcre": "/^(?:\\/track|\\/api\\/v1\\/survey\\/embed|\\/svc\\/weather\\/v2)/",
+      "http.accept": true,
+      "startswith": true,
+      "http.accept_enc": true,
+      "http.accept_lang": true,
+      "http.request_body": true,
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031287,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gzip, deflate, br",
+          "modifiers": {}
+        },
+        {
+          "pattern": "en-US,en|3b|q=0.5",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|7b 22|locale|22 3a 22|en|22 2c 22|channel|22 3a 22|prod|22 2c 22|addon|22 3a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle NYTIMES POST]\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; pcre:\"/^(?:\\/track|\\/api\\/v1\\/survey\\/embed|\\/svc\\/weather\\/v2)/\"; http.accept; content:\"*/*\"; startswith; http.accept_enc; content:\"gzip, deflate, br\"; startswith; http.accept_lang; content:\"en-US,en|3b|q=0.5\"; startswith; http.request_body; content:\"|7b 22|locale|22 3a 22|en|22 2c 22|channel|22 3a 22|prod|22 2c 22|addon|22 3a|\"; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031287; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 425,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original Server 3]",
+      "flow": "established,to_client",
+      "file.data": true,
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031268,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "{|22|alias|22 3a 22|apx|22|,|22|prefix|22 3a 22 22|,|22|suffix|22 3a|null,|22|suggestions|22 3a|[],|22|responseId|22 3a 22|15QE9JX9CKE2P|22|,|22|addon|22 3a 20 22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|22|,|22|shuffled|22 3a|false}",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original Server 3]\"; flow:established,to_client; file.data; content:\"{|22|alias|22 3a 22|apx|22|,|22|prefix|22 3a 22 22|,|22|suffix|22 3a|null,|22|suggestions|22 3a|[],|22|responseId|22 3a 22|15QE9JX9CKE2P|22|,|22|addon|22 3a 20 22|\"; fast_pattern; content:\"|22|,|22|shuffled|22 3a|false}\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031268; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 451,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle NYTIMES GET]",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.accept": true,
+      "startswith": true,
+      "http.accept_enc": true,
+      "http.accept_lang": true,
+      "http.request_line": true,
+      "pcre": "/^GET\\s(?:\\/(?:(?:v(?:i-assets\\/static-asset|[12]\\/preference)|idcta\\/translation)s|ads\\/google))/",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031276,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_13, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "nyt-a=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "nyt-gdpr=0|3b|nyt-purr=cfh|3b|nyt-geo=US}",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gzip, deflate, br",
+          "modifiers": {}
+        },
+        {
+          "pattern": "en-US,en|3b|q=0.5",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle NYTIMES GET]\"; flow:established,to_server; content:\"nyt-a=\"; content:\"nyt-gdpr=0|3b|nyt-purr=cfh|3b|nyt-geo=US}\"; fast_pattern; http.method; content:\"GET\"; http.accept; content:\"*/*\"; startswith; http.accept_enc; content:\"gzip, deflate, br\"; startswith; http.accept_lang; content:\"en-US,en|3b|q=0.5\"; startswith; http.request_line; pcre:\"/^GET\\s(?:\\/(?:(?:v(?:i-assets\\/static-asset|[12]\\/preference)|idcta\\/translation)s|ads\\/google))/\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031276; rev:4; metadata:attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_13, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 455,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original Stager]",
+      "flow": "established,to_server",
+      "http.accept": true,
+      "startswith": true,
+      "http.accept_lang": true,
+      "http.accept_enc": true,
+      "http.cookie": true,
+      "http.uri": true,
+      "pcre": "/\\/api\\/v1\\/user\\/(?:512|124)\\/avatar/",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031277,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_13, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "en-US",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gzip, deflate",
+          "modifiers": {}
+        },
+        {
+          "pattern": "SIDCC=AN0-TYutOSq-fxZK6e4kagm70VyKACiG1susXcYRuxK08Y-rHysliq0LWklTqjtulAhQOPH8uA",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "/api/v1/user/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/avatar/",
+          "modifiers": {
+            "distance": "3",
+            "within": "8"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original Stager]\"; flow:established,to_server; http.accept; content:\"*/*\"; startswith; http.accept_lang; content:\"en-US\"; startswith; http.accept_enc; content:\"gzip, deflate\"; startswith; http.cookie; content:\"SIDCC=AN0-TYutOSq-fxZK6e4kagm70VyKACiG1susXcYRuxK08Y-rHysliq0LWklTqjtulAhQOPH8uA\"; startswith; fast_pattern; http.uri; content:\"/api/v1/user/\"; content:\"/avatar/\"; distance:3; within:8; pcre:\"/\\/api\\/v1\\/user\\/(?:512|124)\\/avatar/\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031277; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_13, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 463,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle CDN GET]",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.accept": true,
+      "startswith": true,
+      "http.accept_enc": true,
+      "http.accept_lang": true,
+      "bsize": "5",
+      "http.header": true,
+      "http.uri": true,
+      "pcre": "/^\\/v1\\/(?:queue|profile|docs\\/wsdl|pull)/",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031282,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_14, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gzip, deflate, br",
+          "modifiers": {}
+        },
+        {
+          "pattern": "en-US",
+          "modifiers": {}
+        },
+        {
+          "pattern": "client-=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|3b|auth=1}",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle CDN GET]\"; flow:established,to_server; http.method; content:\"GET\"; http.accept; content:\"*/*\"; startswith; http.accept_enc; content:\"gzip, deflate, br\"; startswith; http.accept_lang; bsize:5; content:\"en-US\"; http.header; content:\"client-=\"; fast_pattern; content:\"|3b|auth=1}\"; http.uri; pcre:\"/^\\/v1\\/(?:queue|profile|docs\\/wsdl|pull)/\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031282; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_14, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 467,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle MSOffice POST]",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "startswith": true,
+      "http.accept": true,
+      "http.accept_enc": true,
+      "http.accept_lang": true,
+      "bsize": "5",
+      "http.request_body": true,
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031285,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_14, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "POST /v1/push",
+          "modifiers": {}
+        },
+        {
+          "pattern": "*/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gzip, deflate, br",
+          "modifiers": {}
+        },
+        {
+          "pattern": "en-US",
+          "modifiers": {}
+        },
+        {
+          "pattern": "{|22|locale|22 3a 22|en|22|,|22|channel|22 3a 22|prod|22|,|22|addon|22 3a 22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "cli",
+          "modifiers": {}
+        },
+        {
+          "pattern": "l-",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle MSOffice POST]\"; flow:established,to_server; http.request_line; content:\"POST /v1/push\"; startswith; http.accept; content:\"*/*\"; startswith; http.accept_enc; content:\"gzip, deflate, br\"; startswith; http.accept_lang; bsize:5; content:\"en-US\"; http.request_body; content:\"{|22|locale|22 3a 22|en|22|,|22|channel|22 3a 22|prod|22|,|22|addon|22 3a 22|\"; fast_pattern; content:\"cli\"; content:\"l-\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031285; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_14, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 477,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.GORAT.[SID1]",
+      "flow": "established,to_server",
+      "http.start": true,
+      "http.method": true,
+      "http.header_names": true,
+      "to_lowercase": true,
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031278,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_22",
+      "contents": [
+        {
+          "pattern": "|0d 0a|Cookie: SID1=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|accept",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.GORAT.[SID1]\"; flow:established,to_server; http.start; content:\"|0d 0a|Cookie: SID1=\"; fast_pattern; http.method; content:\"GET\"; http.header_names; to_lowercase; content:!\"|0d 0a|referer|0d 0a|\"; content:!\"|0d 0a|accept\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031278; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_22;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 515,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[Yelp Request]",
+      "flow": "established,to_server",
+      "http.cookie": true,
+      "startswith": true,
+      "pcre": "/^(?:[A-Za-z0-9_\\x2f+-]{5,})={0,2}\\x3b/R",
+      "endswith": true,
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031289,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2026_06_26, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "hl=en|3b|bse=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|3b|_gat_global=1|3b|recent_locations|3b|_gat_www=1|3b|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[Yelp Request]\"; flow:established,to_server; http.cookie; content:\"hl=en|3b|bse=\"; startswith; fast_pattern; pcre:\"/^(?:[A-Za-z0-9_\\x2f+-]{5,})={0,2}\\x3b/R\"; content:\"|3b|_gat_global=1|3b|recent_locations|3b|_gat_www=1|3b|\"; endswith; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031289; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2026_06_26, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 517,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS VMware Exploit Campaign Inbound - User-Agent (GoodMoodle-VCFleet/1.0)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "reference": "url,medium.com/@quirso_de/global-exploitation-of-cve-2026-59310-by-suspected-chinese-nexus-apt-related-cve-2026-59309-443a79e1466d",
+      "classtype": "web-application-attack",
+      "sid": 2071583,
+      "rev": 1,
+      "metadata": "affected_product VMware, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_19, deployment Perimeter, confidence High, signature_severity Major, updated_at 2026_08_19",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GoodMoodle-VCFleet|2f|1.0",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET CURRENT_EVENTS VMware Exploit Campaign Inbound - User-Agent (GoodMoodle-VCFleet/1.0)\"; flow:established,to_server; http.user_agent; content:\"GoodMoodle-VCFleet|2f|1.0\"; reference:url,medium.com/@quirso_de/global-exploitation-of-cve-2026-59310-by-suspected-chinese-nexus-apt-related-cve-2026-59309-443a79e1466d; classtype:web-application-attack; sid:2071583; rev:1; metadata:affected_product VMware, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_19, deployment Perimeter, confidence High, signature_severity Major, updated_at 2026_08_19; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 519,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS VMware Exploit Campaign Inbound - User-Agent (GoodMoodle-VCProbe/1.0)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "reference": "url,medium.com/@quirso_de/global-exploitation-of-cve-2026-59310-by-suspected-chinese-nexus-apt-related-cve-2026-59309-443a79e1466d",
+      "classtype": "web-application-attack",
+      "sid": 2071584,
+      "rev": 1,
+      "metadata": "affected_product VMware, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_19, deployment Perimeter, confidence High, signature_severity Major, updated_at 2026_08_19",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GoodMoodle-VCProbe|2f|1.0",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET CURRENT_EVENTS VMware Exploit Campaign Inbound - User-Agent (GoodMoodle-VCProbe/1.0)\"; flow:established,to_server; http.user_agent; content:\"GoodMoodle-VCProbe|2f|1.0\"; reference:url,medium.com/@quirso_de/global-exploitation-of-cve-2026-59310-by-suspected-chinese-nexus-apt-related-cve-2026-59309-443a79e1466d; classtype:web-application-attack; sid:2071584; rev:1; metadata:affected_product VMware, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_19, deployment Perimeter, confidence High, signature_severity Major, updated_at 2026_08_19; target:dest_ip;)"
+  }
+]

@@ -1,0 +1,127 @@
+[
+  {
+    "source_file": "botcc.rules",
+    "line_number": 44,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[162.243.103.246]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CNC Feodo Tracker Reported CnC Server group 1",
+      "reference": "url,feodotracker.abuse.ch",
+      "threshold": "type limit, track by_src, seconds 3600, count 1",
+      "flowbits": [
+        "set,ET.Evil",
+        "set,ET.BotccIP"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2404300,
+      "rev": 8042,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11"
+    },
+    "raw_rule": "alert ip $HOME_NET any -> [162.243.103.246] any (msg:\"ET CNC Feodo Tracker Reported CnC Server group 1\"; reference:url,feodotracker.abuse.ch; threshold: type limit, track by_src, seconds 3600, count 1; flowbits:set,ET.Evil; flowbits:set,ET.BotccIP; classtype:trojan-activity; sid:2404300; rev:8042; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11;)"
+  },
+  {
+    "source_file": "botcc.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[178.62.3.223]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CNC Feodo Tracker Reported CnC Server group 2",
+      "reference": "url,feodotracker.abuse.ch",
+      "threshold": "type limit, track by_src, seconds 3600, count 1",
+      "flowbits": [
+        "set,ET.Evil",
+        "set,ET.BotccIP"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2404301,
+      "rev": 8042,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11"
+    },
+    "raw_rule": "alert ip $HOME_NET any -> [178.62.3.223] any (msg:\"ET CNC Feodo Tracker Reported CnC Server group 2\"; reference:url,feodotracker.abuse.ch; threshold: type limit, track by_src, seconds 3600, count 1; flowbits:set,ET.Evil; flowbits:set,ET.BotccIP; classtype:trojan-activity; sid:2404301; rev:8042; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11;)"
+  },
+  {
+    "source_file": "botcc.rules",
+    "line_number": 46,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[27.133.154.218]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CNC Feodo Tracker Reported CnC Server group 3",
+      "reference": "url,feodotracker.abuse.ch",
+      "threshold": "type limit, track by_src, seconds 3600, count 1",
+      "flowbits": [
+        "set,ET.Evil",
+        "set,ET.BotccIP"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2404302,
+      "rev": 8042,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11"
+    },
+    "raw_rule": "alert ip $HOME_NET any -> [27.133.154.218] any (msg:\"ET CNC Feodo Tracker Reported CnC Server group 3\"; reference:url,feodotracker.abuse.ch; threshold: type limit, track by_src, seconds 3600, count 1; flowbits:set,ET.Evil; flowbits:set,ET.BotccIP; classtype:trojan-activity; sid:2404302; rev:8042; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11;)"
+  },
+  {
+    "source_file": "botcc.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[34.204.119.63]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CNC Feodo Tracker Reported CnC Server group 4",
+      "reference": "url,feodotracker.abuse.ch",
+      "threshold": "type limit, track by_src, seconds 3600, count 1",
+      "flowbits": [
+        "set,ET.Evil",
+        "set,ET.BotccIP"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2404303,
+      "rev": 8042,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11"
+    },
+    "raw_rule": "alert ip $HOME_NET any -> [34.204.119.63] any (msg:\"ET CNC Feodo Tracker Reported CnC Server group 4\"; reference:url,feodotracker.abuse.ch; threshold: type limit, track by_src, seconds 3600, count 1; flowbits:set,ET.Evil; flowbits:set,ET.BotccIP; classtype:trojan-activity; sid:2404303; rev:8042; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11;)"
+  },
+  {
+    "source_file": "botcc.rules",
+    "line_number": 48,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[50.16.16.211]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CNC Feodo Tracker Reported CnC Server group 5",
+      "reference": "url,feodotracker.abuse.ch",
+      "threshold": "type limit, track by_src, seconds 3600, count 1",
+      "flowbits": [
+        "set,ET.Evil",
+        "set,ET.BotccIP"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2404304,
+      "rev": 8042,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11"
+    },
+    "raw_rule": "alert ip $HOME_NET any -> [50.16.16.211] any (msg:\"ET CNC Feodo Tracker Reported CnC Server group 5\"; reference:url,feodotracker.abuse.ch; threshold: type limit, track by_src, seconds 3600, count 1; flowbits:set,ET.Evil; flowbits:set,ET.BotccIP; classtype:trojan-activity; sid:2404304; rev:8042; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, deployment Perimeter, tag Banking_Trojan, signature_severity Major, created_at 2014_11_04, updated_at 2026_09_11;)"
+  }
+]

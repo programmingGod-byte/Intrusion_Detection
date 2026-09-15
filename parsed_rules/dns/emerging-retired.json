@@ -1,0 +1,2760 @@
+[
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED TWISTEDPANDA CnC Domain in DNS Lookup (img .elliotterusties .com)",
+      "dns.query": true,
+      "bsize": "23",
+      "reference": "url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/",
+      "classtype": "targeted-activity",
+      "sid": 2036655,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "img.elliotterusties.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED TWISTEDPANDA CnC Domain in DNS Lookup (img .elliotterusties .com)\"; dns.query; bsize:23; content:\"img.elliotterusties.com\"; nocase; reference:url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/; classtype:targeted-activity; sid:2036655; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED TWISTEDPANDA CnC Domain in DNS Lookup (www .miniboxmail .com)",
+      "dns.query": true,
+      "bsize": "19",
+      "reference": "url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/",
+      "classtype": "targeted-activity",
+      "sid": 2036656,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "www.miniboxmail.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED TWISTEDPANDA CnC Domain in DNS Lookup (www .miniboxmail .com)\"; dns.query; bsize:19; content:\"www.miniboxmail.com\"; nocase; reference:url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/; classtype:targeted-activity; sid:2036656; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED TWISTEDPANDA CnC Domain in DNS Lookup (www .microtreely .com)",
+      "dns.query": true,
+      "bsize": "19",
+      "reference": "url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/",
+      "classtype": "targeted-activity",
+      "sid": 2036657,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "www.microtreely.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED TWISTEDPANDA CnC Domain in DNS Lookup (www .microtreely .com)\"; dns.query; bsize:19; content:\"www.microtreely.com\"; nocase; reference:url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/; classtype:targeted-activity; sid:2036657; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED TWISTEDPANDA CnC Domain in DNS Lookup (www .minzdravros .com)",
+      "dns.query": true,
+      "bsize": "19",
+      "reference": "url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/",
+      "classtype": "targeted-activity",
+      "sid": 2036658,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12",
+      "contents": [
+        {
+          "pattern": "www.minzdravros.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED TWISTEDPANDA CnC Domain in DNS Lookup (www .minzdravros .com)\"; dns.query; bsize:19; content:\"www.minzdravros.com\"; nocase; reference:url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/; classtype:targeted-activity; sid:2036658; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_12, reviewed_at 2024_09_12;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED CopyKittens Matryoshka DNS Lookup 1 (winupdate64 . com)",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": "url,www.clearskysec.com/wp-content/uploads/2017/07/Operation_Wilted_Tulip.pdf",
+      "classtype": "trojan-activity",
+      "sid": 2024495,
+      "rev": 8,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_07_25, deployment Perimeter, former_category MALWARE, malware_family Matryoshka, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2024_09_16, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "winupdate64.com",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED CopyKittens Matryoshka DNS Lookup 1 (winupdate64 . com)\"; dns.query; content:\"winupdate64.com\"; startswith; nocase; endswith; fast_pattern; reference:url,www.clearskysec.com/wp-content/uploads/2017/07/Operation_Wilted_Tulip.pdf; classtype:trojan-activity; sid:2024495; rev:8; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_07_25, deployment Perimeter, former_category MALWARE, malware_family Matryoshka, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2024_09_16, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 103,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED CopyKittens Matryoshka DNS Lookup 2 (twiter-statics . info)",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": [
+        "url,www.clearskysec.com/wp-content/uploads/2017/07/Operation_Wilted_Tulip.pdf",
+        "md5,752240cddda5acb5e8d026cef82e2b54"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2024496,
+      "rev": 8,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_07_25, deployment Perimeter, former_category MALWARE, malware_family Matryoshka, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2024_09_16, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "twiter.statics.info",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED CopyKittens Matryoshka DNS Lookup 2 (twiter-statics . info)\"; dns.query; content:\"twiter.statics.info\"; startswith; nocase; endswith; fast_pattern; reference:url,www.clearskysec.com/wp-content/uploads/2017/07/Operation_Wilted_Tulip.pdf; reference:md5,752240cddda5acb5e8d026cef82e2b54; classtype:trojan-activity; sid:2024496; rev:8; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_07_25, deployment Perimeter, former_category MALWARE, malware_family Matryoshka, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2024_09_16, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED CopyKittens Cobalt Strike DNS Lookup (cloudflare-analyse . com)",
+      "threshold": "type limit, track by_src, count 1, seconds 60",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": [
+        "url,www.clearskysec.com/wp-content/uploads/2017/07/Operation_Wilted_Tulip.pdf",
+        "md5,752240cddda5acb5e8d026cef82e2b54"
+      ],
+      "classtype": "targeted-activity",
+      "sid": 2024497,
+      "rev": 8,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_07_25, deployment Perimeter, former_category MALWARE, malware_family Cobalt_Strike, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2024_09_16, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "cloudflare.analyse.com",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED CopyKittens Cobalt Strike DNS Lookup (cloudflare-analyse . com)\"; threshold:type limit, track by_src, count 1, seconds 60; dns.query; content:\"cloudflare.analyse.com\"; startswith; nocase; endswith; fast_pattern; reference:url,www.clearskysec.com/wp-content/uploads/2017/07/Operation_Wilted_Tulip.pdf; reference:md5,752240cddda5acb5e8d026cef82e2b54; classtype:targeted-activity; sid:2024497; rev:8; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_07_25, deployment Perimeter, former_category MALWARE, malware_family Cobalt_Strike, performance_impact Moderate, confidence Medium, signature_severity Major, updated_at 2024_09_16, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 111,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED ISMAgent DNS Tunneling (microsoft-publisher . com)",
+      "threshold": "type limit, track by_src, count 1, seconds 60",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": [
+        "md5,a70a08a1e17b820c7dc8ee1247d6bfa2",
+        "url,researchcenter.paloaltonetworks.com/2017/07/unit42-oilrig-uses-ismdoor-variant-possibly-linked-greenbug-threat-group/"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2024504,
+      "rev": 9,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_07_28, deployment Perimeter, former_category MALWARE, malware_family Ismdoor, performance_impact Moderate, signature_severity Major, updated_at 2024_09_16, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "microsoft-publisher.com",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED ISMAgent DNS Tunneling (microsoft-publisher . com)\"; threshold:type limit, track by_src, count 1, seconds 60; dns.query; content:\"microsoft-publisher.com\"; startswith; nocase; endswith; fast_pattern; reference:md5,a70a08a1e17b820c7dc8ee1247d6bfa2; reference:url,researchcenter.paloaltonetworks.com/2017/07/unit42-oilrig-uses-ismdoor-variant-possibly-linked-greenbug-threat-group/; classtype:trojan-activity; sid:2024504; rev:9; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_07_28, deployment Perimeter, former_category MALWARE, malware_family Ismdoor, performance_impact Moderate, signature_severity Major, updated_at 2024_09_16, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 215,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED WinGo/YT Stealer CnC Domain in DNS Lookup",
+      "dns.query": true,
+      "bsize": "15",
+      "reference": "url,twitter.com/1ZRR4H/status/1581373993596387328",
+      "classtype": "domain-c2",
+      "sid": 2039440,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_18, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19",
+      "contents": [
+        {
+          "pattern": "goback.delivery",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED WinGo/YT Stealer CnC Domain in DNS Lookup\"; dns.query; bsize:15; content:\"goback.delivery\"; nocase; reference:url,twitter.com/1ZRR4H/status/1581373993596387328; classtype:domain-c2; sid:2039440; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_10_18, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_19, reviewed_at 2024_09_19;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 237,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Android/LoanBee Data Stealer Data Exfiltration Domain (api .loanbee .tech) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "16",
+      "reference": "url,blog.cyble.com/2022/11/30/fraudulent-digital-lending-andriod-app-steals-users-sensitive-data/",
+      "classtype": "domain-c2",
+      "sid": 2041455,
+      "rev": 3,
+      "metadata": "affected_product Android, attack_target Mobile_Client, created_at 2022_12_01, deployment Perimeter, former_category MOBILE_MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_23, reviewed_at 2024_09_23",
+      "contents": [
+        {
+          "pattern": "api.loanbee.tech",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Android/LoanBee Data Stealer Data Exfiltration Domain (api .loanbee .tech) in DNS Lookup\"; dns.query; bsize:16; content:\"api.loanbee.tech\"; nocase; reference:url,blog.cyble.com/2022/11/30/fraudulent-digital-lending-andriod-app-steals-users-sensitive-data/; classtype:domain-c2; sid:2041455; rev:3; metadata:affected_product Android, attack_target Mobile_Client, created_at 2022_12_01, deployment Perimeter, former_category MOBILE_MALWARE, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_23, reviewed_at 2024_09_23;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 291,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/S1deload Stealer CnC Domain (neukoo .top) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.bitdefender.com/files/News/CaseStudies/study/428/Bitdefender-PR-Whitepaper-S1deloadStealer-creat6669-en-EN.pdf",
+      "classtype": "domain-c2",
+      "sid": 2044358,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_27, deployment Perimeter, former_category MALWARE, malware_family S1deload_Stealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": ".neukoo.top",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/S1deload Stealer CnC Domain (neukoo .top) in DNS Lookup\"; dns.query; dotprefix; content:\".neukoo.top\"; nocase; endswith; reference:url,www.bitdefender.com/files/News/CaseStudies/study/428/Bitdefender-PR-Whitepaper-S1deloadStealer-creat6669-en-EN.pdf; classtype:domain-c2; sid:2044358; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_02_27, deployment Perimeter, former_category MALWARE, malware_family S1deload_Stealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 313,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED SOMNIRECORD Backdoor PROBE Command in DNS Query",
+      "dns.query": true,
+      "pcre": "/^[a-z0-9]{3}-PROBE/i",
+      "reference": "url,www.elastic.co/security-labs/not-sleeping-anymore-somnirecords-wakeup-call",
+      "classtype": "trojan-activity",
+      "sid": 2044744,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_22, deployment Perimeter, former_category MALWARE, malware_family SOMNIRECORD, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|00 00 10|",
+          "modifiers": {
+            "offset": "12"
+          }
+        },
+        {
+          "pattern": "-PROBE",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED SOMNIRECORD Backdoor PROBE Command in DNS Query\"; content:\"|00 00 10|\"; offset:12; dns.query; content:\"-PROBE\"; fast_pattern; pcre:\"/^[a-z0-9]{3}-PROBE/i\"; reference:url,www.elastic.co/security-labs/not-sleeping-anymore-somnirecords-wakeup-call; classtype:trojan-activity; sid:2044744; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_22, deployment Perimeter, former_category MALWARE, malware_family SOMNIRECORD, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 315,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED SOMNIRECORD Backdoor CMD Command in DNS Query",
+      "dns.query": true,
+      "pcre": "/^[a-z0-9]{3}-CMD/i",
+      "reference": "url,www.elastic.co/security-labs/not-sleeping-anymore-somnirecords-wakeup-call",
+      "classtype": "trojan-activity",
+      "sid": 2044745,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_22, deployment Perimeter, former_category MALWARE, malware_family SOMNIRECORD, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|00 00 10|",
+          "modifiers": {
+            "offset": "12"
+          }
+        },
+        {
+          "pattern": "-CMD",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED SOMNIRECORD Backdoor CMD Command in DNS Query\"; content:\"|00 00 10|\"; offset:12; dns.query; content:\"-CMD\"; fast_pattern; pcre:\"/^[a-z0-9]{3}-CMD/i\"; reference:url,www.elastic.co/security-labs/not-sleeping-anymore-somnirecords-wakeup-call; classtype:trojan-activity; sid:2044745; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_22, deployment Perimeter, former_category MALWARE, malware_family SOMNIRECORD, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 317,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED SOMNIRECORD Backdoor DATA Command in DNS Query",
+      "dns.query": true,
+      "pcre": "/^[a-z0-9]{3}-DATA-[a-f0-9]{6}/i",
+      "reference": "url,www.elastic.co/security-labs/not-sleeping-anymore-somnirecords-wakeup-call",
+      "classtype": "trojan-activity",
+      "sid": 2044746,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_22, deployment Perimeter, former_category MALWARE, malware_family SOMNIRECORD, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "-DATA-",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED SOMNIRECORD Backdoor DATA Command in DNS Query\"; dns.query; content:\"-DATA-\"; fast_pattern; pcre:\"/^[a-z0-9]{3}-DATA-[a-f0-9]{6}/i\"; reference:url,www.elastic.co/security-labs/not-sleeping-anymore-somnirecords-wakeup-call; classtype:trojan-activity; sid:2044746; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_03_22, deployment Perimeter, former_category MALWARE, malware_family SOMNIRECORD, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 329,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Fabookie.ek CnC Domain in DNS Lookup",
+      "dns.query": true,
+      "bsize": "19",
+      "reference": "url,twitter.com/Gi7w0rm/status/1648666723346776067",
+      "classtype": "domain-c2",
+      "sid": 2045056,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_04_19, deployment Perimeter, former_category MALWARE, malware_family Fabookie, performance_impact Low, confidence High, signature_severity Major, tag Fabookie, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "count.iiagjaggg.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/Fabookie.ek CnC Domain in DNS Lookup\"; dns.query; bsize:19; content:\"count.iiagjaggg.com\"; nocase; reference:url,twitter.com/Gi7w0rm/status/1648666723346776067; classtype:domain-c2; sid:2045056; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_04_19, deployment Perimeter, former_category MALWARE, malware_family Fabookie, performance_impact Low, confidence High, signature_severity Major, tag Fabookie, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 385,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M1",
+      "dns.query": true,
+      "bsize": "30<>85",
+      "pcre": "/^\\d{10}(?:[0-9a-z]{36})?\\./R",
+      "reference": "url,any.run/cybersecurity-blog/lu0bot-analysis",
+      "classtype": "trojan-activity",
+      "sid": 2048324,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "169",
+          "modifiers": {
+            "offset": "12",
+            "depth": "3",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\".safeframe.googlesyndication.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M1\"; dns.query; bsize:30<>85; content:\"169\"; offset:12; depth:3; fast_pattern; pcre:\"/^\\d{10}(?:[0-9a-z]{36})?\\./R\"; content:!\".safeframe.googlesyndication.com\"; reference:url,any.run/cybersecurity-blog/lu0bot-analysis; classtype:trojan-activity; sid:2048324; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 387,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M2",
+      "dns.query": true,
+      "bsize": "31<>85",
+      "pcre": "/^\\d{10}(?:[0-9a-z]{36})?\\./R",
+      "reference": "url,any.run/cybersecurity-blog/lu0bot-analysis",
+      "classtype": "trojan-activity",
+      "sid": 2048325,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "170",
+          "modifiers": {
+            "offset": "12",
+            "depth": "3",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\".safeframe.googlesyndication.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M2\"; dns.query; bsize:31<>85; content:\"170\"; offset:12; depth:3; fast_pattern; pcre:\"/^\\d{10}(?:[0-9a-z]{36})?\\./R\"; content:!\".safeframe.googlesyndication.com\"; reference:url,any.run/cybersecurity-blog/lu0bot-analysis; classtype:trojan-activity; sid:2048325; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 389,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M3",
+      "dns.query": true,
+      "bsize": "31<>85",
+      "pcre": "/^\\d{10}(?:[0-9a-z]{36})?\\./R",
+      "reference": "url,any.run/cybersecurity-blog/lu0bot-analysis",
+      "classtype": "trojan-activity",
+      "sid": 2048326,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "171",
+          "modifiers": {
+            "offset": "12",
+            "depth": "3",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\".safeframe.googlesyndication.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M3\"; dns.query; bsize:31<>85; content:\"171\"; offset:12; depth:3; fast_pattern; pcre:\"/^\\d{10}(?:[0-9a-z]{36})?\\./R\"; content:!\".safeframe.googlesyndication.com\"; reference:url,any.run/cybersecurity-blog/lu0bot-analysis; classtype:trojan-activity; sid:2048326; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 391,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M4",
+      "dns.query": true,
+      "bsize": "31<>85",
+      "pcre": "/^\\d{10}(?:[0-9a-z]{36})?\\./R",
+      "reference": "url,any.run/cybersecurity-blog/lu0bot-analysis",
+      "classtype": "trojan-activity",
+      "sid": 2048327,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, malware_family lu0bot, performance_impact Low, confidence Low, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "172",
+          "modifiers": {
+            "offset": "12",
+            "depth": "3",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\".safeframe.googlesyndication.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M4\"; dns.query; bsize:31<>85; content:\"172\"; offset:12; depth:3; fast_pattern; pcre:\"/^\\d{10}(?:[0-9a-z]{36})?\\./R\"; content:!\".safeframe.googlesyndication.com\"; reference:url,any.run/cybersecurity-blog/lu0bot-analysis; classtype:trojan-activity; sid:2048327; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, malware_family lu0bot, performance_impact Low, confidence Low, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 393,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M5",
+      "dns.query": true,
+      "bsize": "31<>85",
+      "pcre": "/^\\d{10}(?:[0-9a-z]{36})?\\./R",
+      "reference": "url,any.run/cybersecurity-blog/lu0bot-analysis",
+      "classtype": "trojan-activity",
+      "sid": 2048328,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, malware_family lu0bot, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "173",
+          "modifiers": {
+            "offset": "12",
+            "depth": "3",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\".safeframe.googlesyndication.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M5\"; dns.query; bsize:31<>85; content:\"173\"; offset:12; depth:3; fast_pattern; pcre:\"/^\\d{10}(?:[0-9a-z]{36})?\\./R\"; content:!\".safeframe.googlesyndication.com\"; reference:url,any.run/cybersecurity-blog/lu0bot-analysis; classtype:trojan-activity; sid:2048328; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category MALWARE, malware_family lu0bot, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_10_02, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 465,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (snxn298y5brpxd67rbntynb6p4qupuuv .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048052,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".snxn298y5brpxd67rbntynb6p4qupuuv.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (snxn298y5brpxd67rbntynb6p4qupuuv .com)\"; dns.query; dotprefix; content:\".snxn298y5brpxd67rbntynb6p4qupuuv.com\"; nocase; endswith; classtype:trojan-activity; sid:2048052; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 467,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (3aqulcx8xkg6qxrhxgmisecrt98kxlenzj .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048053,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".3aqulcx8xkg6qxrhxgmisecrt98kxlenzj.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (3aqulcx8xkg6qxrhxgmisecrt98kxlenzj .com)\"; dns.query; dotprefix; content:\".3aqulcx8xkg6qxrhxgmisecrt98kxlenzj.com\"; nocase; endswith; classtype:trojan-activity; sid:2048053; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 469,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q922jh6d3zk0aelqdfc7yygzjr29sle .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048054,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1q922jh6d3zk0aelqdfc7yygzjr29sle.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q922jh6d3zk0aelqdfc7yygzjr29sle .com)\"; dns.query; dotprefix; content:\".bc1q922jh6d3zk0aelqdfc7yygzjr29sle.com\"; nocase; endswith; classtype:trojan-activity; sid:2048054; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 471,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qc230lt32ey73qlaj9rkujm0ujtv090 .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048055,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1qc230lt32ey73qlaj9rkujm0ujtv090.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qc230lt32ey73qlaj9rkujm0ujtv090 .com)\"; dns.query; dotprefix; content:\".bc1qc230lt32ey73qlaj9rkujm0ujtv090.com\"; nocase; endswith; classtype:trojan-activity; sid:2048055; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 473,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q8hn7d0uhpspz9xcp3hl9e5erddlew .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048056,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1q8hn7d0uhpspz9xcp3hl9e5erddlew.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q8hn7d0uhpspz9xcp3hl9e5erddlew .com)\"; dns.query; dotprefix; content:\".bc1q8hn7d0uhpspz9xcp3hl9e5erddlew.com\"; nocase; endswith; classtype:trojan-activity; sid:2048056; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 475,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qr0kxc4gcqt2lcpkdnz8ehs02u9n2xkgz89rwpr .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048057,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1qr0kxc4gcqt2lcpkdnz8ehs02u9n2xkgz89rwpr.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qr0kxc4gcqt2lcpkdnz8ehs02u9n2xkgz89rwpr .com)\"; dns.query; dotprefix; content:\".bc1qr0kxc4gcqt2lcpkdnz8ehs02u9n2xkgz89rwpr.com\"; nocase; endswith; classtype:trojan-activity; sid:2048057; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 477,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qp2we64k79237y0npqehprfgynlz02fwpktlwte .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048058,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1qp2we64k79237y0npqehprfgynlz02fwpktlwte.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qp2we64k79237y0npqehprfgynlz02fwpktlwte .com)\"; dns.query; dotprefix; content:\".bc1qp2we64k79237y0npqehprfgynlz02fwpktlwte.com\"; nocase; endswith; classtype:trojan-activity; sid:2048058; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 479,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q6zd25jmkfh5x24ymp60tq99xdugpq .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048059,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1q6zd25jmkfh5x24ymp60tq99xdugpq.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q6zd25jmkfh5x24ymp60tq99xdugpq .com)\"; dns.query; dotprefix; content:\".bc1q6zd25jmkfh5x24ymp60tq99xdugpq.com\"; nocase; endswith; classtype:trojan-activity; sid:2048059; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 481,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qm34lmk6eesc65zpw79lxes69zkq3ew .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048060,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1qm34lmk6eesc65zpw79lxes69zkq3ew.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qm34lmk6eesc65zpw79lxes69zkq3ew .com)\"; dns.query; dotprefix; content:\".bc1qm34lmk6eesc65zpw79lxes69zkq3ew.com\"; nocase; endswith; classtype:trojan-activity; sid:2048060; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 483,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (1kmtet1wyig94bxbcke45nivfx1w3m3hth .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048061,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".1kmtet1wyig94bxbcke45nivfx1w3m3hth.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (1kmtet1wyig94bxbcke45nivfx1w3m3hth .com)\"; dns.query; dotprefix; content:\".1kmtet1wyig94bxbcke45nivfx1w3m3hth.com\"; nocase; endswith; classtype:trojan-activity; sid:2048061; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 485,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (13fzyjcfqhnryc4dkxkykbaawkzwrmhcfc .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048062,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".13fzyjcfqhnryc4dkxkykbaawkzwrmhcfc.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (13fzyjcfqhnryc4dkxkykbaawkzwrmhcfc .com)\"; dns.query; dotprefix; content:\".13fzyjcfqhnryc4dkxkykbaawkzwrmhcfc.com\"; nocase; endswith; classtype:trojan-activity; sid:2048062; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 487,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q6crq62w2sclm0cwwk6m2wugr6jkh .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048063,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1q6crq62w2sclm0cwwk6m2wugr6jkh.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q6crq62w2sclm0cwwk6m2wugr6jkh .com)\"; dns.query; dotprefix; content:\".bc1q6crq62w2sclm0cwwk6m2wugr6jkh.com\"; nocase; endswith; classtype:trojan-activity; sid:2048063; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 489,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q0hcvl2p88zdv4dj97mfwtwv4usxm .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048064,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1q0hcvl2p88zdv4dj97mfwtwv4usxm.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1q0hcvl2p88zdv4dj97mfwtwv4usxm .com)\"; dns.query; dotprefix; content:\".bc1q0hcvl2p88zdv4dj97mfwtwv4usxm.com\"; nocase; endswith; classtype:trojan-activity; sid:2048064; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 491,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qm34lsc65zpw79lxes69zkqmk6ee3ew .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048065,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1qm34lsc65zpw79lxes69zkqmk6ee3ew.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qm34lsc65zpw79lxes69zkqmk6ee3ew .com)\"; dns.query; dotprefix; content:\".bc1qm34lsc65zpw79lxes69zkqmk6ee3ew.com\"; nocase; endswith; classtype:trojan-activity; sid:2048065; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 493,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qjywr9cpsm5u7e4yrmnx2jsahgzzmm7 .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048066,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1qjywr9cpsm5u7e4yrmnx2jsahgzzmm7.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qjywr9cpsm5u7e4yrmnx2jsahgzzmm7 .com)\"; dns.query; dotprefix; content:\".bc1qjywr9cpsm5u7e4yrmnx2jsahgzzmm7.com\"; nocase; endswith; classtype:trojan-activity; sid:2048066; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 495,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048067,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED [TW] Microsoft Credential Phish V3 CnC Domain in DNS Lookup (bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h .com)\"; dns.query; dotprefix; content:\".bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h.com\"; nocase; endswith; classtype:trojan-activity; sid:2048067; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 531,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED TrollAgent CnC Domain in DNS Lookup (ol .negapa .p-e .kr)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,twitter.com/asdasd13asbz/status/1744279858778456325",
+        "url,twitter.com/jaydinbas/status/1744288770524918119"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049967,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".ol.negapa.p-e.kr",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED TrollAgent CnC Domain in DNS Lookup (ol .negapa .p-e .kr)\"; dns.query; dotprefix; content:\".ol.negapa.p-e.kr\"; nocase; endswith; reference:url,twitter.com/asdasd13asbz/status/1744279858778456325; reference:url,twitter.com/jaydinbas/status/1744288770524918119; classtype:trojan-activity; sid:2049967; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 533,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED TrollAgent CnC Domain in DNS Lookup (winters .r-e .kr)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,twitter.com/asdasd13asbz/status/1744279858778456325",
+        "url,twitter.com/jaydinbas/status/1744288770524918119"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049968,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".winters.r-e.kr",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED TrollAgent CnC Domain in DNS Lookup (winters .r-e .kr)\"; dns.query; dotprefix; content:\".winters.r-e.kr\"; nocase; endswith; reference:url,twitter.com/asdasd13asbz/status/1744279858778456325; reference:url,twitter.com/jaydinbas/status/1744288770524918119; classtype:trojan-activity; sid:2049968; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 535,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED TrollAgent CnC Domain in DNS Lookup (ar .kostin .p-e .kr)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,twitter.com/asdasd13asbz/status/1744279858778456325",
+        "url,twitter.com/jaydinbas/status/1744288770524918119"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049962,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".ar.kostin.p-e.kr",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED TrollAgent CnC Domain in DNS Lookup (ar .kostin .p-e .kr)\"; dns.query; dotprefix; content:\".ar.kostin.p-e.kr\"; nocase; endswith; reference:url,twitter.com/asdasd13asbz/status/1744279858778456325; reference:url,twitter.com/jaydinbas/status/1744288770524918119; classtype:trojan-activity; sid:2049962; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 537,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED TrollAgent CnC Domain in DNS Lookup (ai .kostin .p-e .kr)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,twitter.com/asdasd13asbz/status/1744279858778456325",
+        "url,twitter.com/jaydinbas/status/1744288770524918119"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049969,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15",
+      "contents": [
+        {
+          "pattern": ".ai.kostin.p-e.kr",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED TrollAgent CnC Domain in DNS Lookup (ai .kostin .p-e .kr)\"; dns.query; dotprefix; content:\".ai.kostin.p-e.kr\"; nocase; endswith; reference:url,twitter.com/asdasd13asbz/status/1744279858778456325; reference:url,twitter.com/jaydinbas/status/1744288770524918119; classtype:trojan-activity; sid:2049969; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 581,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED DNS Query Gauss Domain *.bestcomputeradvisor.com",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,www.securelist.com/en/analysis/204792238/Gauss_Abnormal_Distribution",
+      "classtype": "bad-unknown",
+      "sid": 2015599,
+      "rev": 9,
+      "metadata": "created_at 2012_08_10, former_category MALWARE, confidence Low, signature_severity Informational, updated_at 2024_12_04",
+      "contents": [
+        {
+          "pattern": ".bestcomputeradvisor.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED DNS Query Gauss Domain *.bestcomputeradvisor.com\"; dns.query; content:\".bestcomputeradvisor.com\"; fast_pattern; nocase; endswith; reference:url,www.securelist.com/en/analysis/204792238/Gauss_Abnormal_Distribution; classtype:bad-unknown; sid:2015599; rev:9; metadata:created_at 2012_08_10, former_category MALWARE, confidence Low, signature_severity Informational, updated_at 2024_12_04;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 587,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED DNS Query Gauss Domain *.guest-access.net",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,www.securelist.com/en/analysis/204792238/Gauss_Abnormal_Distribution",
+      "classtype": "bad-unknown",
+      "sid": 2015602,
+      "rev": 9,
+      "metadata": "created_at 2012_08_10, former_category MALWARE, confidence Low, signature_severity Informational, updated_at 2024_12_04",
+      "contents": [
+        {
+          "pattern": ".guest-access.net",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED DNS Query Gauss Domain *.guest-access.net\"; dns.query; content:\".guest-access.net\"; fast_pattern; nocase; endswith; reference:url,www.securelist.com/en/analysis/204792238/Gauss_Abnormal_Distribution; classtype:bad-unknown; sid:2015602; rev:9; metadata:created_at 2012_08_10, former_category MALWARE, confidence Low, signature_severity Informational, updated_at 2024_12_04;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 595,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED DNS Query Known Reveton Domain whatwillber.com",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2015875,
+      "rev": 11,
+      "metadata": "created_at 2012_11_09, former_category MALWARE, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_04",
+      "contents": [
+        {
+          "pattern": "whatwillber.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED DNS Query Known Reveton Domain whatwillber.com\"; dns.query; content:\"whatwillber.com\"; startswith; nocase; endswith; classtype:bad-unknown; sid:2015875; rev:11; metadata:created_at 2012_11_09, former_category MALWARE, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_04;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 713,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed DNS Query to Maldoc Domain (webnar .info)",
+      "dns.query": true,
+      "bsize": "11",
+      "reference": "md5,8e71dbfa21a7f5bf494807ac4307ff95",
+      "classtype": "trojan-activity",
+      "sid": 2036985,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_14, deployment Perimeter, former_category MALWARE, malware_family Maldoc, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "webnar.info",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Observed DNS Query to Maldoc Domain (webnar .info)\"; dns.query; bsize:11; content:\"webnar.info\"; nocase; reference:md5,8e71dbfa21a7f5bf494807ac4307ff95; classtype:trojan-activity; sid:2036985; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_06_14, deployment Perimeter, former_category MALWARE, malware_family Maldoc, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 719,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (dsk .5636 .com)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "trojan-activity",
+      "sid": 2037111,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "dsk.5636.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (dsk .5636 .com)\"; dns.query; bsize:12; content:\"dsk.5636.com\"; nocase; classtype:trojan-activity; sid:2037111; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 721,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (wx .go890 .com)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "trojan-activity",
+      "sid": 2037112,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "wx.go890.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (wx .go890 .com)\"; dns.query; bsize:12; content:\"wx.go890.com\"; nocase; classtype:trojan-activity; sid:2037112; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 723,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (cfg .jipinwan .com)",
+      "dns.query": true,
+      "bsize": "16",
+      "classtype": "trojan-activity",
+      "sid": 2037113,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "cfg.jipinwan.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (cfg .jipinwan .com)\"; dns.query; bsize:16; content:\"cfg.jipinwan.com\"; nocase; classtype:trojan-activity; sid:2037113; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 725,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (bk .957wan .com)",
+      "dns.query": true,
+      "bsize": "13",
+      "classtype": "trojan-activity",
+      "sid": 2037114,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "bk.957wan.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (bk .957wan .com)\"; dns.query; bsize:13; content:\"bk.957wan.com\"; nocase; classtype:trojan-activity; sid:2037114; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 727,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (www .58sky .com)",
+      "dns.query": true,
+      "bsize": "13",
+      "classtype": "trojan-activity",
+      "sid": 2037115,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "www.58sky.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (www .58sky .com)\"; dns.query; bsize:13; content:\"www.58sky.com\"; nocase; classtype:trojan-activity; sid:2037115; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 729,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (cnwx .58ad .cn)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "trojan-activity",
+      "sid": 2037116,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "cnwx.58ad.cn",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (cnwx .58ad .cn)\"; dns.query; bsize:12; content:\"cnwx.58ad.cn\"; nocase; classtype:trojan-activity; sid:2037116; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 731,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (gc .wb51 .com)",
+      "dns.query": true,
+      "bsize": "11",
+      "classtype": "trojan-activity",
+      "sid": 2037117,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "gc.wb51.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (gc .wb51 .com)\"; dns.query; bsize:11; content:\"gc.wb51.com\"; nocase; classtype:trojan-activity; sid:2037117; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 733,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (cmps .58sky .com)",
+      "dns.query": true,
+      "bsize": "14",
+      "classtype": "trojan-activity",
+      "sid": 2037118,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "cmps.58sky.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Win32/Delf.TJJ CnC Domain in DNS Lookup (cmps .58sky .com)\"; dns.query; bsize:14; content:\"cmps.58sky.com\"; nocase; classtype:trojan-activity; sid:2037118; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_06_24, deployment Perimeter, former_category MALWARE, malware_family Delf_TJJ, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 769,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED GobRAT CnC Domain in DNS Lookup (ktlvz .dnsfailover .net)",
+      "dns.query": true,
+      "bsize": "21",
+      "reference": "url,blogs.jpcert.or.jp/en/2023/05/gobrat.html",
+      "classtype": "command-and-control",
+      "sid": 2046730,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "ktlvz.dnsfailover.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED GobRAT CnC Domain in DNS Lookup (ktlvz .dnsfailover .net)\"; dns.query; bsize:21; content:\"ktlvz.dnsfailover.net\"; nocase; reference:url,blogs.jpcert.or.jp/en/2023/05/gobrat.html; classtype:command-and-control; sid:2046730; rev:2; metadata:affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 771,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED GobRAT CnC Domain in DNS Lookup (wpksi .mefound .com)",
+      "dns.query": true,
+      "bsize": "17",
+      "reference": "url,blogs.jpcert.or.jp/en/2023/05/gobrat.html",
+      "classtype": "command-and-control",
+      "sid": 2046731,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "wpksi.mefound.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED GobRAT CnC Domain in DNS Lookup (wpksi .mefound .com)\"; dns.query; bsize:17; content:\"wpksi.mefound.com\"; nocase; reference:url,blogs.jpcert.or.jp/en/2023/05/gobrat.html; classtype:command-and-control; sid:2046731; rev:2; metadata:affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 773,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED GobRAT CnC Domain in DNS Lookup (su .vealcat .com)",
+      "dns.query": true,
+      "bsize": "14",
+      "reference": "url,blogs.jpcert.or.jp/en/2023/05/gobrat.html",
+      "classtype": "command-and-control",
+      "sid": 2046732,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "su.vealcat.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED GobRAT CnC Domain in DNS Lookup (su .vealcat .com)\"; dns.query; bsize:14; content:\"su.vealcat.com\"; nocase; reference:url,blogs.jpcert.or.jp/en/2023/05/gobrat.html; classtype:command-and-control; sid:2046732; rev:2; metadata:affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 791,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED APT29 CnC Domain in DNS Lookup (sgrhf .org .pk)",
+      "dns.query": true,
+      "bsize": "12",
+      "reference": "url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs",
+      "classtype": "domain-c2",
+      "sid": 2047638,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "sgrhf.org.pk",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED APT29 CnC Domain in DNS Lookup (sgrhf .org .pk)\"; dns.query; bsize:12; content:\"sgrhf.org.pk\"; nocase; reference:url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs; classtype:domain-c2; sid:2047638; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 793,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED APT29 CnC Domain in DNS Lookup (toyy .zulipchat .com)",
+      "dns.query": true,
+      "bsize": "18",
+      "reference": "url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs",
+      "classtype": "domain-c2",
+      "sid": 2047639,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "toyy.zulipchat.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED APT29 CnC Domain in DNS Lookup (toyy .zulipchat .com)\"; dns.query; bsize:18; content:\"toyy.zulipchat.com\"; nocase; reference:url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs; classtype:domain-c2; sid:2047639; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 795,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED APT29 CnC Domain in DNS Lookup (edenparkweddings .com)",
+      "dns.query": true,
+      "bsize": "20",
+      "reference": "url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs",
+      "classtype": "domain-c2",
+      "sid": 2047640,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "edenparkweddings.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED APT29 CnC Domain in DNS Lookup (edenparkweddings .com)\"; dns.query; bsize:20; content:\"edenparkweddings.com\"; nocase; reference:url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs; classtype:domain-c2; sid:2047640; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 803,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Suspected Adware/AccessMembre Domain in DNS Lookup (iconm1 .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,app.any.run/tasks/2911c3de-25e3-4c0e-909b-00f38d0a1e42/",
+        "md5,e8d445f362ba21571cdb980d1e05318c"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2047751,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_25, deployment Perimeter, former_category ADWARE_PUP, malware_family PUP, performance_impact Low, confidence Medium, signature_severity Minor, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".iconm1.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Suspected Adware/AccessMembre Domain in DNS Lookup (iconm1 .com)\"; dns.query; dotprefix; content:\".iconm1.com\"; nocase; endswith; reference:url,app.any.run/tasks/2911c3de-25e3-4c0e-909b-00f38d0a1e42/; reference:md5,e8d445f362ba21571cdb980d1e05318c; classtype:pup-activity; sid:2047751; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_25, deployment Perimeter, former_category ADWARE_PUP, malware_family PUP, performance_impact Low, confidence Medium, signature_severity Minor, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 813,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Earth Lusca/SprySOCKS CnC Domain in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.trendmicro.com/en_us/research/23/i/earth-lusca-employs-new-linux-backdoor.html",
+      "classtype": "domain-c2",
+      "sid": 2048104,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Client_and_Server, created_at 2023_09_18, deployment Perimeter, former_category MALWARE, malware_family SprySOCKS, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".bmssystemg188.us",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Earth Lusca/SprySOCKS CnC Domain in DNS Lookup\"; dns.query; dotprefix; content:\".bmssystemg188.us\"; nocase; endswith; reference:url,www.trendmicro.com/en_us/research/23/i/earth-lusca-employs-new-linux-backdoor.html; classtype:domain-c2; sid:2048104; rev:2; metadata:affected_product Linux, attack_target Client_and_Server, created_at 2023_09_18, deployment Perimeter, former_category MALWARE, malware_family SprySOCKS, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 815,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Earth Lusca/SprySOCKS CnC Domain in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.trendmicro.com/en_us/research/23/i/earth-lusca-employs-new-linux-backdoor.html",
+      "classtype": "domain-c2",
+      "sid": 2048105,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Client_and_Server, created_at 2023_09_18, deployment Perimeter, former_category MALWARE, malware_family SprySOCKS, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".confenos.shop",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Earth Lusca/SprySOCKS CnC Domain in DNS Lookup\"; dns.query; dotprefix; content:\".confenos.shop\"; nocase; endswith; reference:url,www.trendmicro.com/en_us/research/23/i/earth-lusca-employs-new-linux-backdoor.html; classtype:domain-c2; sid:2048105; rev:2; metadata:affected_product Linux, attack_target Client_and_Server, created_at 2023_09_18, deployment Perimeter, former_category MALWARE, malware_family SprySOCKS, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 847,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Trojanized Software Download Domain in DNS Lookup (macyy .cn)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050236,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".macyy.cn",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Trojanized Software Download Domain in DNS Lookup (macyy .cn)\"; dns.query; dotprefix; content:\".macyy.cn\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050236; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 849,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (securecrt .cc)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050237,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".securecrt.cc",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (securecrt .cc)\"; dns.query; dotprefix; content:\".securecrt.cc\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050237; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 851,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (ultraedit .info)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050238,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".ultraedit.info",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (ultraedit .info)\"; dns.query; dotprefix; content:\".ultraedit.info\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050238; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 853,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (securecrt .vip)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050239,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".securecrt.vip",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (securecrt .vip)\"; dns.query; dotprefix; content:\".securecrt.vip\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050239; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 855,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (rdesktophub .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050240,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".rdesktophub.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (rdesktophub .com)\"; dns.query; dotprefix; content:\".rdesktophub.com\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050240; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 857,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (macnavicat .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050241,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".macnavicat.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (macnavicat .com)\"; dns.query; dotprefix; content:\".macnavicat.com\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050241; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 859,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (vscode .digital)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050242,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".vscode.digital",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (vscode .digital)\"; dns.query; dotprefix; content:\".vscode.digital\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050242; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 861,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (ultraedit .vip)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050243,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".ultraedit.vip",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (ultraedit .vip)\"; dns.query; dotprefix; content:\".ultraedit.vip\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050243; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 863,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (finallshell .cc)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050244,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".finallshell.cc",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (finallshell .cc)\"; dns.query; dotprefix; content:\".finallshell.cc\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050244; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 865,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (finalshell .me)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050245,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".finalshell.me",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (finalshell .me)\"; dns.query; dotprefix; content:\".finalshell.me\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050245; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 867,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (rdesktopconnect .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050246,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".rdesktopconnect.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (rdesktopconnect .com)\"; dns.query; dotprefix; content:\".rdesktopconnect.com\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050246; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 869,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Khepri CnC Domain in DNS Lookup (xmindcn .cc)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.jamf.com/blog/jtl-malware-pirated-applications/",
+      "classtype": "domain-c2",
+      "sid": 2050247,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": ".xmindcn.cc",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Khepri CnC Domain in DNS Lookup (xmindcn .cc)\"; dns.query; dotprefix; content:\".xmindcn.cc\"; nocase; endswith; reference:url,www.jamf.com/blog/jtl-malware-pirated-applications/; classtype:domain-c2; sid:2050247; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2024_01_19, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 887,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED DCRAT CnC Domain in DNS Lookup (akamaitechcdns .com)",
+      "dns.query": true,
+      "bsize": "18",
+      "reference": "md5,1412faf1bfd96e91340cedcea80ee09d",
+      "classtype": "domain-c2",
+      "sid": 2048099,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_15, deployment Perimeter, former_category MALWARE, malware_family DCRat, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": "akamaitechcdns.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED DCRAT CnC Domain in DNS Lookup (akamaitechcdns .com)\"; dns.query; bsize:18; content:\"akamaitechcdns.com\"; nocase; reference:md5,1412faf1bfd96e91340cedcea80ee09d; classtype:domain-c2; sid:2048099; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_15, deployment Perimeter, former_category MALWARE, malware_family DCRat, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 889,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED TA444 MacOS/ProcessRequest CnC Domain in DNS Lookup (swissborg .blog)",
+      "dns.query": true,
+      "bsize": "14",
+      "reference": [
+        "md5,a446402c1de5dfddd50b77a95fcfc671",
+        "md5,9294648d744703cfa0456ec74d014fe4"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2048316,
+      "rev": 2,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2023_09_27, deployment Perimeter, former_category MALWARE, malware_family ProcessRequest, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": "swissborg.blog",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED TA444 MacOS/ProcessRequest CnC Domain in DNS Lookup (swissborg .blog)\"; dns.query; bsize:14; content:\"swissborg.blog\"; nocase; reference:md5,a446402c1de5dfddd50b77a95fcfc671; reference:md5,9294648d744703cfa0456ec74d014fe4; classtype:trojan-activity; sid:2048316; rev:2; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2023_09_27, deployment Perimeter, former_category MALWARE, malware_family ProcessRequest, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 893,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Epsilon Stealer Domain in DNS Lookup (3ps1l0n .life)",
+      "dns.query": true,
+      "bsize": "12",
+      "reference": "md5,e8c8434a3cd4cf970f864c7273810642",
+      "classtype": "trojan-activity",
+      "sid": 2050013,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_11, deployment Perimeter, former_category MALWARE, malware_family EpsilonStealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": "3ps1l0n.life",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Epsilon Stealer Domain in DNS Lookup (3ps1l0n .life)\"; dns.query; bsize:12; content:\"3ps1l0n.life\"; nocase; reference:md5,e8c8434a3cd4cf970f864c7273810642; classtype:trojan-activity; sid:2050013; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_11, deployment Perimeter, former_category MALWARE, malware_family EpsilonStealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 897,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Allakore RAT CnC Domain in DNS Lookup (hhplaytom .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat",
+      "classtype": "domain-c2",
+      "sid": 2050544,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".hhplaytom.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Allakore RAT CnC Domain in DNS Lookup (hhplaytom .com)\"; dns.query; dotprefix; content:\".hhplaytom.com\"; nocase; endswith; reference:url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat; classtype:domain-c2; sid:2050544; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 899,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Allakore RAT CnC Domain in DNS Lookup (uperrunplay .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat",
+      "classtype": "domain-c2",
+      "sid": 2050545,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".uperrunplay.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Allakore RAT CnC Domain in DNS Lookup (uperrunplay .com)\"; dns.query; dotprefix; content:\".uperrunplay.com\"; nocase; endswith; reference:url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat; classtype:domain-c2; sid:2050545; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 901,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Allakore RAT CnC Domain in DNS Lookup (zulabra .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat",
+      "classtype": "domain-c2",
+      "sid": 2050546,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".zulabra.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Allakore RAT CnC Domain in DNS Lookup (zulabra .com)\"; dns.query; dotprefix; content:\".zulabra.com\"; nocase; endswith; reference:url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat; classtype:domain-c2; sid:2050546; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 903,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Allakore RAT CnC Domain in DNS Lookup (uplayground .online)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat",
+      "classtype": "domain-c2",
+      "sid": 2050547,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".uplayground.online",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Allakore RAT CnC Domain in DNS Lookup (uplayground .online)\"; dns.query; dotprefix; content:\".uplayground.online\"; nocase; endswith; reference:url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat; classtype:domain-c2; sid:2050547; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 905,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Allakore RAT CnC Domain in DNS Lookup (flapawer .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat",
+      "classtype": "domain-c2",
+      "sid": 2050548,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".flapawer.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Allakore RAT CnC Domain in DNS Lookup (flapawer .com)\"; dns.query; dotprefix; content:\".flapawer.com\"; nocase; endswith; reference:url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat; classtype:domain-c2; sid:2050548; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 907,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Allakore RAT CnC Domain in DNS Lookup (chaucheneguer .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat",
+      "classtype": "domain-c2",
+      "sid": 2050549,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".chaucheneguer.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Allakore RAT CnC Domain in DNS Lookup (chaucheneguer .com)\"; dns.query; dotprefix; content:\".chaucheneguer.com\"; nocase; endswith; reference:url,blogs.blackberry.com/en/2024/01/mexican-banks-and-cryptocurrency-platforms-targeted-with-allakore-rat; classtype:domain-c2; sid:2050549; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_29, deployment Perimeter, former_category MALWARE, malware_family Allakore_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 915,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED EvasivePanda/Daggerfly APT CnC Domain in DNS Lookup (devicebug .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.welivesecurity.com/en/eset-research/evasive-panda-leverages-monlam-festival-target-tibetans/",
+      "classtype": "trojan-activity",
+      "sid": 2051519,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_03_07, deployment Perimeter, former_category MALWARE, malware_family EvasivePanda, malware_family Nightdoor, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".devicebug.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED EvasivePanda/Daggerfly APT CnC Domain in DNS Lookup (devicebug .com)\"; dns.query; dotprefix; content:\".devicebug.com\"; nocase; endswith; reference:url,www.welivesecurity.com/en/eset-research/evasive-panda-leverages-monlam-festival-target-tibetans/; classtype:trojan-activity; sid:2051519; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_03_07, deployment Perimeter, former_category MALWARE, malware_family EvasivePanda, malware_family Nightdoor, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 919,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED NGC2180/DFKRAT CnC Domain in DNS Lookup (windowscer .shop)",
+      "dns.query": true,
+      "bsize": "15",
+      "reference": "url,rt-solar.ru/solar-4rays/blog/4124/",
+      "classtype": "trojan-activity",
+      "sid": 2051521,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2024_03_07, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family NGC2180, malware_family DFKRAT, performance_impact Low, confidence High, signature_severity Major, tag NGC2180, tag DFKRAT, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "windowscer.shop",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED NGC2180/DFKRAT CnC Domain in DNS Lookup (windowscer .shop)\"; dns.query; bsize:15; content:\"windowscer.shop\"; nocase; reference:url,rt-solar.ru/solar-4rays/blog/4124/; classtype:trojan-activity; sid:2051521; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2024_03_07, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family NGC2180, malware_family DFKRAT, performance_impact Low, confidence High, signature_severity Major, tag NGC2180, tag DFKRAT, updated_at 2025_07_14, reviewed_at 2025_07_14; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 931,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Anonymous RAT CnC Domain in DNS Lookup (anonymousrat8 .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,0bbe7daf7e104bf0091f4be771fe2133",
+      "classtype": "domain-c2",
+      "sid": 2052123,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_04_16, deployment Perimeter, former_category MALWARE, malware_family Anonymous_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".anonymousrat8.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED Anonymous RAT CnC Domain in DNS Lookup (anonymousrat8 .com)\"; dns.query; dotprefix; content:\".anonymousrat8.com\"; nocase; endswith; reference:md5,0bbe7daf7e104bf0091f4be771fe2133; classtype:domain-c2; sid:2052123; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_04_16, deployment Perimeter, former_category MALWARE, malware_family Anonymous_RAT, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 933,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED SecShow Domain DNS Lookup (secshow .net)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,unit42.paloaltonetworks.com/three-dns-tunneling-campaigns/",
+      "classtype": "bad-unknown",
+      "sid": 2052571,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_05_13, deployment Perimeter, former_category MALWARE, malware_family SecShow, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".secshow.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED SecShow Domain DNS Lookup (secshow .net)\"; dns.query; dotprefix; content:\".secshow.net\"; nocase; endswith; reference:url,unit42.paloaltonetworks.com/three-dns-tunneling-campaigns/; classtype:bad-unknown; sid:2052571; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_05_13, deployment Perimeter, former_category MALWARE, malware_family SecShow, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 935,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED SecShow Domain DNS Lookup (secshow .online)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,unit42.paloaltonetworks.com/three-dns-tunneling-campaigns/",
+      "classtype": "bad-unknown",
+      "sid": 2052572,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_05_13, deployment Perimeter, former_category MALWARE, malware_family SecShow, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".secshow.online",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED SecShow Domain DNS Lookup (secshow .online)\"; dns.query; dotprefix; content:\".secshow.online\"; nocase; endswith; reference:url,unit42.paloaltonetworks.com/three-dns-tunneling-campaigns/; classtype:bad-unknown; sid:2052572; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_05_13, deployment Perimeter, former_category MALWARE, malware_family SecShow, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 937,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED SecShow Domain DNS Lookup (secdns .site)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,unit42.paloaltonetworks.com/three-dns-tunneling-campaigns/",
+      "classtype": "bad-unknown",
+      "sid": 2052573,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_05_13, deployment Perimeter, former_category MALWARE, malware_family SecShow, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".secdns.site",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET RETIRED SecShow Domain DNS Lookup (secdns .site)\"; dns.query; dotprefix; content:\".secdns.site\"; nocase; endswith; reference:url,unit42.paloaltonetworks.com/three-dns-tunneling-campaigns/; classtype:bad-unknown; sid:2052573; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_05_13, deployment Perimeter, former_category MALWARE, malware_family SecShow, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  }
+]

@@ -1,0 +1,793 @@
+[
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 335,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Powershell Command With Hidden Window Argument Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2025720,
+      "rev": 3,
+      "metadata": "attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|00|-|00|w|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|00|h|00|i|00|d|00|d|00|e|00|n|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO Powershell Command With Hidden Window Argument Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|\"; nocase; distance:0; fast_pattern; content:\"|00|-|00|w|00|\"; nocase; distance:0; content:\"|00|h|00|i|00|d|00|d|00|e|00|n|00|\"; nocase; distance:0; classtype:trojan-activity; sid:2025720; rev:3; metadata:attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 337,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Powershell Command With No Profile Argument Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2025722,
+      "rev": 2,
+      "metadata": "attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|00|n|00|o|00|p|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO Powershell Command With No Profile Argument Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|\"; nocase; distance:0; fast_pattern; content:\"|00|n|00|o|00|p|00|\"; nocase; distance:0; classtype:trojan-activity; sid:2025722; rev:2; metadata:attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 339,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Powershell Command With Execution Bypass Argument Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2025723,
+      "rev": 2,
+      "metadata": "attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|00|e|00|x|00|e|00|c|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|00|b|00|y|00|p|00|a|00|s|00|s|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO Powershell Command With Execution Bypass Argument Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|\"; nocase; distance:0; fast_pattern; content:\"|00|e|00|x|00|e|00|c|00|\"; nocase; distance:0; content:\"|00|b|00|y|00|p|00|a|00|s|00|s|00|\"; nocase; distance:0; classtype:trojan-activity; sid:2025723; rev:2; metadata:attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 341,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Powershell Command With NonInteractive Argument Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2025724,
+      "rev": 2,
+      "metadata": "attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|00|n|00|o|00|n|00|i|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO Powershell Command With NonInteractive Argument Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|\"; nocase; distance:0; fast_pattern; content:\"|00|n|00|o|00|n|00|i|00|\"; nocase; distance:0; classtype:trojan-activity; sid:2025724; rev:2; metadata:attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 343,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO RunDll Request Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2025725,
+      "rev": 3,
+      "metadata": "attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|r|00|u|00|n|00|d|00|l|00|l|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO RunDll Request Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|r|00|u|00|n|00|d|00|l|00|l|00|\"; nocase; distance:0; fast_pattern; classtype:trojan-activity; sid:2025725; rev:3; metadata:attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 381,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO WMIC WMI Request Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2025726,
+      "rev": 3,
+      "metadata": "attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|w|00|m|00|i|00|c|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET any (msg:\"ET INFO WMIC WMI Request Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|w|00|m|00|i|00|c|00|\"; nocase; distance:0; fast_pattern; classtype:trojan-activity; sid:2025726; rev:3; metadata:attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 383,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO WMIC WMI Request Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2027180,
+      "rev": 2,
+      "metadata": "attack_target SMB_Client, created_at 2019_04_10, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|w|00|m|00|i|00|c|00|.|00|e|00|x|00|e|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET any (msg:\"ET INFO WMIC WMI Request Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|w|00|m|00|i|00|c|00|.|00|e|00|x|00|e|00|\"; nocase; distance:0; classtype:trojan-activity; sid:2027180; rev:2; metadata:attack_target SMB_Client, created_at 2019_04_10, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 385,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO WMIC WMI Request Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2027181,
+      "rev": 2,
+      "metadata": "attack_target SMB_Client, created_at 2019_04_10, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "wmic.exe",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET any (msg:\"ET INFO WMIC WMI Request Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"wmic.exe\"; nocase; distance:0; classtype:trojan-activity; sid:2027181; rev:2; metadata:attack_target SMB_Client, created_at 2019_04_10, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 387,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO WMIC WMI Request Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2027182,
+      "rev": 2,
+      "metadata": "attack_target SMB_Client, created_at 2019_04_10, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "wmic ",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET any (msg:\"ET INFO WMIC WMI Request Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"wmic \"; nocase; distance:0; classtype:trojan-activity; sid:2027182; rev:2; metadata:attack_target SMB_Client, created_at 2019_04_10, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 389,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Powershell Activity Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2027202,
+      "rev": 1,
+      "metadata": "created_at 2019_04_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|.|00|e|00|x|00|e|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO Powershell Activity Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|.|00|e|00|x|00|e|00|\"; nocase; distance:0; classtype:trojan-activity; sid:2027202; rev:1; metadata:created_at 2019_04_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 391,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Powershell Activity Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2025719,
+      "rev": 3,
+      "metadata": "attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00 20 00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO Powershell Activity Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00 20 00|\"; nocase; distance:0; fast_pattern; classtype:trojan-activity; sid:2025719; rev:3; metadata:attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 393,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Possible Powershell .ps1 Script Use Over SMB",
+      "flow": "established,to_server",
+      "classtype": "bad-unknown",
+      "sid": 2027203,
+      "rev": 2,
+      "metadata": "created_at 2019_04_16, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": ".ps1",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO Possible Powershell .ps1 Script Use Over SMB\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\".ps1\"; nocase; distance:0; classtype:bad-unknown; sid:2027203; rev:2; metadata:created_at 2019_04_16, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 395,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Possible WMI .mof Managed Object File Use Over SMB",
+      "flow": "established,to_server",
+      "reference": "url,www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf",
+      "classtype": "bad-unknown",
+      "sid": 2027205,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_16, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": ".mof",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO Possible WMI .mof Managed Object File Use Over SMB\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\".mof\"; nocase; distance:0; reference:url,www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf; classtype:bad-unknown; sid:2027205; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_16, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 397,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Possible WMI .mof Managed Object File Use Over SMB",
+      "flow": "established,to_server",
+      "reference": "url,www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf",
+      "classtype": "bad-unknown",
+      "sid": 2027206,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_16, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|.|00|m|00|o|00|f|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO Possible WMI .mof Managed Object File Use Over SMB\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|.|00|m|00|o|00|f|00|\"; nocase; distance:0; reference:url,www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf; classtype:bad-unknown; sid:2027206; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_16, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1873,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO SMB2 NT Create AndX Request For an Executable File In a Temp Directory",
+      "flow": "established,to_server",
+      "classtype": "misc-activity",
+      "sid": 2025703,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target SMB_Client, created_at 2018_07_16, deployment Internal, confidence High, signature_severity Informational, updated_at 2023_05_09",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|05 00|",
+          "modifiers": {
+            "distance": "8",
+            "within": "2"
+          }
+        },
+        {
+          "pattern": "t|00|e|00|m|00|p|00 5c 00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|00 2e 00|e|00|x|00|e|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET INFO SMB2 NT Create AndX Request For an Executable File In a Temp Directory\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|05 00|\"; distance:8; within:2; content:\"t|00|e|00|m|00|p|00 5c 00|\"; nocase; distance:0; content:\"|00 2e 00|e|00|x|00|e|00|\"; nocase; distance:0; classtype:misc-activity; sid:2025703; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target SMB_Client, created_at 2018_07_16, deployment Internal, confidence High, signature_severity Informational, updated_at 2023_05_09;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 2755,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Possible winexe over SMB - Possible Lateral Movement",
+      "flow": "established,to_server",
+      "endswith": true,
+      "reference": "url,attack.mitre.org/software/S0191/",
+      "classtype": "bad-unknown",
+      "sid": 2026879,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_05, deployment Perimeter, performance_impact Moderate, confidence Medium, signature_severity Informational, updated_at 2024_03_07, reviewed_at 2024_05_06, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "|ff|SMB",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|5c 00|a|00|h|00|e|00|x|00|e|00|c|00 00 00|",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET any (msg:\"ET INFO Possible winexe over SMB - Possible Lateral Movement\"; flow:established,to_server; content:\"|ff|SMB\"; offset:4; depth:4; content:\"|5c 00|a|00|h|00|e|00|x|00|e|00|c|00 00 00|\"; fast_pattern; endswith; nocase; reference:url,attack.mitre.org/software/S0191/; classtype:bad-unknown; sid:2026879; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_05, deployment Perimeter, performance_impact Moderate, confidence Medium, signature_severity Informational, updated_at 2024_03_07, reviewed_at 2024_05_06, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 5095,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Possible Lateral Movement - File Creation Request in Remote System32 Directory (T1105)",
+      "flow": "established,to_server",
+      "classtype": "misc-activity",
+      "sid": 2027267,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_04_23, deployment Internal, former_category ATTACK_RESPONSE, performance_impact Low, confidence Medium, signature_severity Major, tag T1105, tag lateral_movement, tag remote_file_copy, updated_at 2024_07_01, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "|05 00|",
+          "modifiers": {
+            "offset": "16",
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|00|W|00|i|00|n|00|d|00|o|00|w|00|s|00 5c 00|S|00|y|00|s|00|t|00|e|00|m|00|3|00|2|00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET any (msg:\"ET INFO Possible Lateral Movement - File Creation Request in Remote System32 Directory (T1105)\"; flow:established,to_server; content:\"|05 00|\"; offset:16; depth:2; content:\"|00|W|00|i|00|n|00|d|00|o|00|w|00|s|00 5c 00|S|00|y|00|s|00|t|00|e|00|m|00|3|00|2|00|\"; fast_pattern; classtype:misc-activity; sid:2027267; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_04_23, deployment Internal, former_category ATTACK_RESPONSE, performance_impact Low, confidence Medium, signature_severity Major, tag T1105, tag lateral_movement, tag remote_file_copy, updated_at 2024_07_01, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 9957,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Quest KACE Desktop Authority Server SMB Named Pipe Create",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,ET.QuestKACE.SMB",
+        "noalert"
+      ],
+      "reference": "url,www.netspi.com/blog/technical-blog/adversary-simulation/pipe-dreams-remote-code-execution-via-quest-desktop-authority-named-pipe/",
+      "classtype": "misc-activity",
+      "sid": 2067416,
+      "rev": 1,
+      "metadata": "attack_target Server, created_at 2026_02_09, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, updated_at 2026_02_09",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "S|00|c|00|r|00|i|00|p|00|t|00|L|00|o|00|g|00|i|00|c|00|_|00|S|00|e|00|r|00|v|00|e|00|r|00|_|00|N|00|a|00|m|00|e|00|d|00|P|00|i|00|p|00|e|00|_|00|9|00|3|00|0|00|0|00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET any (msg:\"ET INFO Quest KACE Desktop Authority Server SMB Named Pipe Create\"; flow:established,to_server; flowbits:set,ET.QuestKACE.SMB; flowbits:noalert; content:\"SMB\"; depth:8; content:\"S|00|c|00|r|00|i|00|p|00|t|00|L|00|o|00|g|00|i|00|c|00|_|00|S|00|e|00|r|00|v|00|e|00|r|00|_|00|N|00|a|00|m|00|e|00|d|00|P|00|i|00|p|00|e|00|_|00|9|00|3|00|0|00|0|00|\"; fast_pattern; reference:url,www.netspi.com/blog/technical-blog/adversary-simulation/pipe-dreams-remote-code-execution-via-quest-desktop-authority-named-pipe/; classtype:misc-activity; sid:2067416; rev:1; metadata:attack_target Server, created_at 2026_02_09, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, updated_at 2026_02_09; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 10403,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Powershell Command With Encoded Argument Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "pcre": "/^(?:[NnCcOoDdEeMmAa^]\\x00){0,27}/R",
+      "classtype": "trojan-activity",
+      "sid": 2025721,
+      "rev": 4,
+      "metadata": "attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_04_27, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|00|-|00|e|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> [$HOME_NET,$HTTP_SERVERS] 445 (msg:\"ET INFO Powershell Command With Encoded Argument Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|\"; nocase; distance:0; fast_pattern; content:\"|00|-|00|e|00|\"; nocase; distance:0; pcre:\"/^(?:[NnCcOoDdEeMmAa^]\\x00){0,27}/R\"; classtype:trojan-activity; sid:2025721; rev:4; metadata:attack_target SMB_Client, created_at 2018_07_17, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_04_27, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 10405,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO Powershell Command With Encoded Argument Over SMB - Likely Lateral Movement",
+      "flow": "established,to_server",
+      "pcre": "/^[NnCcOoDdEeMmAa^]{0,27}/R",
+      "classtype": "bad-unknown",
+      "sid": 2027172,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_10, deployment Internal, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_04_27, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "powershell",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "-e",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> [$HOME_NET,$HTTP_SERVERS] 445 (msg:\"ET INFO Powershell Command With Encoded Argument Over SMB - Likely Lateral Movement\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"powershell\"; fast_pattern; nocase; distance:0; content:\"-e\"; nocase; distance:0; pcre:\"/^[NnCcOoDdEeMmAa^]{0,27}/R\"; classtype:bad-unknown; sid:2027172; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_10, deployment Internal, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_04_27, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1570, mitre_technique_name Lateral_Tool_Transfer;)"
+  }
+]

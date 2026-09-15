@@ -1,0 +1,1056 @@
+[
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS SSL/TLS Certificate Observed (AnyDesk Remote Desktop Software)",
+      "flow": "established,to_client",
+      "threshold": "type limit, track by_dst, count 1, seconds 600",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "reference": [
+        "md5,1501639af59b0ff39d41577af30367cf",
+        "url,jsac.jpcert.or.jp/archive/2023/pdf/JSAC2023_1_1_yamashige-nakatani-tanaka_en.pdf"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2027761,
+      "rev": 6,
+      "metadata": "attack_target Client_Endpoint, created_at 2019_07_26, deployment Perimeter, former_category POLICY, malware_family AnyDesk, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, updated_at 2024_06_10",
+      "contents": [
+        {
+          "pattern": "C=DE, O=philandro Software GmbH, CN=AnyNet Relay",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET REMOTE_ACCESS SSL/TLS Certificate Observed (AnyDesk Remote Desktop Software)\"; flow:established,to_client; threshold: type limit, track by_dst, count 1, seconds 600; tls.cert_subject; content:\"C=DE, O=philandro Software GmbH, CN=AnyNet Relay\"; endswith; fast_pattern; reference:md5,1501639af59b0ff39d41577af30367cf; reference:url,jsac.jpcert.or.jp/archive/2023/pdf/JSAC2023_1_1_yamashige-nakatani-tanaka_en.pdf; classtype:misc-activity; sid:2027761; rev:6; metadata:attack_target Client_Endpoint, created_at 2019_07_26, deployment Perimeter, former_category POLICY, malware_family AnyDesk, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, updated_at 2024_06_10;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Monitoring and Management Domain (centrastage .net in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,rmm.datto.com/help/en/Content/1INTRODUCTION/Infrastructure/Platforms.htm",
+      "classtype": "misc-activity",
+      "sid": 2053825,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_24, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2024_06_24",
+      "contents": [
+        {
+          "pattern": ".centrastage.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Remote Monitoring and Management Domain (centrastage .net in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".centrastage.net\"; endswith; fast_pattern; reference:url,rmm.datto.com/help/en/Content/1INTRODUCTION/Infrastructure/Platforms.htm; classtype:misc-activity; sid:2053825; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_24, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2024_06_24;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Management Software Domain (syncromsp .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2036347,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".syncromsp.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Remote Management Software Domain (syncromsp .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".syncromsp.com\"; endswith; fast_pattern; classtype:bad-unknown; sid:2036347; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed SyncroMSP Remote Management Software Domain (repairshopr .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,syncromsp.com/security/",
+      "classtype": "bad-unknown",
+      "sid": 2042879,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_12_14, deployment Perimeter, former_category INFO, malware_family SyncroMSP, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".repairshopr.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed SyncroMSP Remote Management Software Domain (repairshopr .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".repairshopr.com\"; endswith; fast_pattern; reference:url,syncromsp.com/security/; classtype:bad-unknown; sid:2042879; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_12_14, deployment Perimeter, former_category INFO, malware_family SyncroMSP, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 95,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed SyncroMSP Remote Management Software Domain (kabutoservices .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,syncromsp.com/security/",
+      "classtype": "bad-unknown",
+      "sid": 2042880,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_12_14, deployment Perimeter, former_category INFO, malware_family SyncroMSP, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".kabutoservices.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed SyncroMSP Remote Management Software Domain (kabutoservices .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".kabutoservices.com\"; endswith; fast_pattern; reference:url,syncromsp.com/security/; classtype:bad-unknown; sid:2042880; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_12_14, deployment Perimeter, former_category INFO, malware_family SyncroMSP, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 115,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .zohoassist .jp) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060600,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..zohoassist.jp",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .zohoassist .jp) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\"..zohoassist.jp\"; endswith; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060600; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 117,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .zohohost .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060601,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..zohohost.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .zohohost .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\"..zohohost.com\"; endswith; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060601; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 119,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .zohoassist .com .cn) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060602,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..zohoassist.com.cn",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .zohoassist .com .cn) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\"..zohoassist.com.cn\"; endswith; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060602; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 121,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .zohoassist .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060603,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..zohoassist.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .zohoassist .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\"..zohoassist.com\"; endswith; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060603; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .assist .cs .zohohost .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060604,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..assist.cs.zohohost.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain ( .assist .cs .zohohost .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\"..assist.cs.zohohost.com\"; endswith; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060604; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 135,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "18",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060611,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "assistlab.zoho.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI\"; flow:established,to_server; tls.sni; bsize:18; content:\"assistlab.zoho.com\"; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060611; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 137,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "23",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060612,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "downloads.zohodl.com.cn",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI\"; flow:established,to_server; tls.sni; bsize:23; content:\"downloads.zohodl.com.cn\"; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060612; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 139,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "21",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060613,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "downloads.zohocdn.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI\"; flow:established,to_server; tls.sni; bsize:21; content:\"downloads.zohocdn.com\"; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060613; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 141,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060614,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "assist.zoho.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI\"; flow:established,to_server; tls.sni; bsize:15; content:\"assist.zoho.com\"; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060614; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 143,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "22",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060615,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "gateway.zohoassist.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Zoho Assist Related Domain in TLS SNI\"; flow:established,to_server; tls.sni; bsize:22; content:\"gateway.zohoassist.com\"; fast_pattern; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060615; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 147,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Anydesk Relay Domain (net .anydesk .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,support.anydesk.com/knowledge/firewall",
+      "classtype": "misc-activity",
+      "sid": 2060508,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": ".net.anydesk.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Anydesk Relay Domain (net .anydesk .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".net.anydesk.com\"; endswith; fast_pattern; reference:url,support.anydesk.com/knowledge/firewall; classtype:misc-activity; sid:2060508; rev:2; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Anydesk API Domain (api .anydesk .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "classtype": "misc-activity",
+      "sid": 2060511,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "api.anydesk.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Anydesk API Domain (api .anydesk .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:15; content:\"api.anydesk.com\"; fast_pattern; classtype:misc-activity; sid:2060511; rev:2; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Anydesk Domain (boot .net .anydesk .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "20",
+      "classtype": "misc-activity",
+      "sid": 2060513,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "boot.net.anydesk.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Anydesk Domain (boot .net .anydesk .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:20; content:\"boot.net.anydesk.com\"; fast_pattern; classtype:misc-activity; sid:2060513; rev:2; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 159,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Teamviewer Frontline Related Domain (svc .frontlineworker .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.teamviewer.com/en-us/global/support/knowledge-base/teamviewer-frontline/installation-and-configuration/system-requirements/network-requirements/",
+      "classtype": "misc-activity",
+      "sid": 2060625,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag TeamViewer_Frontline, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": ".svc.frontlineworker.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Teamviewer Frontline Related Domain (svc .frontlineworker .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".svc.frontlineworker.com\"; endswith; fast_pattern; reference:url,www.teamviewer.com/en-us/global/support/knowledge-base/teamviewer-frontline/installation-and-configuration/system-requirements/network-requirements/; classtype:misc-activity; sid:2060625; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag TeamViewer_Frontline, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 163,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed TeamViewer RMM Related Domain (teamviewer .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": [
+        "type limit, seconds 180, count 1, track by_src",
+        "type limit, seconds 180, count 1, track by_src"
+      ],
+      "reference": "url,www.teamviewer.com",
+      "classtype": "misc-activity",
+      "sid": 2060632,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Teamviewer, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "!\"www",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".teamviewer.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed TeamViewer RMM Related Domain (teamviewer .com) in TLS SNI\"; flow:established,to_server; content:!\"www\"; tls.sni; dotprefix; content:\".teamviewer.com\"; endswith; fast_pattern; threshold:type limit, seconds 180, count 1, track by_src; threshold:type limit, seconds 180, count 1, track by_src; reference:url,www.teamviewer.com; classtype:misc-activity; sid:2060632; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Teamviewer, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 171,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Comodo ITarian RMM-related Domain (api .dragonplatform .net) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "22",
+      "reference": "url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html",
+      "classtype": "misc-activity",
+      "sid": 2064105,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "api.dragonplatform.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Comodo ITarian RMM-related Domain (api .dragonplatform .net) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:22; content:\"api.dragonplatform.net\"; fast_pattern; reference:url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html; classtype:misc-activity; sid:2064105; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 173,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Comodo ITarian RMM-related Domain (cescollector .cwatchapi .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "26",
+      "reference": "url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html",
+      "classtype": "misc-activity",
+      "sid": 2064106,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "cescollector.cwatchapi.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Comodo ITarian RMM-related Domain (cescollector .cwatchapi .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:26; content:\"cescollector.cwatchapi.com\"; fast_pattern; reference:url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html; classtype:misc-activity; sid:2064106; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 175,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Comodo ITarian RMM-related Domain (mdmsupport .comodo .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "21",
+      "reference": "url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html",
+      "classtype": "misc-activity",
+      "sid": 2064107,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "mdmsupport.comodo.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Comodo ITarian RMM-related Domain (mdmsupport .comodo .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:21; content:\"mdmsupport.comodo.com\"; fast_pattern; reference:url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html; classtype:misc-activity; sid:2064107; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 179,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Teramind RMM Domain (teramind .co) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,kb.teramind.co/en/articles/8791054-how-to-check-if-teramind-ip-addresses-hosts-and-ports-are-reachable",
+      "classtype": "misc-activity",
+      "sid": 2066654,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, attack_target Client_and_Server, created_at 2026_01_09, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Teramind, updated_at 2026_01_09, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": ".teramind.co",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Teramind RMM Domain (teramind .co) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".teramind.co\"; endswith; fast_pattern; reference:url,kb.teramind.co/en/articles/8791054-how-to-check-if-teramind-ip-addresses-hosts-and-ports-are-reachable; classtype:misc-activity; sid:2066654; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, attack_target Client_and_Server, created_at 2026_01_09, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Teramind, updated_at 2026_01_09, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Kaseya Pulseway Domain (pulseway .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lolrmm.io/tools/pulseway",
+      "classtype": "misc-activity",
+      "sid": 2066798,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2026_01_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2026_01_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": ".pulseway.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Kaseya Pulseway Domain (pulseway .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".pulseway.com\"; endswith; fast_pattern; reference:url,lolrmm.io/tools/pulseway; classtype:misc-activity; sid:2066798; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2026_01_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2026_01_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 187,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Kaseya Pulseway Domain (pulseway .s3-accelerate .amazonaws .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "36",
+      "reference": "url,lolrmm.io/tools/pulseway",
+      "classtype": "misc-activity",
+      "sid": 2066800,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2026_01_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2026_01_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "pulseway.s3-accelerate.amazonaws.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Kaseya Pulseway Domain (pulseway .s3-accelerate .amazonaws .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:36; content:\"pulseway.s3-accelerate.amazonaws.com\"; fast_pattern; reference:url,lolrmm.io/tools/pulseway; classtype:misc-activity; sid:2066800; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2026_01_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2026_01_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 199,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (screenconnect .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lolrmm.io/tools/screenconnect",
+      "classtype": "misc-activity",
+      "sid": 2071200,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag ScreenConnect, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".screenconnect.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (screenconnect .com)\"; flow:established,to_server; tls.sni; dotprefix; content:\".screenconnect.com\"; endswith; fast_pattern; reference:url,lolrmm.io/tools/screenconnect; classtype:misc-activity; sid:2071200; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag ScreenConnect, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 201,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (connectwise .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lolrmm.io/tools/screenconnect",
+      "classtype": "misc-activity",
+      "sid": 2071201,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".connectwise.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (connectwise .com)\"; flow:established,to_server; tls.sni; dotprefix; content:\".connectwise.com\"; endswith; fast_pattern; reference:url,lolrmm.io/tools/screenconnect; classtype:misc-activity; sid:2071201; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 205,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (check .screenconnect .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "23",
+      "reference": "url,lolrmm.io/tools/screenconnect",
+      "classtype": "misc-activity",
+      "sid": 2071203,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag ScreenConnect, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "check.screenconnect.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (check .screenconnect .com)\"; flow:established,to_server; tls.sni; bsize:23; content:\"check.screenconnect.com\"; fast_pattern; reference:url,lolrmm.io/tools/screenconnect; classtype:misc-activity; sid:2071203; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag ScreenConnect, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 209,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (getscreen .me)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lolrmm.io/tools/getscreen",
+      "classtype": "misc-activity",
+      "sid": 2071205,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag GetScreen, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".getscreen.me",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (getscreen .me)\"; flow:established,to_server; tls.sni; dotprefix; content:\".getscreen.me\"; endswith; fast_pattern; reference:url,lolrmm.io/tools/getscreen; classtype:misc-activity; sid:2071205; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag GetScreen, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 213,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (agentreportingstore .blob .core .windows .net)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "41",
+      "reference": "url,lolrmm.io/tools/atera",
+      "classtype": "misc-activity",
+      "sid": 2071225,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_17, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_17, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "agentreportingstore.blob.core.windows.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (agentreportingstore .blob .core .windows .net)\"; flow:established,to_server; tls.sni; bsize:41; content:\"agentreportingstore.blob.core.windows.net\"; fast_pattern; reference:url,lolrmm.io/tools/atera; classtype:misc-activity; sid:2071225; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_17, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_17, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 217,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (packagesstore .blob .core .windows .net)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "35",
+      "reference": "url,lolrmm.io/tools/atera",
+      "classtype": "misc-activity",
+      "sid": 2071227,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_17, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_17, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "packagesstore.blob.core.windows.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in TLS SNI (packagesstore .blob .core .windows .net)\"; flow:established,to_server; tls.sni; bsize:35; content:\"packagesstore.blob.core.windows.net\"; fast_pattern; reference:url,lolrmm.io/tools/atera; classtype:misc-activity; sid:2071227; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_17, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_17, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  }
+]

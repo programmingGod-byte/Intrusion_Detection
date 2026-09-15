@@ -1,0 +1,2223 @@
+[
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (rce .ee)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,www.fastly.com/blog/new-data-and-insights-into-log4shell-attacks-cve-2021-44228",
+        "cve,2021-44228"
+      ],
+      "classtype": "domain-c2",
+      "sid": 2034747,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_17, cve CVE_2021_44228, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_17",
+      "contents": [
+        {
+          "pattern": ".rce.ee",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (rce .ee)\"; dns.query; dotprefix; content:\".rce.ee\"; nocase; endswith; reference:url,www.fastly.com/blog/new-data-and-insights-into-log4shell-attacks-cve-2021-44228; reference:cve,2021-44228; classtype:domain-c2; sid:2034747; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_17, cve CVE_2021_44228, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_17;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (log4j .binaryedge .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034819,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".log4j.binaryedge.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (log4j .binaryedge .io)\"; dns.query; dotprefix; content:\".log4j.binaryedge.io\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034819; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (log4shell .huntress .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034820,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".log4shell.huntress.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (log4shell .huntress .com)\"; dns.query; dotprefix; content:\".log4shell.huntress.com\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034820; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (kryptoslogic-cve-2021-44228 .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034821,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".kryptoslogic-cve-2021-44228.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (kryptoslogic-cve-2021-44228 .com)\"; dns.query; dotprefix; content:\".kryptoslogic-cve-2021-44228.com\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034821; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 111,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (ceye .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034822,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".ceye.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (ceye .io)\"; dns.query; dotprefix; content:\".ceye.io\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034822; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 113,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (oob .li)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034823,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".oob.li",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (oob .li)\"; dns.query; dotprefix; content:\".oob.li\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034823; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 115,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (pwn .af)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034824,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".pwn.af",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (pwn .af)\"; dns.query; dotprefix; content:\".pwn.af\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034824; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 117,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (notburpcollaborator .net)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034825,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".notburpcollaborator.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (notburpcollaborator .net)\"; dns.query; dotprefix; content:\".notburpcollaborator.net\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034825; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 119,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (scannermcscanface-edgescan .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034826,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".scannermcscanface-edgescan.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (scannermcscanface-edgescan .com)\"; dns.query; dotprefix; content:\".scannermcscanface-edgescan.com\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034826; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 121,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (service .exfil .site)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034827,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".service.exfil.site",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (service .exfil .site)\"; dns.query; dotprefix; content:\".service.exfil.site\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034827; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (scanworld .net)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034828,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".scanworld.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (scanworld .net)\"; dns.query; dotprefix; content:\".scanworld.net\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034828; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 125,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (log .exposedbotnets .ru)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034830,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".log.exposedbotnets.ru",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain (log .exposedbotnets .ru)\"; dns.query; dotprefix; content:\".log.exposedbotnets.ru\"; nocase; endswith; reference:cve,2021-44228; classtype:domain-c2; sid:2034830; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 127,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (canarytokens .com)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "cve,2021-44228",
+      "classtype": "domain-c2",
+      "sid": 2034832,
+      "rev": 2,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21",
+      "contents": [
+        {
+          "pattern": ".l4j.",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": ".canarytokens.com",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (canarytokens .com)\"; dns.query; content:\".l4j.\"; nocase; content:\".canarytokens.com\"; nocase; endswith; fast_pattern; reference:cve,2021-44228; classtype:domain-c2; sid:2034832; rev:2; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_21;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 129,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (log4j. leakix .net)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": [
+        "cve,2021-44228",
+        "url,twitter.com/VessOnSecurity/status/1473414886533304322"
+      ],
+      "classtype": "domain-c2",
+      "sid": 2034831,
+      "rev": 2,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_01_04",
+      "contents": [
+        {
+          "pattern": "log4j.leakix.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Security Scanner Domain (log4j. leakix .net)\"; dns.query; content:\"log4j.leakix.net\"; nocase; endswith; reference:cve,2021-44228; reference:url,twitter.com/VessOnSecurity/status/1473414886533304322; classtype:domain-c2; sid:2034831; rev:2; metadata:attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_01_04;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF8 base64 string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027027,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "hpcyBwcm9",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF8 base64 string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"hpcyBwcm9\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027027; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF8 base64 string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027028,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "lzIHByb2d",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF8 base64 string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"lzIHByb2d\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027028; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF8 base64 string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027029,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "aXMgcHJvZ3J",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF8 base64 string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"aXMgcHJvZ3J\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027029; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 157,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF16-LE base64 string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027030,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "hpcyBwcm9ncm",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF16-LE base64 string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"hpcyBwcm9ncm\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027030; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 159,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF16-LE base64 string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027031,
+      "rev": 3,
+      "metadata": "attack_target DNS_Server, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "GlzIHByb2dyYW",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF16-LE base64 string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"GlzIHByb2dyYW\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027031; rev:3; metadata:attack_target DNS_Server, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 161,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF16-LE base64 string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027032,
+      "rev": 3,
+      "metadata": "created_at 2019_03_05, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "aXMgcHJvZ3JhbS",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF16-LE base64 string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"aXMgcHJvZ3JhbS\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027032; rev:3; metadata:created_at 2019_03_05, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 163,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF8 base64 wide string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027033,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "gAaQBzACAAcAByAG8AZwByAGE",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF8 base64 wide string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"gAaQBzACAAcAByAG8AZwByAGE\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027033; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 165,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF8 base64 wide string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027034,
+      "rev": 3,
+      "metadata": "created_at 2019_03_05, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "BoAGkAcwAgAHAAcgBvAGcAcgB",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF8 base64 wide string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"BoAGkAcwAgAHAAcgBvAGcAcgB\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027034; rev:3; metadata:created_at 2019_03_05, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 167,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF8 base64 wide string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027035,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "aABpAHMAIABwAHIAbwBnAHIAYQB",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF8 base64 wide string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"aABpAHMAIABwAHIAbwBnAHIAYQB\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027035; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 169,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF16-LE base64 wide string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027036,
+      "rev": 3,
+      "metadata": "created_at 2019_03_05, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "BoAGkAcwAgAHAAcgBvAGcAcgBhAG",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF16-LE base64 wide string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"BoAGkAcwAgAHAAcgBvAGcAcgBhAG\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027036; rev:3; metadata:created_at 2019_03_05, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 171,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF16-LE base64 wide string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027037,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "GgAaQBzACAAcAByAG8AZwByAGEAbQ",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF16-LE base64 wide string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"GgAaQBzACAAcAByAG8AZwByAGEAbQ\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027037; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 173,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF16-LE base64 wide string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027038,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family CoinMiner, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "aABpAHMAIABwAHIAbwBnAHIAYQBtAC",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF16-LE base64 wide string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"aABpAHMAIABwAHIAbwBnAHIAYQBtAC\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027038; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family CoinMiner, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 175,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF8 base64 reversed string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027039,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "FyZ29ycCB",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF8 base64 reversed string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"FyZ29ycCB\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027039; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 177,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF8 base64 reversed string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027040,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "1hcmdvcnA",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF8 base64 reversed string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"1hcmdvcnA\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027040; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 179,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF8 base64 reversed string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027041,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "YXJnb3JwIHN",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF8 base64 reversed string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"YXJnb3JwIHN\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027041; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 181,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF16 base64 reversed string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027042,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "1hcmdvcnAgc2",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF16 base64 reversed string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"1hcmdvcnAgc2\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027042; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF16 base64 reversed string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027043,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "WFyZ29ycCBzaW",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF16 base64 reversed string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"WFyZ29ycCBzaW\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027043; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 185,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE UTF16 base64 reversed string /This Program/ in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2027044,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "YXJnb3JwIHNpaF",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE UTF16 base64 reversed string /This Program/ in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"YXJnb3JwIHNpaF\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2027044; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_03_05, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_01_24;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1481,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (V3LU9) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026920,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "V3LU9",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (V3LU9) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"V3LU9\"; fast_pattern; distance:0; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026920; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1483,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (ctT2J) in DNS TXT Response",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026921,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ctT2J",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (ctT2J) in DNS TXT Response\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"ctT2J\"; fast_pattern; distance:0; content:!\"v=DKIM\"; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026921; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1485,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (dy1PYmp) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026922,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "dy1PYmp",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (dy1PYmp) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"dy1PYmp\"; fast_pattern; distance:0; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026922; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1487,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (V3LU9iam) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026923,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "V3LU9iam",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (V3LU9iam) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"V3LU9iam\"; fast_pattern; distance:0; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026923; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1489,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (XctT2JqZW) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026924,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "XctT2JqZW",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (XctT2JqZW) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"XctT2JqZW\"; fast_pattern; distance:0; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026924; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1491,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (dy1PYmplY3) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026925,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "dy1PYmplY3",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded New-Object (dy1PYmplY3) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"dy1PYmplY3\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026925; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1493,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (FydC1Qcm9) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026926,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "FydC1Qcm9",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (FydC1Qcm9) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"FydC1Qcm9\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026926; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1495,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (RhcnQtUHJ) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026927,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "RhcnQtUHJ",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (RhcnQtUHJ) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"RhcnQtUHJ\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026927; rev:4; metadata:attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1497,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (YXJ0LVByb2N) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026928,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "YXJ0LVByb2N",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (YXJ0LVByb2N) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"YXJ0LVByb2N\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026928; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1499,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (RhcnQtUHJvY2) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026929,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "RhcnQtUHJvY2",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (RhcnQtUHJvY2) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"RhcnQtUHJvY2\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026929; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1501,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (GFydC1Qcm9jZX) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026930,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "GFydC1Qcm9jZX",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (GFydC1Qcm9jZX) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"GFydC1Qcm9jZX\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026930; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1503,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (YXJ0LVByb2Nlc3) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026931,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "YXJ0LVByb2Nlc3",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process (YXJ0LVByb2Nlc3) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"YXJ0LVByb2Nlc3\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026931; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1505,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (Zva2UtV21pTWV) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026932,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Zva2UtV21pTWV",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (Zva2UtV21pTWV) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"Zva2UtV21pTWV\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026932; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1507,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (52b2tlLVdtaU1) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026933,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "52b2tlLVdtaU1",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (52b2tlLVdtaU1) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"52b2tlLVdtaU1\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026933; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1509,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (dm9rZS1XbWlNZXR) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026934,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "dm9rZS1XbWlNZXR",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (dm9rZS1XbWlNZXR) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"dm9rZS1XbWlNZXR\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026934; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1511,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (52b2tlLVdtaU1ldG) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026935,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "52b2tlLVdtaU1ldG",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (52b2tlLVdtaU1ldG) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"52b2tlLVdtaU1ldG\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026935; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1513,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (nZva2UtV21pTWV0aG) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026936,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "nZva2UtV21pTWV0aG",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (nZva2UtV21pTWV0aG) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"nZva2UtV21pTWV0aG\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026936; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1515,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (dm9rZS1XbWlNZXRob2) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026937,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "dm9rZS1XbWlNZXRob2",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-WmiMethod (dm9rZS1XbWlNZXRob2) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"dm9rZS1XbWlNZXRob2\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026937; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1517,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (Zva2UtQ29) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026938,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Zva2UtQ29",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (Zva2UtQ29) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"Zva2UtQ29\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026938; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1519,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (dm9rZS1Db21) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026939,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "dm9rZS1Db21",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (dm9rZS1Db21) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"dm9rZS1Db21\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026939; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1521,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (nZva2UtQ29tbW) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026940,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "nZva2UtQ29tbW",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (nZva2UtQ29tbW) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"nZva2UtQ29tbW\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026940; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1523,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (52b2tlLUNvbW1) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026941,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "52b2tlLUNvbW1",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (52b2tlLUNvbW1) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"52b2tlLUNvbW1\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026941; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1525,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (dm9rZS1Db21tYW) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026942,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "dm9rZS1Db21tYW",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (dm9rZS1Db21tYW) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"dm9rZS1Db21tYW\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026942; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1527,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (52b2tlLUNvbW1hbm) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2026943,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "52b2tlLUNvbW1hbm",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Invoke-Command (52b2tlLUNvbW1hbm) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"52b2tlLUNvbW1hbm\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2026943; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter, malware_family DNSlivery, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1541,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell String Base64 Encoded Invoke-RestMethod (dm9rZS1SZXN0TWV0) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2043161,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "dm9rZS1SZXN0TWV0",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell String Base64 Encoded Invoke-RestMethod (dm9rZS1SZXN0TWV0) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"dm9rZS1SZXN0TWV0\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2043161; rev:3; metadata:attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1543,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell String Base64 Encoded Invoke-RestMethod (Zva2UtUmVzdE1ld) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2043162,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Zva2UtUmVzdE1ld",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell String Base64 Encoded Invoke-RestMethod (Zva2UtUmVzdE1ld) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"Zva2UtUmVzdE1ld\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2043162; rev:3; metadata:attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1545,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell String Base64 Encoded Invoke-RestMethod (2b2tlLVJlc3RNZX) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2043163,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "2b2tlLVJlc3RNZX",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell String Base64 Encoded Invoke-RestMethod (2b2tlLVJlc3RNZX) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"2b2tlLVJlc3RNZX\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2043163; rev:3; metadata:attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1547,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell String Base64 Encoded Text.Encoding (ZXh0LkVuY29k) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2043164,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ZXh0LkVuY29k",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell String Base64 Encoded Text.Encoding (ZXh0LkVuY29k) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"ZXh0LkVuY29k\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2043164; rev:3; metadata:attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1549,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell String Base64 Encoded Text.Encoding (V4dC5FbmNvZ) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2043165,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "V4dC5FbmNvZ",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell String Base64 Encoded Text.Encoding (V4dC5FbmNvZ) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"V4dC5FbmNvZ\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2043165; rev:3; metadata:attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1551,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE PowerShell String Base64 Encoded Text.Encoding (leHQuRW5jb2) in DNS TXT Reponse",
+      "reference": "url,github.com/no0be/DNSlivery",
+      "classtype": "bad-unknown",
+      "sid": 2043166,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "!\"v=DKIM",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "leHQuRW5jb2",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE PowerShell String Base64 Encoded Text.Encoding (leHQuRW5jb2) in DNS TXT Reponse\"; content:!\"v=DKIM\"; content:\"|00 00 10 00 01 c0 0c 00 10 00 01|\"; content:\"leHQuRW5jb2\"; distance:0; fast_pattern; reference:url,github.com/no0be/DNSlivery; classtype:bad-unknown; sid:2043166; rev:3; metadata:attack_target Client_Endpoint, created_at 2023_01_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  }
+]

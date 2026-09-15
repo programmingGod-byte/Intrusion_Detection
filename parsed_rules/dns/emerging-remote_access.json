@@ -1,0 +1,1018 @@
+[
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS DNS Query to Remote Monitoring and Management Domain (centrastage .net)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,rmm.datto.com/help/en/Content/1INTRODUCTION/Infrastructure/Platforms.htm",
+      "classtype": "misc-activity",
+      "sid": 2053819,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_24, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2024_06_24",
+      "contents": [
+        {
+          "pattern": ".centrastage.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS DNS Query to Remote Monitoring and Management Domain (centrastage .net)\"; dns.query; dotprefix; content:\".centrastage.net\"; nocase; endswith; reference:url,rmm.datto.com/help/en/Content/1INTRODUCTION/Infrastructure/Platforms.htm; classtype:misc-activity; sid:2053819; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_24, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2024_06_24;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Management Software Domain in DNS Lookup (syncromsp .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2036348,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".syncromsp.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Observed Remote Management Software Domain in DNS Lookup (syncromsp .com)\"; dns.query; dotprefix; content:\".syncromsp.com\"; nocase; endswith; classtype:bad-unknown; sid:2036348; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed SyncroMSP Remote Management Software Domain in DNS Lookup (kabutoservices .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,syncromsp.com/security/",
+      "classtype": "misc-activity",
+      "sid": 2042877,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_12_14, deployment Perimeter, former_category INFO, malware_family SyncroMSP, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".kabutoservices.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Observed SyncroMSP Remote Management Software Domain in DNS Lookup (kabutoservices .com)\"; dns.query; dotprefix; content:\".kabutoservices.com\"; nocase; endswith; reference:url,syncromsp.com/security/; classtype:misc-activity; sid:2042877; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_12_14, deployment Perimeter, former_category INFO, malware_family SyncroMSP, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed SyncroMSP Remote Management Software Domain in DNS Lookup (repairshopr .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,syncromsp.com/security/",
+      "classtype": "bad-unknown",
+      "sid": 2042878,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_12_14, deployment Datacenter, former_category INFO, malware_family SyncroMSP, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".repairshopr.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Observed SyncroMSP Remote Management Software Domain in DNS Lookup (repairshopr .com)\"; dns.query; dotprefix; content:\".repairshopr.com\"; nocase; endswith; reference:url,syncromsp.com/security/; classtype:bad-unknown; sid:2042878; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_12_14, deployment Datacenter, former_category INFO, malware_family SyncroMSP, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed DNS Query to Known ScreenConnect/ConnectWise Remote Desktop Service Domain",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2050021,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_11, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, former_sid 2834818",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".screenconnect.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Observed DNS Query to Known ScreenConnect/ConnectWise Remote Desktop Service Domain\"; dns.query; content:\".screenconnect.com\"; nocase; endswith; classtype:misc-activity; sid:2050021; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_02_11, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, former_sid 2834818; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain ( .zohoassist .jp) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060595,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..zohoassist.jp",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain ( .zohoassist .jp) in DNS Lookup\"; dns.query; dotprefix; content:\"..zohoassist.jp\"; nocase; endswith; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060595; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain ( .zohohost .com) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060596,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..zohohost.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain ( .zohohost .com) in DNS Lookup\"; dns.query; dotprefix; content:\"..zohohost.com\"; nocase; endswith; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060596; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain ( .zohoassist .com .cn) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060597,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..zohoassist.com.cn",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain ( .zohoassist .com .cn) in DNS Lookup\"; dns.query; dotprefix; content:\"..zohoassist.com.cn\"; nocase; endswith; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060597; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 111,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain ( .zohoassist .com) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060598,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..zohoassist.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain ( .zohoassist .com) in DNS Lookup\"; dns.query; dotprefix; content:\"..zohoassist.com\"; nocase; endswith; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060598; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 113,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain ( .assist .cs .zohohost .com) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060599,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "..assist.cs.zohohost.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain ( .assist .cs .zohohost .com) in DNS Lookup\"; dns.query; dotprefix; content:\"..assist.cs.zohohost.com\"; nocase; endswith; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060599; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 125,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain (assistlab .zoho .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "18",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060606,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "assistlab.zoho.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain (assistlab .zoho .com) in DNS Lookup\"; dns.query; bsize:18; content:\"assistlab.zoho.com\"; nocase; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060606; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 127,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain (downloads .zohodl .com .cn) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "23",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060607,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "downloads.zohodl.com.cn",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain (downloads .zohodl .com .cn) in DNS Lookup\"; dns.query; bsize:23; content:\"downloads.zohodl.com.cn\"; nocase; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060607; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 129,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain (downloads .zohocdn .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "21",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060608,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "downloads.zohocdn.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain (downloads .zohocdn .com) in DNS Lookup\"; dns.query; bsize:21; content:\"downloads.zohocdn.com\"; nocase; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060608; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 131,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain (assist .zoho .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "15",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060609,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "assist.zoho.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain (assist .zoho .com) in DNS Lookup\"; dns.query; bsize:15; content:\"assist.zoho.com\"; nocase; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060609; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 133,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Zoho Assist Related Domain (gateway .zohoassist .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "22",
+      "reference": [
+        "url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml",
+        "url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2060610,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "gateway.zohoassist.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Zoho Assist Related Domain (gateway .zohoassist .com) in DNS Lookup\"; dns.query; bsize:22; content:\"gateway.zohoassist.com\"; nocase; reference:url,github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/zoho_assist_network_sigma.yml; reference:url,help.zoho.com/portal/en/kb/assist/user-guide/setup-zoho-assist/articles/custom-domain#Map_Your_Domain_to_Zoho_Assist; classtype:misc-activity; sid:2060610; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Zoho_Assist, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 145,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Anydesk Relay Domain (net .anydesk .com) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,support.anydesk.com/knowledge/firewall",
+      "classtype": "misc-activity",
+      "sid": 2060507,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": ".net.anydesk.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Anydesk Relay Domain (net .anydesk .com) in DNS Lookup\"; dns.query; dotprefix; content:\".net.anydesk.com\"; nocase; endswith; reference:url,support.anydesk.com/knowledge/firewall; classtype:misc-activity; sid:2060507; rev:2; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 149,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Anydesk API Domain (api .anydesk .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "15",
+      "classtype": "misc-activity",
+      "sid": 2060510,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "api.anydesk.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Anydesk API Domain (api .anydesk .com) in DNS Lookup\"; dns.query; bsize:15; content:\"api.anydesk.com\"; nocase; classtype:misc-activity; sid:2060510; rev:2; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Anydesk Domain (boot .net .anydesk .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "20",
+      "classtype": "misc-activity",
+      "sid": 2060512,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "boot.net.anydesk.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Anydesk Domain (boot .net .anydesk .com) in DNS Lookup\"; dns.query; bsize:20; content:\"boot.net.anydesk.com\"; nocase; classtype:misc-activity; sid:2060512; rev:2; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_03, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag AnyDesk, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 157,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Teamviewer Frontline Domain (svc .frontlineworker .com) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.teamviewer.com/en-us/global/support/knowledge-base/teamviewer-frontline/installation-and-configuration/system-requirements/network-requirements/",
+      "classtype": "misc-activity",
+      "sid": 2060624,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag TeamViewer_Frontline, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": ".svc.frontlineworker.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Teamviewer Frontline Domain (svc .frontlineworker .com) in DNS Lookup\"; dns.query; dotprefix; content:\".svc.frontlineworker.com\"; nocase; endswith; reference:url,www.teamviewer.com/en-us/global/support/knowledge-base/teamviewer-frontline/installation-and-configuration/system-requirements/network-requirements/; classtype:misc-activity; sid:2060624; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag TeamViewer_Frontline, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 161,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS TeamViewer RMM Domain (teamviewer .com) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit, seconds 180, count 1, track by_src",
+      "reference": "url,www.teamviewer.com",
+      "classtype": "misc-activity",
+      "sid": 2060630,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Teamviewer, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "!\"|03|www",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".teamviewer.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS TeamViewer RMM Domain (teamviewer .com) in DNS Lookup\"; content:!\"|03|www\"; dns.query; dotprefix; content:\".teamviewer.com\"; fast_pattern; nocase; endswith; threshold:type limit, seconds 180, count 1, track by_src; reference:url,www.teamviewer.com; classtype:misc-activity; sid:2060630; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Teamviewer, tag RMM, updated_at 2025_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 165,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Comodo Itarian RMM-related Domain (api .dragonplatform .net) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "22",
+      "reference": "url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html",
+      "classtype": "misc-activity",
+      "sid": 2064102,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "api.dragonplatform.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Comodo Itarian RMM-related Domain (api .dragonplatform .net) in DNS Lookup\"; dns.query; bsize:22; content:\"api.dragonplatform.net\"; nocase; reference:url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html; classtype:misc-activity; sid:2064102; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 167,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Comodo Itarian RMM-related Domain (cescollector .cwatchapi .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "26",
+      "reference": "url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html",
+      "classtype": "misc-activity",
+      "sid": 2064103,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "cescollector.cwatchapi.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Comodo Itarian RMM-related Domain (cescollector .cwatchapi .com) in DNS Lookup\"; dns.query; bsize:26; content:\"cescollector.cwatchapi.com\"; nocase; reference:url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html; classtype:misc-activity; sid:2064103; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 169,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Comodo Itarian RMM-related Domain (mdmsupport .comodo .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "21",
+      "reference": "url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html",
+      "classtype": "misc-activity",
+      "sid": 2064104,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "mdmsupport.comodo.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Comodo Itarian RMM-related Domain (mdmsupport .comodo .com) in DNS Lookup\"; dns.query; bsize:21; content:\"mdmsupport.comodo.com\"; nocase; reference:url,help.itarian.com/topic-459-1-1005-14776-Appendix-1b---Endpoint-Manager-Services---IP-Nos,-Host-Names-and-Port-Details---US-Customers.html; classtype:misc-activity; sid:2064104; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Linux, attack_target Client_and_Server, created_at 2025_08_22, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag ITarian, updated_at 2025_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 177,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Teramind RMM Domain (teramind .co) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,kb.teramind.co/en/articles/8791054-how-to-check-if-teramind-ip-addresses-hosts-and-ports-are-reachable",
+      "classtype": "misc-activity",
+      "sid": 2066653,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, attack_target Client_and_Server, created_at 2026_01_09, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Teramind, updated_at 2026_01_09, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": ".teramind.co",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Teramind RMM Domain (teramind .co) in DNS Lookup\"; dns.query; dotprefix; content:\".teramind.co\"; nocase; endswith; reference:url,kb.teramind.co/en/articles/8791054-how-to-check-if-teramind-ip-addresses-hosts-and-ports-are-reachable; classtype:misc-activity; sid:2066653; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, attack_target Client_and_Server, created_at 2026_01_09, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Teramind, updated_at 2026_01_09, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 181,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Kaseya Pulseway RMM Domain in DNS Lookup (pulseway .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lolrmm.io/tools/pulseway",
+      "classtype": "misc-activity",
+      "sid": 2066797,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2026_01_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2026_01_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": ".pulseway.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Kaseya Pulseway RMM Domain in DNS Lookup (pulseway .com)\"; dns.query; dotprefix; content:\".pulseway.com\"; nocase; endswith; reference:url,lolrmm.io/tools/pulseway; classtype:misc-activity; sid:2066797; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2026_01_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2026_01_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 185,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Kaseya Pulseway Domain in DNS Lookup (pulseway .s3-accelerate .amazonaws .com)",
+      "dns.query": true,
+      "bsize": "36",
+      "reference": "url,lolrmm.io/tools/pulseway",
+      "classtype": "misc-activity",
+      "sid": 2066799,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2026_01_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2026_01_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "contents": [
+        {
+          "pattern": "pulseway.s3-accelerate.amazonaws.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Kaseya Pulseway Domain in DNS Lookup (pulseway .s3-accelerate .amazonaws .com)\"; dns.query; bsize:36; content:\"pulseway.s3-accelerate.amazonaws.com\"; nocase; reference:url,lolrmm.io/tools/pulseway; classtype:misc-activity; sid:2066799; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2026_01_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2026_01_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 195,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tool in DNS Lookup (screenconnect .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lolrmm.io/tools/screenconnect",
+      "classtype": "misc-activity",
+      "sid": 2071198,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag ScreenConnect, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".screenconnect.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tool in DNS Lookup (screenconnect .com)\"; dns.query; dotprefix; content:\".screenconnect.com\"; nocase; endswith; reference:url,lolrmm.io/tools/screenconnect; classtype:misc-activity; sid:2071198; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag ScreenConnect, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 197,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tool in DNS Lookup (connectwise .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lolrmm.io/tools/screenconnect",
+      "classtype": "misc-activity",
+      "sid": 2071199,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".connectwise.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tool in DNS Lookup (connectwise .com)\"; dns.query; dotprefix; content:\".connectwise.com\"; nocase; endswith; reference:url,lolrmm.io/tools/screenconnect; classtype:misc-activity; sid:2071199; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 203,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tool in DNS Lookup (check .screenconnect .com)",
+      "dns.query": true,
+      "bsize": "23",
+      "reference": "url,lolrmm.io/tools/screenconnect",
+      "classtype": "misc-activity",
+      "sid": 2071202,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag ScreenConnect, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "check.screenconnect.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tool in DNS Lookup (check .screenconnect .com)\"; dns.query; bsize:23; content:\"check.screenconnect.com\"; nocase; reference:url,lolrmm.io/tools/screenconnect; classtype:misc-activity; sid:2071202; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag ScreenConnect, tag RMM, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 207,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tools in DNS Lookup (getscreen .me)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lolrmm.io/tools/getscreen",
+      "classtype": "misc-activity",
+      "sid": 2071204,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag GetScreen, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".getscreen.me",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tools in DNS Lookup (getscreen .me)\"; dns.query; dotprefix; content:\".getscreen.me\"; nocase; endswith; reference:url,lolrmm.io/tools/getscreen; classtype:misc-activity; sid:2071204; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, tag GetScreen, updated_at 2026_07_16, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 211,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tool in DNS Lookup (agentreportingstore .blob .core .windows .net)",
+      "dns.query": true,
+      "bsize": "41",
+      "reference": "url,lolrmm.io/tools/atera",
+      "classtype": "misc-activity",
+      "sid": 2071224,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_17, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_17, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "agentreportingstore.blob.core.windows.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Remote Monitoring and Management (RMM) Tool in DNS Lookup (agentreportingstore .blob .core .windows .net)\"; dns.query; bsize:41; content:\"agentreportingstore.blob.core.windows.net\"; nocase; reference:url,lolrmm.io/tools/atera; classtype:misc-activity; sid:2071224; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_17, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_17, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 215,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in DNS Lookup (packagesstore .blob .core .windows .net)",
+      "dns.query": true,
+      "bsize": "35",
+      "reference": "url,lolrmm.io/tools/atera",
+      "classtype": "misc-activity",
+      "sid": 2071226,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_07_17, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_17, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "packagesstore.blob.core.windows.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET REMOTE_ACCESS Observed Remote Monitoring and Management (RMM) Tool in DNS Lookup (packagesstore .blob .core .windows .net)\"; dns.query; bsize:35; content:\"packagesstore.blob.core.windows.net\"; nocase; reference:url,lolrmm.io/tools/atera; classtype:misc-activity; sid:2071226; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_07_17, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RMM, updated_at 2026_07_17, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1219, mitre_technique_name Remote_Access_Software; target:src_ip;)"
+  }
+]

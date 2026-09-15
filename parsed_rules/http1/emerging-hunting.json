@@ -1,0 +1,518 @@
+[
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2071,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Query to IP Check Tool With Minimal Headers (ip .tool .chinaz .com",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.host": true,
+      "bsize": [
+        "18",
+        "1",
+        "26"
+      ],
+      "http.content_len": true,
+      "http.header_names": true,
+      "reference": [
+        "md5,6c970b5d5a68455346e504069179ff80",
+        "url,infosec.exchange/@still/111692194892367763"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2049897,
+      "rev": 3,
+      "metadata": "created_at 2024_01_03, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ip.tool.chinaz.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Query to IP Check Tool With Minimal Headers (ip .tool .chinaz .com\"; flow:established,to_server; http.method; content:\"GET\"; http.host; bsize:18; content:\"ip.tool.chinaz.com\"; fast_pattern; http.content_len; bsize:1; content:\"0\"; http.header_names; bsize:26; content:\"|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; reference:md5,6c970b5d5a68455346e504069179ff80; reference:url,infosec.exchange/@still/111692194892367763; classtype:misc-activity; sid:2049897; rev:3; metadata:created_at 2024_01_03, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2073,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING [ANY.RUN] DARKCLOUD Style External IP Check",
+      "flow": "established,to_server",
+      "http.start": true,
+      "bsize": "58",
+      "reference": "url,community.emergingthreats.net/t/darkcloud/844",
+      "classtype": "external-ip-check",
+      "sid": 2047083,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_08_08, deployment Perimeter, deployment SSLDecrypt, malware_family DarkCloud, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03",
+      "contents": [
+        {
+          "pattern": "GET|20 2f 20|HTTP|2f|1|2e|1|0d 0a|User|2d|Agent|3a 20|Project1|0d 0a|Host|3a 20|showip|2e|net|0d 0a 0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING [ANY.RUN] DARKCLOUD Style External IP Check\"; flow:established,to_server; http.start; bsize:58; content:\"GET|20 2f 20|HTTP|2f|1|2e|1|0d 0a|User|2d|Agent|3a 20|Project1|0d 0a|Host|3a 20|showip|2e|net|0d 0a 0d 0a|\"; fast_pattern; reference:url,community.emergingthreats.net/t/darkcloud/844; classtype:external-ip-check; sid:2047083; rev:3; metadata:attack_target Client_Endpoint, created_at 2023_08_08, deployment Perimeter, deployment SSLDecrypt, malware_family DarkCloud, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2077,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Terse Request for Zip File (GET)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.header_names": true,
+      "bsize": "22",
+      "classtype": "bad-unknown",
+      "sid": 2044121,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_06, deployment Perimeter, performance_impact Significant, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".zip",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Terse Request for Zip File (GET)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\".zip\"; endswith; fast_pattern; http.header_names; bsize:22; content:\"|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; classtype:bad-unknown; sid:2044121; rev:3; metadata:attack_target Client_Endpoint, created_at 2023_02_06, deployment Perimeter, performance_impact Significant, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2079,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Terse Request to note .youdao .com - Possible Download",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "pcre": "/[a-f0-9]{32}$/UR",
+      "http.host": true,
+      "bsize": [
+        "15",
+        "22"
+      ],
+      "http.header_names": true,
+      "reference": "url,twitter.com/malwrhunterteam/status/1509160261881667585",
+      "classtype": "misc-activity",
+      "sid": 2035681,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_03_30, deployment Perimeter, deployment SSLDecrypt, performance_impact Moderate, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/yws/api/personal/file/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "?method=download&shareKey=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "note.youdao.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Terse Request to note .youdao .com - Possible Download\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/yws/api/personal/file/\"; content:\"?method=download&shareKey=\"; distance:0; pcre:\"/[a-f0-9]{32}$/UR\"; http.host; bsize:15; content:\"note.youdao.com\"; fast_pattern; http.header_names; bsize:22; content:\"|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|\"; content:!\"Referer\"; reference:url,twitter.com/malwrhunterteam/status/1509160261881667585; classtype:misc-activity; sid:2035681; rev:4; metadata:attack_target Client_Endpoint, created_at 2022_03_30, deployment Perimeter, deployment SSLDecrypt, performance_impact Moderate, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2103,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious exe.exe request - possible downloader/Oficla",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "reference": "url,anubis.iseclab.org/?action=result&task_id=11873c8979f34c8d4fd0da512df635cac&format=txt",
+      "classtype": "trojan-activity",
+      "sid": 2010741,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_10",
+      "contents": [
+        {
+          "pattern": "/exe.exe HTTP/1.",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Suspicious exe.exe request - possible downloader/Oficla\"; flow:established,to_server; http.request_line; content:\"/exe.exe HTTP/1.\"; nocase; reference:url,anubis.iseclab.org/?action=result&task_id=11873c8979f34c8d4fd0da512df635cac&format=txt; classtype:trojan-activity; sid:2010741; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_10;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2117,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious Mozilla User-Agent - Likely Fake (Mozilla/4.0)",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.header.raw": true,
+      "http.header": true,
+      "http.host": true,
+      "classtype": "bad-unknown",
+      "sid": 2003492,
+      "rev": 36,
+      "metadata": "created_at 2010_07_30, performance_impact Significant, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_11",
+      "contents": [
+        {
+          "pattern": "!\"/CallParrotWebClient/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Cookie|3a 20|PREF|3d|ID|3d|",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "User-Agent|3a 20|Mozilla/4.0|0d 0a|",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"www.google.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"secure.logmein.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"weixin.qq.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"slickdeals.net",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"cloudera.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"secure.digitalalchemy.net.au",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".ksmobile.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"gstatic.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".cmcm.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".deckedbuilder.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".mobolize.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"wq.cloud.duba.net",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"infoc2.duba.net",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".bitdefender.net",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Suspicious Mozilla User-Agent - Likely Fake (Mozilla/4.0)\"; flow:established,to_server; http.uri; content:!\"/CallParrotWebClient/\"; http.header.raw; content:!\"Cookie|3a 20|PREF|3d|ID|3d|\"; nocase; http.header; content:\"User-Agent|3a 20|Mozilla/4.0|0d 0a|\"; fast_pattern; nocase; http.host; content:!\"www.google.com\"; content:!\"secure.logmein.com\"; content:!\"weixin.qq.com\"; content:!\"slickdeals.net\"; content:!\"cloudera.com\"; content:!\"secure.digitalalchemy.net.au\"; content:!\".ksmobile.com\"; content:!\"gstatic.com\"; content:!\".cmcm.com\"; content:!\".deckedbuilder.com\"; content:!\".mobolize.com\"; content:!\"wq.cloud.duba.net\"; content:!\"infoc2.duba.net\"; content:!\".bitdefender.net\"; classtype:bad-unknown; sid:2003492; rev:36; metadata:created_at 2010_07_30, performance_impact Significant, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_11;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2211,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Hiloti Style GET to PHP with invalid terse MSIE headers",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "http.host": true,
+      "http.header_names": true,
+      "startswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2012612,
+      "rev": 21,
+      "metadata": "attack_target Client_Endpoint, created_at 2011_03_31, deployment Perimeter, performance_impact Significant, confidence Low, signature_severity Minor, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php?",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mozilla/4.0|20|(compatible|3b 20|MSIE|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"8",
+          "modifiers": {
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|3b 20|Windows|20|NT|20|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"SlimBrowser",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".taobao.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".dict.cn",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".avg.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".weather.hao.360.cn",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"es.f.360.cn",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|User-Agent|0d 0a|Host|0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Hiloti Style GET to PHP with invalid terse MSIE headers\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\".php?\"; http.user_agent; content:\"Mozilla/4.0|20|(compatible|3b 20|MSIE|20|\"; content:!\"8\"; within:1; content:\"|3b 20|Windows|20|NT|20|\"; distance:0; content:!\"SlimBrowser\"; http.host; content:!\".taobao.com\"; content:!\".dict.cn\"; content:!\".avg.com\"; content:!\".weather.hao.360.cn\"; content:!\"es.f.360.cn\"; http.header_names; content:\"|0d 0a|User-Agent|0d 0a|Host|0d 0a|\"; startswith; fast_pattern; classtype:bad-unknown; sid:2012612; rev:21; metadata:attack_target Client_Endpoint, created_at 2011_03_31, deployment Perimeter, performance_impact Significant, confidence Low, signature_severity Minor, updated_at 2024_04_14;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2417,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious POST Format",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.request_line": true,
+      "http.content_type": true,
+      "bsize": "33",
+      "reference": [
+        "url,norfolkinfosec.com/dprk-malware-targeting-security-researchers/",
+        "url,blog.google/threat-analysis-group/new-campaign-targeting-security-researchers/"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2031558,
+      "rev": 3,
+      "metadata": "created_at 2021_01_26, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_05_05",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/upload/upload.php HTTP/1.0",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "application/x-www-form-urlencoded",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Suspicious POST Format\"; flow:established,to_server; http.method; content:\"POST\"; http.request_line; content:\"/upload/upload.php HTTP/1.0\"; fast_pattern; http.content_type; bsize:33; content:\"application/x-www-form-urlencoded\"; reference:url,norfolkinfosec.com/dprk-malware-targeting-security-researchers/; reference:url,blog.google/threat-analysis-group/new-campaign-targeting-security-researchers/; classtype:bad-unknown; sid:2031558; rev:3; metadata:created_at 2021_01_26, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_05_05;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2837,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING LuminousStealer Legitimate Traffic Impersonation",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.header": true,
+      "http.host": true,
+      "pcre": "/(?:google|bing|duckduckgo|yahoo|reddit|twitter|facebook)\\x2ecom$/",
+      "reference": "url,bitdefender.com/en-us/blog/businessinsights/apt36-nightmare-vibeware",
+      "classtype": "trojan-activity",
+      "sid": 2068052,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2026_03_06, deployment Perimeter, deployment SSLDecrypt, malware_family LuminousStealer, performance_impact Significant, confidence Low, signature_severity Informational, updated_at 2026_03_06, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1036, mitre_technique_name Masquerading",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Sec|2d|Fetch|2d|Dest|3a 20|empty|0a|Sec|2d|Fetch|2d|Mode|3a 20|cors|0a|Sec|2d|Fetch|2d|Site|3a 20|cross|2d|site|0a|Sec|2d|Ch|2d|Ua|3a 20 22|Not|5f|A|20|Brand|22 3b|v|3d 22|8|22 2c 20 22|Chromium|22 3b|v|3d 22|120|22 2c 20 22|Google|20|Chrome|22 3b|v|3d 22|120|22 0a|Sec|2d|Ch|2d|Ua|2d|Mobile|3a 20 3f|0|0a|Sec|2d|Ch|2d|Ua|2d|Platform|3a 20 22|Windows|22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING LuminousStealer Legitimate Traffic Impersonation\"; flow:established,to_server; http.method; content:\"GET\"; http.header; content:\"Sec|2d|Fetch|2d|Dest|3a 20|empty|0a|Sec|2d|Fetch|2d|Mode|3a 20|cors|0a|Sec|2d|Fetch|2d|Site|3a 20|cross|2d|site|0a|Sec|2d|Ch|2d|Ua|3a 20 22|Not|5f|A|20|Brand|22 3b|v|3d 22|8|22 2c 20 22|Chromium|22 3b|v|3d 22|120|22 2c 20 22|Google|20|Chrome|22 3b|v|3d 22|120|22 0a|Sec|2d|Ch|2d|Ua|2d|Mobile|3a 20 3f|0|0a|Sec|2d|Ch|2d|Ua|2d|Platform|3a 20 22|Windows|22|\"; fast_pattern; http.host; pcre:\"/(?:google|bing|duckduckgo|yahoo|reddit|twitter|facebook)\\x2ecom$/\"; reference:url,bitdefender.com/en-us/blog/businessinsights/apt36-nightmare-vibeware; classtype:trojan-activity; sid:2068052; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2026_03_06, deployment Perimeter, deployment SSLDecrypt, malware_family LuminousStealer, performance_impact Significant, confidence Low, signature_severity Informational, updated_at 2026_03_06, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1036, mitre_technique_name Masquerading; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2879,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING SupaServ Legitimate Traffic Impersonation",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.header": true,
+      "http.referer": true,
+      "pcre": "/(?:google|bing|duckduckgo|yahoo|reddit|twitter|facebook)\\x2ecom/",
+      "reference": "url,bitdefender.com/en-us/blog/businessinsights/apt36-nightmare-vibeware",
+      "classtype": "trojan-activity",
+      "sid": 2068051,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2026_03_06, deployment Perimeter, deployment SSLDecrypt, malware_family SupaServ, performance_impact Significant, confidence Low, signature_severity Informational, updated_at 2026_05_22, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1036, mitre_technique_name Masquerading",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Sec|2d|Fetch|2d|Dest|3a 20|empty|0d 0a|Sec|2d|Fetch|2d|Mode|3a 20|cors|0d 0a|Sec|2d|Fetch|2d|Site|3a 20|cross|2d|site|0d 0a|Sec|2d|Ch|2d|Ua|3a 20 22|Not|5f|A|20|Brand|22 3b|v|3d 22|8|22 2c 20 22|Chromium|22 3b|v|3d 22|120|22 0d 0a|Sec|2d|Ch|2d|Ua|2d|Mobile|3a 20 3f|0|0d 0a|Sec|2d|Ch|2d|Ua|2d|Platform|3a 20 22|Windows|22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING SupaServ Legitimate Traffic Impersonation\"; flow:established,to_server; http.method; content:\"GET\"; http.header; content:\"Sec|2d|Fetch|2d|Dest|3a 20|empty|0d 0a|Sec|2d|Fetch|2d|Mode|3a 20|cors|0d 0a|Sec|2d|Fetch|2d|Site|3a 20|cross|2d|site|0d 0a|Sec|2d|Ch|2d|Ua|3a 20 22|Not|5f|A|20|Brand|22 3b|v|3d 22|8|22 2c 20 22|Chromium|22 3b|v|3d 22|120|22 0d 0a|Sec|2d|Ch|2d|Ua|2d|Mobile|3a 20 3f|0|0d 0a|Sec|2d|Ch|2d|Ua|2d|Platform|3a 20 22|Windows|22|\"; fast_pattern; http.referer; pcre:\"/(?:google|bing|duckduckgo|yahoo|reddit|twitter|facebook)\\x2ecom/\"; reference:url,bitdefender.com/en-us/blog/businessinsights/apt36-nightmare-vibeware; classtype:trojan-activity; sid:2068051; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2026_03_06, deployment Perimeter, deployment SSLDecrypt, malware_family SupaServ, performance_impact Significant, confidence Low, signature_severity Informational, updated_at 2026_05_22, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion, mitre_technique_id T1036, mitre_technique_name Masquerading; target:src_ip;)"
+  }
+]

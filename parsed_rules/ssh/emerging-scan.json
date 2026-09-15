@@ -1,0 +1,63 @@
+[
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 185,
+    "action": "alert",
+    "protocol": "ssh",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "22",
+    "options": {
+      "msg": "ET SCAN LibSSH Based Frequent SSH Connections Likely BruteForce Attack",
+      "flow": "established,to_server",
+      "threshold": "type both, count 5, seconds 30, track by_src",
+      "classtype": "attempted-admin",
+      "sid": 2006546,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SSH-",
+          "modifiers": {}
+        },
+        {
+          "pattern": "libssh",
+          "modifiers": {
+            "within": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ssh $EXTERNAL_NET any -> $HOME_NET 22 (msg:\"ET SCAN LibSSH Based Frequent SSH Connections Likely BruteForce Attack\"; flow:established,to_server; content:\"SSH-\"; content:\"libssh\"; within:20; threshold: type both, count 5, seconds 30, track by_src; classtype:attempted-admin; sid:2006546; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 223,
+    "action": "alert",
+    "protocol": "ssh",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN SSH BruteForce Tool with fake PUTTY version",
+      "flow": "established,to_server",
+      "ssh_proto": true,
+      "threshold": "type limit, track by_src, count 1, seconds 30",
+      "classtype": "network-scan",
+      "sid": 2019876,
+      "rev": 6,
+      "metadata": "created_at 2014_12_05, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PUTTY",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ssh $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCAN SSH BruteForce Tool with fake PUTTY version\"; flow:established,to_server; ssh_proto; content:\"PUTTY\"; threshold: type limit, track by_src, count 1, seconds 30; classtype:network-scan; sid:2019876; rev:6; metadata:created_at 2014_12_05, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  }
+]

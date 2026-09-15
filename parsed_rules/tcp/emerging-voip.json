@@ -1,0 +1,203 @@
+[
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET VOIP INVITE Message Flood TCP",
+      "flow": "established,to_server",
+      "threshold": "type both , track by_src, count 100, seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2003192,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "INVITE",
+          "modifiers": {
+            "depth": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET VOIP INVITE Message Flood TCP\"; flow:established,to_server; content:\"INVITE\"; depth:6; threshold: type both , track by_src, count 100, seconds 60; classtype:attempted-dos; sid:2003192; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET VOIP REGISTER Message Flood TCP",
+      "flow": "established,to_server",
+      "threshold": "type both , track by_src, count 100, seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2003193,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "REGISTER",
+          "modifiers": {
+            "depth": "8"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET VOIP REGISTER Message Flood TCP\"; flow:established,to_server; content:\"REGISTER\"; depth:8; threshold: type both , track by_src, count 100, seconds 60; classtype:attempted-dos; sid:2003193; rev:5; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "5060",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET VOIP Multiple Unauthorized SIP Responses TCP",
+      "flow": "established,to_client",
+      "threshold": "type both, track by_src, count 5, seconds 360",
+      "classtype": "attempted-dos",
+      "sid": 2003194,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "SIP/2.0 401 Unauthorized",
+          "modifiers": {
+            "depth": "24"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 5060 -> $EXTERNAL_NET any (msg:\"ET VOIP Multiple Unauthorized SIP Responses TCP\"; flow:established,to_client; content:\"SIP/2.0 401 Unauthorized\"; depth:24; threshold: type both, track by_src, count 5, seconds 360; classtype:attempted-dos; sid:2003194; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1720",
+    "options": {
+      "msg": "ET VOIP Possible Misuse Call from Cisco ooh323",
+      "flow": "established,to_server",
+      "reference": "url,videonationsltd.co.uk/2015/04/h-323-cisco-spam-calls/",
+      "classtype": "misc-attack",
+      "sid": 2021066,
+      "rev": 3,
+      "metadata": "created_at 2015_05_07, confidence Medium, signature_severity Informational, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "|28 06|cisco|00|",
+          "modifiers": {
+            "offset": "14",
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|b8 00 00 27 05|ooh323|06|",
+          "modifiers": {
+            "within": "60"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 1720 (msg:\"ET VOIP Possible Misuse Call from Cisco ooh323\"; flow:established,to_server; content:\"|28 06|cisco|00|\"; offset:14; depth:8; content:\"|b8 00 00 27 05|ooh323|06|\"; within:60; reference:url,videonationsltd.co.uk/2015/04/h-323-cisco-spam-calls/; classtype:misc-attack; sid:2021066; rev:3; metadata:created_at 2015_05_07, confidence Medium, signature_severity Informational, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1720",
+    "options": {
+      "msg": "ET VOIP Possible Misuse Call from MERA RTU",
+      "flow": "established,to_server",
+      "classtype": "misc-attack",
+      "sid": 2022022,
+      "rev": 2,
+      "metadata": "created_at 2015_11_03, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "|22 c0 09 00 7a b7 07|MERA RTU|08|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 1720 (msg:\"ET VOIP Possible Misuse Call from MERA RTU\"; flow:established,to_server; content:\"|22 c0 09 00 7a b7 07|MERA RTU|08|\"; classtype:misc-attack; sid:2022022; rev:2; metadata:created_at 2015_11_03, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1720",
+    "options": {
+      "msg": "ET VOIP H.323 in Q.931 Call Setup - Inbound",
+      "flow": "established,to_server",
+      "byte_jump": [
+        "1,0,relative",
+        "1,0,relative",
+        "1,0,relative"
+      ],
+      "byte_test": "1,!&,0x0F,3,relative",
+      "isdataat": "31",
+      "classtype": "misc-activity",
+      "sid": 2022024,
+      "rev": 2,
+      "metadata": "created_at 2015_11_03, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "|08|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|05 04|",
+          "modifiers": {
+            "within": "2"
+          }
+        },
+        {
+          "pattern": "|70|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|7E|",
+          "modifiers": {
+            "within": "1"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 1720 (msg:\"ET VOIP H.323 in Q.931 Call Setup - Inbound\"; flow:established,to_server; content:\"|08|\"; offset:4; depth:1; byte_jump:1,0,relative; content:\"|05 04|\"; within:2; byte_jump:1,0,relative; content:\"|70|\"; byte_jump:1,0,relative; content:\"|7E|\"; within:1; byte_test:1,!&,0x0F,3,relative; isdataat:31; classtype:misc-activity; sid:2022024; rev:2; metadata:created_at 2015_11_03, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07;)"
+  }
+]

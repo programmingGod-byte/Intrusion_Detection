@@ -1,0 +1,1017 @@
+[
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "82",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ClarkConnect Linux proxy.php XSS Attempt",
+      "flow": "established,to_server",
+      "pcre": "/\\/proxy\\.php(\\?|.*[\\x26\\x3B])url=[^&\\;\\x0D\\x0A]*[<>\\\"\\']/i",
+      "reference": "url,www.securityfocus.com/bid/37446/info",
+      "classtype": "web-application-attack",
+      "sid": 2010602,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "script",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "/proxy.php?",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "url=",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 82 (msg:\"ET WEB_SPECIFIC_APPS ClarkConnect Linux proxy.php XSS Attempt\"; flow:established,to_server; content:\"GET\"; content:\"script\"; nocase; content:\"/proxy.php?\"; nocase; content:\"url=\"; nocase; pcre:\"/\\/proxy\\.php(\\?|.*[\\x26\\x3B])url=[^&\\;\\x0D\\x0A]*[<>\\\"\\']/i\"; reference:url,www.securityfocus.com/bid/37446/info; classtype:web-application-attack; sid:2010602; rev:4; metadata:created_at 2010_07_30, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS JBoss JMX Console Beanshell Deployer .WAR File Upload and Deployment Cross Site Request Forgery Attempt",
+      "flow": "established,to_client",
+      "reference": [
+        "url,www.redteam-pentesting.de/en/publications/jboss/-bridging-the-gap-between-the-enterprise-and-you-or-whos-the-jboss-now",
+        "cve,2010-0738"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2011697,
+      "rev": 2,
+      "metadata": "created_at 2010_07_30, cve CVE_2010_0738, confidence Low, signature_severity Major, updated_at 2024_01_03",
+      "contents": [
+        {
+          "pattern": "/HtmlAdaptor",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "action=invokeOpByName",
+          "modifiers": {
+            "nocase": true,
+            "within": "25"
+          }
+        },
+        {
+          "pattern": "DeploymentFileRepository",
+          "modifiers": {
+            "nocase": true,
+            "within": "80"
+          }
+        },
+        {
+          "pattern": "methodName=",
+          "modifiers": {
+            "nocase": true,
+            "within": "25"
+          }
+        },
+        {
+          "pattern": ".war",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": ".jsp",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS JBoss JMX Console Beanshell Deployer .WAR File Upload and Deployment Cross Site Request Forgery Attempt\"; flow:established,to_client; content:\"/HtmlAdaptor\"; nocase; content:\"action=invokeOpByName\"; nocase; within:25; content:\"DeploymentFileRepository\"; nocase; within:80; content:\"methodName=\"; nocase; within:25; content:\".war\"; nocase; distance:0; content:\".jsp\"; nocase; distance:0; reference:url,www.redteam-pentesting.de/en/publications/jboss/-bridging-the-gap-between-the-enterprise-and-you-or-whos-the-jboss-now; reference:cve,2010-0738; classtype:web-application-attack; sid:2011697; rev:2; metadata:created_at 2010_07_30, cve CVE_2010_0738, confidence Low, signature_severity Major, updated_at 2024_01_03;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Yahoo CD Player ActiveX Open Stack Overflow Attempt",
+      "flow": "established,to_client",
+      "pcre": "/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*5622772D-6C27-11D3-95E5-006008D14F3B/si",
+      "reference": "url,www.shinnai.net/exploits/pD9YWswsoR3EIcE9bf3N.txt",
+      "classtype": "attempted-user",
+      "sid": 2010945,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, confidence High, signature_severity Major, tag ActiveX, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "clsid",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "5622772D-6C27-11D3-95E5-006008D14F3B",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Open",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Yahoo CD Player ActiveX Open Stack Overflow Attempt\"; flow:established,to_client; content:\"clsid\"; nocase; content:\"5622772D-6C27-11D3-95E5-006008D14F3B\"; nocase; distance:0; content:\"Open\"; nocase; pcre:\"/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*5622772D-6C27-11D3-95E5-006008D14F3B/si\"; reference:url,www.shinnai.net/exploits/pD9YWswsoR3EIcE9bf3N.txt; classtype:attempted-user; sid:2010945; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, confidence High, signature_severity Major, tag ActiveX, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "7777",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Oracle Fusion Middleware BPEL Console Cross Site Scripting",
+      "flow": "established,to_server",
+      "pcre": "/processName\\x3D.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange)/i",
+      "reference": [
+        "bid,43954",
+        "cve,2010-3581"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2011860,
+      "rev": 2,
+      "metadata": "affected_product Web_Server_Applications, attack_target Web_Server, created_at 2010_10_28, cve CVE_2010_3581, deployment Datacenter, confidence Low, signature_severity Major, tag XSS, tag Cross_Site_Scripting, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "/BPELConsole/default/processLog.jsp",
+          "modifiers": {
+            "nocase": true,
+            "depth": "50"
+          }
+        },
+        {
+          "pattern": "processName=",
+          "modifiers": {
+            "nocase": true,
+            "within": "100"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 7777 (msg:\"ET WEB_SPECIFIC_APPS Oracle Fusion Middleware BPEL Console Cross Site Scripting\"; flow:established,to_server; content:\"/BPELConsole/default/processLog.jsp\"; nocase; depth:50; content:\"processName=\"; nocase; within:100; pcre:\"/processName\\x3D.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange)/i\"; reference:bid,43954; reference:cve,2010-3581; classtype:attempted-admin; sid:2011860; rev:2; metadata:affected_product Web_Server_Applications, attack_target Web_Server, created_at 2010_10_28, cve CVE_2010_3581, deployment Datacenter, confidence Low, signature_severity Major, tag XSS, tag Cross_Site_Scripting, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS e107 CMS backdoor access admin-access cookie and HTTP POST",
+      "flow": "established,to_server",
+      "pcre": "/Cookie: .*admin-access=/i",
+      "reference": [
+        "url,seclists.org/fulldisclosure/2010/Jan/480",
+        "url,www.e107.org/news.php"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2010719,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "POST ",
+          "modifiers": {
+            "nocase": true,
+            "depth": "5"
+          }
+        },
+        {
+          "pattern": "|0d 0a|Cookie\\: ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "admin-access=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "e107language_",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:\"ET WEB_SPECIFIC_APPS e107 CMS backdoor access admin-access cookie and HTTP POST\"; flow:established,to_server; content:\"POST \"; nocase; depth:5; content:\"|0d 0a|Cookie\\: \"; nocase; content:\"admin-access=\"; content:\"e107language_\"; pcre:\"/Cookie: .*admin-access=/i\"; reference:url,seclists.org/fulldisclosure/2010/Jan/480; reference:url,www.e107.org/news.php; classtype:attempted-admin; sid:2010719; rev:3; metadata:created_at 2010_07_30, confidence Low, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS cmd powershell base64 encoded to Web Server 1",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025827,
+      "rev": 1,
+      "metadata": "affected_product Web_Server_Applications, attack_target Web_Server, created_at 2018_07_12, deployment Datacenter, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "Y21kIC9jIHBvd2Vyc2hlbGwuZXhl",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS cmd powershell base64 encoded to Web Server 1\"; flow:established,to_server; content:\"Y21kIC9jIHBvd2Vyc2hlbGwuZXhl\"; classtype:attempted-user; sid:2025827; rev:1; metadata:affected_product Web_Server_Applications, attack_target Web_Server, created_at 2018_07_12, deployment Datacenter, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS cmd powershell base64 encoded to Web Server 2",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025828,
+      "rev": 1,
+      "metadata": "affected_product Web_Server_Applications, attack_target Web_Server, created_at 2018_07_12, deployment Datacenter, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "NtZCAvYyBwb3dlcnNoZWxsLmV4Z",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS cmd powershell base64 encoded to Web Server 2\"; flow:established,to_server; content:\"NtZCAvYyBwb3dlcnNoZWxsLmV4Z\"; classtype:attempted-user; sid:2025828; rev:1; metadata:affected_product Web_Server_Applications, attack_target Web_Server, created_at 2018_07_12, deployment Datacenter, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS cmd powershell base64 encoded to Web Server 3",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025829,
+      "rev": 1,
+      "metadata": "affected_product Web_Server_Applications, attack_target Web_Server, created_at 2018_07_12, deployment Datacenter, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "jbWQgL2MgcG93ZXJzaGVsbC5leG",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS cmd powershell base64 encoded to Web Server 3\"; flow:established,to_server; content:\"jbWQgL2MgcG93ZXJzaGVsbC5leG\"; classtype:attempted-user; sid:2025829; rev:1; metadata:affected_product Web_Server_Applications, attack_target Web_Server, created_at 2018_07_12, deployment Datacenter, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ELF file magic encoded ASCII Inbound Web Servers Likely Command Execution 4",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025732,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Web_Server, created_at 2018_07_17, deployment Datacenter, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "5c5c7837665c5c7834355c5c7834635c5c783436",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS ELF file magic encoded ASCII Inbound Web Servers Likely Command Execution 4\"; flow:established,to_server; content:\"5c5c7837665c5c7834355c5c7834635c5c783436\"; classtype:attempted-user; sid:2025732; rev:2; metadata:affected_product Linux, attack_target Web_Server, created_at 2018_07_17, deployment Datacenter, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 UTF-8 Inbound Web Servers Likely Command Execution 5",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025832,
+      "rev": 1,
+      "metadata": "affected_product Linux, attack_target Web_Server, created_at 2018_07_18, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "XDE3N1wxMDVcMTE0XDEwN",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 UTF-8 Inbound Web Servers Likely Command Execution 5\"; flow:established,to_server; content:\"XDE3N1wxMDVcMTE0XDEwN\"; classtype:attempted-user; sid:2025832; rev:1; metadata:affected_product Linux, attack_target Web_Server, created_at 2018_07_18, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 UTF-8 Inbound Web Servers Likely Command Execution 6",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025833,
+      "rev": 1,
+      "metadata": "affected_product Linux, attack_target Web_Server, created_at 2018_07_18, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "wxNzdcMTA1XDExNFwxMD",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 UTF-8 Inbound Web Servers Likely Command Execution 6\"; flow:established,to_server; content:\"wxNzdcMTA1XDExNFwxMD\"; classtype:attempted-user; sid:2025833; rev:1; metadata:affected_product Linux, attack_target Web_Server, created_at 2018_07_18, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 UTF-8 Inbound Web Servers Likely Command Execution 7",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025834,
+      "rev": 1,
+      "metadata": "affected_product Linux, attack_target Web_Server, created_at 2018_07_18, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "cMTc3XDEwNVwxMTRcMTA2",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 UTF-8 Inbound Web Servers Likely Command Execution 7\"; flow:established,to_server; content:\"cMTc3XDEwNVwxMTRcMTA2\"; classtype:attempted-user; sid:2025834; rev:1; metadata:affected_product Linux, attack_target Web_Server, created_at 2018_07_18, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 Hex Escape Inbound Web Servers Likely Command Execution 8",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025865,
+      "rev": 1,
+      "metadata": "affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "XFx4N2ZcXHg0NVxceDRjXFx4ND",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 Hex Escape Inbound Web Servers Likely Command Execution 8\"; flow:established,to_server; content:\"XFx4N2ZcXHg0NVxceDRjXFx4ND\"; classtype:attempted-user; sid:2025865; rev:1; metadata:affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 Hex Escape Inbound Web Servers Likely Command Execution 9",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025866,
+      "rev": 1,
+      "metadata": "affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "xceDdmXFx4NDVcXHg0Y1xceDQ2",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> any any (msg:\"ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 Hex Escape Inbound Web Servers Likely Command Execution 9\"; flow:established,to_server; content:\"xceDdmXFx4NDVcXHg0Y1xceDQ2\"; classtype:attempted-user; sid:2025866; rev:1; metadata:affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 Hex Escape Inbound Web Servers Likely Command Execution 10",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025867,
+      "rev": 1,
+      "metadata": "affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "cXHg3ZlxceDQ1XFx4NGNcXHg0N",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS ELF file magic encoded Base64 Hex Escape Inbound Web Servers Likely Command Execution 10\"; flow:established,to_server; content:\"cXHg3ZlxceDQ1XFx4NGNcXHg0N\"; classtype:attempted-user; sid:2025867; rev:1; metadata:affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ELF file magic plain Inbound Web Servers Likely Command Execution 11",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025868,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|5c|177|5c|105|5c|114|5c|106|5c|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS ELF file magic plain Inbound Web Servers Likely Command Execution 11\"; flow:established,to_server; content:\"|5c|177|5c|105|5c|114|5c|106|5c|\"; fast_pattern; classtype:attempted-user; sid:2025868; rev:2; metadata:affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ELF file magic plain Inbound Web Servers Likely Command Execution 12",
+      "flow": "established,to_server",
+      "classtype": "attempted-user",
+      "sid": 2025869,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|5c 5c|x7f|5c 5c|x45|5c 5c|x4c|5c 5c|x46|5c 5c|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS ELF file magic plain Inbound Web Servers Likely Command Execution 12\"; flow:established,to_server; content:\"|5c 5c|x7f|5c 5c|x45|5c 5c|x4c|5c 5c|x46|5c 5c|\"; classtype:attempted-user; sid:2025869; rev:2; metadata:affected_product Linux, attack_target Web_Server, created_at 2018_07_19, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 8479,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "7001",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Possible Oracle Weblogic IIOP/T3 JNDI Injection Attack (CVE-2024-20931)",
+      "flow": "established,to_server",
+      "pcre": "/^(\\d{1,3}\\.){3}\\d{1,3}\\x3a\\d{1,5}\\x2f/R",
+      "reference": [
+        "url,attackerkb.com/topics/GizBcG19y2/cve-2024-20931",
+        "cve,2024-20931"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2050791,
+      "rev": 1,
+      "metadata": "affected_product Web_Server_Applications, attack_target Web_Server, created_at 2024_02_12, cve CVE_2024_20931, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Major, updated_at 2024_02_12",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "java.naming.factory.initial",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "jmsInitialContextFactory",
+          "modifiers": {
+            "within": "60"
+          }
+        },
+        {
+          "pattern": "datasource",
+          "modifiers": {
+            "within": "20"
+          }
+        },
+        {
+          "pattern": "ldap|3a 2f 2f|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 7001 (msg:\"ET WEB_SPECIFIC_APPS Possible Oracle Weblogic IIOP/T3 JNDI Injection Attack (CVE-2024-20931)\"; flow:established,to_server; content:\"java.naming.factory.initial\"; fast_pattern; content:\"jmsInitialContextFactory\"; within:60; content:\"datasource\"; within:20; content:\"ldap|3a 2f 2f|\"; pcre:\"/^(\\d{1,3}\\.){3}\\d{1,3}\\x3a\\d{1,5}\\x2f/R\"; reference:url,attackerkb.com/topics/GizBcG19y2/cve-2024-20931; reference:cve,2024-20931; classtype:attempted-admin; sid:2050791; rev:1; metadata:affected_product Web_Server_Applications, attack_target Web_Server, created_at 2024_02_12, cve CVE_2024_20931, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Major, updated_at 2024_02_12; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 8657,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Synactis All_IN_THE_BOX ActiveX SaveDoc Method Arbitrary File Overwrite",
+      "flow": "established,to_client",
+      "reference": [
+        "url,milw0rm.com/exploits/7928",
+        "bugtraq,33535"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2009138,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, confidence Low, signature_severity Major, tag ActiveX, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "clsid",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "B5576893-F948-4E0F-9BE1-A37CB56D66FF",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "SaveDoc",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Synactis All_IN_THE_BOX ActiveX SaveDoc Method Arbitrary File Overwrite\"; flow:established,to_client; content:\"clsid\"; nocase; content:\"B5576893-F948-4E0F-9BE1-A37CB56D66FF\"; nocase; distance:0; content:\"SaveDoc\"; nocase; reference:url,milw0rm.com/exploits/7928; reference:bugtraq,33535; classtype:web-application-attack; sid:2009138; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, confidence Low, signature_severity Major, tag ActiveX, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11221,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Oracle WebLogic Deserialization (CVE-2018-2893)",
+      "flow": "established,to_server",
+      "reference": [
+        "cve,2018-2893",
+        "url,github.com/pyn3rd/CVE-2018-2893"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2025929,
+      "rev": 3,
+      "metadata": "affected_product Web_Server_Applications, attack_target Server, created_at 2018_08_01, cve CVE_2018_2893, deployment Datacenter, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_05_21",
+      "contents": [
+        {
+          "pattern": "t3|20|12",
+          "modifiers": {
+            "depth": "5",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "AS|3a|255",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "HL|3a|19",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "MS|3a|10000000",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PU|3a|t3|3a|//",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HTTP_SERVERS any (msg:\"ET WEB_SPECIFIC_APPS Oracle WebLogic Deserialization (CVE-2018-2893)\"; flow:established,to_server; content:\"t3|20|12\"; depth:5; fast_pattern; content:\"AS|3a|255\"; distance:0; content:\"HL|3a|19\"; distance:0; content:\"MS|3a|10000000\"; distance:0; content:\"PU|3a|t3|3a|//\"; distance:0; reference:cve,2018-2893; reference:url,github.com/pyn3rd/CVE-2018-2893; classtype:attempted-admin; sid:2025929; rev:3; metadata:affected_product Web_Server_Applications, attack_target Server, created_at 2018_08_01, cve CVE_2018_2893, deployment Datacenter, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_05_21;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11255,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "4406",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Fortra FileCatalyst Workflow Insecure HSQLDB Default Credentials",
+      "flow": "established,to_server",
+      "reference": [
+        "url,www.fortra.com/security/advisories/product-security/fi-2024-011",
+        "cve,2024-6633"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2055590,
+      "rev": 1,
+      "metadata": "attack_target Server, tls_state plaintext, created_at 2024_08_29, cve CVE_2024_6633, deployment Perimeter, confidence High, signature_severity Critical, updated_at 2024_08_29, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1078, mitre_technique_name Valid_Accounts",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|02|SA",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|0b|GOSENSGO613",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "3",
+            "within": "12"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 4406 (msg:\"ET WEB_SPECIFIC_APPS Fortra FileCatalyst Workflow Insecure HSQLDB Default Credentials\"; flow:established,to_server; content:\"|02|SA\"; nocase; content:\"|0b|GOSENSGO613\"; fast_pattern; distance:3; within:12; reference:url,www.fortra.com/security/advisories/product-security/fi-2024-011; reference:cve,2024-6633; classtype:attempted-admin; sid:2055590; rev:1; metadata:attack_target Server, tls_state plaintext, created_at 2024_08_29, cve CVE_2024_6633, deployment Perimeter, confidence High, signature_severity Critical, updated_at 2024_08_29, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1078, mitre_technique_name Valid_Accounts; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11425,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "9643",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Progress WhatsUp Gold Pre-Auth WriteDataFile Directory Traversal RCE (CVE-2024-4883)",
+      "flow": "established,to_server",
+      "pcre": "/^(?:[\\x20-\\x7e]\\x00)+\\x2e\\x00a\\x00s\\x00p\\x00x\\x00/Ri",
+      "reference": [
+        "url,summoning.team/blog/progress-whatsup-gold-writedatafile-cve-2024-4883-rce/",
+        "cve,2024-4883"
+      ],
+      "classtype": "web-application-activity",
+      "sid": 2055953,
+      "rev": 1,
+      "metadata": "affected_product WhatsUp_Gold, created_at 2024_09_18, cve CVE_2024_4883, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1083, mitre_technique_name File_And_Directory_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|00|W|00|h|00|a|00|t|00|s|00|U|00|p|00 5c 00|h|00|t|00|m|00|l|00 5c 00|N|00|m|00|C|00|o|00|n|00|s|00|o|00|l|00|e|00 5c 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 9643 (msg:\"ET WEB_SPECIFIC_APPS Progress WhatsUp Gold Pre-Auth WriteDataFile Directory Traversal RCE (CVE-2024-4883)\"; flow:established,to_server; content:\"|00|W|00|h|00|a|00|t|00|s|00|U|00|p|00 5c 00|h|00|t|00|m|00|l|00 5c 00|N|00|m|00|C|00|o|00|n|00|s|00|o|00|l|00|e|00 5c 00|\"; fast_pattern; pcre:\"/^(?:[\\x20-\\x7e]\\x00)+\\x2e\\x00a\\x00s\\x00p\\x00x\\x00/Ri\"; reference:url,summoning.team/blog/progress-whatsup-gold-writedatafile-cve-2024-4883-rce/; reference:cve,2024-4883; classtype:web-application-activity; sid:2055953; rev:1; metadata:affected_product WhatsUp_Gold, created_at 2024_09_18, cve CVE_2024_4883, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1083, mitre_technique_name File_And_Directory_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11589,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Zabbix Server Blind SQL Injection via clientip Parameter (CVE-2024-22120)",
+      "flow": "established,to_server",
+      "startswith": true,
+      "pcre": "/^[^\\x2c]*(?:(?:S(?:HOW\\x20(?:C(?:UR(?:DAT|TIM)E|HARACTER\\x20SET)|(?:VARI|T)ABLES)|ELECT\\x20(?:FROM|USER))|U(?:NION\\x20SELEC|PDATE\\x20SE)T|DELETE\\x20FROM|INSERT\\x20INTO)|S(?:HOW.+(?:C(?:HARACTER.+SET|UR(DATE|TIME))|(?:VARI|T)ABLES)|ELECT.+(?:FROM|USER))|U(?:NION.+SELEC|PDATE.+SE)T|DELETE.+FROM|INSERT.+INTO|\\x2f\\*.+\\*\\x2f)/Ri",
+      "reference": [
+        "url,support.zabbix.com/browse/ZBX-24505",
+        "cve,2024-22120"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2055989,
+      "rev": 2,
+      "metadata": "affected_product Zabbix, attack_target Server, tls_state plaintext, created_at 2024_09_19, cve CVE_2024_22120, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2024_11_25, reviewed_at 2025_08_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "ZBXD|01|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|22|clientip|22 3a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Zabbix Server Blind SQL Injection via clientip Parameter (CVE-2024-22120)\"; flow:established,to_server; content:\"ZBXD|01|\"; fast_pattern; startswith; content:\"|22|clientip|22 3a|\"; pcre:\"/^[^\\x2c]*(?:(?:S(?:HOW\\x20(?:C(?:UR(?:DAT|TIM)E|HARACTER\\x20SET)|(?:VARI|T)ABLES)|ELECT\\x20(?:FROM|USER))|U(?:NION\\x20SELEC|PDATE\\x20SE)T|DELETE\\x20FROM|INSERT\\x20INTO)|S(?:HOW.+(?:C(?:HARACTER.+SET|UR(DATE|TIME))|(?:VARI|T)ABLES)|ELECT.+(?:FROM|USER))|U(?:NION.+SELEC|PDATE.+SE)T|DELETE.+FROM|INSERT.+INTO|\\x2f\\*.+\\*\\x2f)/Ri\"; reference:url,support.zabbix.com/browse/ZBX-24505; reference:cve,2024-22120; classtype:web-application-attack; sid:2055989; rev:2; metadata:affected_product Zabbix, attack_target Server, tls_state plaintext, created_at 2024_09_19, cve CVE_2024_22120, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2024_11_25, reviewed_at 2025_08_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12047,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "6789",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Yi IOT XY-3820 Daemon Service Directory Traversal Attempt",
+      "flow": "established,to_server",
+      "pcre": "/[^\\x26]*?(?:(?:\\x2e|%2[Ee]){1,2}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff]){1,}){2,}/",
+      "endswith": true,
+      "reference": [
+        "cve,2025-29660",
+        "url,github.com/Yasha-ops/RCE-YiIOT"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2061774,
+      "rev": 1,
+      "metadata": "affected_product IP_Camera, attack_target IoT, tls_state plaintext, created_at 2025_04_21, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_21, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "/usr/bin/cmd",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 6789 (msg:\"ET WEB_SPECIFIC_APPS Yi IOT XY-3820 Daemon Service Directory Traversal Attempt\"; flow:established,to_server; pcre:\"/[^\\x26]*?(?:(?:\\x2e|%2[Ee]){1,2}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff]){1,}){2,}/\"; content:\"/usr/bin/cmd\"; fast_pattern; endswith; reference:cve,2025-29660; reference:url,github.com/Yasha-ops/RCE-YiIOT; classtype:attempted-admin; sid:2061774; rev:1; metadata:affected_product IP_Camera, attack_target IoT, tls_state plaintext, created_at 2025_04_21, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_21, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12049,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "999",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Yi IOT XY-3820 cmd Service Unauthenticated Remote Code Execution Attempt",
+      "flow": "established,to_server",
+      "endswith": true,
+      "reference": [
+        "cve,2025-29659",
+        "url,github.com/Yasha-ops/RCE-YiIOT"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2061775,
+      "rev": 1,
+      "metadata": "affected_product IoT, attack_target IoT, tls_state plaintext, created_at 2025_04_21, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_21, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|24 24|boundary",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 999 (msg:\"ET WEB_SPECIFIC_APPS Yi IOT XY-3820 cmd Service Unauthenticated Remote Code Execution Attempt\"; flow:established,to_server; content:\"|24 24|boundary\"; fast_pattern; endswith; reference:cve,2025-29659; reference:url,github.com/Yasha-ops/RCE-YiIOT; classtype:attempted-admin; sid:2061775; rev:1; metadata:affected_product IoT, attack_target IoT, tls_state plaintext, created_at 2025_04_21, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_21, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12975,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Shenzhen TVT NVMS-9000 Information Disclosure Attempt (CVE-2024-14007)",
+      "flow": "established,to_server",
+      "reference": [
+        "cve,2024-14007",
+        "url,ssd-disclosure.com/ssd-advisory-nvms9000-information-disclosure/"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2065916,
+      "rev": 1,
+      "metadata": "affected_product Shenzhen_Atemi, attack_target IoT, tls_state plaintext, created_at 2025_11_25, cve CVE_2024_14007, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_11_25, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "systemType|3d 22|NVMS-9000|22 20|clientType|3d 22|WEB|22 20|url|3d 22|query",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Shenzhen TVT NVMS-9000 Information Disclosure Attempt (CVE-2024-14007)\"; flow:established,to_server; content:\"systemType|3d 22|NVMS-9000|22 20|clientType|3d 22|WEB|22 20|url|3d 22|query\"; fast_pattern; reference:cve,2024-14007; reference:url,ssd-disclosure.com/ssd-advisory-nvms9000-information-disclosure/; classtype:attempted-admin; sid:2065916; rev:1; metadata:affected_product Shenzhen_Atemi, attack_target IoT, tls_state plaintext, created_at 2025_11_25, cve CVE_2024_14007, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_11_25, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 13247,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS D-Link gena.cgi service Parameter Command Injection Attempt (CVE-2025-13562, CVE-2024-23624, CVE-2019-17621)",
+      "flow": "established,to_server",
+      "pcre": "/^[^\\x26]*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24))+/R",
+      "reference": [
+        "cve,2019-17621",
+        "cve,2025-13562",
+        "cve,2024-23624"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2066991,
+      "rev": 1,
+      "metadata": "affected_product D_Link, attack_target Networking_Equipment, tls_state plaintext, created_at 2026_01_23, cve CVE_2019_17621, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_23, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "SUBSCRIBE /gena.cgi|3f|service|3d|",
+          "modifiers": {
+            "fast_pattern": true,
+            "depth": "28"
+          }
+        },
+        {
+          "pattern": "NT|3a 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Callback|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS D-Link gena.cgi service Parameter Command Injection Attempt (CVE-2025-13562, CVE-2024-23624, CVE-2019-17621)\"; flow:established,to_server; content:\"SUBSCRIBE /gena.cgi|3f|service|3d|\"; fast_pattern; depth:28; pcre:\"/^[^\\x26]*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24))+/R\"; content:\"NT|3a 20|\"; content:\"Callback|3a 20|\"; reference:cve,2019-17621; reference:cve,2025-13562; reference:cve,2024-23624; classtype:attempted-admin; sid:2066991; rev:1; metadata:affected_product D_Link, attack_target Networking_Equipment, tls_state plaintext, created_at 2026_01_23, cve CVE_2019_17621, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_23, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 13449,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "9643",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Progress WhatsUp Gold Pre-Auth WriteDataFile Directory Traversal RCE M2 (CVE-2024-4883)",
+      "flow": "established,to_server",
+      "pcre": "/^.{0,10}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff])?(?:(?:\\x2e|%2[Ee]){1,2}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff]){1,}){2,}/R",
+      "reference": [
+        "url,summoning.team/blog/progress-whatsup-gold-writedatafile-cve-2024-4883-rce/",
+        "cve,2024-4883"
+      ],
+      "classtype": "web-application-activity",
+      "sid": 2068883,
+      "rev": 1,
+      "metadata": "attack_target Server, created_at 2026_04_21, cve CVE_2024_4883, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2026_04_21, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1083, mitre_technique_name File_And_Directory_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "WriteDataFile",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|2f|WUGDataAccess|2e|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|2e|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> [$HOME_NET,$HTTP_SERVERS] 9643 (msg:\"ET WEB_SPECIFIC_APPS Progress WhatsUp Gold Pre-Auth WriteDataFile Directory Traversal RCE M2 (CVE-2024-4883)\"; flow:established,to_server; content:\"WriteDataFile\"; fast_pattern; content:\"|2f|WUGDataAccess|2e|\"; distance:0; content:\"|2e|\"; pcre:\"/^.{0,10}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff])?(?:(?:\\x2e|%2[Ee]){1,2}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff]){1,}){2,}/R\"; reference:url,summoning.team/blog/progress-whatsup-gold-writedatafile-cve-2024-4883-rce/; reference:cve,2024-4883; classtype:web-application-activity; sid:2068883; rev:1; metadata:attack_target Server, created_at 2026_04_21, cve CVE_2024_4883, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2026_04_21, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1083, mitre_technique_name File_And_Directory_Discovery; target:dest_ip;)"
+  }
+]

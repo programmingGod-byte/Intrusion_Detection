@@ -1,0 +1,279 @@
+[
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 169,
+    "action": "alert",
+    "protocol": "smtp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$SMTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Office Document Containing AutoOpen Macro Via smtp",
+      "flow": "established,to_server",
+      "reference": "url,support.microsoft.com/kb/286310",
+      "classtype": "policy-violation",
+      "sid": 2019615,
+      "rev": 2,
+      "metadata": "created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "QQB1AHQAbwBPAHAAZQBu",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert smtp $EXTERNAL_NET any -> $SMTP_SERVERS any (msg:\"ET INFO Office Document Containing AutoOpen Macro Via smtp\"; flow:established,to_server; content:\"QQB1AHQAbwBPAHAAZQBu\"; reference:url,support.microsoft.com/kb/286310; classtype:policy-violation; sid:2019615; rev:2; metadata:created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 171,
+    "action": "alert",
+    "protocol": "smtp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$SMTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Office Document Containing AutoOpen Macro Via smtp",
+      "flow": "established,to_server",
+      "reference": "url,support.microsoft.com/kb/286310",
+      "classtype": "policy-violation",
+      "sid": 2019616,
+      "rev": 2,
+      "metadata": "created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "EAdQB0AG8ATwBwAGUAb",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert smtp $EXTERNAL_NET any -> $SMTP_SERVERS any (msg:\"ET INFO Office Document Containing AutoOpen Macro Via smtp\"; flow:established,to_server; content:\"EAdQB0AG8ATwBwAGUAb\"; reference:url,support.microsoft.com/kb/286310; classtype:policy-violation; sid:2019616; rev:2; metadata:created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 173,
+    "action": "alert",
+    "protocol": "smtp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$SMTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Office Document Containing AutoOpen Macro Via smtp",
+      "flow": "established,to_server",
+      "reference": "url,support.microsoft.com/kb/286310",
+      "classtype": "policy-violation",
+      "sid": 2019617,
+      "rev": 2,
+      "metadata": "created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "BAHUAdABvAE8AcABlAG",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert smtp $EXTERNAL_NET any -> $SMTP_SERVERS any (msg:\"ET INFO Office Document Containing AutoOpen Macro Via smtp\"; flow:established,to_server; content:\"BAHUAdABvAE8AcABlAG\"; reference:url,support.microsoft.com/kb/286310; classtype:policy-violation; sid:2019617; rev:2; metadata:created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 175,
+    "action": "alert",
+    "protocol": "smtp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$SMTP_SERVERS",
+    "dst_port": "[25,587]",
+    "options": {
+      "msg": "ET INFO Office Document Containing AutoExec Macro Via smtp",
+      "flow": "established,to_server",
+      "reference": "url,support.microsoft.com/kb/286310",
+      "classtype": "policy-violation",
+      "sid": 2019619,
+      "rev": 2,
+      "metadata": "created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "EAdQB0AG8ARQB4AGUAY",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert smtp $EXTERNAL_NET any -> $SMTP_SERVERS [25,587] (msg:\"ET INFO Office Document Containing AutoExec Macro Via smtp\"; flow:established,to_server; content:\"EAdQB0AG8ARQB4AGUAY\"; reference:url,support.microsoft.com/kb/286310; classtype:policy-violation; sid:2019619; rev:2; metadata:created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 177,
+    "action": "alert",
+    "protocol": "smtp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$SMTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Office Document Containing AutoExec Macro Via smtp",
+      "flow": "established,to_server",
+      "reference": "url,support.microsoft.com/kb/286310",
+      "classtype": "policy-violation",
+      "sid": 2019620,
+      "rev": 2,
+      "metadata": "created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "BAHUAdABvAEUAeABlAG",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert smtp $EXTERNAL_NET any -> $SMTP_SERVERS any (msg:\"ET INFO Office Document Containing AutoExec Macro Via smtp\"; flow:established,to_server; content:\"BAHUAdABvAEUAeABlAG\"; reference:url,support.microsoft.com/kb/286310; classtype:policy-violation; sid:2019620; rev:2; metadata:created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 349,
+    "action": "alert",
+    "protocol": "smtp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Outbound SMTP NTLM Authentication Observed",
+      "flow": "established,to_server",
+      "pcre": "/^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=|[A-Z0-9+/]{4})$/Ri",
+      "classtype": "policy-violation",
+      "sid": 2027152,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2019_04_04, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "AUTH|20|ntlm|20|",
+          "modifiers": {
+            "depth": "10",
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smtp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Outbound SMTP NTLM Authentication Observed\"; flow:established,to_server; content:\"AUTH|20|ntlm|20|\"; depth:10; nocase; fast_pattern; pcre:\"/^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=|[A-Z0-9+/]{4})$/Ri\"; classtype:policy-violation; sid:2027152; rev:1; metadata:attack_target Client_and_Server, created_at 2019_04_04, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1727,
+    "action": "alert",
+    "protocol": "smtp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Possible SMTP Data Exfiltration - File Attachment Named Files.zip",
+      "flow": "established,to_server",
+      "reference": "md5,1d9be2dfd54bf4a986c6cd1b7b630750",
+      "classtype": "bad-unknown",
+      "sid": 2044136,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_02_06, deployment Perimeter, performance_impact Low, confidence Low, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_06",
+      "contents": [
+        {
+          "pattern": "Content-Type|3a 20|application/x-zip-compressed|3b 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "name|3d 22|Files.zip|22 0d 0a|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Content-Transfer-Encoding|3a 20|base64|0d 0a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Content-Disposition|3a 20|attachment|3b 0d 0a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "filename|3d 22|Files.zip|22 0d 0a 0d 0a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smtp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Possible SMTP Data Exfiltration - File Attachment Named Files.zip\"; flow:established,to_server; content:\"Content-Type|3a 20|application/x-zip-compressed|3b 0d 0a|\"; content:\"name|3d 22|Files.zip|22 0d 0a|\"; distance:0; fast_pattern; content:\"Content-Transfer-Encoding|3a 20|base64|0d 0a|\"; distance:0; content:\"Content-Disposition|3a 20|attachment|3b 0d 0a|\"; distance:0; content:\"filename|3d 22|Files.zip|22 0d 0a 0d 0a|\"; distance:0; reference:md5,1d9be2dfd54bf4a986c6cd1b7b630750; classtype:bad-unknown; sid:2044136; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_02_06, deployment Perimeter, performance_impact Low, confidence Low, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_06;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3187,
+    "action": "alert",
+    "protocol": "smtp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$SMTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO SMTP PDF Attachment Flowbit Set",
+      "flow": "established,to_client",
+      "flowbits": [
+        "set,ET.pdf.in.smtp.attachment",
+        "noalert"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2024236,
+      "rev": 5,
+      "metadata": "attack_target SMTP_Server, created_at 2017_04_21, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2024_03_14",
+      "contents": [
+        {
+          "pattern": "|0d 0a 0d 0a|JVBERi",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smtp $EXTERNAL_NET any -> $SMTP_SERVERS any (msg:\"ET INFO SMTP PDF Attachment Flowbit Set\"; flow:established,to_client; flowbits:set,ET.pdf.in.smtp.attachment; flowbits:noalert; content:\"|0d 0a 0d 0a|JVBERi\"; fast_pattern; classtype:bad-unknown; sid:2024236; rev:5; metadata:attack_target SMTP_Server, created_at 2017_04_21, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2024_03_14;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 4043,
+    "action": "alert",
+    "protocol": "smtp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$SMTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Office Document Containing AutoExec Macro Via smtp",
+      "flow": "established,to_server",
+      "reference": "url,support.microsoft.com/kb/286310",
+      "classtype": "policy-violation",
+      "sid": 2019618,
+      "rev": 3,
+      "metadata": "created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2024_04_07",
+      "contents": [
+        {
+          "pattern": "QQB1AHQAbwBFAHgAZQBj",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert smtp $EXTERNAL_NET any -> $SMTP_SERVERS any (msg:\"ET INFO Office Document Containing AutoExec Macro Via smtp\"; flow:established,to_server; content:\"QQB1AHQAbwBFAHgAZQBj\"; reference:url,support.microsoft.com/kb/286310; classtype:policy-violation; sid:2019618; rev:3; metadata:created_at 2014_10_31, confidence High, signature_severity Informational, updated_at 2024_04_07;)"
+  }
+]

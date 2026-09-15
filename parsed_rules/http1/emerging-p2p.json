@@ -1,0 +1,58 @@
+[
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 237,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Vagaa peer-to-peer (Transfer)",
+      "flow": "established,to_server",
+      "http.header": true,
+      "reference": "url,en.wikipedia.org/wiki/Vagaa",
+      "classtype": "policy-violation",
+      "sid": 2018012,
+      "rev": 5,
+      "metadata": "created_at 2014_01_27, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_07",
+      "contents": [
+        {
+          "pattern": "VAGAA-OPERATION|3a| Transfer|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Vagaa peer-to-peer (Transfer)\"; flow:established,to_server; http.header; content:\"VAGAA-OPERATION|3a| Transfer|0d 0a|\"; reference:url,en.wikipedia.org/wiki/Vagaa; classtype:policy-violation; sid:2018012; rev:5; metadata:created_at 2014_01_27, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_07;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 271,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Ocelot BitTorrent Server in Use",
+      "flow": "established,to_client",
+      "http.start": true,
+      "startswith": true,
+      "classtype": "policy-violation",
+      "sid": 2012467,
+      "rev": 5,
+      "metadata": "created_at 2011_03_10, confidence High, signature_severity Informational, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "HTTP/1.1 200 |0d 0a|Server|3a| Ocelot ",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET P2P Ocelot BitTorrent Server in Use\"; flow:established,to_client; http.start; content:\"HTTP/1.1 200 |0d 0a|Server|3a| Ocelot \"; startswith; classtype:policy-violation; sid:2012467; rev:5; metadata:created_at 2011_03_10, confidence High, signature_severity Informational, updated_at 2024_04_14;)"
+  }
+]

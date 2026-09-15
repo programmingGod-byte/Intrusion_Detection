@@ -1,0 +1,33 @@
+[
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Bindshell2 Decoder Shellcode (UDP)",
+      "classtype": "shellcode-detect",
+      "sid": 2009285,
+      "rev": 2,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|53 53 53 53 53 43 53 43 53 FF D0 66 68|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|66 53 89 E1 95 68 A4 1A|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> any any (msg:\"ET SHELLCODE Bindshell2 Decoder Shellcode (UDP)\"; content:\"|53 53 53 53 53 43 53 43 53 FF D0 66 68|\"; content:\"|66 53 89 E1 95 68 A4 1A|\"; distance:0; classtype:shellcode-detect; sid:2009285; rev:2; metadata:created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  }
+]

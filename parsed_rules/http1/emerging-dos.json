@@ -1,0 +1,114 @@
+[
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 245,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS HOIC with booster inbound",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.header.raw": true,
+      "http.start": true,
+      "threshold": "type both, count 1, seconds 60, track by_dst",
+      "reference": [
+        "md5,23fc64a5cac4406d7143ea26e8c4c7ab",
+        "url,blog.spiderlabs.com/2012/01/hoic-ddos-analysis-and-detection.html"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2018978,
+      "rev": 7,
+      "metadata": "created_at 2014_08_21, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_07",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "If-Modified-Since|3a 20 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Keep-Alive|3a 20 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Connection|3a 20 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "User-Agent|3a 20 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "HTTP/1.0|0d 0a|Accept|3a 20|*/*|0d 0a|Accept-Language|3a 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET DOS HOIC with booster inbound\"; flow:established,to_server; http.method; content:\"GET\"; http.header.raw; content:\"If-Modified-Since|3a 20 20|\"; content:\"Keep-Alive|3a 20 20|\"; content:\"Connection|3a 20 20|\"; content:\"User-Agent|3a 20 20|\"; http.start; content:\"HTTP/1.0|0d 0a|Accept|3a 20|*/*|0d 0a|Accept-Language|3a 20|\"; fast_pattern; threshold:type both, count 1, seconds 60, track by_dst; reference:md5,23fc64a5cac4406d7143ea26e8c4c7ab; reference:url,blog.spiderlabs.com/2012/01/hoic-ddos-analysis-and-detection.html; classtype:trojan-activity; sid:2018978; rev:7; metadata:created_at 2014_08_21, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_07;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 247,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS HOIC with booster outbound",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.header.raw": true,
+      "http.start": true,
+      "threshold": "type both, count 1, seconds 60, track by_src",
+      "reference": [
+        "md5,23fc64a5cac4406d7143ea26e8c4c7ab",
+        "url,blog.spiderlabs.com/2012/01/hoic-ddos-analysis-and-detection.html"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2018977,
+      "rev": 8,
+      "metadata": "created_at 2014_08_21, performance_impact Moderate, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_07",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "If-Modified-Since|3a 20 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Keep-Alive|3a 20 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Connection|3a 20 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "User-Agent|3a 20 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "HTTP/1.0|0d 0a|Accept|3a 20|*/*|0d 0a|Accept-Language|3a 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET DOS HOIC with booster outbound\"; flow:established,to_server; http.method; content:\"GET\"; http.header.raw; content:\"If-Modified-Since|3a 20 20|\"; content:\"Keep-Alive|3a 20 20|\"; content:\"Connection|3a 20 20|\"; content:\"User-Agent|3a 20 20|\"; http.start; content:\"HTTP/1.0|0d 0a|Accept|3a 20|*/*|0d 0a|Accept-Language|3a 20|\"; fast_pattern; threshold:type both, count 1, seconds 60, track by_src; reference:md5,23fc64a5cac4406d7143ea26e8c4c7ab; reference:url,blog.spiderlabs.com/2012/01/hoic-ddos-analysis-and-detection.html; classtype:trojan-activity; sid:2018977; rev:8; metadata:created_at 2014_08_21, performance_impact Moderate, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_07;)"
+  }
+]

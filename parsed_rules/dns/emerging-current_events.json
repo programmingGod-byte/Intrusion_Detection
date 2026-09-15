@@ -1,0 +1,298 @@
+[
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.DNS.BEACON.[CSBundle DNS]",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031265,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2020_12_09, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|03|",
+          "modifiers": {
+            "within": "15"
+          }
+        },
+        {
+          "pattern": "|0a|_domainkey",
+          "modifiers": {
+            "distance": "3",
+            "within": "11"
+          }
+        },
+        {
+          "pattern": "|00 00 10 00 01 c0 0c 00 10 00 01 00 00 00 02 01 00 ff|v=DKIM1\\; p=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> any any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.DNS.BEACON.[CSBundle DNS]\"; content:\"|00 01 00 01|\"; offset:4; depth:4; content:\"|03|\"; within:15; content:\"|0a|_domainkey\"; distance:3; within:11; content:\"|00 00 10 00 01 c0 0c 00 10 00 01 00 00 00 02 01 00 ff|v=DKIM1\\; p=\"; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031265; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2020_12_09, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS GitHub/CicleCI Themed Phishing Domain in DNS Lookup (circle-ci .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,github.blog/2022-09-21-security-alert-new-phishing-campaign-targets-github-users/",
+      "classtype": "credential-theft",
+      "sid": 2038932,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22",
+      "contents": [
+        {
+          "pattern": ".circle-ci.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET CURRENT_EVENTS GitHub/CicleCI Themed Phishing Domain in DNS Lookup (circle-ci .com)\"; dns.query; dotprefix; content:\".circle-ci.com\"; nocase; endswith; reference:url,github.blog/2022-09-21-security-alert-new-phishing-campaign-targets-github-users/; classtype:credential-theft; sid:2038932; rev:1; metadata:attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS GitHub/CicleCI Themed Phishing Domain in DNS Lookup (emails-circleci .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,github.blog/2022-09-21-security-alert-new-phishing-campaign-targets-github-users/",
+      "classtype": "credential-theft",
+      "sid": 2038933,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22",
+      "contents": [
+        {
+          "pattern": ".emails-circleci.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET CURRENT_EVENTS GitHub/CicleCI Themed Phishing Domain in DNS Lookup (emails-circleci .com)\"; dns.query; dotprefix; content:\".emails-circleci.com\"; nocase; endswith; reference:url,github.blog/2022-09-21-security-alert-new-phishing-campaign-targets-github-users/; classtype:credential-theft; sid:2038933; rev:1; metadata:attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS GitHub/CicleCI Themed Phishing Domain in DNS Lookup (circle-cl .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,github.blog/2022-09-21-security-alert-new-phishing-campaign-targets-github-users/",
+      "classtype": "credential-theft",
+      "sid": 2038934,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22",
+      "contents": [
+        {
+          "pattern": ".circle-cl.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET CURRENT_EVENTS GitHub/CicleCI Themed Phishing Domain in DNS Lookup (circle-cl .com)\"; dns.query; dotprefix; content:\".circle-cl.com\"; nocase; endswith; reference:url,github.blog/2022-09-21-security-alert-new-phishing-campaign-targets-github-users/; classtype:credential-theft; sid:2038934; rev:1; metadata:attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 103,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS GitHub/CicleCI Themed Phishing Domain in DNS Lookup (email-circleci .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,github.blog/2022-09-21-security-alert-new-phishing-campaign-targets-github-users/",
+      "classtype": "credential-theft",
+      "sid": 2038935,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22",
+      "contents": [
+        {
+          "pattern": ".email-circleci.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET CURRENT_EVENTS GitHub/CicleCI Themed Phishing Domain in DNS Lookup (email-circleci .com)\"; dns.query; dotprefix; content:\".email-circleci.com\"; nocase; endswith; reference:url,github.blog/2022-09-21-security-alert-new-phishing-campaign-targets-github-users/; classtype:credential-theft; sid:2038935; rev:1; metadata:attack_target Client_Endpoint, created_at 2022_09_22, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_22;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 407,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS Sliver Related Domain in DNS Lookup (saleforces-it .com)",
+      "dns.query": true,
+      "bsize": "17",
+      "reference": "url,twitter.com/ESETresearch/status/1547943014860894210",
+      "classtype": "trojan-activity",
+      "sid": 2037772,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_07_15, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "saleforces-it.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET CURRENT_EVENTS Sliver Related Domain in DNS Lookup (saleforces-it .com)\"; dns.query; bsize:17; content:\"saleforces-it.com\"; nocase; reference:url,twitter.com/ESETresearch/status/1547943014860894210; classtype:trojan-activity; sid:2037772; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_07_15, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 409,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS Sliver Related Domain in DNS Lookup",
+      "dns.query": true,
+      "bsize": "38",
+      "reference": "url,mobile.twitter.com/ESETresearch/status/1547943014860894210",
+      "classtype": "trojan-activity",
+      "sid": 2037773,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_07_15, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "saleforces.s3-accelerate.amazonaws.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET CURRENT_EVENTS Sliver Related Domain in DNS Lookup\"; dns.query; bsize:38; content:\"saleforces.s3-accelerate.amazonaws.com\"; nocase; reference:url,mobile.twitter.com/ESETresearch/status/1547943014860894210; classtype:trojan-activity; sid:2037773; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_07_15, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 411,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS NATO Themed Maldoc Related Domain in DNS Lookup (am .my-zo .org)",
+      "dns.query": true,
+      "bsize": "12",
+      "reference": [
+        "url,twitter.com/souiten/status/1548963032574767104",
+        "md5,4b160dea19282597342c160f44d4bdf8",
+        "md5,a23a106fc8049feb296aa281ef5319a6",
+        "md5,9e5500cf454bc49609bb0200f7de23c3"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2037782,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_07_18, deployment Perimeter, malware_family Maldoc, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "am.my-zo.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET CURRENT_EVENTS NATO Themed Maldoc Related Domain in DNS Lookup (am .my-zo .org)\"; dns.query; bsize:12; content:\"am.my-zo.org\"; nocase; reference:url,twitter.com/souiten/status/1548963032574767104; reference:md5,4b160dea19282597342c160f44d4bdf8; reference:md5,a23a106fc8049feb296aa281ef5319a6; reference:md5,9e5500cf454bc49609bb0200f7de23c3; classtype:trojan-activity; sid:2037782; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_07_18, deployment Perimeter, malware_family Maldoc, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 483,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS Various Malware Related Domain in DNS Lookup (adobeacrobatreaderupdate .net)",
+      "dns.query": true,
+      "bsize": "28",
+      "classtype": "misc-activity",
+      "sid": 2052249,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_04_23, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_23",
+      "contents": [
+        {
+          "pattern": "adobeacrobatreaderupdate.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET CURRENT_EVENTS Various Malware Related Domain in DNS Lookup (adobeacrobatreaderupdate .net)\"; dns.query; bsize:28; content:\"adobeacrobatreaderupdate.net\"; nocase; classtype:misc-activity; sid:2052249; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_04_23, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_23;)"
+  }
+]

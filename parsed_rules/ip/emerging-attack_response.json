@@ -1,0 +1,27 @@
+[
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ATTACK_RESPONSE id check returned root",
+      "classtype": "bad-unknown",
+      "sid": 2100498,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "uid=0|28|root|29|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ip any any -> any any (msg:\"GPL ATTACK_RESPONSE id check returned root\"; content:\"uid=0|28|root|29|\"; classtype:bad-unknown; sid:2100498; rev:7; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  }
+]

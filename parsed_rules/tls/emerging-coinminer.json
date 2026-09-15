@@ -1,0 +1,66 @@
+[
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER Observed Coin-Hive In Browser Mining Domain (coin-hive .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2025535,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_26, deployment Perimeter, malware_family CoinMiner, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": "coin-hive.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET COINMINER Observed Coin-Hive In Browser Mining Domain (coin-hive .com in TLS SNI)\"; flow:established,to_server; tls.sni; content:\"coin-hive.com\"; endswith; classtype:trojan-activity; sid:2025535; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_26, deployment Perimeter, malware_family CoinMiner, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER Observed Suspicious SSL Cert (Minerpool - CoinMining)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "tls.cert_issuer": true,
+      "classtype": "coin-mining",
+      "sid": 2028623,
+      "rev": 4,
+      "metadata": "attack_target Client_and_Server, created_at 2019_09_25, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Coinminer, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "CN=eu.minerpool.pw",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "C=US, O=Let's Encrypt, CN=Let's Encrypt Authority X3",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET COINMINER Observed Suspicious SSL Cert (Minerpool - CoinMining)\"; flow:established,to_client; tls.cert_subject; content:\"CN=eu.minerpool.pw\"; nocase; fast_pattern; endswith; tls.cert_issuer; content:\"C=US, O=Let's Encrypt, CN=Let's Encrypt Authority X3\"; classtype:coin-mining; sid:2028623; rev:4; metadata:attack_target Client_and_Server, created_at 2019_09_25, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Coinminer, updated_at 2024_03_07;)"
+  }
+]

@@ -1,0 +1,362 @@
+[
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1465,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER HP OpenView /OvCgi/Toolbar.exe Accept Language Heap Buffer Overflow Attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "isdataat": "1350,relative",
+      "reference": "cve,2009-0921",
+      "classtype": "web-application-attack",
+      "sid": 2010864,
+      "rev": 11,
+      "metadata": "created_at 2010_07_30, cve CVE_2009_0921, confidence High, signature_severity Major, updated_at 2024_04_10",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/OvCgi/Toolbar.exe",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Accept-Language|3a 20|",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"|0A|",
+          "modifiers": {
+            "within": "1350"
+          }
+        },
+        {
+          "pattern": "Content-Length|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SERVER HP OpenView /OvCgi/Toolbar.exe Accept Language Heap Buffer Overflow Attempt\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/OvCgi/Toolbar.exe\"; nocase; fast_pattern; http.header; content:\"Accept-Language|3a 20|\"; nocase; isdataat:1350,relative; content:!\"|0A|\"; within:1350; content:\"Content-Length|3a|\"; distance:0; reference:cve,2009-0921; classtype:web-application-attack; sid:2010864; rev:11; metadata:created_at 2010_07_30, cve CVE_2009_0921, confidence High, signature_severity Major, updated_at 2024_04_10;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1469,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Possible D-Link Router HNAP Protocol Security Bypass Attempt",
+      "flow": "established,to_server",
+      "urilen": "7",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.header": true,
+      "pcre": "/^(?:set|get)/Ri",
+      "reference": "url,www.securityfocus.com/bid/37690",
+      "classtype": "web-application-attack",
+      "sid": 2010698,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, updated_at 2024_04_10",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/HNAP1/",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "SOAPAction|3a 20|",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "/HNAP1/",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "DeviceSettings",
+          "modifiers": {
+            "within": "14"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_SERVER Possible D-Link Router HNAP Protocol Security Bypass Attempt\"; flow:established,to_server; urilen:7; http.method; content:\"POST\"; http.uri; content:\"/HNAP1/\"; nocase; endswith; fast_pattern; http.header; content:\"SOAPAction|3a 20|\"; nocase; content:\"/HNAP1/\"; distance:0; pcre:\"/^(?:set|get)/Ri\"; content:\"DeviceSettings\"; within:14; reference:url,www.securityfocus.com/bid/37690; classtype:web-application-attack; sid:2010698; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, updated_at 2024_04_10;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1565,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Muieblackcat scanner",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "startswith": true,
+      "classtype": "attempted-recon",
+      "sid": 2013115,
+      "rev": 5,
+      "metadata": "created_at 2011_06_24, confidence Medium, signature_severity Unknown, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "GET /muieblackcat HTTP/1.1",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_SERVER Muieblackcat scanner\"; flow:established,to_server; http.request_line; content:\"GET /muieblackcat HTTP/1.1\"; startswith; classtype:attempted-recon; sid:2013115; rev:5; metadata:created_at 2011_06_24, confidence Medium, signature_severity Unknown, updated_at 2024_04_14;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1567,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Possible Cherokee Web Server GET AUX Request Denial Of Service Attempt",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "startswith": true,
+      "reference": [
+        "url,securitytracker.com/alerts/2009/Oct/1023095.html",
+        "url,www.securityfocus.com/bid/36814/info",
+        "url,www.securityfocus.com/archive/1/507456"
+      ],
+      "classtype": "attempted-dos",
+      "sid": 2010229,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "GET |2F|AUX HTTP|2F|1|2E|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SERVER Possible Cherokee Web Server GET AUX Request Denial Of Service Attempt\"; flow:established,to_server; http.request_line; content:\"GET |2F|AUX HTTP|2F|1|2E|\"; nocase; startswith; reference:url,securitytracker.com/alerts/2009/Oct/1023095.html; reference:url,www.securityfocus.com/bid/36814/info; reference:url,www.securityfocus.com/archive/1/507456; classtype:attempted-dos; sid:2010229; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, updated_at 2024_04_14;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1605,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER lwp-download Command Specifying Output in HTTP Headers",
+      "flow": "established,to_server",
+      "http.header": true,
+      "pcre": "/(?!^User-Agent\\x3a)\\blwp-download\\s[^\\r\\n]+(?:\\x3b|&&)/m",
+      "reference": "url,blogs.akamai.com/2014/09/environment-bashing.html",
+      "classtype": "attempted-admin",
+      "sid": 2019310,
+      "rev": 5,
+      "metadata": "created_at 2014_09_29, confidence Medium, signature_severity Minor, updated_at 2024_05_05",
+      "contents": [
+        {
+          "pattern": "lwp-download|20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HTTP_SERVERS any (msg:\"ET WEB_SERVER lwp-download Command Specifying Output in HTTP Headers\"; flow:established,to_server; http.header; content:\"lwp-download|20|\"; fast_pattern; pcre:\"/(?!^User-Agent\\x3a)\\blwp-download\\s[^\\r\\n]+(?:\\x3b|&&)/m\"; reference:url,blogs.akamai.com/2014/09/environment-bashing.html; classtype:attempted-admin; sid:2019310; rev:5; metadata:created_at 2014_09_29, confidence Medium, signature_severity Minor, updated_at 2024_05_05;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1607,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER WGET Command Specifying Output in HTTP Headers",
+      "flow": "established,to_server",
+      "http.header": true,
+      "pcre": "/(?!^User-Agent\\x3a)\\bwget\\s[^\\r\\n]+(?:\\x3b|&&)/m",
+      "reference": "url,blogs.akamai.com/2014/09/environment-bashing.html",
+      "classtype": "attempted-admin",
+      "sid": 2019309,
+      "rev": 5,
+      "metadata": "created_at 2014_09_29, confidence Medium, signature_severity Minor, updated_at 2024_05_05",
+      "contents": [
+        {
+          "pattern": "wget|20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HTTP_SERVERS any (msg:\"ET WEB_SERVER WGET Command Specifying Output in HTTP Headers\"; flow:established,to_server; http.header; content:\"wget|20|\"; fast_pattern; pcre:\"/(?!^User-Agent\\x3a)\\bwget\\s[^\\r\\n]+(?:\\x3b|&&)/m\"; reference:url,blogs.akamai.com/2014/09/environment-bashing.html; classtype:attempted-admin; sid:2019309; rev:5; metadata:created_at 2014_09_29, confidence Medium, signature_severity Minor, updated_at 2024_05_05;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1609,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER CURL Command Specifying Output in HTTP Headers",
+      "flow": "established,to_server",
+      "http.header": true,
+      "pcre": "/(?!^User-Agent\\x3a)\\bcurl\\s[^\\r\\n]*?-(?:[Oo]|-(?:remote-name|output))[^\\r\\n]+(?:\\x3b|&&)/m",
+      "reference": "url,blogs.akamai.com/2014/09/environment-bashing.html",
+      "classtype": "attempted-admin",
+      "sid": 2019308,
+      "rev": 5,
+      "metadata": "created_at 2014_09_29, confidence Medium, signature_severity Minor, updated_at 2024_05_05",
+      "contents": [
+        {
+          "pattern": "curl|20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HTTP_SERVERS any (msg:\"ET WEB_SERVER CURL Command Specifying Output in HTTP Headers\"; flow:established,to_server; http.header; content:\"curl|20|\"; fast_pattern; pcre:\"/(?!^User-Agent\\x3a)\\bcurl\\s[^\\r\\n]*?-(?:[Oo]|-(?:remote-name|output))[^\\r\\n]+(?:\\x3b|&&)/m\"; reference:url,blogs.akamai.com/2014/09/environment-bashing.html; classtype:attempted-admin; sid:2019308; rev:5; metadata:created_at 2014_09_29, confidence Medium, signature_severity Minor, updated_at 2024_05_05;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1611,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Bot Search RFI Scan (Casper-Like MaMa Cyber/ebes)",
+      "flow": "established,to_server",
+      "http.header": true,
+      "reference": "url,eromang.zataz.com/2010/07/13/byroenet-casper-bot-search-e107-rce-scanner/",
+      "classtype": "web-application-attack",
+      "sid": 2011286,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, updated_at 2024_05_06",
+      "contents": [
+        {
+          "pattern": "|0d 0a|User-Agent|3a 20|MaMa|20|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_SERVER Bot Search RFI Scan (Casper-Like MaMa Cyber/ebes)\"; flow:established,to_server; http.header; content:\"|0d 0a|User-Agent|3a 20|MaMa|20|\"; nocase; reference:url,eromang.zataz.com/2010/07/13/byroenet-casper-bot-search-e107-rce-scanner/; classtype:web-application-attack; sid:2011286; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, updated_at 2024_05_06;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1695,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER HP OpenView Network Node Manager CGI Directory Traversal",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.protocol": true,
+      "reference": [
+        "bugtraq,28745",
+        "cve,CVE-2008-0068",
+        "url,aluigi.altervista.org/adv/closedviewx-adv.txt"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2008171,
+      "rev": 15,
+      "metadata": "created_at 2010_07_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, updated_at 2024_11_26, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1083, mitre_technique_name File_And_Directory_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/OvCgi/",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "/OpenView5.exe?",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Action=../../",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "HTTP/1.",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"ET WEB_SERVER HP OpenView Network Node Manager CGI Directory Traversal\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/OvCgi/\"; nocase; content:\"/OpenView5.exe?\"; nocase; distance:0; fast_pattern; content:\"Action=../../\"; nocase; distance:0; http.protocol; content:\"HTTP/1.\"; reference:bugtraq,28745; reference:cve,CVE-2008-0068; reference:url,aluigi.altervista.org/adv/closedviewx-adv.txt; classtype:web-application-attack; sid:2008171; rev:15; metadata:created_at 2010_07_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, updated_at 2024_11_26, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1083, mitre_technique_name File_And_Directory_Discovery; target:dest_ip;)"
+  }
+]

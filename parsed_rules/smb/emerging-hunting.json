@@ -1,0 +1,78 @@
+[
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET HUNTING Possible Powershell .ps1 Script Use Over SMB",
+      "flow": "established,to_server",
+      "classtype": "bad-unknown",
+      "sid": 2027204,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_16, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00|.|00|p|00|s|00|1|00|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb any any -> $HOME_NET 445 (msg:\"ET HUNTING Possible Powershell .ps1 Script Use Over SMB\"; flow:established,to_server; content:\"SMB\"; depth:8; content:\"|00|.|00|p|00|s|00|1|00|\"; nocase; distance:0; classtype:bad-unknown; sid:2027204; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_16, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1787,
+    "action": "alert",
+    "protocol": "smb",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING External SMB ANDX Request for Outlook Calendar Invite File (.ics) - Possible NTLM Hash Leak Attempt",
+      "flow": "established,to_server",
+      "endswith": true,
+      "reference": [
+        "url,www.varonis.com/blog/outlook-vulnerability-new-ways-to-leak-ntlm-hashes",
+        "cve,2023-35636"
+      ],
+      "classtype": "credential-theft",
+      "sid": 2050432,
+      "rev": 1,
+      "metadata": "affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_01_24, cve CVE_2023_35636, deployment SSLDecrypt, performance_impact Low, confidence Low, signature_severity Major, updated_at 2024_01_24",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|ff|SMB",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|00 2E 00|i|00|c|00|s|00 00 00|",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert smb $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING External SMB ANDX Request for Outlook Calendar Invite File (.ics) - Possible NTLM Hash Leak Attempt\"; flow:established,to_server; content:\"|ff|SMB\"; depth:8; content:\"|00 2E 00|i|00|c|00|s|00 00 00|\"; nocase; fast_pattern; endswith; reference:url,www.varonis.com/blog/outlook-vulnerability-new-ways-to-leak-ntlm-hashes; reference:cve,2023-35636; classtype:credential-theft; sid:2050432; rev:1; metadata:affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_01_24, cve CVE_2023_35636, deployment SSLDecrypt, performance_impact Low, confidence Low, signature_severity Major, updated_at 2024_01_24; target:src_ip;)"
+  }
+]

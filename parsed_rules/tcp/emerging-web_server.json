@@ -1,0 +1,720 @@
+[
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET WEB_SERVER PHP Large Subnormal Double Precision Floating Point Number PHP DoS Inbound",
+      "flow": "established,to_server",
+      "reference": "url,bugs.php.net/bug.php?id=53632",
+      "classtype": "attempted-dos",
+      "sid": 2012151,
+      "rev": 1,
+      "metadata": "created_at 2011_01_06, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "2.2250738585072011e-308",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:\"ET WEB_SERVER PHP Large Subnormal Double Precision Floating Point Number PHP DoS Inbound\"; flow:established,to_server; content:\"2.2250738585072011e-308\"; nocase; reference:url,bugs.php.net/bug.php?id=53632; classtype:attempted-dos; sid:2012151; rev:1; metadata:created_at 2011_01_06, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Perl/Mambo.WebShell Spreader IRC Scanning Message",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2017828,
+      "rev": 2,
+      "metadata": "created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PRIVMSG|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Scanning",
+          "modifiers": {
+            "fast_pattern": true,
+            "within": "50"
+          }
+        },
+        {
+          "pattern": "for open ports.",
+          "modifiers": {
+            "within": "40"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:\"ET WEB_SERVER Perl/Mambo.WebShell Spreader IRC Scanning Message\"; flow:established,to_server; content:\"PRIVMSG|20|\"; content:\"Scanning\"; fast_pattern; within:50; content:\"for open ports.\"; within:40; classtype:trojan-activity; sid:2017828; rev:2; metadata:created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Perl/Mambo.WebShell Spreader IRC Open Ports Message",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2017829,
+      "rev": 2,
+      "metadata": "created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PRIVMSG|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Open port(s)|3A| ",
+          "modifiers": {
+            "fast_pattern": true,
+            "within": "50"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:\"ET WEB_SERVER Perl/Mambo.WebShell Spreader IRC Open Ports Message\"; flow:established,to_server; content:\"PRIVMSG|20|\"; content:\"Open port(s)|3A| \"; fast_pattern; within:50; classtype:trojan-activity; sid:2017829; rev:2; metadata:created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Perl/Mambo.WebShell Spreader IRC No Open Ports Message",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2017830,
+      "rev": 1,
+      "metadata": "created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PRIVMSG|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "No open ports found",
+          "modifiers": {
+            "fast_pattern": true,
+            "within": "50"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:\"ET WEB_SERVER Perl/Mambo.WebShell Spreader IRC No Open Ports Message\"; flow:established,to_server; content:\"PRIVMSG|20|\"; content:\"No open ports found\"; fast_pattern; within:50; classtype:trojan-activity; sid:2017830; rev:1; metadata:created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 49,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS Attacking Message",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2017831,
+      "rev": 2,
+      "metadata": "created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PRIVMSG|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Attacking",
+          "modifiers": {
+            "within": "50",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:\"ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS Attacking Message\"; flow:established,to_server; content:\"PRIVMSG|20|\"; content:\"Attacking\"; within:50; fast_pattern; classtype:trojan-activity; sid:2017831; rev:2; metadata:created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS Attack Done Message",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2017832,
+      "rev": 1,
+      "metadata": "created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PRIVMSG|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Attack",
+          "modifiers": {
+            "fast_pattern": true,
+            "within": "50"
+          }
+        },
+        {
+          "pattern": "done",
+          "modifiers": {
+            "within": "8"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:\"ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS Attack Done Message\"; flow:established,to_server; content:\"PRIVMSG|20|\"; content:\"Attack\"; fast_pattern; within:50; content:\"done\"; within:8; classtype:trojan-activity; sid:2017832; rev:1; metadata:created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS PerlBot Version Message",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2017833,
+      "rev": 2,
+      "metadata": "created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PRIVMSG|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "perlb0t ver",
+          "modifiers": {
+            "within": "50"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:\"ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS PerlBot Version Message\"; flow:established,to_server; content:\"PRIVMSG|20|\"; content:\"perlb0t ver\"; within:50; classtype:trojan-activity; sid:2017833; rev:2; metadata:created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS Mambo Scanning Message",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2017834,
+      "rev": 2,
+      "metadata": "created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PRIVMSG|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Scanning for unpatched mambo for",
+          "modifiers": {
+            "within": "80"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:\"ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS Mambo Scanning Message\"; flow:established,to_server; content:\"PRIVMSG|20|\"; content:\"Scanning for unpatched mambo for\"; within:80; classtype:trojan-activity; sid:2017834; rev:2; metadata:created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS Exploited Message",
+      "flow": "established,to_server",
+      "classtype": "trojan-activity",
+      "sid": 2017835,
+      "rev": 3,
+      "metadata": "created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PRIVMSG|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Exploited",
+          "modifiers": {
+            "within": "50"
+          }
+        },
+        {
+          "pattern": "boxes in",
+          "modifiers": {
+            "within": "30"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:\"ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS Exploited Message\"; flow:established,to_server; content:\"PRIVMSG|20|\"; content:\"Exploited\"; within:50; content:\"boxes in\"; within:30; classtype:trojan-activity; sid:2017835; rev:3; metadata:created_at 2013_12_10, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[9200,9292]",
+    "options": {
+      "msg": "ET WEB_SERVER Possible CVE-2015-1427 Elastic Search Sandbox Escape Remote Code Execution Attempt",
+      "flow": "established,to_server",
+      "reference": "url,jordan-wright.github.io/blog/2015/03/08/elasticsearch-rce-vulnerability-cve-2015-1427",
+      "classtype": "attempted-admin",
+      "sid": 2020648,
+      "rev": 2,
+      "metadata": "created_at 2015_03_09, cve CVE_2015_1427, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "POST /",
+          "modifiers": {
+            "depth": "6"
+          }
+        },
+        {
+          "pattern": "search",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "script_fields",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": ".class.forName",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "java.lang.Runtime",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET [9200,9292] (msg:\"ET WEB_SERVER Possible CVE-2015-1427 Elastic Search Sandbox Escape Remote Code Execution Attempt\"; flow:established,to_server; content:\"POST /\"; depth:6; content:\"search\"; distance:0; content:\"script_fields\"; distance:0; nocase; content:\".class.forName\"; nocase; distance:0; content:\"java.lang.Runtime\"; nocase; distance:0; reference:url,jordan-wright.github.io/blog/2015/03/08/elasticsearch-rce-vulnerability-cve-2015-1427; classtype:attempted-admin; sid:2020648; rev:2; metadata:created_at 2015_03_09, cve CVE_2015_1427, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET WEB_SERVER Possible CVE-2014-6271 Attempt",
+      "flow": "established,to_server",
+      "pcre": "/^[^\\r\\n]*?HTTP\\/1(?:(?!\\r?\\n\\r?\\n)[\\x20-\\x7e\\s]){1,500}\\n[\\x20-\\x7e]{1,100}\\x3a[\\x20-\\x7e]{0,500}\\x28\\x29\\x20\\x7b/s",
+      "reference": "url,blogs.akamai.com/2014/09/environment-bashing.html",
+      "classtype": "attempted-admin",
+      "sid": 2022028,
+      "rev": 2,
+      "metadata": "created_at 2015_11_04, cve CVE_2014_6271, confidence Medium, signature_severity Major, tag CISA_KEV, updated_at 2019_10_08",
+      "contents": [
+        {
+          "pattern": " HTTP/1.",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|28 29 20 7b|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET WEB_SERVER Possible CVE-2014-6271 Attempt\"; flow:established,to_server; content:\" HTTP/1.\"; pcre:\"/^[^\\r\\n]*?HTTP\\/1(?:(?!\\r?\\n\\r?\\n)[\\x20-\\x7e\\s]){1,500}\\n[\\x20-\\x7e]{1,100}\\x3a[\\x20-\\x7e]{0,500}\\x28\\x29\\x20\\x7b/s\"; content:\"|28 29 20 7b|\"; fast_pattern; reference:url,blogs.akamai.com/2014/09/environment-bashing.html; classtype:attempted-admin; sid:2022028; rev:2; metadata:created_at 2015_11_04, cve CVE_2014_6271, confidence Medium, signature_severity Major, tag CISA_KEV, updated_at 2019_10_08;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 909,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "7777",
+    "options": {
+      "msg": "ET WEB_SERVER Oracle Secure Enterprise Search 10.1.8 search Script XSS attempt",
+      "flow": "established,to_server",
+      "pcre": "/<?(java|vb)?script>?/i",
+      "reference": "url,dsecrg.com/pages/vul/show.php?id=125",
+      "classtype": "web-application-attack",
+      "sid": 2009643,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "GET ",
+          "modifiers": {
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "/search/query/search",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "search_p_groups=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "script",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 7777 (msg:\"ET WEB_SERVER Oracle Secure Enterprise Search 10.1.8 search Script XSS attempt\"; flow:established,to_server; content:\"GET \"; depth:4; content:\"/search/query/search\"; nocase; content:\"search_p_groups=\"; nocase; content:\"script\"; nocase; pcre:\"/<?(java|vb)?script>?/i\"; reference:url,dsecrg.com/pages/vul/show.php?id=125; classtype:web-application-attack; sid:2009643; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 911,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "7011",
+    "options": {
+      "msg": "ET WEB_SERVER Oracle BEA Weblogic Server 10.3 searchQuery XSS attempt",
+      "flow": "established,to_server",
+      "pcre": "/<?(java|vb)?script>?.*<.+\\/script>?/i",
+      "reference": "url,dsecrg.com/pages/vul/show.php?id=131",
+      "classtype": "web-application-attack",
+      "sid": 2009644,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "GET ",
+          "modifiers": {
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "/consolehelp/console-help.portal",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "searchQuery=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "script",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 7011 (msg:\"ET WEB_SERVER Oracle BEA Weblogic Server 10.3 searchQuery XSS attempt\"; flow:established,to_server; content:\"GET \"; depth:4; content:\"/consolehelp/console-help.portal\"; nocase; content:\"searchQuery=\"; nocase; content:\"script\"; nocase; pcre:\"/<?(java|vb)?script>?.*<.+\\/script>?/i\"; reference:url,dsecrg.com/pages/vul/show.php?id=131; classtype:web-application-attack; sid:2009644; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1031,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "!21:23",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Insomnia Shell Outbound CMD Banner",
+      "flow": "established,to_server",
+      "reference": "url,www.insomniasec.com/releases",
+      "classtype": "trojan-activity",
+      "sid": 2019900,
+      "rev": 2,
+      "metadata": "created_at 2014_12_09, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "Shell enroute.......",
+          "modifiers": {
+            "depth": "20"
+          }
+        },
+        {
+          "pattern": "Microsoft Windows ",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Copyright |28|c|29| 20",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Microsoft Corp",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET !21:23 -> $EXTERNAL_NET any (msg:\"ET WEB_SERVER Insomnia Shell Outbound CMD Banner\"; flow:established,to_server; content:\"Shell enroute.......\"; depth:20; content:\"Microsoft Windows \"; content:\"Copyright |28|c|29| 20\"; distance:0; content:\"Microsoft Corp\"; distance:0; reference:url,www.insomniasec.com/releases; classtype:trojan-activity; sid:2019900; rev:2; metadata:created_at 2014_12_09, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1817,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "7001",
+    "options": {
+      "msg": "ET WEB_SERVER Oracle WebLogic Unauthenticated IIOP/T3 Remote Code Execution (CVE-2023-21839)",
+      "flow": "established,to_server",
+      "startswith": true,
+      "reference": [
+        "url,packetstorm.news/files/id/172882",
+        "cve,2023-21839"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2065403,
+      "rev": 1,
+      "metadata": "affected_product Oracle_WebLogic, attack_target Networking_Equipment, created_at 2025_10_27, cve CVE_2023_21839, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_27",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GIOP|01 02 00 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "rebind_any",
+          "modifiers": {}
+        },
+        {
+          "pattern": "weblogic|2e|jndi|2e|internal|2e|ForeignOpaqueReference",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "ldap|3a 2f 2f|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 7001 (msg:\"ET WEB_SERVER Oracle WebLogic Unauthenticated IIOP/T3 Remote Code Execution (CVE-2023-21839)\"; flow:established,to_server; content:\"GIOP|01 02 00 00|\"; startswith; content:\"rebind_any\"; content:\"weblogic|2e|jndi|2e|internal|2e|ForeignOpaqueReference\"; fast_pattern; content:\"ldap|3a 2f 2f|\"; reference:url,packetstorm.news/files/id/172882; reference:cve,2023-21839; classtype:misc-attack; sid:2065403; rev:1; metadata:affected_product Oracle_WebLogic, attack_target Networking_Equipment, created_at 2025_10_27, cve CVE_2023_21839, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_27; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1825,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER Oracle WebLogic Server Remote Code Execution via Insecure Deserialization (CVE-2020-14644)",
+      "flow": "established,to_server",
+      "reference": [
+        "url,www.kingkk.com/2020/08/CVE-2020-14644%E5%88%86%E6%9E%90%E4%B8%8Egadget%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/",
+        "cve,2020-14644"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2067134,
+      "rev": 1,
+      "metadata": "affected_product Oracle_WebLogic, attack_target Server, created_at 2026_01_27, cve CVE_2020_14644, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag Exploit, updated_at 2026_01_27, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "com.tangosol.internal.util.invoke.RemoteConstructor",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "com.tangosol.internal.util.invoke.ClassDefinition",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ClassIdentity",
+          "modifiers": {}
+        },
+        {
+          "pattern": "getRuntime",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET any (msg:\"ET WEB_SERVER Oracle WebLogic Server Remote Code Execution via Insecure Deserialization (CVE-2020-14644)\"; flow:established,to_server; content:\"com.tangosol.internal.util.invoke.RemoteConstructor\"; fast_pattern; content:\"com.tangosol.internal.util.invoke.ClassDefinition\"; content:\"ClassIdentity\"; content:\"getRuntime\"; reference:url,www.kingkk.com/2020/08/CVE-2020-14644%E5%88%86%E6%9E%90%E4%B8%8Egadget%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/; reference:cve,2020-14644; classtype:attempted-user; sid:2067134; rev:1; metadata:affected_product Oracle_WebLogic, attack_target Server, created_at 2026_01_27, cve CVE_2020_14644, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag Exploit, updated_at 2026_01_27, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1827,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[23,2323]",
+    "options": {
+      "msg": "ET WEB_SERVER GNU InetUtils Authentication Bypass via USER Environment Variable (CVE-2026-24061)",
+      "flow": "established,to_server",
+      "pcre": "/^\\s+[\\w-]+\\xff\\xf0/Ri",
+      "reference": [
+        "url,seclists.org/oss-sec/2026/q1/89",
+        "cve,2026-24061"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2067186,
+      "rev": 2,
+      "metadata": "attack_target Client_and_Server, created_at 2026_01_23, cve CVE_2026_24061, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_30, former_sid 2865814",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|ff fa 27 00 00|USER|01|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "-f",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET [23,2323] (msg:\"ET WEB_SERVER GNU InetUtils Authentication Bypass via USER Environment Variable (CVE-2026-24061)\"; flow:established,to_server; content:\"|ff fa 27 00 00|USER|01|\"; fast_pattern; content:\"-f\"; distance:0; pcre:\"/^\\s+[\\w-]+\\xff\\xf0/Ri\"; reference:url,seclists.org/oss-sec/2026/q1/89; reference:cve,2026-24061; classtype:attempted-admin; sid:2067186; rev:2; metadata:attack_target Client_and_Server, created_at 2026_01_23, cve CVE_2026_24061, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_30, former_sid 2865814; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1831,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "443",
+    "options": {
+      "msg": "ET WEB_SERVER Check Point VPN IKEv1 (TCPT) Authentication Bypass (CVE-2026-50751)",
+      "flow": "established,to_server",
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "reference": [
+        "url,labs.watchtowr.com/marking-your-own-homework-check-point-remote-access-vpn-ikev1-authentication-bypass-cve-2026-50751/",
+        "cve,2026-50751"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2071165,
+      "rev": 1,
+      "metadata": "attack_target Server, created_at 2026_07_13, cve CVE_2026_50751, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2026_07_13, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|00 00 00 02|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|01 10|",
+          "modifiers": {
+            "offset": "24",
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|3c f1 87 b2 47 40 29 ea 46 ac 7f d0 ea f2 89 f5 00 00 00 04|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 443 (msg:\"ET WEB_SERVER Check Point VPN IKEv1 (TCPT) Authentication Bypass (CVE-2026-50751)\"; flow:established,to_server; content:\"|00 00 00 02|\"; offset:4; depth:4; content:\"|01 10|\"; offset:24; depth:2; content:\"|3c f1 87 b2 47 40 29 ea 46 ac 7f d0 ea f2 89 f5 00 00 00 04|\"; fast_pattern; threshold:type limit,count 1,seconds 300,track by_src; reference:url,labs.watchtowr.com/marking-your-own-homework-check-point-remote-access-vpn-ikev1-authentication-bypass-cve-2026-50751/; reference:cve,2026-50751; classtype:attempted-user; sid:2071165; rev:1; metadata:attack_target Server, created_at 2026_07_13, cve CVE_2026_50751, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2026_07_13, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  }
+]

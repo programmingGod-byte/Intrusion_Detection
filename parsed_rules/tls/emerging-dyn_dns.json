@@ -1,0 +1,66 @@
+[
+  {
+    "source_file": "emerging-dyn_dns.rules",
+    "line_number": 7159,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DYN_DNS DYNAMIC_DNS softether .net Domain Observed in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,softether.net",
+      "classtype": "misc-activity",
+      "sid": 2048268,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2023_09_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_11, reviewed_at 2023_09_26",
+      "contents": [
+        {
+          "pattern": ".softether.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET DYN_DNS DYNAMIC_DNS softether .net Domain Observed in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".softether.net\"; endswith; fast_pattern; reference:url,softether.net; classtype:misc-activity; sid:2048268; rev:2; metadata:affected_product Any, attack_target Client_and_Server, created_at 2023_09_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_11, reviewed_at 2023_09_26;)"
+  },
+  {
+    "source_file": "emerging-dyn_dns.rules",
+    "line_number": 7299,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DYN_DNS Observed DYNAMIC_DNS Domain (giize .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit, count 1, seconds 300, track by_src",
+      "classtype": "misc-activity",
+      "sid": 2050804,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_02_13, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_11",
+      "contents": [
+        {
+          "pattern": ".giize.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET DYN_DNS Observed DYNAMIC_DNS Domain (giize .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".giize.com\"; endswith; fast_pattern; threshold: type limit, count 1, seconds 300, track by_src; classtype:misc-activity; sid:2050804; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_02_13, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_11;)"
+  }
+]

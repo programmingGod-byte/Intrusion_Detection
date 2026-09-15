@@ -1,0 +1,505 @@
+[
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (1)",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008690,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|0B|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (1)\"; content:\"|0B|\"; offset:2; depth:1; content:\"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008690; rev:5; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (2)",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008691,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|1F 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "..|5C|..|5C|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (2)\"; content:\"|1F 00|\"; content:\"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|\"; content:\"..|5C|..|5C|\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008691; rev:6; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (3)",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008692,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|1F 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "../../",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (3)\"; content:\"|1F 00|\"; content:\"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|\"; content:\"../../\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008692; rev:5; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (4)",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008693,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|1F 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 2E 00 2E 00 2F 00 2E 00 2E 00 2F|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (4)\"; content:\"|1F 00|\"; content:\"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|\"; content:\"|00 2E 00 2E 00 2F 00 2E 00 2E 00 2F|\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008693; rev:5; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 49,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (5)",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008694,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|1F 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 2E 00 2E 00 5C 00 2E 00 2E 00 5C|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (5)\"; content:\"|1F 00|\"; content:\"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|\"; content:\"|00 2E 00 2E 00 5C 00 2E 00 2E 00 5C|\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008694; rev:5; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (7)",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008696,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|20 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "..|5C|..|5C|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (7)\"; content:\"|20 00|\"; content:\"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|\"; content:\"..|5C|..|5C|\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008696; rev:6; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (8)",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008697,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|20 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "../../",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (8)\"; content:\"|20 00|\"; content:\"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|\"; content:\"../../\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008697; rev:5; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (9)",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008698,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|20 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 2E 00 2E 00 2F 00 2E 00 2E 00 2F|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (9)\"; content:\"|20 00|\"; content:\"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|\"; content:\"|00 2E 00 2E 00 2F 00 2E 00 2E 00 2F|\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008698; rev:5; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (10)",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008699,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|20 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 2E 00 2E 00 5C 00 2E 00 2E 00 5C|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (10)\"; content:\"|20 00|\"; content:\"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|\"; content:\"|00 2E 00 2E 00 5C 00 2E 00 2E 00 5C|\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008699; rev:5; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 - Known Exploit Instance",
+      "reference": [
+        "url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx",
+        "cve,2008-4250",
+        "url,www.kb.cert.org/vuls/id/827267"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2008700,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 2e 00 2e 00 2f 00 2e 00 2e 00 2f 00 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 87|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 139 (msg:\"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 - Known Exploit Instance\"; content:\"|00 2e 00 2e 00 2f 00 2e 00 2e 00 2f 00 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 87|\"; reference:url,www.microsoft.com/technet/security/Bulletin/MS08-067.mspx; reference:cve,2008-4250; reference:url,www.kb.cert.org/vuls/id/827267; classtype:attempted-admin; sid:2008700; rev:5; metadata:created_at 2010_07_30, cve CVE_2008_4250, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[137,138,139,445]",
+    "options": {
+      "msg": "ET NETBIOS Microsoft Windows Server 2003 Active Directory Pre-Auth BROWSER ELECTION Heap Overflow Attempt",
+      "isdataat": "65,relative",
+      "reference": [
+        "url,tools.cisco.com/security/center/viewAlert.x?alertId=22457",
+        "bid,46360"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2012317,
+      "rev": 2,
+      "metadata": "created_at 2011_02_18, confidence Low, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|42 4F 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "BROWSER",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|08 09 A8 0F 01 20|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"|0A|",
+          "modifiers": {
+            "within": "65"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET [137,138,139,445] (msg:\"ET NETBIOS Microsoft Windows Server 2003 Active Directory Pre-Auth BROWSER ELECTION Heap Overflow Attempt\"; content:\"|42 4F 00|\"; content:\"BROWSER\"; nocase; distance:0; content:\"|08 09 A8 0F 01 20|\"; fast_pattern; distance:0; isdataat:65,relative; content:!\"|0A|\"; within:65; reference:url,tools.cisco.com/security/center/viewAlert.x?alertId=22457; reference:bid,46360; classtype:attempted-admin; sid:2012317; rev:2; metadata:created_at 2011_02_18, confidence Low, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 469,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "GPL NETBIOS DCERPC Workstation Service direct service access attempt",
+      "byte_test": "1,&,16,2,relative",
+      "reference": [
+        "bugtraq,9011",
+        "cve,2003-0812",
+        "url,www.microsoft.com/technet/security/bulletin/MS03-049.mspx"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2102316,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, cve CVE_2003_0812, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|04 00|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|98 D0 FF|k|12 A1 10|6|98|3F|C3 F8|~4Z",
+          "modifiers": {
+            "within": "16",
+            "distance": "22"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 1024: (msg:\"GPL NETBIOS DCERPC Workstation Service direct service access attempt\"; content:\"|04 00|\"; depth:2; byte_test:1,&,16,2,relative; content:\"|98 D0 FF|k|12 A1 10|6|98|3F|C3 F8|~4Z\"; within:16; distance:22; reference:bugtraq,9011; reference:cve,2003-0812; reference:url,www.microsoft.com/technet/security/bulletin/MS03-049.mspx; classtype:misc-attack; sid:2102316; rev:7; metadata:created_at 2010_09_23, cve CVE_2003_0812, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-netbios.rules",
+    "line_number": 471,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "135",
+    "options": {
+      "msg": "GPL NETBIOS DCERPC Messenger Service buffer overflow attempt",
+      "byte_test": [
+        "1,>,15,2,relative",
+        "4,>,1024,0,little,relative"
+      ],
+      "byte_jump": [
+        "4,86,little,align,relative",
+        "4,8,little,align,relative"
+      ],
+      "reference": [
+        "bugtraq,8826",
+        "cve,2003-0717",
+        "nessus,11888",
+        "nessus,11890",
+        "url,www.microsoft.com/technet/security/bulletin/MS03-043.mspx"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2102257,
+      "rev": 10,
+      "metadata": "created_at 2010_09_23, cve CVE_2003_0717, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|04 00|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 135 (msg:\"GPL NETBIOS DCERPC Messenger Service buffer overflow attempt\"; content:\"|04 00|\"; depth:2; byte_test:1,>,15,2,relative; byte_jump:4,86,little,align,relative; byte_jump:4,8,little,align,relative; byte_test:4,>,1024,0,little,relative; reference:bugtraq,8826; reference:cve,2003-0717; reference:nessus,11888; reference:nessus,11890; reference:url,www.microsoft.com/technet/security/bulletin/MS03-043.mspx; classtype:attempted-admin; sid:2102257; rev:10; metadata:created_at 2010_09_23, cve CVE_2003_0717, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  }
+]

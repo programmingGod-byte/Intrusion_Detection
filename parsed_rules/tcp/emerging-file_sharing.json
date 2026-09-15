@@ -1,0 +1,117 @@
+[
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Wizard 1.5.0 - SEH Overflow Inbound (CVE-2019-16724)",
+      "flow": "established,to_server",
+      "reference": "cve,2019-16724",
+      "classtype": "attempted-admin",
+      "sid": 2034092,
+      "rev": 3,
+      "metadata": "attack_target Server, created_at 2021_10_01, cve CVE_2019_16724, deployment Perimeter, deployment Internal, former_category EXPLOIT, confidence Medium, signature_severity Major, tag Exploit, updated_at 2024_06_12, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "|eb 32 90 90 7f a6 38 7c|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|20|HTTP/",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|0d 0a 0d 0a|",
+          "modifiers": {
+            "distance": "3",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET FILE_SHARING File Sharing Wizard 1.5.0 - SEH Overflow Inbound (CVE-2019-16724)\"; flow:established,to_server; content:\"|eb 32 90 90 7f a6 38 7c|\"; fast_pattern; content:\"|20|HTTP/\"; distance:0; content:\"|0d 0a 0d 0a|\"; distance:3; within:4; reference:cve,2019-16724; classtype:attempted-admin; sid:2034092; rev:3; metadata:attack_target Server, created_at 2021_10_01, cve CVE_2019_16724, deployment Perimeter, deployment Internal, former_category EXPLOIT, confidence Medium, signature_severity Major, tag Exploit, updated_at 2024_06_12, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 343,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "443",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Microsoft Online Storage Client Hello TLSv1 Possible OneDrive (storage.msn .com)",
+      "flow": "established,to_client",
+      "dsize": ">19",
+      "reference": "url,skydrive.live.com",
+      "classtype": "policy-violation",
+      "sid": 2014919,
+      "rev": 4,
+      "metadata": "created_at 2012_06_19, former_category INFO, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "|16 03 01|",
+          "modifiers": {
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": ".storage.msn.com",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 443 -> $HOME_NET any (msg:\"ET FILE_SHARING Microsoft Online Storage Client Hello TLSv1 Possible OneDrive (storage.msn .com)\"; flow:established,to_client; dsize:>19; content:\"|16 03 01|\"; depth:3; content:\".storage.msn.com\"; nocase; distance:0; reference:url,skydrive.live.com; classtype:policy-violation; sid:2014919; rev:4; metadata:created_at 2012_06_19, former_category INFO, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 345,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "443",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Microsoft Online Storage Client Hello TLSv1 Possible OneDrive (storage.live .com)",
+      "flow": "established,to_client",
+      "dsize": ">20",
+      "reference": "url,skydrive.live.com",
+      "classtype": "policy-violation",
+      "sid": 2014920,
+      "rev": 4,
+      "metadata": "created_at 2012_06_19, former_category INFO, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "|16 03 01|",
+          "modifiers": {
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": ".storage.live.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 443 -> $HOME_NET any (msg:\"ET FILE_SHARING Microsoft Online Storage Client Hello TLSv1 Possible OneDrive (storage.live .com)\"; flow:established,to_client; dsize:>20; content:\"|16 03 01|\"; depth:3; content:\".storage.live.com\"; nocase; reference:url,skydrive.live.com; classtype:policy-violation; sid:2014920; rev:4; metadata:created_at 2012_06_19, former_category INFO, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  }
+]

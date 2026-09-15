@@ -1,0 +1,1248 @@
+[
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to OSX/Bundalore Domain",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "pup-activity",
+      "sid": 2029107,
+      "rev": 1,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2019_12_11, deployment Perimeter, malware_family Bundalore, confidence High, signature_severity Minor, updated_at 2019_12_11",
+      "contents": [
+        {
+          "pattern": "appsdown.urbanvillager.xyz",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to OSX/Bundalore Domain\"; dns.query; content:\"appsdown.urbanvillager.xyz\"; nocase; endswith; classtype:pup-activity; sid:2029107; rev:1; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2019_12_11, deployment Perimeter, malware_family Bundalore, confidence High, signature_severity Minor, updated_at 2019_12_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 273,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Win32/Foniad Domain (suggedin .info in DNS Lookup)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "md5,dc2c0b6a8824f5ababf18913ad6d0793",
+      "classtype": "pup-activity",
+      "sid": 2025531,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_17, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": "suggedin.info",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed Win32/Foniad Domain (suggedin .info in DNS Lookup)\"; dns.query; content:\"suggedin.info\"; nocase; endswith; reference:md5,dc2c0b6a8824f5ababf18913ad6d0793; classtype:pup-activity; sid:2025531; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_17, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 305,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP DriverPack Domain in DNS Query",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "pup-activity",
+      "sid": 2032357,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_04_01, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_04_01",
+      "contents": [
+        {
+          "pattern": "drp.su",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP DriverPack Domain in DNS Query\"; dns.query; content:\"drp.su\"; nocase; endswith; classtype:pup-activity; sid:2032357; rev:2; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_04_01, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_04_01;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 313,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Known PUA Host Domain",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2034111,
+      "rev": 1,
+      "metadata": "created_at 2021_10_05, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_10_05",
+      "contents": [
+        {
+          "pattern": "honeypoc.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Known PUA Host Domain\"; dns.query; content:\"honeypoc.io\"; endswith; fast_pattern; classtype:bad-unknown; sid:2034111; rev:1; metadata:created_at 2021_10_05, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_10_05;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 329,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to DriverPack Domain ( .drp .su)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,63181b2e347fbe0faf02e26085513a05",
+      "classtype": "pup-activity",
+      "sid": 2037895,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_08_02, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_08_02",
+      "contents": [
+        {
+          "pattern": ".drp.su",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to DriverPack Domain ( .drp .su)\"; dns.query; dotprefix; content:\".drp.su\"; nocase; endswith; reference:md5,63181b2e347fbe0faf02e26085513a05; classtype:pup-activity; sid:2037895; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_08_02, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_08_02;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 349,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP DriverTurbo Domain (driverturbo .com) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,9efc2525cb16545a4b731d8bc7497293",
+      "classtype": "pup-activity",
+      "sid": 2039611,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_11_01, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_11_01",
+      "contents": [
+        {
+          "pattern": ".driverturbo.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP DriverTurbo Domain (driverturbo .com) in DNS Lookup\"; dns.query; dotprefix; content:\".driverturbo.com\"; nocase; endswith; reference:md5,9efc2525cb16545a4b731d8bc7497293; classtype:pup-activity; sid:2039611; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_11_01, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_11_01;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 351,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP DriverTurbo Domain (driverfinderpro .com) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,9efc2525cb16545a4b731d8bc7497293",
+      "classtype": "pup-activity",
+      "sid": 2039612,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_11_01, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_11_01",
+      "contents": [
+        {
+          "pattern": ".driverfinderpro.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP DriverTurbo Domain (driverfinderpro .com) in DNS Lookup\"; dns.query; dotprefix; content:\".driverfinderpro.com\"; nocase; endswith; reference:md5,9efc2525cb16545a4b731d8bc7497293; classtype:pup-activity; sid:2039612; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_11_01, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_11_01;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 379,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP DNS Query to Neoreklami Domain (testupdate .info)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,twitter.com/Gi7w0rm/status/1658060675770351616",
+      "classtype": "pup-activity",
+      "sid": 2045705,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_05_15, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_05_15, reviewed_at 2024_05_08, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": ".testupdate.info",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP DNS Query to Neoreklami Domain (testupdate .info)\"; dns.query; dotprefix; content:\".testupdate.info\"; nocase; endswith; reference:url,twitter.com/Gi7w0rm/status/1658060675770351616; classtype:pup-activity; sid:2045705; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_05_15, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_05_15, reviewed_at 2024_05_08, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 381,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP DNS Query to Neoreklami Domain (133455789 .xyz)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,twitter.com/Gi7w0rm/status/1658060675770351616",
+      "classtype": "pup-activity",
+      "sid": 2045706,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_05_15, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_05_15, reviewed_at 2024_05_08, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": ".133455789.xyz",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP DNS Query to Neoreklami Domain (133455789 .xyz)\"; dns.query; dotprefix; content:\".133455789.xyz\"; nocase; endswith; reference:url,twitter.com/Gi7w0rm/status/1658060675770351616; classtype:pup-activity; sid:2045706; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_05_15, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_05_15, reviewed_at 2024_05_08, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 389,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Bypass Ticket Monitoring Domain in DNS Lookup (www .bypass .cn)",
+      "dns.query": true,
+      "bsize": "13",
+      "reference": "md5,8feb11d15b708736189779ddc51a4a0a",
+      "classtype": "pup-activity",
+      "sid": 2048361,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_09_29, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_09_29, reviewed_at 2024_03_04",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "www.bypass.cn",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Bypass Ticket Monitoring Domain in DNS Lookup (www .bypass .cn)\"; dns.query; bsize:13; content:\"www.bypass.cn\"; nocase; reference:md5,8feb11d15b708736189779ddc51a4a0a; classtype:pup-activity; sid:2048361; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_09_29, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_09_29, reviewed_at 2024_03_04; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 393,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP DNS Query to PacketShare Proxy API Domain (api .packetshare .io)",
+      "dns.query": true,
+      "bsize": "18",
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "misc-activity",
+      "sid": 2048494,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_10_09, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2023_10_09, reviewed_at 2025_01_23",
+      "contents": [
+        {
+          "pattern": "api.packetshare.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP DNS Query to PacketShare Proxy API Domain (api .packetshare .io)\"; dns.query; bsize:18; content:\"api.packetshare.io\"; nocase; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:misc-activity; sid:2048494; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_10_09, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2023_10_09, reviewed_at 2025_01_23;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 407,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Query to Seetrol RAT Domain (seetrol .co .kr)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "pup-activity",
+      "sid": 2049148,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_11_10, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_11_10",
+      "contents": [
+        {
+          "pattern": ".seetrol.co.kr",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Query to Seetrol RAT Domain (seetrol .co .kr)\"; dns.query; dotprefix; content:\".seetrol.co.kr\"; nocase; endswith; classtype:pup-activity; sid:2049148; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_11_10, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_11_10;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1615,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Malvertising Related Domain",
+      "dns.query": true,
+      "bsize": "26",
+      "reference": "url,duo.com/labs/research/crxcavator-malvertising-2020",
+      "classtype": "pup-activity",
+      "sid": 2030014,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_04_23, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "gdprcountryrestriction.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Malvertising Related Domain\"; dns.query; bsize:26; content:\"gdprcountryrestriction.com\"; nocase; reference:url,duo.com/labs/research/crxcavator-malvertising-2020; classtype:pup-activity; sid:2030014; rev:3; metadata:attack_target Client_Endpoint, created_at 2020_04_23, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1627,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Socelars Related Domain in DNS Lookup",
+      "dns.query": true,
+      "bsize": "13",
+      "reference": "md5,f6c01214414fe2cedaa217c69ab093e1",
+      "classtype": "bad-unknown",
+      "sid": 2033607,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_07_28, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25, mitre_tactic_id TA0009, mitre_tactic_name Collection, mitre_technique_id T1005, mitre_technique_name Data_from_local_system",
+      "contents": [
+        {
+          "pattern": "www.cncode.pw",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Socelars Related Domain in DNS Lookup\"; dns.query; bsize:13; content:\"www.cncode.pw\"; nocase; reference:md5,f6c01214414fe2cedaa217c69ab093e1; classtype:bad-unknown; sid:2033607; rev:2; metadata:attack_target Client_Endpoint, created_at 2021_07_28, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25, mitre_tactic_id TA0009, mitre_tactic_name Collection, mitre_technique_id T1005, mitre_technique_name Data_from_local_system;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1641,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to PUP Domain (omnatuor .com)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "pup-activity",
+      "sid": 2043093,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_12_27, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "omnatuor.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to PUP Domain (omnatuor .com)\"; dns.query; bsize:12; content:\"omnatuor.com\"; nocase; classtype:pup-activity; sid:2043093; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_12_27, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1849,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Lookup of Malware Domain twothousands.cm Likely Infection",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "classtype": "pup-activity",
+      "sid": 2012176,
+      "rev": 7,
+      "metadata": "created_at 2011_01_13, confidence Medium, signature_severity Minor, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "twothousands.cm",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Lookup of Malware Domain twothousands.cm Likely Infection\"; dns.query; content:\"twothousands.cm\"; startswith; fast_pattern; endswith; nocase; classtype:pup-activity; sid:2012176; rev:7; metadata:created_at 2011_01_13, confidence Medium, signature_severity Minor, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1851,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Malicious Chrome Ext. DNS Query For Adware CnC (startupfraction)",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": "url,blog.0day.rocks/malicious-chrome-extension-meddling-with-your-searches-581aa56ddc9c",
+      "classtype": "pup-activity",
+      "sid": 2024722,
+      "rev": 8,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_09_19, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Minor, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "startupfraction.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Malicious Chrome Ext. DNS Query For Adware CnC (startupfraction)\"; dns.query; content:\"startupfraction.com\"; startswith; fast_pattern; endswith; nocase; reference:url,blog.0day.rocks/malicious-chrome-extension-meddling-with-your-searches-581aa56ddc9c; classtype:pup-activity; sid:2024722; rev:8; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_09_19, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Minor, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1853,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Malicious Chrome Ext. DNS Query For Adware CnC (search.feedvertizus)",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": "url,blog.0day.rocks/malicious-chrome-extension-meddling-with-your-searches-581aa56ddc9c",
+      "classtype": "pup-activity",
+      "sid": 2024723,
+      "rev": 8,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_09_19, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Minor, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "search.feedvertizus.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Malicious Chrome Ext. DNS Query For Adware CnC (search.feedvertizus)\"; dns.query; content:\"search.feedvertizus.com\"; startswith; fast_pattern; endswith; nocase; reference:url,blog.0day.rocks/malicious-chrome-extension-meddling-with-your-searches-581aa56ddc9c; classtype:pup-activity; sid:2024723; rev:8; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_09_19, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Minor, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1855,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Malicious Chrome Ext. DNS Query For Adware CnC (opurie)",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": "url,blog.0day.rocks/malicious-chrome-extension-meddling-with-your-searches-581aa56ddc9c",
+      "classtype": "pup-activity",
+      "sid": 2024725,
+      "rev": 8,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_09_19, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Minor, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "opurie.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Malicious Chrome Ext. DNS Query For Adware CnC (opurie)\"; dns.query; content:\"opurie.com\"; startswith; fast_pattern; endswith; nocase; reference:url,blog.0day.rocks/malicious-chrome-extension-meddling-with-your-searches-581aa56ddc9c; classtype:pup-activity; sid:2024725; rev:8; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_09_19, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Minor, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2251,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (qt .qtzhreop .com)",
+      "dns.query": true,
+      "bsize": "15",
+      "reference": [
+        "md5,0514f57975f6a883c5d0a72c13d4ce65",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052105,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "qt.qtzhreop.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (qt .qtzhreop .com)\"; dns.query; bsize:15; content:\"qt.qtzhreop.com\"; nocase; reference:md5,0514f57975f6a883c5d0a72c13d4ce65; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths; classtype:pup-activity; sid:2052105; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2255,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (iu .iuuaufbt .com)",
+      "dns.query": true,
+      "bsize": "15",
+      "reference": [
+        "md5,1fc4b240b146d44a09d690c8341c571f",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2052107,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "iu.iuuaufbt.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (iu .iuuaufbt .com)\"; dns.query; bsize:15; content:\"iu.iuuaufbt.com\"; nocase; reference:md5,1fc4b240b146d44a09d690c8341c571f; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:misc-activity; sid:2052107; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2259,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (cy .amorcash .com)",
+      "dns.query": true,
+      "bsize": "15",
+      "reference": [
+        "md5,77ca95be3156b9cd60884f4ba64d6753",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052109,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "cy.amorcash.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (cy .amorcash .com)\"; dns.query; bsize:15; content:\"cy.amorcash.com\"; nocase; reference:md5,77ca95be3156b9cd60884f4ba64d6753; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:pup-activity; sid:2052109; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2263,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (apitai .coccash .com)",
+      "dns.query": true,
+      "bsize": "18",
+      "reference": [
+        "md5,26d34aa95d7b81443d85bf3be31cf697",
+        "md5,cd2e6e8e8b931cdfc928bf5e191baea3",
+        "md5,9b7ab89bfd5de9e6834920c7b855f758",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052111,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "apitai.coccash.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (apitai .coccash .com)\"; dns.query; bsize:18; content:\"apitai.coccash.com\"; nocase; reference:md5,26d34aa95d7b81443d85bf3be31cf697; reference:md5,cd2e6e8e8b931cdfc928bf5e191baea3; reference:md5,9b7ab89bfd5de9e6834920c7b855f758; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:pup-activity; sid:2052111; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2265,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (app .truenaira .co)",
+      "dns.query": true,
+      "bsize": "16",
+      "reference": [
+        "md5,26d34aa95d7b81443d85bf3be31cf697",
+        "md5,cd2e6e8e8b931cdfc928bf5e191baea3",
+        "md5,9b7ab89bfd5de9e6834920c7b855f758",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052112,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "app.truenaira.co",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (app .truenaira .co)\"; dns.query; bsize:16; content:\"app.truenaira.co\"; nocase; reference:md5,26d34aa95d7b81443d85bf3be31cf697; reference:md5,cd2e6e8e8b931cdfc928bf5e191baea3; reference:md5,9b7ab89bfd5de9e6834920c7b855f758; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:pup-activity; sid:2052112; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2267,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (api .yumicash .com)",
+      "dns.query": true,
+      "bsize": "16",
+      "reference": [
+        "md5,26d34aa95d7b81443d85bf3be31cf697",
+        "md5,cd2e6e8e8b931cdfc928bf5e191baea3",
+        "md5,9b7ab89bfd5de9e6834920c7b855f758",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052113,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "api.yumicash.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Android Fintech Related Domain in DNS Lookup (api .yumicash .com)\"; dns.query; bsize:16; content:\"api.yumicash.com\"; nocase; reference:md5,26d34aa95d7b81443d85bf3be31cf697; reference:md5,cd2e6e8e8b931cdfc928bf5e191baea3; reference:md5,9b7ab89bfd5de9e6834920c7b855f758; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:pup-activity; sid:2052113; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2537,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Abused Tools Domain - Commonly Used for SMTP Exfil (4t-niagara .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,59f38f999d773fa5cd166fc9f655bc0d",
+      "classtype": "misc-activity",
+      "sid": 2065284,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_10_22, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_22",
+      "contents": [
+        {
+          "pattern": ".4t-niagara.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Abused Tools Domain - Commonly Used for SMTP Exfil (4t-niagara .com)\"; dns.query; dotprefix; content:\".4t-niagara.com\"; nocase; endswith; reference:md5,59f38f999d773fa5cd166fc9f655bc0d; classtype:misc-activity; sid:2065284; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_10_22, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_22;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2543,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (uprock .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067454,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".uprock.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (uprock .com)\"; dns.query; dotprefix; content:\".uprock.com\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067454; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2545,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (grass .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067455,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".grass.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (grass .io)\"; dns.query; dotprefix; content:\".grass.io\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067455; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2547,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (cashraven .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067456,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".cashraven.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (cashraven .io)\"; dns.query; dotprefix; content:\".cashraven.io\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067456; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2549,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (mysterium .network)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067457,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".mysterium.network",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (mysterium .network)\"; dns.query; dotprefix; content:\".mysterium.network\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067457; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2551,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (passiveapp .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067458,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".passiveapp.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (passiveapp .com)\"; dns.query; dotprefix; content:\".passiveapp.com\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067458; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2553,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (bytelixir .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067459,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".bytelixir.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (bytelixir .com)\"; dns.query; dotprefix; content:\".bytelixir.com\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067459; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2555,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (earnapp .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067460,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".earnapp.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (earnapp .com)\"; dns.query; dotprefix; content:\".earnapp.com\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067460; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2557,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (packetstream .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067461,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".packetstream.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (packetstream .io)\"; dns.query; dotprefix; content:\".packetstream.io\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067461; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2559,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (traffmonetizer .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067462,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".traffmonetizer.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (traffmonetizer .com)\"; dns.query; dotprefix; content:\".traffmonetizer.com\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067462; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2561,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (repocket .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067463,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".repocket.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (repocket .com)\"; dns.query; dotprefix; content:\".repocket.com\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067463; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2563,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (proxyrack .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067464,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".proxyrack.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (proxyrack .com)\"; dns.query; dotprefix; content:\".proxyrack.com\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067464; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2565,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (earn .fm)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067465,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".earn.fm",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Observed DNS Query to Bandwidth Sharing Tool Domain (earn .fm)\"; dns.query; dotprefix; content:\".earn.fm\"; nocase; endswith; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067465; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2591,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Activity Monitoring/Keylogger Software Domain in DNS Lookup (refog .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "pup-activity",
+      "sid": 2068334,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_03_19, deployment Perimeter, malware_family PUP, malware_family mipko, malware_family refog, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_03_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "contents": [
+        {
+          "pattern": ".refog.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Activity Monitoring/Keylogger Software Domain in DNS Lookup (refog .com)\"; dns.query; dotprefix; content:\".refog.com\"; nocase; endswith; classtype:pup-activity; sid:2068334; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_03_19, deployment Perimeter, malware_family PUP, malware_family mipko, malware_family refog, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_03_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2593,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Activity Monitoring/Keylogger Software Domain in DNS Lookup (mipko .ru)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "pup-activity",
+      "sid": 2068335,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_03_19, deployment Perimeter, malware_family PUP, malware_family mipko, malware_family refog, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_03_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "contents": [
+        {
+          "pattern": ".mipko.ru",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET ADWARE_PUP Activity Monitoring/Keylogger Software Domain in DNS Lookup (mipko .ru)\"; dns.query; dotprefix; content:\".mipko.ru\"; nocase; endswith; classtype:pup-activity; sid:2068335; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_03_19, deployment Perimeter, malware_family PUP, malware_family mipko, malware_family refog, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_03_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery;)"
+  }
+]

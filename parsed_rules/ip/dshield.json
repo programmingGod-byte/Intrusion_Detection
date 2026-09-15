@@ -1,0 +1,27 @@
+[
+  {
+    "source_file": "dshield.rules",
+    "line_number": 35,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "[45.33.41.0/24,156.225.1.0/24,198.235.24.0/24,85.217.140.0/24,147.185.132.0/24,64.62.197.0/24,66.132.186.0/24,45.156.128.0/24,199.45.154.0/24,65.49.1.0/24,85.217.149.0/24,205.210.31.0/24,193.163.125.0/24,216.180.246.0/24,66.132.172.0/24,77.90.185.0/24,167.94.146.0/24,185.226.197.0/24,45.148.10.0/24,66.132.195.0/24]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DROP Dshield Block Listed Source group 1",
+      "reference": "url,feeds.dshield.org/block.txt",
+      "threshold": "type limit, track by_src, seconds 3600, count 1",
+      "classtype": "misc-attack",
+      "flowbits": [
+        "set,ET.Evil",
+        "set,ET.DshieldIP"
+      ],
+      "sid": 2402000,
+      "rev": 7859,
+      "metadata": "affected_product Any, attack_target Any, deployment Perimeter, tag Dshield, signature_severity Major, created_at 2010_12_30, updated_at 2026_09_11"
+    },
+    "raw_rule": "alert ip [45.33.41.0/24,156.225.1.0/24,198.235.24.0/24,85.217.140.0/24,147.185.132.0/24,64.62.197.0/24,66.132.186.0/24,45.156.128.0/24,199.45.154.0/24,65.49.1.0/24,85.217.149.0/24,205.210.31.0/24,193.163.125.0/24,216.180.246.0/24,66.132.172.0/24,77.90.185.0/24,167.94.146.0/24,185.226.197.0/24,45.148.10.0/24,66.132.195.0/24] any -> $HOME_NET any (msg:\"ET DROP Dshield Block Listed Source group 1\"; reference:url,feeds.dshield.org/block.txt; threshold: type limit, track by_src, seconds 3600, count 1; classtype:misc-attack; flowbits:set,ET.Evil; flowbits:set,ET.DshieldIP; sid:2402000; rev:7859; metadata:affected_product Any, attack_target Any, deployment Perimeter, tag Dshield, signature_severity Major, created_at 2010_12_30, updated_at 2026_09_11;)"
+  }
+]

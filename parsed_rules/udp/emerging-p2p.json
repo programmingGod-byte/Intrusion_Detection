@@ -1,0 +1,888 @@
+[
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P Edonkey Publicize File ACK",
+      "dsize": "<20",
+      "reference": "url,www.giac.org/certified_professionals/practicals/gcih/0446.php",
+      "classtype": "policy-violation",
+      "sid": 2003311,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|e3 0d|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET 1024:65535 -> $HOME_NET 1024:65535 (msg:\"ET P2P Edonkey Publicize File ACK\"; dsize:<20; content:\"|e3 0d|\"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; classtype:policy-violation; sid:2003311; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 49,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P Edonkey Connect Request",
+      "dsize": "25",
+      "reference": "url,www.giac.org/certified_professionals/practicals/gcih/0446.php",
+      "classtype": "policy-violation",
+      "sid": 2003312,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|e3 0a|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:\"ET P2P Edonkey Connect Request\"; dsize:25; content:\"|e3 0a|\"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; classtype:policy-violation; sid:2003312; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P GnucDNA UDP Ultrapeer Traffic",
+      "threshold": "type both,track by_src,count 10,seconds 600",
+      "classtype": "policy-violation",
+      "sid": 2002760,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SCP@|83|DNA@",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P GnucDNA UDP Ultrapeer Traffic\"; content:\"SCP@|83|DNA@\"; threshold: type both,track by_src,count 10,seconds 600; classtype:policy-violation; sid:2002760; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P Kazaa over UDP",
+      "threshold": "type threshold, track by_src,count 10, seconds 60",
+      "reference": "url,www.kazaa.com/us/index.htm",
+      "classtype": "policy-violation",
+      "sid": 2001796,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "KaZaA",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:\"ET P2P Kazaa over UDP\"; content:\"KaZaA\"; nocase; threshold: type threshold, track by_src,count 10, seconds 60; reference:url,www.kazaa.com/us/index.htm; classtype:policy-violation; sid:2001796; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "41170",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Manolito Connection (1)",
+      "dsize": "<48",
+      "classtype": "policy-violation",
+      "sid": 2009097,
+      "rev": 2,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|3d 4a d9|",
+          "modifiers": {
+            "depth": "3"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET 41170 -> $HOME_NET any (msg:\"ET P2P Manolito Connection (1)\"; dsize:<48; content:\"|3d 4a d9|\"; depth:3; classtype:policy-violation; sid:2009097; rev:2; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "41170",
+    "options": {
+      "msg": "ET P2P Manolito Ping",
+      "dsize": "<24",
+      "threshold": "type limit, track by_src, seconds 300, count 1",
+      "classtype": "policy-violation",
+      "sid": 2009098,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|3d|",
+          "modifiers": {
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|d9|",
+          "modifiers": {
+            "distance": "1"
+          }
+        },
+        {
+          "pattern": "|ed bb|",
+          "modifiers": {
+            "distance": "13"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 41170 (msg:\"ET P2P Manolito Ping\"; dsize:<24; content:\"|3d|\"; depth:1; content:\"|d9|\"; distance:1; content:\"|ed bb|\"; distance:13; threshold: type limit, track by_src, seconds 300, count 1; classtype:policy-violation; sid:2009098; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BitTorrent DHT ping request",
+      "threshold": "type both, count 1, seconds 300, track by_src",
+      "reference": "url,wiki.theory.org/BitTorrentDraftDHTProtocol",
+      "classtype": "policy-violation",
+      "sid": 2008581,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "d1|3a|ad2|3a|id20|3a|",
+          "modifiers": {
+            "depth": "12",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P BitTorrent DHT ping request\"; content:\"d1|3a|ad2|3a|id20|3a|\"; depth:12; nocase; threshold: type both, count 1, seconds 300, track by_src; reference:url,wiki.theory.org/BitTorrentDraftDHTProtocol; classtype:policy-violation; sid:2008581; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BitTorrent DHT announce_peers request",
+      "threshold": "type both, count 1, seconds 300, track by_src",
+      "reference": "url,wiki.theory.org/BitTorrentDraftDHTProtocol",
+      "classtype": "policy-violation",
+      "sid": 2008585,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "d1|3a|ad2|3a|id20|3a|",
+          "modifiers": {
+            "nocase": true,
+            "depth": "14"
+          }
+        },
+        {
+          "pattern": "e1|3a|q13|3a|announce_peer1|3a|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "55"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P BitTorrent DHT announce_peers request\"; content:\"d1|3a|ad2|3a|id20|3a|\"; nocase; depth:14; content:\"e1|3a|q13|3a|announce_peer1|3a|\"; nocase; distance:55; threshold: type both, count 1, seconds 300, track by_src; reference:url,wiki.theory.org/BitTorrentDraftDHTProtocol; classtype:policy-violation; sid:2008585; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "8247",
+    "options": {
+      "msg": "ET P2P Octoshape P2P streaming media",
+      "threshold": "type limit, track by_src, count 1, seconds 600",
+      "classtype": "policy-violation",
+      "sid": 2010008,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "POST / HTTP/1.",
+          "modifiers": {
+            "depth": "64"
+          }
+        },
+        {
+          "pattern": "Oshtcp-streamtype|3a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 8247 (msg:\"ET P2P Octoshape P2P streaming media\"; content:\"POST / HTTP/1.\"; depth:64; content:\"Oshtcp-streamtype|3a|\"; threshold: type limit, track by_src, count 1, seconds 600; classtype:policy-violation; sid:2010008; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BitTorrent DHT nodes reply",
+      "threshold": "type both, count 1, seconds 300, track by_src",
+      "reference": "url,wiki.theory.org/BitTorrentDraftDHTProtocol",
+      "classtype": "policy-violation",
+      "sid": 2008583,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "d1|3a|rd2|3a|id20|3a|",
+          "modifiers": {
+            "nocase": true,
+            "depth": "12"
+          }
+        },
+        {
+          "pattern": "5|3a|nodes",
+          "modifiers": {
+            "nocase": true,
+            "distance": "20",
+            "within": "7"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P BitTorrent DHT nodes reply\"; content:\"d1|3a|rd2|3a|id20|3a|\"; nocase; depth:12; content:\"5|3a|nodes\"; nocase; distance:20; within:7; threshold: type both, count 1, seconds 300, track by_src; reference:url,wiki.theory.org/BitTorrentDraftDHTProtocol; classtype:policy-violation; sid:2008583; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "4660:4799",
+    "options": {
+      "msg": "ET P2P eDonkey Server Status Request",
+      "reference": "url,www.edonkey.com",
+      "classtype": "policy-violation",
+      "sid": 2001298,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|e3 96|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 4660:4799 (msg:\"ET P2P eDonkey Server Status Request\"; content:\"|e3 96|\"; depth: 2; reference:url,www.edonkey.com; classtype:policy-violation; sid:2001298; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P KuGoo P2P Connection",
+      "dsize": "<30",
+      "reference": "url,koogoo.com",
+      "classtype": "policy-violation",
+      "sid": 2009966,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|64|",
+          "modifiers": {
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|70|",
+          "modifiers": {
+            "distance": "5"
+          }
+        },
+        {
+          "pattern": "|50 37|",
+          "modifiers": {
+            "distance": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:\"ET P2P KuGoo P2P Connection\"; dsize:<30; content:\"|64|\"; depth:1; content:\"|70|\"; distance:5; content:\"|50 37|\"; distance:4; reference:url,koogoo.com; classtype:policy-violation; sid:2009966; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Vuze BT UDP Connection (2)",
+      "dsize": "94",
+      "reference": "url,vuze.com",
+      "classtype": "policy-violation",
+      "sid": 2010141,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 04|",
+          "modifiers": {
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": "|00 00 00 00 00|",
+          "modifiers": {
+            "distance": "14",
+            "within": "5"
+          }
+        },
+        {
+          "pattern": "|ff ff ff ff 00 00 00 00 02 05 21|",
+          "modifiers": {
+            "distance": "8",
+            "within": "11"
+          }
+        },
+        {
+          "pattern": "|00 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "25",
+            "within": "6"
+          }
+        },
+        {
+          "pattern": "|00 00|",
+          "modifiers": {
+            "distance": "20",
+            "within": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET any (msg:\"ET P2P Vuze BT UDP Connection (2)\"; dsize:94; content:\"|00 00 04|\"; depth:3; content:\"|00 00 00 00 00|\"; distance:14; within:5; content:\"|ff ff ff ff 00 00 00 00 02 05 21|\"; distance:8; within:11; content:\"|00 00 00 00 00 00|\"; distance:25; within:6; content:\"|00 00|\"; distance:20; within:2; reference:url,vuze.com; classtype:policy-violation; sid:2010141; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P Vuze BT UDP Connection (3)",
+      "dsize": "80",
+      "threshold": "type limit, track by_dst, count 10, seconds 600",
+      "classtype": "policy-violation",
+      "sid": 2010142,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 04|",
+          "modifiers": {
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": "|00 00 00 00 00|",
+          "modifiers": {
+            "distance": "14",
+            "within": "5"
+          }
+        },
+        {
+          "pattern": "|02 05 21 04|",
+          "modifiers": {
+            "distance": "4",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 1024:65535 (msg:\"ET P2P Vuze BT UDP Connection (3)\"; dsize:80; content:\"|00 00 04|\"; depth:3; content:\"|00 00 00 00 00|\"; distance:14; within:5; content:\"|02 05 21 04|\"; distance:4; within:4; threshold:type limit, track by_dst, count 10, seconds 600; classtype:policy-violation; sid:2010142; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 95,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P Vuze BT UDP Connection (4)",
+      "dsize": "<300",
+      "classtype": "policy-violation",
+      "sid": 2010143,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 04|",
+          "modifiers": {
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": "|00 00 00 00 00|",
+          "modifiers": {
+            "distance": "14",
+            "within": "5"
+          }
+        },
+        {
+          "pattern": "|ff ff ff ff|",
+          "modifiers": {
+            "distance": "8",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 1024:65535 (msg:\"ET P2P Vuze BT UDP Connection (4)\"; dsize:<300; content:\"|00 00 04|\"; depth:3; content:\"|00 00 00 00 00|\"; distance:14; within:5; content:\"|ff ff ff ff|\"; distance:8; within:4; classtype:policy-violation; sid:2010143; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P eMule KAD Network Connection Request(2)",
+      "dsize": "35",
+      "threshold": "type limit, count 5, seconds 600, track by_src",
+      "reference": "url,emule-project.net",
+      "classtype": "policy-violation",
+      "sid": 2009968,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|e4 20|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:\"ET P2P eMule KAD Network Connection Request(2)\"; dsize:35; content:\"|e4 20|\"; depth:2; threshold: type limit, count 5, seconds 600, track by_src; reference:url,emule-project.net; classtype:policy-violation; sid:2009968; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P eMule KAD Network Firewalled Request",
+      "dsize": "35",
+      "threshold": "type limit, count 5, seconds 600, track by_src",
+      "reference": "url,emule-project.net",
+      "classtype": "policy-violation",
+      "sid": 2009969,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|e4 50|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:\"ET P2P eMule KAD Network Firewalled Request\"; dsize:35; content:\"|e4 50|\"; depth:2; threshold: type limit, count 5, seconds 600, track by_src; reference:url,emule-project.net; classtype:policy-violation; sid:2009969; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P eMule KAD Network Server Status Request",
+      "dsize": "44",
+      "threshold": "type limit, count 5, seconds 600, track by_src",
+      "reference": "url,emule-project.net",
+      "classtype": "policy-violation",
+      "sid": 2009972,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|8c 97|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:\"ET P2P eMule KAD Network Server Status Request\"; dsize:44; content:\"|8c 97|\"; depth:2; threshold: type limit, count 5, seconds 600, track by_src; reference:url,emule-project.net; classtype:policy-violation; sid:2009972; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P Limewire P2P UDP Traffic",
+      "dsize": "35",
+      "threshold": "type both, track by_src, count 1, seconds 360",
+      "reference": "url,www.limewire.com",
+      "classtype": "policy-violation",
+      "sid": 2001809,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|49 50 40 83 53 43 50 41 00 00|",
+          "modifiers": {
+            "offset": "25",
+            "depth": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:\"ET P2P Limewire P2P UDP Traffic\"; dsize:35; content:\"|49 50 40 83 53 43 50 41 00 00|\"; offset:25; depth:10; threshold: type both, track by_src, count 1, seconds 360; reference:url,www.limewire.com; classtype:policy-violation; sid:2001809; rev:8; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BitTorrent DHT get_peers request",
+      "threshold": "type both, count 1, seconds 300, track by_src",
+      "reference": "url,wiki.theory.org/BitTorrentDraftDHTProtocol",
+      "classtype": "policy-violation",
+      "sid": 2008584,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "d1|3a|ad2|3a|id20|3a|",
+          "modifiers": {
+            "nocase": true,
+            "offset": "12"
+          }
+        },
+        {
+          "pattern": "9|3a|info_hash20|3a|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "20",
+            "within": "14"
+          }
+        },
+        {
+          "pattern": "e1|3a|q9|3a|get_peers1|3a|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P BitTorrent DHT get_peers request\"; content:\"d1|3a|ad2|3a|id20|3a|\"; nocase; offset:12; content:\"9|3a|info_hash20|3a|\"; nocase; distance:20; within:14; content:\"e1|3a|q9|3a|get_peers1|3a|\"; nocase; distance:20; threshold: type both, count 1, seconds 300, track by_src; reference:url,wiki.theory.org/BitTorrentDraftDHTProtocol; classtype:policy-violation; sid:2008584; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 119,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BitTorrent DHT find_node request",
+      "threshold": "type both, count 1, seconds 300, track by_src",
+      "reference": "url,wiki.theory.org/BitTorrentDraftDHTProtocol",
+      "classtype": "policy-violation",
+      "sid": 2008582,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "d1|3a|ad2|3a|id20|3a|",
+          "modifiers": {
+            "nocase": true,
+            "depth": "24"
+          }
+        },
+        {
+          "pattern": "6|3a|target20|3a|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "20"
+          }
+        },
+        {
+          "pattern": "e1|3a|q9|3a|find_node1|3a|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "20"
+          }
+        },
+        {
+          "pattern": "e1|3a|q9|3a|find_node1|3a|",
+          "modifiers": {
+            "distance": "20",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P BitTorrent DHT find_node request\"; content:\"d1|3a|ad2|3a|id20|3a|\"; nocase; depth:24; content:\"6|3a|target20|3a|\"; nocase; distance:20; content:\"e1|3a|q9|3a|find_node1|3a|\"; nocase; distance:20; content:\"e1|3a|q9|3a|find_node1|3a|\"; distance:20; nocase; threshold: type both, count 1, seconds 300, track by_src; reference:url,wiki.theory.org/BitTorrentDraftDHTProtocol; classtype:policy-violation; sid:2008582; rev:7; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 121,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P eMule KAD Network Connection Request",
+      "dsize": "35",
+      "threshold": "type limit, count 1, seconds 300, track by_src",
+      "reference": "url,emule-project.net",
+      "classtype": "policy-violation",
+      "sid": 2009967,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|e4 21|",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:\"ET P2P eMule KAD Network Connection Request\"; dsize:35; content:\"|e4 21|\"; depth:2; threshold: type limit, count 1, seconds 300, track by_src; reference:url,emule-project.net; classtype:policy-violation; sid:2009967; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Vuze BT UDP Connection (5)",
+      "dsize": "<20",
+      "threshold": "type limit, count 1, seconds 120, track by_src",
+      "reference": "url,vuze.com",
+      "classtype": "policy-violation",
+      "sid": 2010144,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 04 17 27 10 19 80 00 00 00 00|",
+          "modifiers": {
+            "depth": "12"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET any (msg:\"ET P2P Vuze BT UDP Connection (5)\"; dsize:<20; content:\"|00 00 04 17 27 10 19 80 00 00 00 00|\"; depth:12; threshold: type limit, count 1, seconds 120, track by_src; reference:url,vuze.com; classtype:policy-violation; sid:2010144; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 139,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET P2P Vuze BT UDP Connection",
+      "dsize": "<80",
+      "threshold": "type limit, count 1, seconds 120, track by_src",
+      "reference": "url,vuze.com",
+      "classtype": "policy-violation",
+      "sid": 2010140,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "!\"|00 22 02 00|",
+          "modifiers": {
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|00 00 04|",
+          "modifiers": {
+            "distance": "8",
+            "within": "3"
+          }
+        },
+        {
+          "pattern": "|00 00 00 00 00|",
+          "modifiers": {
+            "distance": "6",
+            "within": "5"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024: (msg:\"ET P2P Vuze BT UDP Connection\"; dsize:<80; content:!\"|00 22 02 00|\"; depth: 4; content:\"|00 00 04|\"; distance:8; within:3; content:\"|00 00 00 00 00|\"; distance:6; within:5; threshold: type limit, count 1, seconds 120, track by_src; reference:url,vuze.com; classtype:policy-violation; sid:2010140; rev:7; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 141,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "[!3389,1024:65535]",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "[!3389,1024:65535]",
+    "options": {
+      "msg": "ET P2P Edonkey Search Request (search by name)",
+      "dsize": ">5",
+      "reference": "url,www.giac.org/certified_professionals/practicals/gcih/0446.php",
+      "classtype": "policy-violation",
+      "sid": 2003319,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|e3 98|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "within": "3"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET [!3389,1024:65535] -> $EXTERNAL_NET [!3389,1024:65535] (msg:\"ET P2P Edonkey Search Request (search by name)\"; dsize:>5; content:\"|e3 98|\"; depth:2; content:\"|01|\"; within:3; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; classtype:policy-violation; sid:2003319; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  }
+]

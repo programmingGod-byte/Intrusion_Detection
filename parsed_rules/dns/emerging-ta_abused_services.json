@@ -1,0 +1,1931 @@
+[
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (passproviders .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2052798,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_05_21, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": ".passproviders.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (passproviders .com)\"; dns.query; dotprefix; content:\".passproviders.com\"; nocase; endswith; classtype:misc-activity; sid:2052798; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_05_21, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (arkinfo .in)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2052799,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_05_21, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": ".arkinfo.in",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (arkinfo .in)\"; dns.query; dotprefix; content:\".arkinfo.in\"; nocase; endswith; classtype:misc-activity; sid:2052799; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_05_21, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 49,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (syncthing .net)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,cert.gov.ua/article/6279600",
+      "classtype": "misc-activity",
+      "sid": 2053281,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": ".syncthing.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (syncthing .net)\"; dns.query; dotprefix; content:\".syncthing.net\"; nocase; endswith; reference:url,cert.gov.ua/article/6279600; classtype:misc-activity; sid:2053281; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_06_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-2-s2 .binance .org)",
+      "dns.query": true,
+      "bsize": "33",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053496,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "data-seed-prebsc-2-s2.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-2-s2 .binance .org)\"; dns.query; bsize:33; content:\"data-seed-prebsc-2-s2.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053496; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed2 .defibit .io)",
+      "dns.query": true,
+      "bsize": "24",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053497,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed2.defibit.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed2 .defibit .io)\"; dns.query; bsize:24; content:\"bsc-dataseed2.defibit.io\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053497; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-2-s3 .binance .org)",
+      "dns.query": true,
+      "bsize": "33",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053498,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "data-seed-prebsc-2-s3.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-2-s3 .binance .org)\"; dns.query; bsize:33; content:\"data-seed-prebsc-2-s3.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053498; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed4 .binance .org)",
+      "dns.query": true,
+      "bsize": "25",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053499,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed4.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed4 .binance .org)\"; dns.query; bsize:25; content:\"bsc-dataseed4.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053499; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed1 .binance .org)",
+      "dns.query": true,
+      "bsize": "25",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053500,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed1.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed1 .binance .org)\"; dns.query; bsize:25; content:\"bsc-dataseed1.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053500; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed4 .defibit .io)",
+      "dns.query": true,
+      "bsize": "24",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053501,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed4.defibit.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed4 .defibit .io)\"; dns.query; bsize:24; content:\"bsc-dataseed4.defibit.io\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053501; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed1 .ninicoin .io)",
+      "dns.query": true,
+      "bsize": "25",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053502,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed1.ninicoin.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed1 .ninicoin .io)\"; dns.query; bsize:25; content:\"bsc-dataseed1.ninicoin.io\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053502; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed1 .defibit .io)",
+      "dns.query": true,
+      "bsize": "24",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053503,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed1.defibit.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed1 .defibit .io)\"; dns.query; bsize:24; content:\"bsc-dataseed1.defibit.io\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053503; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-2-s1 .binance .org)",
+      "dns.query": true,
+      "bsize": "33",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053504,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "data-seed-prebsc-2-s1.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-2-s1 .binance .org)\"; dns.query; bsize:33; content:\"data-seed-prebsc-2-s1.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053504; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed3 .defibit .io)",
+      "dns.query": true,
+      "bsize": "24",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053505,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed3.defibit.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed3 .defibit .io)\"; dns.query; bsize:24; content:\"bsc-dataseed3.defibit.io\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053505; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed2 .ninicoin .io)",
+      "dns.query": true,
+      "bsize": "25",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053506,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed2.ninicoin.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed2 .ninicoin .io)\"; dns.query; bsize:25; content:\"bsc-dataseed2.ninicoin.io\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053506; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-1-s3 .binance .org)",
+      "dns.query": true,
+      "bsize": "33",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053507,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "data-seed-prebsc-1-s3.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-1-s3 .binance .org)\"; dns.query; bsize:33; content:\"data-seed-prebsc-1-s3.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053507; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed2 .binance .org)",
+      "dns.query": true,
+      "bsize": "25",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053508,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed2.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed2 .binance .org)\"; dns.query; bsize:25; content:\"bsc-dataseed2.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053508; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-1-s1 .binance .org)",
+      "dns.query": true,
+      "bsize": "33",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053509,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "data-seed-prebsc-1-s1.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-1-s1 .binance .org)\"; dns.query; bsize:33; content:\"data-seed-prebsc-1-s1.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053509; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed4 .ninicoin .io)",
+      "dns.query": true,
+      "bsize": "25",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053510,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed4.ninicoin.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed4 .ninicoin .io)\"; dns.query; bsize:25; content:\"bsc-dataseed4.ninicoin.io\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053510; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed3 .binance .org)",
+      "dns.query": true,
+      "bsize": "25",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053511,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed3.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed3 .binance .org)\"; dns.query; bsize:25; content:\"bsc-dataseed3.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053511; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed3 .ninicoin .io)",
+      "dns.query": true,
+      "bsize": "25",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053512,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "bsc-dataseed3.ninicoin.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (bsc-dataseed3 .ninicoin .io)\"; dns.query; bsize:25; content:\"bsc-dataseed3.ninicoin.io\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053512; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-1-s2 .binance .org)",
+      "dns.query": true,
+      "bsize": "33",
+      "reference": [
+        "url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/",
+        "url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2053513,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": "data-seed-prebsc-1-s2.binance.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (data-seed-prebsc-1-s2 .binance .org)\"; dns.query; bsize:33; content:\"data-seed-prebsc-1-s2.binance.org\"; nocase; reference:url,www.threatdown.com/blog/clearfake-walkthrough-06-03-2024/; reference:url,docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes; classtype:misc-activity; sid:2053513; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_13, deployment Perimeter, confidence High, signature_severity Minor, tag TA_Abused_Service, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 127,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (egnyte .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051743,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_13",
+      "contents": [
+        {
+          "pattern": ".egnyte.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service (egnyte .com)\"; dns.query; dotprefix; content:\".egnyte.com\"; nocase; endswith; classtype:misc-activity; sid:2051743; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 129,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (cdn .ethers .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2053729,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_06_18, deployment Perimeter, confidence High, signature_severity Major, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_18",
+      "contents": [
+        {
+          "pattern": ".cdn.ethers.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (cdn .ethers .io)\"; dns.query; dotprefix; content:\".cdn.ethers.io\"; nocase; endswith; classtype:misc-activity; sid:2053729; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_06_18, deployment Perimeter, confidence High, signature_severity Major, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_18;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 133,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Anonymous File Sharing Domain in DNS Lookup (fromsmash .com)",
+      "dns.query": true,
+      "bsize": "13",
+      "classtype": "bad-unknown",
+      "sid": 2036666,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_24, deployment Perimeter, former_category FILE_SHARING, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "fromsmash.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Anonymous File Sharing Domain in DNS Lookup (fromsmash .com)\"; dns.query; bsize:13; content:\"fromsmash.com\"; nocase; classtype:bad-unknown; sid:2036666; rev:4; metadata:attack_target Client_Endpoint, created_at 2022_05_24, deployment Perimeter, former_category FILE_SHARING, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 135,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Abused File Sharing Domain in DNS Lookup (ftpupload .net)",
+      "dns.query": true,
+      "bsize": "13",
+      "reference": "md5,ddc7091a431c36c35adbc0d1ccfbfa3a",
+      "classtype": "bad-unknown",
+      "sid": 2037077,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_22, deployment Perimeter, former_category FILE_SHARING, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "ftpupload.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Abused File Sharing Domain in DNS Lookup (ftpupload .net)\"; dns.query; bsize:13; content:\"ftpupload.net\"; nocase; reference:md5,ddc7091a431c36c35adbc0d1ccfbfa3a; classtype:bad-unknown; sid:2037077; rev:4; metadata:attack_target Client_Endpoint, created_at 2022_06_22, deployment Perimeter, former_category FILE_SHARING, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 137,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Abused Domain Service Domain in DNS Lookup (temp .swtest .ru)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2042978,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_12_21, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".temp.swtest.ru",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Abused Domain Service Domain in DNS Lookup (temp .swtest .ru)\"; dns.query; dotprefix; content:\".temp.swtest.ru\"; nocase; endswith; classtype:bad-unknown; sid:2042978; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_12_21, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 139,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Abused File Sharing Domain (wasabi .com) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2046653,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category FILE_SHARING, performance_impact Low, confidence High, signature_severity Informational, tag FileSharing_Services, updated_at 2024_06_27, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": "wasabi.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Abused File Sharing Domain (wasabi .com) in DNS Lookup\"; dns.query; bsize:10; content:\"wasabi.com\"; nocase; classtype:misc-activity; sid:2046653; rev:3; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category FILE_SHARING, performance_impact Low, confidence High, signature_severity Informational, tag FileSharing_Services, updated_at 2024_06_27, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 143,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing/CRM Domain (flg .to)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2052634,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_05_16, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".flg.to",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing/CRM Domain (flg .to)\"; dns.query; dotprefix; content:\".flg.to\"; nocase; endswith; classtype:misc-activity; sid:2052634; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_05_16, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 145,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing/CRM Domain (getflg .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2052635,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_05_16, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".getflg.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing/CRM Domain (getflg .com)\"; dns.query; dotprefix; content:\".getflg.com\"; nocase; endswith; classtype:misc-activity; sid:2052635; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_05_16, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing/CRM Domain (pipedrive .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2052703,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_05_16, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".pipedrive.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing/CRM Domain (pipedrive .com)\"; dns.query; dotprefix; content:\".pipedrive.com\"; nocase; endswith; classtype:misc-activity; sid:2052703; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_05_16, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Abused File Sharing/CRM Platform in DNS Lookup (pipedrive-files-*-pipedrive .com .s3 .* .amazonaws .com)",
+      "dns.query": true,
+      "startswith": true,
+      "pcre": "/^[a-z]{3}-\\d{1,2}/R",
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2052705,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, tls_state plaintext, created_at 2024_05_16, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "pipedrive-files-",
+          "modifiers": {}
+        },
+        {
+          "pattern": "-pipedrive-com.s3",
+          "modifiers": {
+            "within": "24",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": ".amazonaws.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $EXTERNAL_NET any (msg:\"ET TA_ABUSED_SERVICES Abused File Sharing/CRM Platform in DNS Lookup (pipedrive-files-*-pipedrive .com .s3 .* .amazonaws .com)\"; dns.query; content:\"pipedrive-files-\"; startswith; pcre:\"/^[a-z]{3}-\\d{1,2}/R\"; content:\"-pipedrive-com.s3\"; within:24; fast_pattern; content:\".amazonaws.com\"; endswith; classtype:misc-activity; sid:2052705; rev:2; metadata:affected_product Any, attack_target Client_and_Server, tls_state plaintext, created_at 2024_05_16, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 161,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Abused Domain Delivering Malicious Payloads in DNS Lookup (one-click .cc)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2047724,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_08_24, deployment Perimeter, former_category CURRENT_EVENTS, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_01_29",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "one-click.cc",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Abused Domain Delivering Malicious Payloads in DNS Lookup (one-click .cc)\"; dns.query; bsize:12; content:\"one-click.cc\"; nocase; classtype:misc-activity; sid:2047724; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_08_24, deployment Perimeter, former_category CURRENT_EVENTS, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_01_29; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 163,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Abused Domain Delivering Malicious Payloads in DNS Lookup (freeclickr .com)",
+      "dns.query": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2047725,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_08_24, deployment Perimeter, former_category CURRENT_EVENTS, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_01_29",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "freeclickr.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Abused Domain Delivering Malicious Payloads in DNS Lookup (freeclickr .com)\"; dns.query; bsize:14; content:\"freeclickr.com\"; nocase; classtype:misc-activity; sid:2047725; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_08_24, deployment Perimeter, former_category CURRENT_EVENTS, performance_impact Low, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_01_29; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 169,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Abused Domain in DNS Lookup (rf .gd)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2048582,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_10_17, deployment Perimeter, former_category INFO, performance_impact Low, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_03_18",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".rf.gd",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Abused Domain in DNS Lookup (rf .gd)\"; dns.query; dotprefix; content:\".rf.gd\"; nocase; endswith; classtype:bad-unknown; sid:2048582; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_10_17, deployment Perimeter, former_category INFO, performance_impact Low, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_03_18; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 171,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (imgurl .ir)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2054429,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_07_10, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_10",
+      "contents": [
+        {
+          "pattern": ".imgurl.ir",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (imgurl .ir)\"; dns.query; dotprefix; content:\".imgurl.ir\"; nocase; endswith; classtype:misc-activity; sid:2054429; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_07_10, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_10;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 175,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (storjshare .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2054639,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_07_22, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_22",
+      "contents": [
+        {
+          "pattern": ".storjshare.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (storjshare .io)\"; dns.query; dotprefix; content:\".storjshare.io\"; nocase; endswith; classtype:misc-activity; sid:2054639; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_07_22, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_22;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 179,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing Domain (discreetshare .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2054798,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_07_31, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_31",
+      "contents": [
+        {
+          "pattern": ".discreetshare.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing Domain (discreetshare .com)\"; dns.query; dotprefix; content:\".discreetshare.com\"; nocase; endswith; classtype:misc-activity; sid:2054798; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_07_31, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_31;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (farmerswife .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2054804,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_07_31, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_31",
+      "contents": [
+        {
+          "pattern": ".farmerswife.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (farmerswife .com)\"; dns.query; dotprefix; content:\".farmerswife.com\"; nocase; endswith; classtype:misc-activity; sid:2054804; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_07_31, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_31;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 187,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Abused Link Aggregating Service Domain in DNS Lookup (bio .link)",
+      "dns.query": true,
+      "bsize": "8",
+      "reference": "url,www.trendmicro.com/en_us/research/24/h/malvertising-campaign-fake-ai-editor-website-credential-theft.html",
+      "classtype": "misc-activity",
+      "sid": 2054890,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_08_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag link_aggregators, updated_at 2024_08_05, reviewed_at 2024_10_04",
+      "contents": [
+        {
+          "pattern": "bio.link",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Abused Link Aggregating Service Domain in DNS Lookup (bio .link)\"; dns.query; bsize:8; content:\"bio.link\"; nocase; reference:url,www.trendmicro.com/en_us/research/24/h/malvertising-campaign-fake-ai-editor-website-credential-theft.html; classtype:misc-activity; sid:2054890; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_08_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag link_aggregators, updated_at 2024_08_05, reviewed_at 2024_10_04;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 189,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Abused Link Aggregating Service Domain in DNS Lookup (linkbio .co)",
+      "dns.query": true,
+      "bsize": "10",
+      "reference": "url,www.trendmicro.com/en_us/research/24/h/malvertising-campaign-fake-ai-editor-website-credential-theft.html",
+      "classtype": "misc-activity",
+      "sid": 2054891,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_08_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag link_aggregators, updated_at 2024_08_05, reviewed_at 2024_10_04",
+      "contents": [
+        {
+          "pattern": "linkbio.co",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Abused Link Aggregating Service Domain in DNS Lookup (linkbio .co)\"; dns.query; bsize:10; content:\"linkbio.co\"; nocase; reference:url,www.trendmicro.com/en_us/research/24/h/malvertising-campaign-fake-ai-editor-website-credential-theft.html; classtype:misc-activity; sid:2054891; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_08_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag link_aggregators, updated_at 2024_08_05, reviewed_at 2024_10_04;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 191,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Abused Link Aggregating Service Domain in DNS Lookup (mssg .me)",
+      "dns.query": true,
+      "bsize": "7",
+      "reference": "url,www.trendmicro.com/en_us/research/24/h/malvertising-campaign-fake-ai-editor-website-credential-theft.html",
+      "classtype": "misc-activity",
+      "sid": 2054892,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_08_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag link_aggregators, updated_at 2024_08_05, reviewed_at 2024_10_04",
+      "contents": [
+        {
+          "pattern": "mssg.me",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Abused Link Aggregating Service Domain in DNS Lookup (mssg .me)\"; dns.query; bsize:7; content:\"mssg.me\"; nocase; reference:url,www.trendmicro.com/en_us/research/24/h/malvertising-campaign-fake-ai-editor-website-credential-theft.html; classtype:misc-activity; sid:2054892; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_08_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag link_aggregators, updated_at 2024_08_05, reviewed_at 2024_10_04;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 199,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Tunneling Service in DNS Lookup (* .ply .gg)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2054989,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_08_07, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_08_07, reviewed_at 2025_01_06",
+      "contents": [
+        {
+          "pattern": ".ply.gg",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Tunneling Service in DNS Lookup (* .ply .gg)\"; dns.query; dotprefix; content:\".ply.gg\"; nocase; endswith; classtype:misc-activity; sid:2054989; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_08_07, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_08_07, reviewed_at 2025_01_06;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 203,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Abused Service in DNS Lookup (tempfiles .ninja)",
+      "dns.query": true,
+      "bsize": "15",
+      "classtype": "misc-activity",
+      "sid": 2055354,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_08_20, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_08_20, reviewed_at 2024_10_04",
+      "contents": [
+        {
+          "pattern": "tempfiles.ninja",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Abused Service in DNS Lookup (tempfiles .ninja)\"; dns.query; bsize:15; content:\"tempfiles.ninja\"; nocase; classtype:misc-activity; sid:2055354; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_08_20, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_08_20, reviewed_at 2024_10_04;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 209,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Observed DNS Query to Commonly Actor Abused Service (image .thum .io)",
+      "dns.query": true,
+      "bsize": "13",
+      "classtype": "misc-activity",
+      "sid": 2055844,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_09_13, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_13",
+      "contents": [
+        {
+          "pattern": "image.thum.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Observed DNS Query to Commonly Actor Abused Service (image .thum .io)\"; dns.query; bsize:13; content:\"image.thum.io\"; nocase; classtype:misc-activity; sid:2055844; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_09_13, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_13;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 213,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing Service Domain (secret .ist .ie)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2055847,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_09_16, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": ".secret.ist.ie",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing Service Domain (secret .ist .ie)\"; dns.query; dotprefix; content:\".secret.ist.ie\"; nocase; endswith; classtype:misc-activity; sid:2055847; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_09_16, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 215,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing Service Domain (sendgb .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2055848,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_09_16, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": ".sendgb.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing Service Domain (sendgb .com)\"; dns.query; dotprefix; content:\".sendgb.com\"; nocase; endswith; classtype:misc-activity; sid:2055848; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_09_16, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 217,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing Service Domain (norishare .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2055849,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_09_16, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": ".norishare.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Abused File Sharing Service Domain (norishare .com)\"; dns.query; dotprefix; content:\".norishare.com\"; nocase; endswith; classtype:misc-activity; sid:2055849; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_09_16, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 225,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service Domain (w3spaces .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2056359,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_09_30, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": ".w3spaces.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Query to Commonly Actor Abused Online Service Domain (w3spaces .com)\"; dns.query; dotprefix; content:\".w3spaces.com\"; nocase; endswith; classtype:misc-activity; sid:2056359; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_09_30, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 229,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES DNS Request to Email Marketing Domain (fdske .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2057378,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_11_11, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_11_11",
+      "contents": [
+        {
+          "pattern": ".fdske.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES DNS Request to Email Marketing Domain (fdske .com)\"; dns.query; dotprefix; content:\".fdske.com\"; nocase; endswith; classtype:misc-activity; sid:2057378; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_11_11, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_11_11;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 233,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Observed DNS Query to Real-time Web Stats Domain (whos .amung .us)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2061198,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_03_31, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_03_31",
+      "contents": [
+        {
+          "pattern": ".whos.amung.us",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Observed DNS Query to Real-time Web Stats Domain (whos .amung .us)\"; dns.query; dotprefix; content:\".whos.amung.us\"; nocase; endswith; classtype:misc-activity; sid:2061198; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_03_31, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_03_31;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 239,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Observed DNS Query to Online Document Sharing Service (onlyoffice .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "classtype": "misc-activity",
+      "sid": 2062767,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, tls_state plaintext, created_at 2025_06_04, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2025_06_04",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".onlyoffice.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Observed DNS Query to Online Document Sharing Service (onlyoffice .com)\"; dns.query; dotprefix; content:\".onlyoffice.com\"; nocase; endswith; threshold:type limit,count 1,seconds 300,track by_src; classtype:misc-activity; sid:2062767; rev:1; metadata:attack_target Client_Endpoint, tls_state plaintext, created_at 2025_06_04, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Service, updated_at 2025_06_04; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 243,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES AI Service Domain (lovable .dev) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lovable.dev",
+      "classtype": "misc-activity",
+      "sid": 2063040,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2025_06_18, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2025_06_18, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities",
+      "contents": [
+        {
+          "pattern": ".lovable.dev",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES AI Service Domain (lovable .dev) in DNS Lookup\"; dns.query; dotprefix; content:\".lovable.dev\"; nocase; endswith; reference:url,lovable.dev; classtype:misc-activity; sid:2063040; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2025_06_18, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2025_06_18, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 245,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES AI Service Domain (lovable .app) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,lovable.dev",
+      "classtype": "misc-activity",
+      "sid": 2063041,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2025_06_18, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2025_06_18, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities",
+      "contents": [
+        {
+          "pattern": ".lovable.app",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES AI Service Domain (lovable .app) in DNS Lookup\"; dns.query; dotprefix; content:\".lovable.app\"; nocase; endswith; reference:url,lovable.dev; classtype:misc-activity; sid:2063041; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2025_06_18, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2025_06_18, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 251,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (0zz0 .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,80accd9b7e948bd1936e32103d2df14b",
+      "classtype": "misc-activity",
+      "sid": 2063692,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_07_24, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_07_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": ".0zz0.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Actor Abused Online Service Domain (0zz0 .com)\"; dns.query; dotprefix; content:\".0zz0.com\"; nocase; endswith; reference:md5,80accd9b7e948bd1936e32103d2df14b; classtype:misc-activity; sid:2063692; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_07_24, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_07_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 255,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Observed DNS Query to Actor Abused Cloud Hosting Service Domain (vercel .app)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "classtype": "misc-activity",
+      "sid": 2065176,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_10_14, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_14",
+      "contents": [
+        {
+          "pattern": ".vercel.app",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Observed DNS Query to Actor Abused Cloud Hosting Service Domain (vercel .app)\"; dns.query; dotprefix; content:\".vercel.app\"; nocase; endswith; threshold:type limit,count 1,seconds 300,track by_src; classtype:misc-activity; sid:2065176; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_10_14, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_14;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 257,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Observed DNS Query to Actor Abused Cloud Hosting Service Domain (caspio .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "classtype": "misc-activity",
+      "sid": 2065177,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_10_14, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_14",
+      "contents": [
+        {
+          "pattern": ".caspio.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Observed DNS Query to Actor Abused Cloud Hosting Service Domain (caspio .com)\"; dns.query; dotprefix; content:\".caspio.com\"; nocase; endswith; threshold:type limit,count 1,seconds 300,track by_src; classtype:misc-activity; sid:2065177; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_10_14, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_14;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 265,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Commonly Abused Link Agregating Service Domain in DNS Lookup (linkup .top)",
+      "dns.query": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2052242,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_04_23, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_20",
+      "contents": [
+        {
+          "pattern": "linkup.top",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Commonly Abused Link Agregating Service Domain in DNS Lookup (linkup .top)\"; dns.query; bsize:10; content:\"linkup.top\"; nocase; classtype:misc-activity; sid:2052242; rev:3; metadata:attack_target Client_Endpoint, created_at 2024_04_23, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_20;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 269,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Browser Automation Toolkit in DNS Lookup (bablosoft .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2054224,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_07_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_20, reviewed_at 2024_12_17",
+      "contents": [
+        {
+          "pattern": ".bablosoft.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Browser Automation Toolkit in DNS Lookup (bablosoft .com)\"; dns.query; dotprefix; content:\".bablosoft.com\"; nocase; endswith; classtype:misc-activity; sid:2054224; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_07_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_20, reviewed_at 2024_12_17;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 273,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Fingerprinting Service in DNS Lookup (customfingerprints .bablosoft .com)",
+      "dns.query": true,
+      "bsize": "32",
+      "reference": "url,www.team-cymru.com/post/bablosoft-lowering-the-barrier-of-entry-for-malicious-actors",
+      "classtype": "misc-activity",
+      "sid": 2054226,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_07_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_20, reviewed_at 2024_12_17",
+      "contents": [
+        {
+          "pattern": "customfingerprints.bablosoft.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Fingerprinting Service in DNS Lookup (customfingerprints .bablosoft .com)\"; dns.query; bsize:32; content:\"customfingerprints.bablosoft.com\"; nocase; reference:url,www.team-cymru.com/post/bablosoft-lowering-the-barrier-of-entry-for-malicious-actors; classtype:misc-activity; sid:2054226; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_07_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_20, reviewed_at 2024_12_17;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 277,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Observed DNS Query to Frequently Abused Online Tool Domain (klclick3 .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2067917,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_24, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_02_24",
+      "contents": [
+        {
+          "pattern": ".klclick3.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Observed DNS Query to Frequently Abused Online Tool Domain (klclick3 .com)\"; dns.query; dotprefix; content:\".klclick3.com\"; nocase; endswith; classtype:misc-activity; sid:2067917; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_24, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_02_24;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 281,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Observed DNS Query to TA Abused Online Tool Domain (flipsnack .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2068010,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_03_05, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_03_05",
+      "contents": [
+        {
+          "pattern": ".flipsnack.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Observed DNS Query to TA Abused Online Tool Domain (flipsnack .com)\"; dns.query; dotprefix; content:\".flipsnack.com\"; nocase; endswith; classtype:misc-activity; sid:2068010; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_03_05, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_03_05;)"
+  },
+  {
+    "source_file": "emerging-ta_abused_services.rules",
+    "line_number": 285,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET TA_ABUSED_SERVICES Observed DNS Query to Commonly Abused Online Service Domain (app .kuse .ai)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "classtype": "misc-activity",
+      "sid": 2069440,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_05_26, deployment Perimeter, confidence Medium, signature_severity Informational, updated_at 2026_05_26",
+      "contents": [
+        {
+          "pattern": ".app.kuse.ai",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET TA_ABUSED_SERVICES Observed DNS Query to Commonly Abused Online Service Domain (app .kuse .ai)\"; dns.query; dotprefix; content:\".app.kuse.ai\"; nocase; endswith; threshold:type limit,count 1,seconds 300,track by_src; classtype:misc-activity; sid:2069440; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_05_26, deployment Perimeter, confidence Medium, signature_severity Informational, updated_at 2026_05_26;)"
+  }
+]

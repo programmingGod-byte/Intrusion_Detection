@@ -1,0 +1,451 @@
+[
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "88",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] HackTool.TCP.Rubeus.[nonce 2]",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031288,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|a7 06 02 04 6C 69 6C 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any 88 (msg:\"ET CURRENT_EVENTS [Fireeye] HackTool.TCP.Rubeus.[nonce 2]\"; content:\"|a7 06 02 04 6C 69 6C 00|\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031288; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] POSSIBLE HackTool.TCP.Rubeus.[User32LogonProcesss]",
+      "flow": "to_server",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031296,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "User32LogonProcesss",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any any (msg:\"ET CURRENT_EVENTS [Fireeye] POSSIBLE HackTool.TCP.Rubeus.[User32LogonProcesss]\"; flow:to_server; content:\"User32LogonProcesss\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031296; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.GORAT.[Build ID]",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031297,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "aqlKZ7wjzg0iKM00E1WB/jq9_RA46w91EKl9A02Dv/nbNdZiLsB1ci8Ph0fb64/9Ks1YxAE86iz9A0dUiDl",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any any (msg:\"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.GORAT.[Build ID]\"; content:\"aqlKZ7wjzg0iKM00E1WB/jq9_RA46w91EKl9A02Dv/nbNdZiLsB1ci8Ph0fb64/9Ks1YxAE86iz9A0dUiDl\"; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031297; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "88",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] HackTool.TCP.Rubeus.[nonce]",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031266,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|05|",
+          "modifiers": {
+            "depth": "30"
+          }
+        },
+        {
+          "pattern": "|0a|",
+          "modifiers": {
+            "distance": "4",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "Z",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|6C 69 6C 00|",
+          "modifiers": {
+            "within": "25",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any 88 (msg:\"ET CURRENT_EVENTS [Fireeye] HackTool.TCP.Rubeus.[nonce]\"; content:\"|05|\"; depth:30; content:\"|0a|\"; distance:4; within:1; content:\"Z\"; content:\"|6C 69 6C 00|\"; within:25; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031266; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M2",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031301,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 20 00 31 00 30 00 20 00 44 00 65 00 66 00 65 00 6e 00 64 00 65 00 72|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any [139,445] (msg:\"ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M2\"; content:\"|ff 53 4d 42|\"; offset:4; depth:4; content:\"|57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 20 00 31 00 30 00 20 00 44 00 65 00 66 00 65 00 6e 00 64 00 65 00 72|\"; distance:0; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031301; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M1",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031300,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 20 00 55 00 70 00 64 00 61 00 74 00 65 00 20 00 43 00 6f 00 6e 00 74 00 72 00 6f 00 6c 00 20 00 53 00 65 00 72 00 76 00 69 00 63 00 65|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any [139,445] (msg:\"ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M1\"; content:\"|ff 53 4d 42|\"; offset:4; depth:4; content:\"|57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 20 00 55 00 70 00 64 00 61 00 74 00 65 00 20 00 43 00 6f 00 6e 00 74 00 72 00 6f 00 6c 00 20 00 53 00 65 00 72 00 76 00 69 00 63 00 65|\"; distance:0; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031300; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M3",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031302,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 20 00 4c 00 69 00 63 00 65 00 6e 00 73 00 65 00 20 00 4b 00 65 00 79 00 20 00 41 00 63 00 74 00 69 00 76 00 61 00 74 00 69 00 6f 00 6e|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any [139,445] (msg:\"ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M3\"; content:\"|ff 53 4d 42|\"; offset:4; depth:4; content:\"|57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 20 00 4c 00 69 00 63 00 65 00 6e 00 73 00 65 00 20 00 4b 00 65 00 79 00 20 00 41 00 63 00 74 00 69 00 76 00 61 00 74 00 69 00 6f 00 6e|\"; distance:0; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031302; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M4",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031303,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|4f 00 66 00 66 00 69 00 63 00 65 00 20 00 33 00 36 00 35 00 20 00 50 00 72 00 6f 00 78 00 79|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any [139,445] (msg:\"ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M4\"; content:\"|ff 53 4d 42|\"; offset:4; depth:4; content:\"|4f 00 66 00 66 00 69 00 63 00 65 00 20 00 33 00 36 00 35 00 20 00 50 00 72 00 6f 00 78 00 79|\"; distance:0; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031303; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M5",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031304,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|4d 00 69 00 63 00 72 00 6f 00 73 00 6f 00 66 00 74 00 20 00 53 00 65 00 63 00 75 00 72 00 69 00 74 00 79 00 20 00 43 00 65 00 6e 00 74 00 65 00 72|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any [139,445] (msg:\"ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M5\"; content:\"|ff 53 4d 42|\"; offset:4; depth:4; content:\"|4d 00 69 00 63 00 72 00 6f 00 73 00 6f 00 66 00 74 00 20 00 53 00 65 00 63 00 75 00 72 00 69 00 74 00 79 00 20 00 43 00 65 00 6e 00 74 00 65 00 72|\"; distance:0; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031304; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M6",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031305,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|4f 00 6e 00 65 00 44 00 72 00 69 00 76 00 65 00 20 00 53 00 79 00 6e 00 63 00 20 00 43 00 65 00 6e 00 74 00 65 00 72|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any [139,445] (msg:\"ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M6\"; content:\"|ff 53 4d 42|\"; offset:4; depth:4; content:\"|4f 00 6e 00 65 00 44 00 72 00 69 00 76 00 65 00 20 00 53 00 79 00 6e 00 63 00 20 00 43 00 65 00 6e 00 74 00 65 00 72|\"; distance:0; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031305; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M7",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031306,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|42 00 61 00 63 00 6b 00 67 00 72 00 6f 00 75 00 6e 00 64 00 20 00 41 00 63 00 74 00 69 00 6f 00 6e 00 20 00 4d 00 61 00 6e 00 61 00 67 00 65 00 72|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any [139,445] (msg:\"ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M7\"; content:\"|ff 53 4d 42|\"; offset:4; depth:4; content:\"|42 00 61 00 63 00 6b 00 67 00 72 00 6f 00 75 00 6e 00 64 00 20 00 41 00 63 00 74 00 69 00 6f 00 6e 00 20 00 4d 00 61 00 6e 00 61 00 67 00 65 00 72|\"; distance:0; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031306; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M8",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031307,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|53 00 65 00 63 00 75 00 72 00 65 00 20 00 54 00 6f 00 6b 00 65 00 6e 00 20 00 4d 00 65 00 73 00 73 00 61 00 67 00 69 00 6e 00 67 00 20 00 53 00 65 00 72 00 76 00 69 00 63 00 65|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any [139,445] (msg:\"ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M8\"; content:\"|ff 53 4d 42|\"; offset:4; depth:4; content:\"|53 00 65 00 63 00 75 00 72 00 65 00 20 00 54 00 6f 00 6b 00 65 00 6e 00 20 00 4d 00 65 00 73 00 73 00 61 00 67 00 69 00 6e 00 67 00 20 00 53 00 65 00 72 00 76 00 69 00 63 00 65|\"; distance:0; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031307; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  },
+  {
+    "source_file": "emerging-current_events.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M9",
+      "reference": "url,github.com/fireeye/red_team_tool_countermeasures",
+      "classtype": "trojan-activity",
+      "sid": 2031308,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 20 00 20 00 55 00 70 00 64 00 61 00 74 00 65|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any [139,445] (msg:\"ET CURRENT_EVENTS [Fireeye] M.HackTool.SMB.Impacket-Obfuscation.[Service Names] M9\"; content:\"|ff 53 4d 42|\"; offset:4; depth:4; content:\"|57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 20 00 20 00 55 00 70 00 64 00 61 00 74 00 65|\"; distance:0; fast_pattern; reference:url,github.com/fireeye/red_team_tool_countermeasures; classtype:trojan-activity; sid:2031308; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_12_08;)"
+  }
+]

@@ -1,0 +1,55 @@
+[
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET REMOTE_ACCESS Netop Remote Control Usage",
+      "reference": "url,www.netop.com",
+      "classtype": "policy-violation",
+      "sid": 2001597,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, former_category INFO, confidence Medium, signature_severity Unknown, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "|554b30303736305337473130|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> any any (msg:\"ET REMOTE_ACCESS Netop Remote Control Usage\"; content:\"|554b30303736305337473130|\"; reference:url,www.netop.com; classtype:policy-violation; sid:2001597; rev:6; metadata:created_at 2010_07_30, former_category INFO, confidence Medium, signature_severity Unknown, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-remote_access.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5632",
+    "options": {
+      "msg": "GPL REMOTE_ACCESS PCAnywhere server response",
+      "classtype": "misc-activity",
+      "sid": 2100566,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, former_category INFO, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "ST",
+          "modifiers": {
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5632 (msg:\"GPL REMOTE_ACCESS PCAnywhere server response\"; content:\"ST\"; depth:2; classtype:misc-activity; sid:2100566; rev:6; metadata:created_at 2010_09_23, former_category INFO, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  }
+]

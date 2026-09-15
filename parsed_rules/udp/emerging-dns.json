@@ -1,0 +1,214 @@
+[
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "options": {
+      "msg": "GPL DNS zone transfer UDP",
+      "reference": [
+        "cve,1999-0532",
+        "nessus,10595"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2101948,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0532, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 FC|",
+          "modifiers": {
+            "offset": "14"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:\"GPL DNS zone transfer UDP\"; content:\"|00 00 FC|\"; offset:14; reference:cve,1999-0532; reference:nessus,10595; classtype:attempted-recon; sid:2101948; rev:8; metadata:created_at 2010_09_23, cve CVE_1999_0532, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 49,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "options": {
+      "msg": "GPL DNS named version attempt",
+      "reference": "nessus,10028",
+      "classtype": "attempted-recon",
+      "sid": 2101616,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|07|version",
+          "modifiers": {
+            "offset": "12",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|04|bind|00|",
+          "modifiers": {
+            "offset": "12",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:\"GPL DNS named version attempt\"; content:\"|07|version\"; offset:12; nocase; content:\"|04|bind|00|\"; offset:12; nocase; reference:nessus,10028; classtype:attempted-recon; sid:2101616; rev:9; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "options": {
+      "msg": "GPL DNS named iquery attempt",
+      "reference": [
+        "bugtraq,134",
+        "cve,1999-0009",
+        "url,www.rfc-editor.org/rfc/rfc1035.txt"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2100252,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0009, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|09 80 00 00 00 01 00 00 00 00|",
+          "modifiers": {
+            "depth": "16",
+            "offset": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:\"GPL DNS named iquery attempt\"; content:\"|09 80 00 00 00 01 00 00 00 00|\"; depth:16; offset:2; reference:bugtraq,134; reference:cve,1999-0009; reference:url,www.rfc-editor.org/rfc/rfc1035.txt; classtype:attempted-recon; sid:2100252; rev:9; metadata:created_at 2010_09_23, cve CVE_1999_0009, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "options": {
+      "msg": "GPL DNS named authors attempt",
+      "reference": "nessus,10728",
+      "classtype": "attempted-recon",
+      "sid": 2100256,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|07|authors",
+          "modifiers": {
+            "offset": "12",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|04|bind|00|",
+          "modifiers": {
+            "offset": "12",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:\"GPL DNS named authors attempt\"; content:\"|07|authors\"; offset:12; nocase; content:\"|04|bind|00|\"; offset:12; nocase; reference:nessus,10728; classtype:attempted-recon; sid:2100256; rev:8; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$DNS_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Excessive DNS Responses with 1 or more RR's (100+ in 10 seconds) to google.com.br possible Cache Poisoning Attempt",
+      "byte_test": [
+        "2,>,0,6",
+        "2,>,0,10"
+      ],
+      "threshold": "type both, track by_src, count 100, seconds 10",
+      "reference": [
+        "url,www.securelist.com/en/blog/208193214/Massive_DNS_poisoning_attacks_in_Brazil",
+        "url,www.zdnet.com/blog/security/massive-dns-poisoning-attack-in-brazil-serving-exploits-and-malware/9780"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2013894,
+      "rev": 5,
+      "metadata": "created_at 2011_11_10, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|06|google|03|com|02|br|00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any 53 -> $DNS_SERVERS any (msg:\"ET DNS Excessive DNS Responses with 1 or more RR's (100+ in 10 seconds) to google.com.br possible Cache Poisoning Attempt\"; byte_test:2,>,0,6; byte_test:2,>,0,10; threshold: type both, track by_src, count 100, seconds 10; content:\"|06|google|03|com|02|br|00|\"; reference:url,www.securelist.com/en/blog/208193214/Massive_DNS_poisoning_attacks_in_Brazil; reference:url,www.zdnet.com/blog/security/massive-dns-poisoning-attack-in-brazil-serving-exploits-and-malware/9780; classtype:bad-unknown; sid:2013894; rev:5; metadata:created_at 2011_11_10, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "![$SMTP_SERVERS,$DNS_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$DNS_SERVERS",
+    "dst_port": "53",
+    "options": {
+      "msg": "ET DNS DNS Lookup for localhost.DOMAIN.TLD",
+      "classtype": "bad-unknown",
+      "sid": 2011802,
+      "rev": 6,
+      "metadata": "created_at 2010_10_13, confidence Medium, signature_severity Major, updated_at 2019_09_03",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|09|localhost",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp ![$SMTP_SERVERS,$DNS_SERVERS] any -> $DNS_SERVERS 53 (msg:\"ET DNS DNS Lookup for localhost.DOMAIN.TLD\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|09|localhost\"; fast_pattern; nocase; classtype:bad-unknown; sid:2011802; rev:6; metadata:created_at 2010_10_13, confidence Medium, signature_severity Major, updated_at 2019_09_03;)"
+  }
+]

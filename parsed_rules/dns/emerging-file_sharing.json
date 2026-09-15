@@ -1,0 +1,2858 @@
+[
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING External File Sharing Domain in DNS Lookup (anonfile .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2036563,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_11, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".anonfile.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING External File Sharing Domain in DNS Lookup (anonfile .com)\"; dns.query; dotprefix; content:\".anonfile.com\"; nocase; endswith; classtype:bad-unknown; sid:2036563; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_05_11, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Anonymous File Sharing Domain in DNS Lookup (fromsmash .co)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2036870,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".fromsmash.co",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Anonymous File Sharing Domain in DNS Lookup (fromsmash .co)\"; dns.query; dotprefix; content:\".fromsmash.co\"; nocase; endswith; classtype:bad-unknown; sid:2036870; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (download .mediafire .com)",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2036936,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_09, deployment Perimeter, former_category HUNTING, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "download",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".mediafire.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (download .mediafire .com)\"; dns.query; content:\"download\"; startswith; content:\".mediafire.com\"; endswith; classtype:bad-unknown; sid:2036936; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_06_09, deployment Perimeter, former_category HUNTING, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (filesend .jp)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2036937,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_09, deployment Perimeter, former_category HUNTING, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".filesend.jp",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (filesend .jp)\"; dns.query; dotprefix; content:\".filesend.jp\"; nocase; endswith; classtype:bad-unknown; sid:2036937; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_06_09, deployment Perimeter, former_category HUNTING, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 49,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Cloud File Sharing Domain in DNS Lookup (.filebase .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2038575,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_22, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".filebase.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Cloud File Sharing Domain in DNS Lookup (.filebase .io)\"; dns.query; dotprefix; content:\".filebase.io\"; nocase; endswith; classtype:bad-unknown; sid:2038575; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_08_22, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (zippyshare .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,fe5cec314cb00b1e74004cbbca5eb949",
+      "classtype": "bad-unknown",
+      "sid": 2044434,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_03_06, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".zippyshare.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (zippyshare .com)\"; dns.query; dotprefix; content:\".zippyshare.com\"; nocase; endswith; reference:md5,fe5cec314cb00b1e74004cbbca5eb949; classtype:bad-unknown; sid:2044434; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_03_06, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Domain (put .io) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "6",
+      "classtype": "misc-activity",
+      "sid": 2046652,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag FileSharing_Services, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": "put.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Domain (put .io) in DNS Lookup\"; dns.query; bsize:6; content:\"put.io\"; nocase; classtype:misc-activity; sid:2046652; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag FileSharing_Services, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Domain (wasabisys .com) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046656,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": ".wasabisys.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Domain (wasabisys .com) in DNS Lookup\"; dns.query; dotprefix; content:\".wasabisys.com\"; nocase; endswith; classtype:misc-activity; sid:2046656; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (ipfs .eternum .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046673,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": ".ipfs.eternum.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (ipfs .eternum .io)\"; dns.query; dotprefix; content:\".ipfs.eternum.io\"; nocase; endswith; classtype:misc-activity; sid:2046673; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (hardbin .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046674,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": ".hardbin.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (hardbin .com)\"; dns.query; dotprefix; content:\".hardbin.com\"; nocase; endswith; classtype:misc-activity; sid:2046674; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (cloudflare-ipfs .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046675,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": ".cloudflare-ipfs.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (cloudflare-ipfs .com)\"; dns.query; dotprefix; content:\".cloudflare-ipfs.com\"; nocase; endswith; classtype:misc-activity; sid:2046675; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (cf-ipfs .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046676,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": ".cf-ipfs.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (cf-ipfs .com)\"; dns.query; dotprefix; content:\".cf-ipfs.com\"; nocase; endswith; classtype:misc-activity; sid:2046676; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (infura-ipfs .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046677,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": ".infura-ipfs.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (infura-ipfs .io)\"; dns.query; dotprefix; content:\".infura-ipfs.io\"; nocase; endswith; classtype:misc-activity; sid:2046677; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (2read .net)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046678,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": ".2read.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (2read .net)\"; dns.query; dotprefix; content:\".2read.net\"; nocase; endswith; classtype:misc-activity; sid:2046678; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (ipfs .infura .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046679,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": ".ipfs.infura.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (ipfs .infura .io)\"; dns.query; dotprefix; content:\".ipfs.infura.io\"; nocase; endswith; classtype:misc-activity; sid:2046679; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (ipfs .2read .net)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046680,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06",
+      "contents": [
+        {
+          "pattern": ".ipfs.2read.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service in DNS Lookup (ipfs .2read .net)\"; dns.query; dotprefix; content:\".ipfs.2read.net\"; nocase; endswith; classtype:misc-activity; sid:2046680; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12, reviewed_at 2023_10_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Evernote Link/File Sharing Related Domain in DNS Lookup (t .mail-svc .evernote .com)",
+      "dns.query": true,
+      "bsize": "23",
+      "classtype": "bad-unknown",
+      "sid": 2046747,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_07_07, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_02_09",
+      "contents": [
+        {
+          "pattern": "t.mail-svc.evernote.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Evernote Link/File Sharing Related Domain in DNS Lookup (t .mail-svc .evernote .com)\"; dns.query; bsize:23; content:\"t.mail-svc.evernote.com\"; nocase; classtype:bad-unknown; sid:2046747; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_07_07, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_02_09;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 111,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Service Domain in DNS Lookup (dropmefiles .com)",
+      "dns.query": true,
+      "bsize": "15",
+      "classtype": "misc-activity",
+      "sid": 2046788,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_07_11, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_02_09",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "dropmefiles.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Service Domain in DNS Lookup (dropmefiles .com)\"; dns.query; bsize:15; content:\"dropmefiles.com\"; nocase; classtype:misc-activity; sid:2046788; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_07_11, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_02_09; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 115,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING DNS Query to File Sharing Domain (drop .xtrafrancyz .net)",
+      "dns.query": true,
+      "bsize": "20",
+      "reference": "url,github.com/xtrafrancyz/linx-server",
+      "classtype": "misc-activity",
+      "sid": 2046808,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_07_12, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "drop.xtrafrancyz.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING DNS Query to File Sharing Domain (drop .xtrafrancyz .net)\"; dns.query; bsize:20; content:\"drop.xtrafrancyz.net\"; nocase; reference:url,github.com/xtrafrancyz/linx-server; classtype:misc-activity; sid:2046808; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_07_12, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 117,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain in DNS Lookup (pan .tencent .com)",
+      "dns.query": true,
+      "bsize": "15",
+      "reference": "url,urlscan.io/result/e6d1a6ea-1dee-4f68-9b89-3ed24c1a4f46/",
+      "classtype": "misc-activity",
+      "sid": 2046874,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_07_20, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag FileSharing, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "pan.tencent.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Domain in DNS Lookup (pan .tencent .com)\"; dns.query; bsize:15; content:\"pan.tencent.com\"; nocase; reference:url,urlscan.io/result/e6d1a6ea-1dee-4f68-9b89-3ed24c1a4f46/; classtype:misc-activity; sid:2046874; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_07_20, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag FileSharing, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 121,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain in DNS Lookup (drive .internxt .com)",
+      "dns.query": true,
+      "bsize": "18",
+      "classtype": "misc-activity",
+      "sid": 2047635,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_03_12",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "drive.internxt.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Domain in DNS Lookup (drive .internxt .com)\"; dns.query; bsize:18; content:\"drive.internxt.com\"; nocase; classtype:misc-activity; sid:2047635; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_03_12; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 125,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING External File Sharing Service in DNS Lookup (sharefile .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2039796,
+      "rev": 4,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2022_11_16, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_04_17",
+      "contents": [
+        {
+          "pattern": ".sharefile.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING External File Sharing Service in DNS Lookup (sharefile .com)\"; dns.query; dotprefix; content:\".sharefile.com\"; nocase; endswith; classtype:misc-activity; sid:2039796; rev:4; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2022_11_16, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_04_17;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 127,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Anonymous File Sharing Domain in DNS Lookup (qu .ax)",
+      "dns.query": true,
+      "bsize": "5",
+      "reference": "url,qu.ax",
+      "classtype": "misc-activity",
+      "sid": 2048381,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2023_10_02, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_02",
+      "contents": [
+        {
+          "pattern": "qu.ax",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Anonymous File Sharing Domain in DNS Lookup (qu .ax)\"; dns.query; bsize:5; content:\"qu.ax\"; nocase; reference:url,qu.ax; classtype:misc-activity; sid:2048381; rev:2; metadata:affected_product Any, attack_target Client_and_Server, created_at 2023_10_02, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_02;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 131,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain in DNS Lookup (dracoon .team)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.dracoon.com/en/product",
+      "classtype": "misc-activity",
+      "sid": 2049169,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_11_13, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_10_14",
+      "contents": [
+        {
+          "pattern": ".dracoon.team",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Domain in DNS Lookup (dracoon .team)\"; dns.query; dotprefix; content:\".dracoon.team\"; nocase; endswith; reference:url,www.dracoon.com/en/product; classtype:misc-activity; sid:2049169; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_11_13, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_10_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 135,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Service Domain in DNS Lookup (ufile .io)",
+      "dns.query": true,
+      "bsize": "8",
+      "classtype": "misc-activity",
+      "sid": 2049261,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_11_20, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_04_22",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "ufile.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Service Domain in DNS Lookup (ufile .io)\"; dns.query; bsize:8; content:\"ufile.io\"; nocase; classtype:misc-activity; sid:2049261; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_11_20, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_04_22; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 139,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (cyberfile .me)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049324,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "cyberfile.me",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (cyberfile .me)\"; dns.query; bsize:12; content:\"cyberfile.me\"; nocase; classtype:misc-activity; sid:2049324; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 141,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (put .re)",
+      "dns.query": true,
+      "bsize": "6",
+      "classtype": "misc-activity",
+      "sid": 2049325,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "put.re",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (put .re)\"; dns.query; bsize:6; content:\"put.re\"; nocase; classtype:misc-activity; sid:2049325; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 143,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (wetransfer .com)",
+      "dns.query": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049326,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "wetransfer.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (wetransfer .com)\"; dns.query; bsize:14; content:\"wetransfer.com\"; nocase; classtype:misc-activity; sid:2049326; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 145,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (pomf .lain .la)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049327,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "pomf.lain.la",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (pomf .lain .la)\"; dns.query; bsize:12; content:\"pomf.lain.la\"; nocase; classtype:misc-activity; sid:2049327; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 147,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (pixeldrain .com)",
+      "dns.query": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049328,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "pixeldrain.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (pixeldrain .com)\"; dns.query; bsize:14; content:\"pixeldrain.com\"; nocase; classtype:misc-activity; sid:2049328; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 149,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (nitrofile .cc)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049329,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "nitrofile.cc",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (nitrofile .cc)\"; dns.query; bsize:12; content:\"nitrofile.cc\"; nocase; classtype:misc-activity; sid:2049329; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (hostr .co)",
+      "dns.query": true,
+      "bsize": "8",
+      "classtype": "misc-activity",
+      "sid": 2049330,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "hostr.co",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (hostr .co)\"; dns.query; bsize:8; content:\"hostr.co\"; nocase; classtype:misc-activity; sid:2049330; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (p .fuwafuwa .moe)",
+      "dns.query": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049331,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "p.fuwafuwa.moe",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (p .fuwafuwa .moe)\"; dns.query; bsize:14; content:\"p.fuwafuwa.moe\"; nocase; classtype:misc-activity; sid:2049331; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (anonymfile .com)",
+      "dns.query": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049332,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "anonymfile.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (anonymfile .com)\"; dns.query; bsize:14; content:\"anonymfile.com\"; nocase; classtype:misc-activity; sid:2049332; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 157,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (send .whateveritworks .org)",
+      "dns.query": true,
+      "bsize": "24",
+      "classtype": "misc-activity",
+      "sid": 2049333,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "send.whateveritworks.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (send .whateveritworks .org)\"; dns.query; bsize:24; content:\"send.whateveritworks.org\"; nocase; classtype:misc-activity; sid:2049333; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 159,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (wormhole .app)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049334,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "wormhole.app",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (wormhole .app)\"; dns.query; bsize:12; content:\"wormhole.app\"; nocase; classtype:misc-activity; sid:2049334; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 161,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (send-anywhere .com)",
+      "dns.query": true,
+      "bsize": "17",
+      "classtype": "misc-activity",
+      "sid": 2049335,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "send-anywhere.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (send-anywhere .com)\"; dns.query; bsize:17; content:\"send-anywhere.com\"; nocase; classtype:misc-activity; sid:2049335; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 163,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (gofile .cc)",
+      "dns.query": true,
+      "bsize": "9",
+      "classtype": "misc-activity",
+      "sid": 2049336,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "gofile.cc",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (gofile .cc)\"; dns.query; bsize:9; content:\"gofile.cc\"; nocase; classtype:misc-activity; sid:2049336; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 165,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (filecave .lol)",
+      "dns.query": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049337,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "filecave.lol",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (filecave .lol)\"; dns.query; bsize:12; content:\"filecave.lol\"; nocase; classtype:misc-activity; sid:2049337; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 167,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (instant .io)",
+      "dns.query": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2049338,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "instant.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (instant .io)\"; dns.query; bsize:10; content:\"instant.io\"; nocase; classtype:misc-activity; sid:2049338; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 169,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (send .zcyph .cc)",
+      "dns.query": true,
+      "bsize": "13",
+      "classtype": "misc-activity",
+      "sid": 2049339,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "send.zcyph.cc",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (send .zcyph .cc)\"; dns.query; bsize:13; content:\"send.zcyph.cc\"; nocase; classtype:misc-activity; sid:2049339; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 171,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (sendgb .com)",
+      "dns.query": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2049340,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "sendgb.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (sendgb .com)\"; dns.query; bsize:10; content:\"sendgb.com\"; nocase; classtype:misc-activity; sid:2049340; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 173,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (drop .chapril .org)",
+      "dns.query": true,
+      "bsize": "16",
+      "classtype": "misc-activity",
+      "sid": 2049341,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "drop.chapril.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (drop .chapril .org)\"; dns.query; bsize:16; content:\"drop.chapril.org\"; nocase; classtype:misc-activity; sid:2049341; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 175,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (send .hrzn .cool)",
+      "dns.query": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049342,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "send.hrzn.cool",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (send .hrzn .cool)\"; dns.query; bsize:14; content:\"send.hrzn.cool\"; nocase; classtype:misc-activity; sid:2049342; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 177,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (bunkrr .su)",
+      "dns.query": true,
+      "bsize": "9",
+      "classtype": "misc-activity",
+      "sid": 2049343,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "bunkrr.su",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (bunkrr .su)\"; dns.query; bsize:9; content:\"bunkrr.su\"; nocase; classtype:misc-activity; sid:2049343; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 179,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (mega .nz)",
+      "dns.query": true,
+      "bsize": "7",
+      "classtype": "misc-activity",
+      "sid": 2049344,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "mega.nz",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (mega .nz)\"; dns.query; bsize:7; content:\"mega.nz\"; nocase; classtype:misc-activity; sid:2049344; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 181,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (qiwi .gg)",
+      "dns.query": true,
+      "bsize": "7",
+      "classtype": "misc-activity",
+      "sid": 2049345,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "qiwi.gg",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (qiwi .gg)\"; dns.query; bsize:7; content:\"qiwi.gg\"; nocase; classtype:misc-activity; sid:2049345; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (chibisafe .moe)",
+      "dns.query": true,
+      "bsize": "13",
+      "classtype": "misc-activity",
+      "sid": 2049346,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "chibisafe.moe",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (chibisafe .moe)\"; dns.query; bsize:13; content:\"chibisafe.moe\"; nocase; classtype:misc-activity; sid:2049346; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 185,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (krakenfiles .com)",
+      "dns.query": true,
+      "bsize": "15",
+      "classtype": "misc-activity",
+      "sid": 2049347,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "krakenfiles.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (krakenfiles .com)\"; dns.query; bsize:15; content:\"krakenfiles.com\"; nocase; classtype:misc-activity; sid:2049347; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 187,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (0x0 .st)",
+      "dns.query": true,
+      "bsize": "6",
+      "classtype": "misc-activity",
+      "sid": 2049348,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "0x0.st",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (0x0 .st)\"; dns.query; bsize:6; content:\"0x0.st\"; nocase; classtype:misc-activity; sid:2049348; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 189,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (file .pizza)",
+      "dns.query": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2049349,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "file.pizza",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (file .pizza)\"; dns.query; bsize:10; content:\"file.pizza\"; nocase; classtype:misc-activity; sid:2049349; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 191,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (www .sharedrop .io)",
+      "dns.query": true,
+      "bsize": "16",
+      "classtype": "misc-activity",
+      "sid": 2049350,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "www.sharedrop.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (www .sharedrop .io)\"; dns.query; bsize:16; content:\"www.sharedrop.io\"; nocase; classtype:misc-activity; sid:2049350; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 251,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (sendspace .com in DNS Lookup)",
+      "dns.query": true,
+      "bsize": "13",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035140,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "sendspace.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (sendspace .com in DNS Lookup)\"; dns.query; bsize:13; content:\"sendspace.com\"; nocase; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035140; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 253,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (anonfiles .com in DNS Lookup)",
+      "dns.query": true,
+      "bsize": "14",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035141,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "anonfiles.com,",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (anonfiles .com in DNS Lookup)\"; dns.query; bsize:14; content:\"anonfiles.com,\"; nocase; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035141; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 255,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (send .exploit .in in DNS Lookup)",
+      "dns.query": true,
+      "bsize": "15",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035142,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "send.exploit.in",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (send .exploit .in in DNS Lookup)\"; dns.query; bsize:15; content:\"send.exploit.in\"; nocase; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035142; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 257,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (fex .net in DNS Lookup)",
+      "dns.query": true,
+      "bsize": "7",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035143,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "fex.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (fex .net in DNS Lookup)\"; dns.query; bsize:7; content:\"fex.net\"; nocase; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035143; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 259,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (privatlab .net in DNS Lookup)",
+      "dns.query": true,
+      "bsize": "13",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035144,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "privatlab.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (privatlab .net in DNS Lookup)\"; dns.query; bsize:13; content:\"privatlab.net\"; nocase; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035144; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 273,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Domain in DNS Lookup (filetransfer .io)",
+      "dns.query": true,
+      "bsize": "15",
+      "classtype": "bad-unknown",
+      "sid": 2036310,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_22, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "filetransfer.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Domain in DNS Lookup (filetransfer .io)\"; dns.query; bsize:15; content:\"filetransfer.io\"; nocase; classtype:bad-unknown; sid:2036310; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_04_22, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 279,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (peergos .org)",
+      "dns.query": true,
+      "bsize": "11",
+      "classtype": "misc-activity",
+      "sid": 2049351,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_14, reviewed_at 2024_10_03",
+      "contents": [
+        {
+          "pattern": "peergos.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (peergos .org)\"; dns.query; bsize:11; content:\"peergos.org\"; nocase; classtype:misc-activity; sid:2049351; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_14, reviewed_at 2024_10_03;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 281,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Anonymous/Public File Sharing Service Domain in DNS Lookup (sftpcloud .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2050007,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_11, deployment Perimeter, former_category INFO, performance_impact Low, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_04_15",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": ".sftpcloud.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Anonymous/Public File Sharing Service Domain in DNS Lookup (sftpcloud .io)\"; dns.query; dotprefix; content:\".sftpcloud.io\"; nocase; endswith; classtype:bad-unknown; sid:2050007; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_01_11, deployment Perimeter, former_category INFO, performance_impact Low, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_04_15; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 283,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Service Domain in DNS Lookup (drive .filen .io)",
+      "dns.query": true,
+      "bsize": "14",
+      "classtype": "bad-unknown",
+      "sid": 2050074,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_16, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_04_15",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "drive.filen.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Service Domain in DNS Lookup (drive .filen .io)\"; dns.query; bsize:14; content:\"drive.filen.io\"; nocase; classtype:bad-unknown; sid:2050074; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_01_16, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_04_15; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 287,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Public File Sharing Service Domain in DNS Lookup (bashupload .com)",
+      "dns.query": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2050106,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_17, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_04_16",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "bashupload.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Public File Sharing Service Domain in DNS Lookup (bashupload .com)\"; dns.query; bsize:14; content:\"bashupload.com\"; nocase; classtype:misc-activity; sid:2050106; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_01_17, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_04_16; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 293,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING URL Shortening/File Sharing Service Domain in DNS Lookup (d .pr)",
+      "dns.query": true,
+      "bsize": "4",
+      "classtype": "misc-activity",
+      "sid": 2050663,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_02_01, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_05_06",
+      "contents": [
+        {
+          "pattern": "d.pr",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING URL Shortening/File Sharing Service Domain in DNS Lookup (d .pr)\"; dns.query; bsize:4; content:\"d.pr\"; nocase; classtype:misc-activity; sid:2050663; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_02_01, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_05_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 297,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING DNS Query to ArvanCloud File Sharing Service Domain (arvanstorage .ir)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit, count 1, seconds 600, track by_src",
+      "classtype": "misc-activity",
+      "sid": 2050730,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_02_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": ".arvanstorage.ir",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING DNS Query to ArvanCloud File Sharing Service Domain (arvanstorage .ir)\"; dns.query; dotprefix; content:\".arvanstorage.ir\"; nocase; endswith; threshold: type limit, count 1, seconds 600, track by_src; classtype:misc-activity; sid:2050730; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_02_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 301,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING DNS Query to 2zie File Sharing Service (2zie .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051484,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_05, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": ".2zie.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING DNS Query to 2zie File Sharing Service (2zie .com)\"; dns.query; dotprefix; content:\".2zie.com\"; nocase; endswith; classtype:misc-activity; sid:2051484; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_05, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 305,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING DNS Query to Baidu File Sharing Domain (pan .baidu .com)",
+      "dns.query": true,
+      "bsize": "13",
+      "threshold": "type limit, count 1, seconds 600, track by_src",
+      "classtype": "misc-activity",
+      "sid": 2051624,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_12, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "pan.baidu.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING DNS Query to Baidu File Sharing Domain (pan .baidu .com)\"; dns.query; bsize:13; content:\"pan.baidu.com\"; nocase; threshold: type limit, count 1, seconds 600, track by_src; classtype:misc-activity; sid:2051624; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_12, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 309,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING DNS Query to File Sharing Domain (freeupload .store)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051744,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": ".freeupload.store",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING DNS Query to File Sharing Domain (freeupload .store)\"; dns.query; dotprefix; content:\".freeupload.store\"; nocase; endswith; classtype:misc-activity; sid:2051744; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 311,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING DNS Query to File Sharing Domain (sync .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051745,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": ".sync.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING DNS Query to File Sharing Domain (sync .com)\"; dns.query; dotprefix; content:\".sync.com\"; nocase; endswith; classtype:misc-activity; sid:2051745; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 315,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING DNS Query to File Sharing Domain (terabox .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051749,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": ".terabox.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING DNS Query to File Sharing Domain (terabox .com)\"; dns.query; dotprefix; content:\".terabox.com\"; nocase; endswith; classtype:misc-activity; sid:2051749; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 319,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Site in DNS Lookup (satoshidisk .com)",
+      "dns.query": true,
+      "bsize": "15",
+      "classtype": "policy-violation",
+      "sid": 2034681,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_12_13, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "satoshidisk.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Site in DNS Lookup (satoshidisk .com)\"; dns.query; bsize:15; content:\"satoshidisk.com\"; nocase; classtype:policy-violation; sid:2034681; rev:3; metadata:attack_target Client_Endpoint, created_at 2021_12_13, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 321,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Suspicious File Sharing Domain in DNS Lookup (drive .cloudplus .one)",
+      "dns.query": true,
+      "bsize": "19",
+      "reference": [
+        "md5,934c7b7c31d84728f0086be9b80ee1e4",
+        "url,twitter.com/ShadowChasing1/status/1486542725692284930",
+        "url,twitter.com/malwrhunterteam/status/1483853345924255745"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2034987,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_01_27, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "drive.cloudplus.one",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Suspicious File Sharing Domain in DNS Lookup (drive .cloudplus .one)\"; dns.query; bsize:19; content:\"drive.cloudplus.one\"; nocase; reference:md5,934c7b7c31d84728f0086be9b80ee1e4; reference:url,twitter.com/ShadowChasing1/status/1486542725692284930; reference:url,twitter.com/malwrhunterteam/status/1483853345924255745; classtype:bad-unknown; sid:2034987; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_01_27, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 325,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain in DNS Lookup (drive .protonmail .com)",
+      "dns.query": true,
+      "bsize": "20",
+      "classtype": "bad-unknown",
+      "sid": 2036353,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "drive.protonmail.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Domain in DNS Lookup (drive .protonmail .com)\"; dns.query; bsize:20; content:\"drive.protonmail.com\"; nocase; classtype:bad-unknown; sid:2036353; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 349,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Service Domain in DNS Lookup (link .storjshare .io)",
+      "dns.query": true,
+      "bsize": "18",
+      "classtype": "bad-unknown",
+      "sid": 2038505,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_12, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "link.storjshare.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Service Domain in DNS Lookup (link .storjshare .io)\"; dns.query; bsize:18; content:\"link.storjshare.io\"; nocase; classtype:bad-unknown; sid:2038505; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_08_12, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 351,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Cloud IPFS Service Domain in DNS Lookup (nftstorage .link)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2038576,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_22, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".nftstorage.link",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Cloud IPFS Service Domain in DNS Lookup (nftstorage .link)\"; dns.query; dotprefix; content:\".nftstorage.link\"; nocase; endswith; classtype:bad-unknown; sid:2038576; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_08_22, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 353,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Anonymous File Sharing Service Domain in DNS Lookup (send .vis .ee)",
+      "dns.query": true,
+      "bsize": "11",
+      "classtype": "bad-unknown",
+      "sid": 2039067,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": "send.vis.ee",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Anonymous File Sharing Service Domain in DNS Lookup (send .vis .ee)\"; dns.query; bsize:11; content:\"send.vis.ee\"; nocase; classtype:bad-unknown; sid:2039067; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 355,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed DNS Query to Filesharing Service (mega .co .nz)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2039584,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2022_10_27, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".mega.co.nz",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Observed DNS Query to Filesharing Service (mega .co .nz)\"; dns.query; dotprefix; content:\".mega.co.nz\"; nocase; endswith; classtype:misc-activity; sid:2039584; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2022_10_27, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 357,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Hosting Service Domain Domain in DNS Lookup (files .pythonhosted .org)",
+      "dns.query": true,
+      "bsize": "22",
+      "classtype": "misc-activity",
+      "sid": 2049201,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_11_15, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_04_15",
+      "contents": [
+        {
+          "pattern": "files.pythonhosted.org",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Hosting Service Domain Domain in DNS Lookup (files .pythonhosted .org)\"; dns.query; bsize:22; content:\"files.pythonhosted.org\"; nocase; classtype:misc-activity; sid:2049201; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_11_15, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_04_15;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 359,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Anonymous File Sharing Service Domain in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051950,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_04_08, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_05_08",
+      "contents": [
+        {
+          "pattern": ".filedoge.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Anonymous File Sharing Service Domain in DNS Lookup\"; dns.query; dotprefix; content:\".filedoge.com\"; nocase; endswith; classtype:misc-activity; sid:2051950; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_04_08, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27, reviewed_at 2024_05_08;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 361,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Document Sharing Site Domain Observed in DNS Query (docsend .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2052526,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_05_09, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".docsend.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Document Sharing Site Domain Observed in DNS Query (docsend .com)\"; dns.query; dotprefix; content:\".docsend.com\"; nocase; endswith; classtype:misc-activity; sid:2052526; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_05_09, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 363,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Abused File Hosting Domain in DNS Lookup (transferxl .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2035636,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_03_29, deployment Perimeter, former_category TA_ABUSED_SERVICES, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".transferxl.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Abused File Hosting Domain in DNS Lookup (transferxl .com)\"; dns.query; dotprefix; content:\".transferxl.com\"; nocase; endswith; classtype:misc-activity; sid:2035636; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_03_29, deployment Perimeter, former_category TA_ABUSED_SERVICES, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 369,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Abused File Sharing Site Domain Observed (qaz .im) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "6",
+      "reference": "url,isc.sans.edu/diary/rss/29034",
+      "classtype": "misc-activity",
+      "sid": 2038799,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2022_09_12, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "qaz.im",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Abused File Sharing Site Domain Observed (qaz .im) in DNS Lookup\"; dns.query; bsize:6; content:\"qaz.im\"; nocase; reference:url,isc.sans.edu/diary/rss/29034; classtype:misc-activity; sid:2038799; rev:3; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2022_09_12, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 371,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Abused File Sharing Site Domain Observed (qaz .su) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "6",
+      "reference": "url,isc.sans.edu/diary/rss/29034",
+      "classtype": "misc-activity",
+      "sid": 2038800,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2022_09_12, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "qaz.su",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Abused File Sharing Site Domain Observed (qaz .su) in DNS Lookup\"; dns.query; bsize:6; content:\"qaz.su\"; nocase; reference:url,isc.sans.edu/diary/rss/29034; classtype:misc-activity; sid:2038800; rev:3; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2022_09_12, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 377,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain (d .kuku .lu) in DNS Lookup",
+      "dns.query": true,
+      "bsize": "9",
+      "classtype": "misc-activity",
+      "sid": 2052952,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_05_29, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_10_04",
+      "contents": [
+        {
+          "pattern": "d.kuku.lu",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Domain (d .kuku .lu) in DNS Lookup\"; dns.query; bsize:9; content:\"d.kuku.lu\"; nocase; classtype:misc-activity; sid:2052952; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_05_29, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_10_04;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 381,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Online File Storage Domain in DNS Lookup (gofile .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2035264,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_02_22, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".gofile.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Online File Storage Domain in DNS Lookup (gofile .io)\"; dns.query; dotprefix; content:\".gofile.io\"; nocase; endswith; classtype:bad-unknown; sid:2035264; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_02_22, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 383,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer-to-Peer File Sharing Service Domain in DNS Lookup (ipfs .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2036873,
+      "rev": 5,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_08_09, reviewed_at 2024_02_27",
+      "contents": [
+        {
+          "pattern": ".ipfs.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Peer-to-Peer File Sharing Service Domain in DNS Lookup (ipfs .io)\"; dns.query; dotprefix; content:\".ipfs.io\"; nocase; endswith; classtype:bad-unknown; sid:2036873; rev:5; metadata:attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_08_09, reviewed_at 2024_02_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 385,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in DNS Lookup (4sync .com)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2055337,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_08_19, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_08_19, reviewed_at 2024_10_04",
+      "contents": [
+        {
+          "pattern": ".4sync.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING File Sharing Related Domain in DNS Lookup (4sync .com)\"; dns.query; dotprefix; content:\".4sync.com\"; nocase; endswith; classtype:misc-activity; sid:2055337; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_08_19, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_08_19, reviewed_at 2024_10_04;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 391,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING DNS Query to TA Abused Online File Sharing Service (adttemp .com .br)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2056551,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_10_08, deployment Perimeter, confidence High, signature_severity Major, tag File_Sharing, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_08",
+      "contents": [
+        {
+          "pattern": ".adttemp.com.br",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING DNS Query to TA Abused Online File Sharing Service (adttemp .com .br)\"; dns.query; dotprefix; content:\".adttemp.com.br\"; nocase; endswith; classtype:misc-activity; sid:2056551; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_10_08, deployment Perimeter, confidence High, signature_severity Major, tag File_Sharing, tag TA_Abused_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_08;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 395,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING DNS Query to Abused File Sharing Service (qaz .is)",
+      "dns.query": true,
+      "bsize": "6",
+      "reference": "url,cert.gov.ua/article/6281202",
+      "classtype": "misc-activity",
+      "sid": 2057163,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_10_31, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_31",
+      "contents": [
+        {
+          "pattern": "qaz.is",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING DNS Query to Abused File Sharing Service (qaz .is)\"; dns.query; bsize:6; content:\"qaz.is\"; nocase; reference:url,cert.gov.ua/article/6281202; classtype:misc-activity; sid:2057163; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_10_31, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_31;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 399,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Abused File Hosting Domain (uploadnow .io) in DNS Lookup",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,uploadnow.io",
+      "classtype": "misc-activity",
+      "sid": 2060806,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2025_03_12, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag File_Sharing, updated_at 2025_03_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1102, mitre_technique_name Web_Service",
+      "contents": [
+        {
+          "pattern": ".uploadnow.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Abused File Hosting Domain (uploadnow .io) in DNS Lookup\"; dns.query; dotprefix; content:\".uploadnow.io\"; nocase; endswith; reference:url,uploadnow.io; classtype:misc-activity; sid:2060806; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2025_03_12, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag File_Sharing, updated_at 2025_03_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1102, mitre_technique_name Web_Service;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 403,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed DNS Query to Abused File Sharing Domain in DNS Lookup (filebin .net) ",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,filebin.net",
+      "classtype": "misc-activity",
+      "sid": 2061028,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2025_03_24, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2025_03_24",
+      "contents": [
+        {
+          "pattern": ".filebin.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Observed DNS Query to Abused File Sharing Domain in DNS Lookup (filebin .net) \"; dns.query; dotprefix; content:\".filebin.net\"; nocase; endswith; reference:url,filebin.net; classtype:misc-activity; sid:2061028; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2025_03_24, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2025_03_24;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 405,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed DNS Query to Actor Abused File Sharing Platform (krakencloud .net)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,80accd9b7e948bd1936e32103d2df14b",
+      "classtype": "misc-activity",
+      "sid": 2065038,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_07_24, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_03, former_sid 2863628",
+      "contents": [
+        {
+          "pattern": ".krakencloud.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Observed DNS Query to Actor Abused File Sharing Platform (krakencloud .net)\"; dns.query; dotprefix; content:\".krakencloud.net\"; nocase; endswith; reference:md5,80accd9b7e948bd1936e32103d2df14b; classtype:misc-activity; sid:2065038; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_07_24, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_03, former_sid 2863628;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 409,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed DNS Query to Abused File Sharing Service (nullarmorupload .xyz)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,d39848a04361b13b0d3c56a84cf5cfd4",
+      "classtype": "misc-activity",
+      "sid": 2064061,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_08_20, deployment Perimeter, confidence High, signature_severity Informational, tag FileSharing, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_08_20",
+      "contents": [
+        {
+          "pattern": ".nullarmorupload.xyz",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Observed DNS Query to Abused File Sharing Service (nullarmorupload .xyz)\"; dns.query; dotprefix; content:\".nullarmorupload.xyz\"; nocase; endswith; reference:md5,d39848a04361b13b0d3c56a84cf5cfd4; classtype:misc-activity; sid:2064061; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_08_20, deployment Perimeter, confidence High, signature_severity Informational, tag FileSharing, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_08_20;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 413,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed DNS Query to File Sharing Domain (scalingo .io)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2064191,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_08_27, deployment Perimeter, confidence High, signature_severity Informational, tag FileSharing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_08_27",
+      "contents": [
+        {
+          "pattern": ".scalingo.io",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Observed DNS Query to File Sharing Domain (scalingo .io)\"; dns.query; dotprefix; content:\".scalingo.io\"; nocase; endswith; classtype:misc-activity; sid:2064191; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_08_27, deployment Perimeter, confidence High, signature_severity Informational, tag FileSharing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_08_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 423,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed DNS Query File Sharing Domain (filelu .live)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2071889,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02",
+      "contents": [
+        {
+          "pattern": ".filelu.live",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Observed DNS Query File Sharing Domain (filelu .live)\"; dns.query; dotprefix; content:\".filelu.live\"; nocase; endswith; classtype:misc-activity; sid:2071889; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 425,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed DNS Query to File Sharing Domain (filelu .online)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2071890,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02",
+      "contents": [
+        {
+          "pattern": ".filelu.online",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Observed DNS Query to File Sharing Domain (filelu .online)\"; dns.query; dotprefix; content:\".filelu.online\"; nocase; endswith; classtype:misc-activity; sid:2071890; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 433,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed DNS Query to File Sharing Domain (filelu .cloud)",
+      "dns.query": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2071888,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_03",
+      "contents": [
+        {
+          "pattern": ".filelu.cloud",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET FILE_SHARING Observed DNS Query to File Sharing Domain (filelu .cloud)\"; dns.query; dotprefix; content:\".filelu.cloud\"; nocase; endswith; classtype:misc-activity; sid:2071888; rev:2; metadata:attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_03;)"
+  }
+]

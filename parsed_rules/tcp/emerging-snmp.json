@@ -1,0 +1,104 @@
+[
+  {
+    "source_file": "emerging-snmp.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "options": {
+      "msg": "ET SNMP Attempted TCP Access Attempt to Cisco IOS 12.1 Hidden Read/Write Community String cable-docsis",
+      "flow": "established,to_server",
+      "reference": [
+        "url,www.cisco.com/warp/public/707/cisco-sa-20010228-ios-snmp-community.shtml",
+        "url,www.iss.net/security_center/reference/vuln/cisco-ios-cable-docsis.htm",
+        "url,www.kb.cert.org/vuls/id/840665",
+        "cve,2004-1776"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2011014,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, cve CVE_2004_1776, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "cable-docsis",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 161 (msg:\"ET SNMP Attempted TCP Access Attempt to Cisco IOS 12.1 Hidden Read/Write Community String cable-docsis\"; flow:established,to_server; content:\"cable-docsis\"; nocase; reference:url,www.cisco.com/warp/public/707/cisco-sa-20010228-ios-snmp-community.shtml; reference:url,www.iss.net/security_center/reference/vuln/cisco-ios-cable-docsis.htm; reference:url,www.kb.cert.org/vuls/id/840665; reference:cve,2004-1776; classtype:attempted-admin; sid:2011014; rev:3; metadata:created_at 2010_07_30, cve CVE_2004_1776, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-snmp.rules",
+    "line_number": 103,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "options": {
+      "msg": "GPL SNMP public access tcp",
+      "flow": "established,to_server",
+      "reference": [
+        "bugtraq,2112",
+        "bugtraq,4088",
+        "bugtraq,4089",
+        "bugtraq,7212",
+        "cve,1999-0517",
+        "cve,2002-0012",
+        "cve,2002-0013"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2101412,
+      "rev": 15,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0517, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "public",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 161 (msg:\"GPL SNMP public access tcp\"; flow:established,to_server; content:\"public\"; reference:bugtraq,2112; reference:bugtraq,4088; reference:bugtraq,4089; reference:bugtraq,7212; reference:cve,1999-0517; reference:cve,2002-0012; reference:cve,2002-0013; classtype:attempted-recon; sid:2101412; rev:15; metadata:created_at 2010_09_23, cve CVE_1999_0517, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-snmp.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "options": {
+      "msg": "GPL SNMP private access tcp",
+      "flow": "established,to_server",
+      "reference": [
+        "bugtraq,4088",
+        "bugtraq,4089",
+        "bugtraq,4132",
+        "cve,2002-0012",
+        "cve,2002-0013"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2101414,
+      "rev": 13,
+      "metadata": "created_at 2010_09_23, cve CVE_2002_0012, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "private",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 161 (msg:\"GPL SNMP private access tcp\"; flow:established,to_server; content:\"private\"; reference:bugtraq,4088; reference:bugtraq,4089; reference:bugtraq,4132; reference:cve,2002-0012; reference:cve,2002-0013; classtype:attempted-recon; sid:2101414; rev:13; metadata:created_at 2010_09_23, cve CVE_2002_0012, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  }
+]
