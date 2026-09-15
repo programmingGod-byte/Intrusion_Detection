@@ -1,0 +1,216 @@
+[
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET VOIP INVITE Message Flood UDP",
+      "threshold": "type both , track by_src, count 100, seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2009698,
+      "rev": 1,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "INVITE",
+          "modifiers": {
+            "depth": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET VOIP INVITE Message Flood UDP\"; content:\"INVITE\"; depth:6; threshold: type both , track by_src, count 100, seconds 60; classtype:attempted-dos; sid:2009698; rev:1; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET VOIP REGISTER Message Flood UDP",
+      "threshold": "type both , track by_src, count 100, seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2009699,
+      "rev": 1,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "REGISTER",
+          "modifiers": {
+            "depth": "8"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET VOIP REGISTER Message Flood UDP\"; content:\"REGISTER\"; depth:8; threshold: type both , track by_src, count 100, seconds 60; classtype:attempted-dos; sid:2009699; rev:1; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "5060",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET VOIP Multiple Unauthorized SIP Responses UDP",
+      "threshold": "type both, track by_src, count 5, seconds 360",
+      "classtype": "attempted-dos",
+      "sid": 2009700,
+      "rev": 1,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SIP/2.0 401 Unauthorized",
+          "modifiers": {
+            "depth": "24"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 5060 -> $EXTERNAL_NET any (msg:\"ET VOIP Multiple Unauthorized SIP Responses UDP\"; content:\"SIP/2.0 401 Unauthorized\"; depth:24; threshold: type both, track by_src, count 5, seconds 360; classtype:attempted-dos; sid:2009700; rev:1; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET VOIP Modified Sipvicious Asterisk PBX User-Agent",
+      "threshold": "type limit, count 1, seconds 60, track by_src",
+      "reference": "url,blog.sipvicious.org/2010/11/distributed-sip-scanning-during.html",
+      "classtype": "attempted-recon",
+      "sid": 2012296,
+      "rev": 2,
+      "metadata": "created_at 2011_02_07, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|0d 0a|User-Agent|3A| Asterisk PBX",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET VOIP Modified Sipvicious Asterisk PBX User-Agent\"; content:\"|0d 0a|User-Agent|3A| Asterisk PBX\"; nocase; threshold: type limit, count 1, seconds 60, track by_src; reference:url,blog.sipvicious.org/2010/11/distributed-sip-scanning-during.html; classtype:attempted-recon; sid:2012296; rev:2; metadata:created_at 2011_02_07, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET VOIP Possible Inbound VOIP Scan/Misuse With User-Agent Zoiper",
+      "threshold": "type limit, count 1, seconds 60, track by_src",
+      "reference": "url,blog.sipvicious.org/2010/12/11-million-euro-loss-in-voip-fraud-and.html",
+      "classtype": "attempted-recon",
+      "sid": 2012297,
+      "rev": 2,
+      "metadata": "created_at 2011_02_07, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|0d 0a|User-Agent|3A| Zoiper",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET VOIP Possible Inbound VOIP Scan/Misuse With User-Agent Zoiper\"; content:\"|0d 0a|User-Agent|3A| Zoiper\"; nocase; threshold: type limit, count 1, seconds 60, track by_src; reference:url,blog.sipvicious.org/2010/12/11-million-euro-loss-in-voip-fraud-and.html; classtype:attempted-recon; sid:2012297; rev:2; metadata:created_at 2011_02_07, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET VOIP Possible Modified Sipvicious OPTIONS Scan",
+      "reference": [
+        "url,code.google.com/p/sipvicious/",
+        "url,blog.sipvicious.org/"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2011422,
+      "rev": 2,
+      "metadata": "created_at 2010_09_28, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "OPTIONS ",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "ccxllrlflgig|22|<sip|3A|100",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET VOIP Possible Modified Sipvicious OPTIONS Scan\"; content:\"OPTIONS \"; depth:8; content:\"ccxllrlflgig|22|<sip|3A|100\"; nocase; distance:0; reference:url,code.google.com/p/sipvicious/; reference:url,blog.sipvicious.org/; classtype:attempted-recon; sid:2011422; rev:2; metadata:created_at 2010_09_28, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "GPL VOIP EXPLOIT SIP UDP Softphone overflow attempt",
+      "pcre": "/^a\\x3D[^\\n]{1000,}/smi",
+      "reference": [
+        "bugtraq,16213",
+        "cve,2006-0189"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2100223,
+      "rev": 2,
+      "metadata": "created_at 2010_09_23, cve CVE_2006_0189, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|3B|branch|3D|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "a|3D|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"GPL VOIP EXPLOIT SIP UDP Softphone overflow attempt\"; content:\"|3B|branch|3D|\"; content:\"a|3D|\"; pcre:\"/^a\\x3D[^\\n]{1000,}/smi\"; reference:bugtraq,16213; reference:cve,2006-0189; classtype:misc-attack; sid:2100223; rev:2; metadata:created_at 2010_09_23, cve CVE_2006_0189, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  }
+]

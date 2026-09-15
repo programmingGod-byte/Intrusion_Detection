@@ -1,0 +1,50 @@
+[
+  {
+    "source_file": "emerging-sql.rules",
+    "line_number": 223,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HTTP_SERVERS",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL SQL Oracle iSQLPlus login.uix username overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "250,relative",
+      "pcre": "/username=[^&\\x3b\\r\\n]{250}/smi",
+      "http.uri": true,
+      "reference": [
+        "bugtraq,10871",
+        "url,www.nextgenss.com/advisories/ora-isqlplus.txt"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2102703,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "username=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"|0A|",
+          "modifiers": {
+            "within": "250"
+          }
+        },
+        {
+          "pattern": "/login.uix",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"GPL SQL Oracle iSQLPlus login.uix username overflow attempt\"; flow:established,to_server; content:\"username=\"; nocase; isdataat:250,relative; content:!\"|0A|\"; within:250; pcre:\"/username=[^&\\x3b\\r\\n]{250}/smi\"; http.uri; content:\"/login.uix\"; fast_pattern; nocase; reference:bugtraq,10871; reference:url,www.nextgenss.com/advisories/ora-isqlplus.txt; classtype:web-application-attack; sid:2102703; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  }
+]

@@ -1,0 +1,409 @@
+[
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 121,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING *NIX",
+      "itype": "8",
+      "classtype": "misc-activity",
+      "sid": 2100366,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F|",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING *NIX\"; itype:8; content:\"|10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F|\"; depth:32; classtype:misc-activity; sid:2100366; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING BSDtype",
+      "itype": "8",
+      "reference": "arachnids,152",
+      "classtype": "misc-activity",
+      "sid": 2100368,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17|",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING BSDtype\"; itype:8; content:\"|08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17|\"; depth:32; reference:arachnids,152; classtype:misc-activity; sid:2100368; rev:7; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 125,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING BayRS Router",
+      "itype": "8",
+      "reference": [
+        "arachnids,438",
+        "arachnids,444"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2100369,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F|",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING BayRS Router\"; itype:8; content:\"|01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F|\"; depth:32; reference:arachnids,438; reference:arachnids,444; classtype:misc-activity; sid:2100369; rev:7; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 127,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING BeOS4.x",
+      "itype": "8",
+      "reference": "arachnids,151",
+      "classtype": "misc-activity",
+      "sid": 2100370,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 00 00 00 00 00 00 00 00 00 00 08 09 0A 0B|",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING BeOS4.x\"; itype:8; content:\"|00 00 00 00 00 00 00 00 00 00 00 00 08 09 0A 0B|\"; depth:32; reference:arachnids,151; classtype:misc-activity; sid:2100370; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 129,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING Cisco Type.x",
+      "itype": "8",
+      "reference": "arachnids,153",
+      "classtype": "misc-activity",
+      "sid": 2100371,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|AB CD AB CD AB CD AB CD AB CD AB CD AB CD AB CD|",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING Cisco Type.x\"; itype:8; content:\"|AB CD AB CD AB CD AB CD AB CD AB CD AB CD AB CD|\"; depth:32; reference:arachnids,153; classtype:misc-activity; sid:2100371; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 131,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING Flowpoint2200 or Network Management Software",
+      "itype": "8",
+      "reference": "arachnids,156",
+      "classtype": "misc-activity",
+      "sid": 2100373,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10|",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING Flowpoint2200 or Network Management Software\"; itype:8; content:\"|01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10|\"; depth:32; reference:arachnids,156; classtype:misc-activity; sid:2100373; rev:7; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 133,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING IP NetMonitor Macintosh",
+      "itype": "8",
+      "reference": "arachnids,157",
+      "classtype": "misc-activity",
+      "sid": 2100374,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|A9| Sustainable So",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING IP NetMonitor Macintosh\"; itype:8; content:\"|A9| Sustainable So\"; depth:32; reference:arachnids,157; classtype:misc-activity; sid:2100374; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 137,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING Microsoft Windows",
+      "itype": "8",
+      "reference": "arachnids,159",
+      "classtype": "misc-activity",
+      "sid": 2100376,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "0123456789abcdefghijklmnop",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING Microsoft Windows\"; itype:8; content:\"0123456789abcdefghijklmnop\"; depth:32; reference:arachnids,159; classtype:misc-activity; sid:2100376; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 139,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING Network Toolbox 3 Windows",
+      "itype": "8",
+      "reference": "arachnids,161",
+      "classtype": "misc-activity",
+      "sid": 2100377,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "================",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING Network Toolbox 3 Windows\"; itype:8; content:\"================\"; depth:32; reference:arachnids,161; classtype:misc-activity; sid:2100377; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 141,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING Ping-O-MeterWindows",
+      "itype": "8",
+      "reference": "arachnids,164",
+      "classtype": "misc-activity",
+      "sid": 2100378,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "OMeterObeseArmad",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING Ping-O-MeterWindows\"; itype:8; content:\"OMeterObeseArmad\"; depth:32; reference:arachnids,164; classtype:misc-activity; sid:2100378; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 143,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING Pinger Windows",
+      "itype": "8",
+      "reference": "arachnids,163",
+      "classtype": "misc-activity",
+      "sid": 2100379,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "Data|00 00 00 00 00 00 00 00 00 00 00 00|",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING Pinger Windows\"; itype:8; content:\"Data|00 00 00 00 00 00 00 00 00 00 00 00|\"; depth:32; reference:arachnids,163; classtype:misc-activity; sid:2100379; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 145,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING Seer Windows",
+      "itype": "8",
+      "reference": "arachnids,166",
+      "classtype": "misc-activity",
+      "sid": 2100380,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|88 04|              ",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING Seer Windows\"; itype:8; content:\"|88 04|              \"; depth:32; reference:arachnids,166; classtype:misc-activity; sid:2100380; rev:8; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 149,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING WhatsupGold Windows",
+      "itype": "8",
+      "reference": "arachnids,168",
+      "classtype": "misc-activity",
+      "sid": 2100482,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "WhatsUp - A Netw",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING WhatsupGold Windows\"; itype:8; content:\"WhatsUp - A Netw\"; depth:32; reference:arachnids,168; classtype:misc-activity; sid:2100482; rev:6; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-icmp.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL ICMP PING speedera",
+      "itype": "8",
+      "classtype": "misc-activity",
+      "sid": 2100480,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "89|3A 3B|<=>?",
+          "modifiers": {
+            "depth": "100"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL ICMP PING speedera\"; itype:8; content:\"89|3A 3B|<=>?\"; depth:100; classtype:misc-activity; sid:2100480; rev:6; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  }
+]

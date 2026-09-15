@@ -31,3 +31,8 @@ target_link_libraries(afxdp_control PRIVATE
 )
 target_compile_options(afxdp_control PRIVATE -Wall -Wextra -pthread -Wno-interference-size)
 
+
+add_executable(raw_socket_baseline main/raw_socket_baseline.cpp)
+target_link_libraries(raw_socket_baseline PRIVATE pthread)
+target_compile_options(raw_socket_baseline PRIVATE -Wall -Wextra -pthread)
+

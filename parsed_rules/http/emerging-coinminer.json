@@ -1,0 +1,214 @@
+[
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER Cryptexplorer API Check - Potential CoinMiner Traffic",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/^\\/api\\/(?:bit|lite)coin\\/balance\\//",
+      "reference": "md5,8e29a15caef546aab0f19a9a81732163",
+      "classtype": "coin-mining",
+      "sid": 2019825,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2014_12_01, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2020_05_14, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "contents": [
+        {
+          "pattern": "/api/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "coin/balance/",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET COINMINER Cryptexplorer API Check - Potential CoinMiner Traffic\"; flow:established,to_server; http.uri; content:\"/api/\"; startswith; content:\"coin/balance/\"; distance:0; fast_pattern; pcre:\"/^\\/api\\/(?:bit|lite)coin\\/balance\\//\"; reference:md5,8e29a15caef546aab0f19a9a81732163; classtype:coin-mining; sid:2019825; rev:4; metadata:attack_target Client_Endpoint, created_at 2014_12_01, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2020_05_14, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER Possible BitCoin Miner User-Agent (miner)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "pcre": "/miner[^a-z]/i",
+      "http.host": true,
+      "endswith": true,
+      "reference": "url,abcpool.co/mining-software-comparison.php",
+      "classtype": "coin-mining",
+      "sid": 2016067,
+      "rev": 7,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2012_12_21, deployment Perimeter, deployment Datacenter, confidence Medium, signature_severity Informational, tag Bitcoin_Miner, updated_at 2021_11_15, reviewed_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "miner",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"IdleMiner",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"CFNetwork",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".kaspersky.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET COINMINER Possible BitCoin Miner User-Agent (miner)\"; flow:established,to_server; http.user_agent; content:\"miner\"; nocase; content:!\"IdleMiner\"; content:!\"CFNetwork\"; pcre:\"/miner[^a-z]/i\"; http.host; content:!\".kaspersky.com\"; endswith; reference:url,abcpool.co/mining-software-comparison.php; classtype:coin-mining; sid:2016067; rev:7; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2012_12_21, deployment Perimeter, deployment Datacenter, confidence Medium, signature_severity Informational, tag Bitcoin_Miner, updated_at 2021_11_15, reviewed_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER CoinHive In-Browser Miner Detected",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/^\\s*(?P<var>[a-zA-Z0-9]{3,20})\\s*=\\s*new\\s*CoinHive\\s*\\.\\s*[^\\(]+\\(\\s*[\\x22\\x27][A-Za-z0-9]+\\s*[\\x22\\x27]\\s*(?:\\x2c\\s*\\x7b\\s*\\w+\\x3a\\s*\\d\\.\\d\\x7d)?\\)\\s*\\x3b\\s+(?P=var)\\s*\\.\\s*start/Ri",
+      "classtype": "coin-mining",
+      "sid": 2024721,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2017_09_18, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Major, updated_at 2024_03_14",
+      "contents": [
+        {
+          "pattern": "coinhive.min.js",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "start",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "script",
+          "modifiers": {}
+        },
+        {
+          "pattern": "var",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET COINMINER CoinHive In-Browser Miner Detected\"; flow:established,to_client; file.data; content:\"coinhive.min.js\"; nocase; fast_pattern; content:\"start\"; nocase; distance:0; content:\"script\"; content:\"var\"; distance:0; pcre:\"/^\\s*(?P<var>[a-zA-Z0-9]{3,20})\\s*=\\s*new\\s*CoinHive\\s*\\.\\s*[^\\(]+\\(\\s*[\\x22\\x27][A-Za-z0-9]+\\s*[\\x22\\x27]\\s*(?:\\x2c\\s*\\x7b\\s*\\w+\\x3a\\s*\\d\\.\\d\\x7d)?\\)\\s*\\x3b\\s+(?P=var)\\s*\\.\\s*start/Ri\"; classtype:coin-mining; sid:2024721; rev:3; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2017_09_18, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Major, updated_at 2024_03_14;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER Bitcoin Mining Extensions Header",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.header_names": true,
+      "to_lowercase": true,
+      "classtype": "coin-mining",
+      "sid": 2016758,
+      "rev": 7,
+      "metadata": "created_at 2013_04_16, confidence Medium, signature_severity Minor, updated_at 2024_05_06",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|x-mining-extensions|0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET COINMINER Bitcoin Mining Extensions Header\"; flow:established,to_server; http.method; content:\"POST\"; http.header_names; to_lowercase; content:\"|0d 0a|x-mining-extensions|0d 0a|\"; fast_pattern; classtype:coin-mining; sid:2016758; rev:7; metadata:created_at 2013_04_16, confidence Medium, signature_severity Minor, updated_at 2024_05_06;)"
+  },
+  {
+    "source_file": "emerging-coinminer.rules",
+    "line_number": 95,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET COINMINER CoinMiner Exfiltration via IRC Config Inbound (Italian)",
+      "flow": "established,to_client",
+      "http.response_body": true,
+      "reference": "md5,8524f6f843902e2d19f29a578f76adf6",
+      "classtype": "trojan-activity",
+      "sid": 2059794,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, tls_state plaintext, created_at 2025_01_31, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2025_01_31, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|2f 2f 20|Configurazione|20|del|20|bot|20|IRC",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|2f 2f 20|Sostituisci|20|con|20|l|27|indirizzo|20|del|20|server|20|IRC",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|2f 2f 20|Username|20|del|20|bot",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|2f 2f 20|Realname|20|del|20|bot",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET COINMINER CoinMiner Exfiltration via IRC Config Inbound (Italian)\"; flow:established,to_client; http.response_body; content:\"|2f 2f 20|Configurazione|20|del|20|bot|20|IRC\"; fast_pattern; content:\"|2f 2f 20|Sostituisci|20|con|20|l|27|indirizzo|20|del|20|server|20|IRC\"; distance:0; content:\"|2f 2f 20|Username|20|del|20|bot\"; distance:0; content:\"|2f 2f 20|Realname|20|del|20|bot\"; reference:md5,8524f6f843902e2d19f29a578f76adf6; classtype:trojan-activity; sid:2059794; rev:1; metadata:attack_target Client_Endpoint, tls_state plaintext, created_at 2025_01_31, deployment Perimeter, confidence High, signature_severity Major, tag Coinminer, updated_at 2025_01_31, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking; target:dest_ip;)"
+  }
+]

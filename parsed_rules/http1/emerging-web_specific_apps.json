@@ -1,0 +1,1929 @@
+[
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 10591,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Inductive Automation remoteSystemID Check (CVE-2023-39476)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/R",
+      "endswith": true,
+      "http.header_names": true,
+      "reference": [
+        "url,www.zerodayinitiative.com/advisories/ZDI-23-1046/",
+        "url,xz.aliyun.com/t/12813",
+        "cve,2023-39476"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2047920,
+      "rev": 2,
+      "metadata": "created_at 2023_09_05, cve CVE_2023_39476, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_04_03, reviewed_at 2024_10_02",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/system/ws-control-servelet?name=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "uuid=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "url=http|3a 2f 2f|localhost/system",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Connection|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Sec-WebSocket-Version|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Sec-WebSocket-Key|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Upgrade|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|User-Agent|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Inductive Automation remoteSystemID Check (CVE-2023-39476)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/system/ws-control-servelet?name=\"; startswith; fast_pattern; content:\"uuid=\"; pcre:\"/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/R\"; content:\"url=http|3a 2f 2f|localhost/system\"; endswith; http.header_names; content:\"|0d 0a|Connection|0d 0a|\"; content:\"|0d 0a|Sec-WebSocket-Version|0d 0a|\"; content:\"|0d 0a|Sec-WebSocket-Key|0d 0a|\"; content:\"|0d 0a|Upgrade|0d 0a|\"; content:\"|0d 0a|User-Agent|0d 0a|\"; content:\"|0d 0a|Host|0d 0a|\"; reference:url,www.zerodayinitiative.com/advisories/ZDI-23-1046/; reference:url,xz.aliyun.com/t/12813; reference:cve,2023-39476; classtype:attempted-admin; sid:2047920; rev:2; metadata:created_at 2023_09_05, cve CVE_2023_39476, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_04_03, reviewed_at 2024_10_02; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11113,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Gambio E-Commerce Suite Deserialization of Untrusted Data (CVE-2024-23759)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "base64_decode": "bytes 30, offset 0, relative",
+      "base64_data": true,
+      "reference": [
+        "url,attackerkb.com/topics/cxCsICfcDY/cve-2024-23759",
+        "cve,2024-23759"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2051956,
+      "rev": 2,
+      "metadata": "affected_product Web_Server_Applications, attack_target Web_Server, tls_state TLSDecrypt, created_at 2024_04_08, cve CVE_2024_23759, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_04_11, reviewed_at 2024_10_03",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/shop.php?do=Parcelshopfinder/AddAddressBookEntry",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Cookie|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Content-Type|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "checkout_started|3d|0&search|3d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "GuzzleHttp",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Gambio E-Commerce Suite Deserialization of Untrusted Data (CVE-2024-23759)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/shop.php?do=Parcelshopfinder/AddAddressBookEntry\"; fast_pattern; http.header_names; content:\"|0d 0a|Cookie|0d 0a|\"; content:\"|0d 0a|Host|0d 0a|\"; content:\"|0d 0a|Content-Type|0d 0a|\"; http.request_body; content:\"checkout_started|3d|0&search|3d|\"; startswith; base64_decode:bytes 30, offset 0, relative; base64_data; content:\"GuzzleHttp\"; reference:url,attackerkb.com/topics/cxCsICfcDY/cve-2024-23759; reference:cve,2024-23759; classtype:attempted-admin; sid:2051956; rev:2; metadata:affected_product Web_Server_Applications, attack_target Web_Server, tls_state TLSDecrypt, created_at 2024_04_08, cve CVE_2024_23759, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_04_11, reviewed_at 2024_10_03; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11205,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Fortigate FortiOS Invalid HTTP Chunk Length (CVE-2024-21762) Vulnerability Scan Attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "reference": [
+        "url,github.com/BishopFox/cve-2024-21762-check",
+        "cve,2024-21762"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2051765,
+      "rev": 2,
+      "metadata": "affected_product Fortigate, attack_target Networking_Equipment, tls_state TLSDecrypt, created_at 2024_03_22, cve CVE_2024_21762, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, updated_at 2024_05_05, reviewed_at 2024_10_03",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|0d 0a 0d 0a|0000000000000000FF|0d 0a 0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/remote/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Transfer-Encoding|3a 20|chunked",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Fortigate FortiOS Invalid HTTP Chunk Length (CVE-2024-21762) Vulnerability Scan Attempt\"; flow:established,to_server; content:\"|0d 0a 0d 0a|0000000000000000FF|0d 0a 0d 0a|\"; fast_pattern; http.method; content:\"POST\"; http.uri; content:\"/remote/\"; http.header; content:\"Transfer-Encoding|3a 20|chunked\"; reference:url,github.com/BishopFox/cve-2024-21762-check; reference:cve,2024-21762; classtype:trojan-activity; sid:2051765; rev:2; metadata:affected_product Fortigate, attack_target Networking_Equipment, tls_state TLSDecrypt, created_at 2024_03_22, cve CVE_2024_21762, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, updated_at 2024_05_05, reviewed_at 2024_10_03; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11447,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Progress Kemp Loadmaster Unauthenticated Command Injection (CVE-2024-1212)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "35",
+      "http.header": true,
+      "base64_decode": "bytes 100, offset 0, relative",
+      "base64_data": true,
+      "pcre": "/\\x3b.{0,100}\\x3b/",
+      "reference": [
+        "url,rhinosecuritylabs.com/research/cve-2024-1212unauthenticated-command-injection-in-progress-kemp-loadmaster/",
+        "cve,2024-1212"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2056142,
+      "rev": 1,
+      "metadata": "affected_product Progress_Kemp_Loadmaster, attack_target Networking_Equipment, tls_state plaintext, created_at 2024_09_24, cve CVE_2024_1212, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, updated_at 2024_09_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/access/set?param=enableapi&value=1",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Authorization|3a 20|Basic|20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Progress Kemp Loadmaster Unauthenticated Command Injection (CVE-2024-1212)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; bsize:35; content:\"/access/set?param=enableapi&value=1\"; fast_pattern; http.header; content:\"Authorization|3a 20|Basic|20|\"; base64_decode:bytes 100, offset 0, relative; base64_data; pcre:\"/\\x3b.{0,100}\\x3b/\"; reference:url,rhinosecuritylabs.com/research/cve-2024-1212unauthenticated-command-injection-in-progress-kemp-loadmaster/; reference:cve,2024-1212; classtype:attempted-admin; sid:2056142; rev:1; metadata:affected_product Progress_Kemp_Loadmaster, attack_target Networking_Equipment, tls_state plaintext, created_at 2024_09_24, cve CVE_2024_1212, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, updated_at 2024_09_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11449,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Cisco Smart Licensing Utility API Hardcoded Admin Credentials (CVE-2024-20439)",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "startswith": true,
+      "http.header": true,
+      "reference": [
+        "url,github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2024/CVE-2024-20439.yaml",
+        "cve,2024-20439"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2056147,
+      "rev": 1,
+      "metadata": "affected_product Cisco_Smart_Licensing, attack_target Server, tls_state TLSDecrypt, created_at 2024_09_24, cve CVE_2024_20439, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1078, mitre_technique_name Valid_Accounts",
+      "contents": [
+        {
+          "pattern": "/cslu/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Authorization|3a 20|Basic|20|Y3NsdS13aW5kb3dzLWNsaWVudDpMaWJyYXJ5NEMkTFU=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Cisco Smart Licensing Utility API Hardcoded Admin Credentials (CVE-2024-20439)\"; flow:established,to_server; http.uri; content:\"/cslu/\"; startswith; http.header; content:\"Authorization|3a 20|Basic|20|Y3NsdS13aW5kb3dzLWNsaWVudDpMaWJyYXJ5NEMkTFU=\"; fast_pattern; reference:url,github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2024/CVE-2024-20439.yaml; reference:cve,2024-20439; classtype:attempted-admin; sid:2056147; rev:1; metadata:affected_product Cisco_Smart_Licensing, attack_target Server, tls_state TLSDecrypt, created_at 2024_09_24, cve CVE_2024_20439, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, updated_at 2024_09_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1078, mitre_technique_name Valid_Accounts;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11451,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS SolarWinds Web Help Desk Hardcoded Credentials Information Leak (CVE-2024-28987)",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.header": true,
+      "reference": [
+        "url,www.horizon3.ai/attack-research/cve-2024-28987-solarwinds-web-help-desk-hardcoded-credential-vulnerability-deep-dive/",
+        "cve,2024-28987"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2056167,
+      "rev": 1,
+      "metadata": "affected_product SolarWinds, attack_target Server, tls_state TLSDecrypt, created_at 2024_09_25, cve CVE_2024_28987, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, updated_at 2024_09_25",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "/helpdesk/WebObjects/Helpdesk.woa/ra/OrionTickets/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Authorization|3a 20|Basic|20|aGVscGRlc2tJbnRlZ3JhdGlvblVzZXI6ZGV2LUM0RjgwMjVFNw==",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS SolarWinds Web Help Desk Hardcoded Credentials Information Leak (CVE-2024-28987)\"; flow:established,to_server; http.uri; content:\"/helpdesk/WebObjects/Helpdesk.woa/ra/OrionTickets/\"; fast_pattern; http.header; content:\"Authorization|3a 20|Basic|20|aGVscGRlc2tJbnRlZ3JhdGlvblVzZXI6ZGV2LUM0RjgwMjVFNw==\"; reference:url,www.horizon3.ai/attack-research/cve-2024-28987-solarwinds-web-help-desk-hardcoded-credential-vulnerability-deep-dive/; reference:cve,2024-28987; classtype:attempted-admin; sid:2056167; rev:1; metadata:affected_product SolarWinds, attack_target Server, tls_state TLSDecrypt, created_at 2024_09_25, cve CVE_2024_28987, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag CISA_KEV, updated_at 2024_09_25; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11539,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Cyberpanel filemanager Command Injection Attempt (CVE-2024-51568)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "19",
+      "http.cookie": true,
+      "http.header": true,
+      "http.request_body": true,
+      "pcre": "/^[^\\x26]*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24))+/R",
+      "reference": [
+        "cve,2024-51568",
+        "url,dreyand.rs/code/review/2024/10/27/what-are-my-options-cyberpanel-v236-pre-auth-rce"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2057158,
+      "rev": 1,
+      "metadata": "affected_product CyberPanel, attack_target Web_Server, tls_state TLSDecrypt, created_at 2024_10_30, cve CVE_2024_51568, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2024_10_30, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/filemanager/upload",
+          "modifiers": {}
+        },
+        {
+          "pattern": "csrftoken|3d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "X-Csrftoken|3a 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Content-Disposition|3a 20|form-data|3b 20|name|3d 22|domainName|22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Content-Disposition|3a 20|form-data|3b 20|name|3d 22|completePath|22|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Cyberpanel filemanager Command Injection Attempt (CVE-2024-51568)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:19; content:\"/filemanager/upload\"; http.cookie; content:\"csrftoken|3d|\"; http.header; content:\"X-Csrftoken|3a 20|\"; http.request_body; content:\"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|domainName|22|\"; content:\"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|completePath|22|\"; distance:0; fast_pattern; pcre:\"/^[^\\x26]*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24))+/R\"; reference:cve,2024-51568; reference:url,dreyand.rs/code/review/2024/10/27/what-are-my-options-cyberpanel-v236-pre-auth-rce; classtype:attempted-admin; sid:2057158; rev:1; metadata:affected_product CyberPanel, attack_target Web_Server, tls_state TLSDecrypt, created_at 2024_10_30, cve CVE_2024_51568, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2024_10_30, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11707,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS SAP BusinessObjects Business Intelligence Platform Authentication Bypass Attempt (CVE-2024-41730)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "reference": [
+        "cve,2024-41730",
+        "url,redrays.io/blog/critical-sap-businessobjects-authentication-vulnerability-cve-2024-41730/",
+        "url,community.sap.com/t5/technology-blogs-by-members/poc-critical-authentication-vulnerability-in-sap-businessobjects-business/ba-p/13942037"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2057778,
+      "rev": 2,
+      "metadata": "created_at 2024_11_22, cve CVE_2024_41730, deployment Perimeter, deployment Internal, deployment SSLDecrypt, confidence High, signature_severity Major, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_11_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/biprws/logon/trusted",
+          "modifiers": {}
+        },
+        {
+          "pattern": "X-SAP-TRUSTED-USER|3a 20|administrator",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS SAP BusinessObjects Business Intelligence Platform Authentication Bypass Attempt (CVE-2024-41730)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/biprws/logon/trusted\"; http.header; content:\"X-SAP-TRUSTED-USER|3a 20|administrator\"; fast_pattern; reference:cve,2024-41730; reference:url,redrays.io/blog/critical-sap-businessobjects-authentication-vulnerability-cve-2024-41730/; reference:url,community.sap.com/t5/technology-blogs-by-members/poc-critical-authentication-vulnerability-in-sap-businessobjects-business/ba-p/13942037; classtype:attempted-admin; sid:2057778; rev:2; metadata:created_at 2024_11_22, cve CVE_2024_41730, deployment Perimeter, deployment Internal, deployment SSLDecrypt, confidence High, signature_severity Major, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_11_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11847,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Qlik Sense Enterprise HTTP Request Tunneling Attempt (CVE-2023-48365)",
+      "flow": "established,to_server",
+      "pcre": "/^(?:ExternalProgramTask\\x2fcreate|user)/R",
+      "http.method": true,
+      "http.cookie": true,
+      "http.header_names": true,
+      "http.header": true,
+      "reference": [
+        "url,www.praetorian.com/blog/doubleqlik-bypassing-the-original-fix-for-cve-2023-41265/",
+        "cve,2023-48365"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2059793,
+      "rev": 1,
+      "metadata": "affected_product Qlik_Sense_Enterprise, attack_target Web_Server, tls_state TLSDecrypt, created_at 2025_01_31, cve CVE_2023_48365, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2025_01_31, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST /qrs/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3f|xrfkey|3d|",
+          "modifiers": {
+            "within": "50"
+          }
+        },
+        {
+          "pattern": "X-Qlik-xrfkey|3a 20|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "X-Qlik-user|3a 20|",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "HEAD",
+          "modifiers": {}
+        },
+        {
+          "pattern": "X-Qlik-Session|3d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|X-Qlik-Xrfkey|0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Transfer-Encoding|3a 20 2c 09|chunked|2c 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Qlik Sense Enterprise HTTP Request Tunneling Attempt (CVE-2023-48365)\"; flow:established,to_server; content:\"POST /qrs/\"; pcre:\"/^(?:ExternalProgramTask\\x2fcreate|user)/R\"; content:\"|3f|xrfkey|3d|\"; within:50; content:\"X-Qlik-xrfkey|3a 20|\"; nocase; distance:0; content:\"X-Qlik-user|3a 20|\"; distance:0; nocase; http.method; content:\"HEAD\"; http.cookie; content:\"X-Qlik-Session|3d|\"; http.header_names; content:\"|0d 0a|X-Qlik-Xrfkey|0d 0a|\"; fast_pattern; http.header; content:\"Transfer-Encoding|3a 20 2c 09|chunked|2c 0d 0a|\"; reference:url,www.praetorian.com/blog/doubleqlik-bypassing-the-original-fix-for-cve-2023-41265/; reference:cve,2023-48365; classtype:attempted-admin; sid:2059793; rev:1; metadata:affected_product Qlik_Sense_Enterprise, attack_target Web_Server, tls_state TLSDecrypt, created_at 2025_01_31, cve CVE_2023_48365, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2025_01_31, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11883,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Paessler PRTG Notification Command Injection Attempt (CVE-2018-9276)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "http.request_body": true,
+      "pcre": "/^[^\\x26]*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24))+/R",
+      "reference": [
+        "cve,2018-9276",
+        "url,github.com/A1vinSmith/CVE-2018-9276/tree/main"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2060348,
+      "rev": 1,
+      "metadata": "affected_product Paessler_PRTG, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_02_24, cve CVE_2018_9276, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2025_02_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/editsettings",
+          "modifiers": {}
+        },
+        {
+          "pattern": "X-Requested-With|3a 20|XMLHttpRequest",
+          "modifiers": {}
+        },
+        {
+          "pattern": "message_10|3d|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Paessler PRTG Notification Command Injection Attempt (CVE-2018-9276)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/editsettings\"; http.header; content:\"X-Requested-With|3a 20|XMLHttpRequest\"; http.request_body; content:\"message_10|3d|\"; fast_pattern; pcre:\"/^[^\\x26]*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24))+/R\"; reference:cve,2018-9276; reference:url,github.com/A1vinSmith/CVE-2018-9276/tree/main; classtype:attempted-admin; sid:2060348; rev:1; metadata:affected_product Paessler_PRTG, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_02_24, cve CVE_2018_9276, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2025_02_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11909,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Apache Camel Message Header Injection (CVE-2025-27636)",
+      "flow": "established,to_server",
+      "http.header": true,
+      "reference": [
+        "url,github.com/akamai/CVE-2025-27636-Apache-Camel-PoC",
+        "cve,2025-27636"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2060778,
+      "rev": 1,
+      "metadata": "attack_target Server, created_at 2025_03_10, cve CVE_2025_27636, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2025_03_10, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "CamelExecCommandExecutable|3a 20|",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"CamelExecCommandExecutable|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Apache Camel Message Header Injection (CVE-2025-27636)\"; flow:established,to_server; http.header; content:\"CamelExecCommandExecutable|3a 20|\"; fast_pattern; nocase; content:!\"CamelExecCommandExecutable|3a 20|\"; reference:url,github.com/akamai/CVE-2025-27636-Apache-Camel-PoC; reference:cve,2025-27636; classtype:web-application-attack; sid:2060778; rev:1; metadata:attack_target Server, created_at 2025_03_10, cve CVE_2025_27636, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2025_03_10, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11925,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Ncast DVR Hardcoded Credentials Login Attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "reference": [
+        "url,isc.sans.edu/diary/31782",
+        "cve,2024-0305"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2060963,
+      "rev": 1,
+      "metadata": "affected_product DVR, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_03_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_03_19, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/classes/common/busiFacade.php",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Authorization|3a 20|Basic|20|aGVscGRlc2tJbnRlZ3JhdGlvblVzZXI6ZGV2LUM0RjgwMjVFNw==",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Ncast DVR Hardcoded Credentials Login Attempt\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/classes/common/busiFacade.php\"; fast_pattern; http.header; content:\"Authorization|3a 20|Basic|20|aGVscGRlc2tJbnRlZ3JhdGlvblVzZXI6ZGV2LUM0RjgwMjVFNw==\"; reference:url,isc.sans.edu/diary/31782; reference:cve,2024-0305; classtype:attempted-admin; sid:2060963; rev:1; metadata:affected_product DVR, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_03_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_03_19, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11927,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Edimax IC-7100 Command Injection Attempt (CVE-2025-1316)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "27",
+      "http.header": true,
+      "http.request_body": true,
+      "pcre": "/^[^\\x26]*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24))+/R",
+      "reference": [
+        "cve,2025-1316",
+        "url,github.com/R00tS3c/DDOS-RootSec/blob/41e5009c8da9bd9fff94ffef34db218e51a55560/Botnets/Exploits/Edimax/poc.go"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2060968,
+      "rev": 1,
+      "metadata": "affected_product DVR, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_03_20, cve CVE_2025_1316, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2025_03_20, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/camera-cgi/admin/param.cgi",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Authorization|3a 20|Basic|20|YWRtaW4",
+          "modifiers": {}
+        },
+        {
+          "pattern": "action|3d|update",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ipcamSource|3d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "NTP_enable|3d|1",
+          "modifiers": {}
+        },
+        {
+          "pattern": "NTP_serverName|3d|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Edimax IC-7100 Command Injection Attempt (CVE-2025-1316)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:27; content:\"/camera-cgi/admin/param.cgi\"; fast_pattern; http.header; content:\"Authorization|3a 20|Basic|20|YWRtaW4\"; http.request_body; content:\"action|3d|update\"; content:\"ipcamSource|3d|\"; content:\"NTP_enable|3d|1\"; content:\"NTP_serverName|3d|\"; pcre:\"/^[^\\x26]*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24))+/R\"; reference:cve,2025-1316; reference:url,github.com/R00tS3c/DDOS-RootSec/blob/41e5009c8da9bd9fff94ffef34db218e51a55560/Botnets/Exploits/Edimax/poc.go; classtype:attempted-admin; sid:2060968; rev:1; metadata:affected_product DVR, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_03_20, cve CVE_2025_1316, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2025_03_20, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11965,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Kentico Xperience CMS Authentication Bypass Attempt (CVE-2025-2746)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "33",
+      "http.header": true,
+      "http.request_body": true,
+      "reference": [
+        "cve,2025-2746",
+        "url,labs.watchtowr.com/bypassing-authentication-like-its-the-90s-pre-auth-rce-chain-s-in-kentico-xperience-cms/"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2061280,
+      "rev": 1,
+      "metadata": "affected_product Kentico_Xperience_CMS, attack_target Web_Server, tls_state plaintext, created_at 2025_04_03, cve CVE_2025_2746, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_03, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/CMSPages/Staging/SyncServer.asmx",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "SOAPAction|3a 20 22 3c|http|3a 2f 2f|localhost|2f|SyncWebService|2f|SyncServer|2f|ProcessSynchronizationTaskData|3e 22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3c|soap|3a|Header|3e|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3c|wsse|3a|UsernameToken|3e|",
+          "modifiers": {
+            "within": "300"
+          }
+        },
+        {
+          "pattern": "|3c|wsse|3a|Username|3e|",
+          "modifiers": {
+            "within": "30"
+          }
+        },
+        {
+          "pattern": "|3c|wsse|3a|Password|20|Type|3d 22 3c|http|3a|//docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0|23|PasswordDigest|3e 22|",
+          "modifiers": {
+            "within": "200"
+          }
+        },
+        {
+          "pattern": "|3c|wsse|3a|Nonce|3e|",
+          "modifiers": {
+            "within": "80"
+          }
+        },
+        {
+          "pattern": "|3c|wsu|3a|Created|3e|",
+          "modifiers": {
+            "within": "80"
+          }
+        },
+        {
+          "pattern": "|3c|ProcessSynchronizationTaskData|20|xmlns|3d 22 3c|http|3a 2f 2f|localhost|2f|SyncWebService|2f|SyncServer|3e 22|",
+          "modifiers": {
+            "within": "300"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Kentico Xperience CMS Authentication Bypass Attempt (CVE-2025-2746)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:33; content:\"/CMSPages/Staging/SyncServer.asmx\"; fast_pattern; http.header; content:\"SOAPAction|3a 20 22 3c|http|3a 2f 2f|localhost|2f|SyncWebService|2f|SyncServer|2f|ProcessSynchronizationTaskData|3e 22|\"; http.request_body; content:\"|3c|soap|3a|Header|3e|\"; content:\"|3c|wsse|3a|UsernameToken|3e|\"; within:300; content:\"|3c|wsse|3a|Username|3e|\"; within:30; content:\"|3c|wsse|3a|Password|20|Type|3d 22 3c|http|3a|//docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0|23|PasswordDigest|3e 22|\"; within:200; content:\"|3c|wsse|3a|Nonce|3e|\"; within:80; content:\"|3c|wsu|3a|Created|3e|\"; within:80; content:\"|3c|ProcessSynchronizationTaskData|20|xmlns|3d 22 3c|http|3a 2f 2f|localhost|2f|SyncWebService|2f|SyncServer|3e 22|\"; within:300; reference:cve,2025-2746; reference:url,labs.watchtowr.com/bypassing-authentication-like-its-the-90s-pre-auth-rce-chain-s-in-kentico-xperience-cms/; classtype:attempted-admin; sid:2061280; rev:1; metadata:affected_product Kentico_Xperience_CMS, attack_target Web_Server, tls_state plaintext, created_at 2025_04_03, cve CVE_2025_2746, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_03, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11967,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Kentico Xperience CMS Authentication Bypass Attempt (CVE-2025-2747)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "33",
+      "http.header": true,
+      "http.request_body": true,
+      "reference": [
+        "cve,2025-2747",
+        "url,labs.watchtowr.com/bypassing-authentication-like-its-the-90s-pre-auth-rce-chain-s-in-kentico-xperience-cms/"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2061283,
+      "rev": 1,
+      "metadata": "affected_product Kentico_Xperience_CMS, attack_target Web_Server, tls_state plaintext, created_at 2025_04_03, cve CVE_2025_2747, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_03, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/CMSPages/Staging/SyncServer.asmx",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "SOAPAction|3a 20 22 3c|http|3a 2f 2f|localhost|2f|SyncWebService|2f|SyncServer|2f|ProcessSynchronizationTaskData|3e 22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3c|soap|3a|Header|3e|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3c|wsse|3a|UsernameToken|3e|",
+          "modifiers": {
+            "within": "300"
+          }
+        },
+        {
+          "pattern": "|3c|wsse|3a|Username|3e|",
+          "modifiers": {
+            "within": "30"
+          }
+        },
+        {
+          "pattern": "|3c 2f|wsse|3a|Username|3e|",
+          "modifiers": {
+            "within": "100"
+          }
+        },
+        {
+          "pattern": "|3c 2f|wsse|3a|UsernameToken|3e|",
+          "modifiers": {
+            "within": "40"
+          }
+        },
+        {
+          "pattern": "|3c 2f|wsse|3a|Security|3e|",
+          "modifiers": {
+            "within": "40"
+          }
+        },
+        {
+          "pattern": "|3c|ProcessSynchronizationTaskData|20|xmlns|3d 22|http|3a 2f 2f|localhost/SyncWebService/SyncServer|22 3e|",
+          "modifiers": {
+            "within": "200"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Kentico Xperience CMS Authentication Bypass Attempt (CVE-2025-2747)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:33; content:\"/CMSPages/Staging/SyncServer.asmx\"; fast_pattern; http.header; content:\"SOAPAction|3a 20 22 3c|http|3a 2f 2f|localhost|2f|SyncWebService|2f|SyncServer|2f|ProcessSynchronizationTaskData|3e 22|\"; http.request_body; content:\"|3c|soap|3a|Header|3e|\"; content:\"|3c|wsse|3a|UsernameToken|3e|\"; within:300; content:\"|3c|wsse|3a|Username|3e|\"; within:30; content:\"|3c 2f|wsse|3a|Username|3e|\"; within:100; content:\"|3c 2f|wsse|3a|UsernameToken|3e|\"; within:40; content:\"|3c 2f|wsse|3a|Security|3e|\"; within:40; content:\"|3c|ProcessSynchronizationTaskData|20|xmlns|3d 22|http|3a 2f 2f|localhost/SyncWebService/SyncServer|22 3e|\"; within:200; reference:cve,2025-2747; reference:url,labs.watchtowr.com/bypassing-authentication-like-its-the-90s-pre-auth-rce-chain-s-in-kentico-xperience-cms/; classtype:attempted-admin; sid:2061283; rev:1; metadata:affected_product Kentico_Xperience_CMS, attack_target Web_Server, tls_state plaintext, created_at 2025_04_03, cve CVE_2025_2747, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_03, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 11997,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS ASUS DSL-AC88U Authentication Bypass Attempt (CVE-2024-3080)",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "pcre": "/^\\x2f(?:js|images)\\x2f[^\\x26]*?(?:(?:\\x2e|%2[Ee]){1,2}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff]){1,}){1,}/R",
+      "endswith": true,
+      "reference": [
+        "cve,2024-3080",
+        "url,github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2024/CVE-2024-3080.yaml"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2061409,
+      "rev": 1,
+      "metadata": "affected_product Asus, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_04_09, cve CVE_2024_3080, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET ",
+          "modifiers": {}
+        },
+        {
+          "pattern": "wizard.htm HTTP/1.1",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS ASUS DSL-AC88U Authentication Bypass Attempt (CVE-2024-3080)\"; flow:established,to_server; http.request_line; content:\"GET \"; pcre:\"/^\\x2f(?:js|images)\\x2f[^\\x26]*?(?:(?:\\x2e|%2[Ee]){1,2}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff]){1,}){1,}/R\"; content:\"wizard.htm HTTP/1.1\"; fast_pattern; endswith; reference:cve,2024-3080; reference:url,github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2024/CVE-2024-3080.yaml; classtype:attempted-admin; sid:2061409; rev:1; metadata:affected_product Asus, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_04_09, cve CVE_2024_3080, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12025,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS D-Link DIR-823G Multiple HNAP SOAPAction Endpoints Authentication Bypass (CVE-2025-2359, CVE-2025-2360)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "7",
+      "http.header": true,
+      "pcre": [
+        "/^(?:DDNSSettings|UpnpSettings)/R",
+        "/^(?:DDNSSettings|UpnpSettings)\\x20/R"
+      ],
+      "http.header_names": true,
+      "to_lowercase": true,
+      "http.request_body": true,
+      "reference": [
+        "cve,2025-2359",
+        "cve,2025-2360",
+        "url,lavender-bicycle-a5a.notion.site/CVE-1ab53a41781f804898a0effa45d0f15d"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2061622,
+      "rev": 1,
+      "metadata": "affected_product D_Link, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_04_16, cve CVE_2025_2359_CVE_2025_2360, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_16, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/HNAP1/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "SOAPAction|3a 20 22|http|3a 2f 2f|purenetworks.com/HNAP1/Set",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|0d 0a|cookie|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3c|Set",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS D-Link DIR-823G Multiple HNAP SOAPAction Endpoints Authentication Bypass (CVE-2025-2359, CVE-2025-2360)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:7; content:\"/HNAP1/\"; http.header; content:\"SOAPAction|3a 20 22|http|3a 2f 2f|purenetworks.com/HNAP1/Set\"; fast_pattern; pcre:\"/^(?:DDNSSettings|UpnpSettings)/R\"; http.header_names; to_lowercase; content:!\"|0d 0a|cookie|0d 0a|\"; http.request_body; content:\"|3c|Set\"; pcre:\"/^(?:DDNSSettings|UpnpSettings)\\x20/R\"; reference:cve,2025-2359; reference:cve,2025-2360; reference:url,lavender-bicycle-a5a.notion.site/CVE-1ab53a41781f804898a0effa45d0f15d; classtype:web-application-attack; sid:2061622; rev:1; metadata:affected_product D_Link, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_04_16, cve CVE_2025_2359_CVE_2025_2360, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_16, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12027,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS D-Link DIR-823G Multiple HNAP SOAPAction Endpoints Authentication Bypass",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "7",
+      "http.header": true,
+      "pcre": [
+        "/^(?:GuestNetworkSettings|LocalMacAddress|RouterInformationSettings|RouterLanSettings)/R",
+        "/^(?:GuestNetworkSettings|LocalMacAddress|RouterInformationSettings|RouterLanSettings)\\x20/R"
+      ],
+      "http.header_names": true,
+      "to_lowercase": true,
+      "http.request_body": true,
+      "reference": "url,lavender-bicycle-a5a.notion.site/CVE-1ab53a41781f804898a0effa45d0f15d",
+      "classtype": "web-application-attack",
+      "sid": 2061623,
+      "rev": 1,
+      "metadata": "affected_product D_Link, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_04_16, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_16, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/HNAP1/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "SOAPAction|3a 20 22|http|3a 2f 2f|purenetworks.com/HNAP1/Get",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|0d 0a|cookie|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3c|Get",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS D-Link DIR-823G Multiple HNAP SOAPAction Endpoints Authentication Bypass\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:7; content:\"/HNAP1/\"; http.header; content:\"SOAPAction|3a 20 22|http|3a 2f 2f|purenetworks.com/HNAP1/Get\"; fast_pattern; pcre:\"/^(?:GuestNetworkSettings|LocalMacAddress|RouterInformationSettings|RouterLanSettings)/R\"; http.header_names; to_lowercase; content:!\"|0d 0a|cookie|0d 0a|\"; http.request_body; content:\"|3c|Get\"; pcre:\"/^(?:GuestNetworkSettings|LocalMacAddress|RouterInformationSettings|RouterLanSettings)\\x20/R\"; reference:url,lavender-bicycle-a5a.notion.site/CVE-1ab53a41781f804898a0effa45d0f15d; classtype:web-application-attack; sid:2061623; rev:1; metadata:affected_product D_Link, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_04_16, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_16, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12063,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Citrix nsroot ADM_SESSIONID Information Disclosure (CVE-2024-6235)",
+      "flow": "established,to_server",
+      "xbits": "set,ET.CVE-202-6235,track ip_pair,expire 120",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "44",
+      "http.header": true,
+      "http.header_names": true,
+      "reference": [
+        "cve,2024-6235",
+        "url,attackerkb.com/topics/7zebEgmGLs/cve-2024-6235"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2061842,
+      "rev": 1,
+      "metadata": "affected_product Citrix, attack_target Web_Server, tls_state plaintext, created_at 2025_04_24, cve CVE_2024_6235, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/internal/v2/config/mps_secret/ADM_SESSIONID",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Tenant-Name|3a 20|Owner",
+          "modifiers": {}
+        },
+        {
+          "pattern": "User-Name|3a 20|nsroot",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Mps-Internal-Request|3a 20|true",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|Cookie|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|Authorization|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Citrix nsroot ADM_SESSIONID Information Disclosure (CVE-2024-6235)\"; flow:established,to_server; xbits:set,ET.CVE-202-6235,track ip_pair,expire 120; http.method; content:\"GET\"; http.uri; bsize:44; content:\"/internal/v2/config/mps_secret/ADM_SESSIONID\"; fast_pattern; http.header; content:\"Tenant-Name|3a 20|Owner\"; content:\"User-Name|3a 20|nsroot\"; content:\"Mps-Internal-Request|3a 20|true\"; http.header_names; content:!\"|0d 0a|Cookie|0d 0a|\"; content:!\"|0d 0a|Authorization|0d 0a|\"; reference:cve,2024-6235; reference:url,attackerkb.com/topics/7zebEgmGLs/cve-2024-6235; classtype:attempted-admin; sid:2061842; rev:1; metadata:affected_product Citrix, attack_target Web_Server, tls_state plaintext, created_at 2025_04_24, cve CVE_2024_6235, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_04_24, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12069,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Citrix CVE-2024-6235 Post-Exploitation Activity (Admin Account Creation)",
+      "flow": "established,to_server",
+      "xbits": "isset,ET.CVE-2024-6235,track ip_dst",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "24",
+      "http.header": true,
+      "pcre": [
+        "/^[a-fA-F0-9]{32}/R",
+        "/^[a-fA-F0-9]{60}/R"
+      ],
+      "http.cookie": true,
+      "http.request_body": true,
+      "reference": [
+        "url,attackerkb.com/topics/7zebEgmGLs/cve-2024-6235",
+        "cve,2024-6235"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2061845,
+      "rev": 1,
+      "metadata": "affected_product Citrix, attack_target Web_Server, tls_state plaintext, created_at 2025_04_24, cve CVE_2024_6235, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Unauthorized_Account_Creation, updated_at 2025_04_24",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/nitro/v1/config/mpsuser",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "NITRO_WEB_APPLICATION|3a 20|true",
+          "modifiers": {}
+        },
+        {
+          "pattern": "rand_key|3a 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "logged_in_user_name|3d|nsroot|3b|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "SESSID|3d 23 23|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "object|3d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "mpsuser",
+          "modifiers": {}
+        },
+        {
+          "pattern": "name",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "groups",
+          "modifiers": {}
+        },
+        {
+          "pattern": "owner",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Citrix CVE-2024-6235 Post-Exploitation Activity (Admin Account Creation)\"; flow:established,to_server; xbits:isset,ET.CVE-2024-6235,track ip_dst; http.method; content:\"POST\"; http.uri; bsize:24; content:\"/nitro/v1/config/mpsuser\"; fast_pattern; http.header; content:\"NITRO_WEB_APPLICATION|3a 20|true\"; content:\"rand_key|3a 20|\"; pcre:\"/^[a-fA-F0-9]{32}/R\"; http.cookie; content:\"logged_in_user_name|3d|nsroot|3b|\"; content:\"SESSID|3d 23 23|\"; pcre:\"/^[a-fA-F0-9]{60}/R\"; http.request_body; content:\"object|3d|\"; content:\"mpsuser\"; content:\"name\"; distance:0; content:\"groups\"; content:\"owner\"; distance:0; reference:url,attackerkb.com/topics/7zebEgmGLs/cve-2024-6235; reference:cve,2024-6235; classtype:trojan-activity; sid:2061845; rev:1; metadata:affected_product Citrix, attack_target Web_Server, tls_state plaintext, created_at 2025_04_24, cve CVE_2024_6235, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Unauthorized_Account_Creation, updated_at 2025_04_24; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12079,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Wangshen SecGate 3600 obj_area_export_save filename parameter Directory Traversal Attempt (2025-4185)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "pcre": "/^[^\\x26]*?(?:(?:\\x2e|%2[Ee]){1,2}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff]){1,}){2,}/R",
+      "http.header_names": true,
+      "reference": [
+        "cve,2025-4185",
+        "url,flowus.cn/share/6bd8ca39-bad2-4567-b0e1-9407991ad943?code=G8A6P3"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2062098,
+      "rev": 1,
+      "metadata": "affected_product Wangshen, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_02, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_02, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "g=obj_area_export_save",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "file_name|3d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|Cookie|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|Authorization|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Wangshen SecGate 3600 obj_area_export_save filename parameter Directory Traversal Attempt (2025-4185)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"g=obj_area_export_save\"; fast_pattern; content:\"file_name|3d|\"; pcre:\"/^[^\\x26]*?(?:(?:\\x2e|%2[Ee]){1,2}(?:\\x2f|\\x5c|%5[Cc]|%2[Ff]){1,}){2,}/R\"; http.header_names; content:!\"|0d 0a|Cookie|0d 0a|\"; content:!\"|0d 0a|Authorization|0d 0a|\"; reference:cve,2025-4185; reference:url,flowus.cn/share/6bd8ca39-bad2-4567-b0e1-9407991ad943?code=G8A6P3; classtype:attempted-admin; sid:2062098; rev:1; metadata:affected_product Wangshen, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_02, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_02, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12087,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Totolink BufferOverflow Attempt formWsc localPin Command Injection Attempt (CVE-2025-3987)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "15",
+      "http.request_body": true,
+      "pcre": "/^.*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24)|(?:\\x26|%26){2})+/R",
+      "http.header_names": true,
+      "reference": [
+        "cve,2025-3987",
+        "url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2062203,
+      "rev": 1,
+      "metadata": "affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_3987, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_08, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/boafrm/formWsc",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "localPin|3d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|Cookie|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Totolink BufferOverflow Attempt formWsc localPin Command Injection Attempt (CVE-2025-3987)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:15; content:\"/boafrm/formWsc\"; fast_pattern; http.request_body; content:\"localPin|3d|\"; pcre:\"/^.*?(?:(?:\\x3b|%3[Bb])|(?:\\x0a|%0[Aa])|(?:\\x60|%60)|(?:\\x7c|%7[Cc])|(?:\\x24|%24)|(?:\\x26|%26){2})+/R\"; http.header_names; content:!\"|0d 0a|Cookie|0d 0a|\"; reference:cve,2025-3987; reference:url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT; classtype:attempted-admin; sid:2062203; rev:1; metadata:affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_3987, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_08, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12091,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Tenda sysUplinkCheckSet hostIp parameters Buffer Overflow Attempt (CVE-2025-3820)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "15",
+      "http.request_body": true,
+      "pcre": "/^\\x22\\x3a[^\\x2c\\x7d$]{100,}(?:\\x2c|\\x7d|$)/R",
+      "reference": [
+        "cve,2025-3820",
+        "url,github.com/02Tn/vul/issues"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2062205,
+      "rev": 2,
+      "metadata": "affected_product Tenda, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_3820, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/goform/modules",
+          "modifiers": {}
+        },
+        {
+          "pattern": "sysUplinkCheckSet",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "enable",
+          "modifiers": {}
+        },
+        {
+          "pattern": "hostIp1",
+          "modifiers": {}
+        },
+        {
+          "pattern": "hostIp2",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Tenda sysUplinkCheckSet hostIp parameters Buffer Overflow Attempt (CVE-2025-3820)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:15; content:\"/goform/modules\"; http.request_body; content:\"sysUplinkCheckSet\"; fast_pattern; content:\"enable\"; content:\"hostIp1\"; pcre:\"/^\\x22\\x3a[^\\x2c\\x7d$]{100,}(?:\\x2c|\\x7d|$)/R\"; content:\"hostIp2\"; reference:cve,2025-3820; reference:url,github.com/02Tn/vul/issues; classtype:web-application-attack; sid:2062205; rev:2; metadata:affected_product Tenda, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_3820, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12093,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Totolink formPortFw service_type Parameter Buffer Overflow Attempt (CVE-2025-3988, CVE-2025-8139)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "18",
+      "http.request_body": true,
+      "pcre": "/^\\x3d[^\\x26$]{100,}(?:&|$)/R",
+      "http.header_names": true,
+      "reference": [
+        "cve,2025-3988",
+        "url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT",
+        "cve,2025-5793",
+        "cve,2025-8139",
+        "url,github.com/panda666-888/vuls"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2062171,
+      "rev": 2,
+      "metadata": "affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_3988, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/boafrm/formPortFw",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "service_type",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|Cookie|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Totolink formPortFw service_type Parameter Buffer Overflow Attempt (CVE-2025-3988, CVE-2025-8139)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:18; content:\"/boafrm/formPortFw\"; fast_pattern; http.request_body; content:\"service_type\"; pcre:\"/^\\x3d[^\\x26$]{100,}(?:&|$)/R\"; http.header_names; content:!\"|0d 0a|Cookie|0d 0a|\"; reference:cve,2025-3988; reference:url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT; reference:cve,2025-5793; reference:cve,2025-8139; reference:url,github.com/panda666-888/vuls; classtype:web-application-attack; sid:2062171; rev:2; metadata:affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_3988, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12095,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Totolink BufferOverflow Attempt multiple URI endpoints submit-url Parameter Buffer Overflow Attempt (CVE-2025-3990, CVE-2025-3993)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": [
+        "/^(?:Vlan|WdsEncrypt|Wlwds|Wsc)/R",
+        "/^\\x3d[^\\x26$]{100,}(?:\\x26|$)/R"
+      ],
+      "http.request_body": true,
+      "http.header_names": true,
+      "reference": [
+        "cve,2025-3990",
+        "cve,2025-3991",
+        "cve,2025-3992",
+        "cve,2025-3993",
+        "url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2062172,
+      "rev": 3,
+      "metadata": "affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_3990, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/boafrm/form",
+          "modifiers": {}
+        },
+        {
+          "pattern": "submit-url",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|0d 0a|Cookie|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Totolink BufferOverflow Attempt multiple URI endpoints submit-url Parameter Buffer Overflow Attempt (CVE-2025-3990, CVE-2025-3993)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/boafrm/form\"; startswith; pcre:\"/^(?:Vlan|WdsEncrypt|Wlwds|Wsc)/R\"; http.request_body; content:\"submit-url\"; fast_pattern; pcre:\"/^\\x3d[^\\x26$]{100,}(?:\\x26|$)/R\"; http.header_names; content:!\"|0d 0a|Cookie|0d 0a|\"; reference:cve,2025-3990; reference:cve,2025-3991; reference:cve,2025-3992; reference:cve,2025-3993; reference:url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT; classtype:web-application-attack; sid:2062172; rev:3; metadata:affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_3990, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12097,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Totolink BufferOverflow Attempt formWsc localPin Parameter Buffer Overflow Attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "15",
+      "http.request_body": true,
+      "pcre": "/^\\x3d[^\\x26$]{100,}(?:\\x26|$)/R",
+      "http.header_names": true,
+      "reference": "url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT",
+      "classtype": "web-application-attack",
+      "sid": 2062175,
+      "rev": 2,
+      "metadata": "affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/boafrm/formWsc",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "localPin",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|Cookie|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Totolink BufferOverflow Attempt formWsc localPin Parameter Buffer Overflow Attempt\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:15; content:\"/boafrm/formWsc\"; fast_pattern; http.request_body; content:\"localPin\"; pcre:\"/^\\x3d[^\\x26$]{100,}(?:\\x26|$)/R\"; http.header_names; content:!\"|0d 0a|Cookie|0d 0a|\"; reference:url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT; classtype:web-application-attack; sid:2062175; rev:2; metadata:affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12099,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Totolink BufferOverflow Attempt formRoute metric Parameter Denial of Service Attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "17",
+      "http.request_body": true,
+      "pcre": "/^\\x3d[^\\x26$]{100,}(?:\\x26|$)/R",
+      "http.header_names": true,
+      "reference": [
+        "cve,2025-3994",
+        "url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2062176,
+      "rev": 2,
+      "metadata": "affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/boafrm/formRoute",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "metric",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|Cookie|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Totolink BufferOverflow Attempt formRoute metric Parameter Denial of Service Attempt\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:17; content:\"/boafrm/formRoute\"; fast_pattern; http.request_body; content:\"metric\"; pcre:\"/^\\x3d[^\\x26$]{100,}(?:\\x26|$)/R\"; http.header_names; content:!\"|0d 0a|Cookie|0d 0a|\"; reference:cve,2025-3994; reference:url,github.com/fizz-is-on-the-way/Iot_vuls/tree/main/N150RT; classtype:web-application-attack; sid:2062176; rev:2; metadata:affected_product TOTOLINK, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12105,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Tenda dhcpsCfgSet altDNS parameter Buffer Overflow Attempt (CVE-2025-4007)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "15",
+      "http.request_body": true,
+      "pcre": "/^\\x22\\x3a[^\\x7c\\x2c$]{100,}(?:\\x2c|\\x7d|$)/R",
+      "reference": [
+        "cve,2025-4007",
+        "url,github.com/02Tn/vul/issues"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2062204,
+      "rev": 2,
+      "metadata": "affected_product Tenda, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_4007, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/goform/modules",
+          "modifiers": {}
+        },
+        {
+          "pattern": "dhcpsCfgSet",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "altDns",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Tenda dhcpsCfgSet altDNS parameter Buffer Overflow Attempt (CVE-2025-4007)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:15; content:\"/goform/modules\"; http.request_body; content:\"dhcpsCfgSet\"; fast_pattern; content:\"altDns\"; pcre:\"/^\\x22\\x3a[^\\x7c\\x2c$]{100,}(?:\\x2c|\\x7d|$)/R\"; reference:cve,2025-4007; reference:url,github.com/02Tn/vul/issues; classtype:web-application-attack; sid:2062204; rev:2; metadata:affected_product Tenda, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_05_08, cve CVE_2025_4007, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_05_09, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12203,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Infoblox NetMRI SetRawCookie.tdf Process Manager Hard-Coded Credentials Authentication Bypass Attempt (CVE-2025-32815)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.header": true,
+      "reference": [
+        "url,rhinosecuritylabs.com/research/infoblox-multiple-cves/",
+        "cve,2025-32815"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2062743,
+      "rev": 1,
+      "metadata": "affected_product Infoblox, attack_target Networking_Equipment, tls_state TLSDecrypt, created_at 2025_06_04, cve CVE_2025_32815, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_06_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/netmri/common/SetRawCookie.tdf|3f|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Authorization|3a 20|Basic|20|X3BtOnBtMTk3MjY|3d|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Infoblox NetMRI SetRawCookie.tdf Process Manager Hard-Coded Credentials Authentication Bypass Attempt (CVE-2025-32815)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/netmri/common/SetRawCookie.tdf|3f|\"; fast_pattern; startswith; http.header; content:\"Authorization|3a 20|Basic|20|X3BtOnBtMTk3MjY|3d|\"; reference:url,rhinosecuritylabs.com/research/infoblox-multiple-cves/; reference:cve,2025-32815; classtype:attempted-admin; sid:2062743; rev:1; metadata:affected_product Infoblox, attack_target Networking_Equipment, tls_state TLSDecrypt, created_at 2025_06_04, cve CVE_2025_32815, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_06_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12337,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Alcatel-Lucent Authentication Bypass Attempt (CVE-2025-52689)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "20",
+      "http.header": true,
+      "pcre": [
+        "/^\\d{10}/R",
+        "/^[A-F0-9]{32}/R"
+      ],
+      "reference": [
+        "url,github.com/UltimateHG/CVE-2025-52689-PoC",
+        "cve,2025-52689"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2063533,
+      "rev": 1,
+      "metadata": "affected_product Alcatel_Lucent, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_07_16, cve CVE_2025_52689, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_07_16, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/echo.fcgi/api/login",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "X-API-App-Id|3a 20|hyapiinterface",
+          "modifiers": {}
+        },
+        {
+          "pattern": "X-API-Timestamp|3a 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "X-API-Signature|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Alcatel-Lucent Authentication Bypass Attempt (CVE-2025-52689)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:20; content:\"/echo.fcgi/api/login\"; fast_pattern; http.header; content:\"X-API-App-Id|3a 20|hyapiinterface\"; content:\"X-API-Timestamp|3a 20|\"; pcre:\"/^\\d{10}/R\"; content:\"X-API-Signature|3a 20|\"; pcre:\"/^[A-F0-9]{32}/R\"; reference:url,github.com/UltimateHG/CVE-2025-52689-PoC; reference:cve,2025-52689; classtype:web-application-attack; sid:2063533; rev:1; metadata:affected_product Alcatel_Lucent, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_07_16, cve CVE_2025_52689, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2025_07_16, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 12873,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Wavlink login.cgi pagelogin Parameter Buffer Overflow Attempt (CVE-2025-61128)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "18",
+      "http.header": true,
+      "pcre": "/^[^&]{100,}(?:&|$)/R",
+      "http.request_body": true,
+      "reference": [
+        "url,gist.github.com/shinobu-alpha/6dd5ad7f83c16360f6564db0bc121e99",
+        "cve,2025-61128"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2065635,
+      "rev": 1,
+      "metadata": "affected_product Tenda, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_11_03, cve CVE_2025_61128, deployment Perimeter, deployment Internal, performance_impact Moderate, confidence High, signature_severity Major, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_11_03, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/cgi-bin/login.cgi",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Referer|3a 20|http|3a 2f 2f|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "page|3d|login|3d|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Wavlink login.cgi pagelogin Parameter Buffer Overflow Attempt (CVE-2025-61128)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:18; content:\"/cgi-bin/login.cgi\"; http.header; content:\"Referer|3a 20|http|3a 2f 2f|\"; pcre:\"/^[^&]{100,}(?:&|$)/R\"; http.request_body; content:\"page|3d|login|3d|\"; fast_pattern; reference:url,gist.github.com/shinobu-alpha/6dd5ad7f83c16360f6564db0bc121e99; reference:cve,2025-61128; classtype:web-application-attack; sid:2065635; rev:1; metadata:affected_product Tenda, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_11_03, cve CVE_2025_61128, deployment Perimeter, deployment Internal, performance_impact Moderate, confidence High, signature_severity Major, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_11_03, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 13419,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Fortigate Forticlient EMS HTTP Site Header SQL injection attempt (CVE-2026-21643)",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "startswith": true,
+      "pcre": [
+        "/^(?:init_consts|auth\\x2fsignin)$/R",
+        "/^[^<]*?(?:'|%27|-{2}|%2d%2d)?(?:(?:S(?:HOW.+(?:C(?:UR(?:DAT|TIM)E|HARACTER.+SET)|(?:VARI|T)ABLES)|ELECT.+(?:FROM|USER|SLEEP|CONCAT|CASE))|U(?:NION.+SELEC|PDATE.+SE)T|DELETE.+FROM|INSERT.+INTO)|S(?:HOW.+(?:C(?:HARACTER.+SET|UR(DATE|TIME))|(?:VARI|T)ABLES)|ELECT.+(?:FROM|USER))|U(?:NION.+SELEC|PDATE.+SE)T|(?:NULL(?:\\x2c|%2[cC])){2,}|(?:\\x2f|%2[fF])(?:\\x2a|%2[aA]).+(?:\\x2a|%2[aA]).+(?:\\x2f|%2[fF])|CONCAT.+SELECT|EXTRACTVALUE|UNION.+ALL)/Ri"
+      ],
+      "http.header": true,
+      "reference": [
+        "cve,2026-21643",
+        "url,bishopfox.com/blog/cve-2026-21643-pre-authentication-sql-injection-in-forticlient-ems-7-4-4"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2068447,
+      "rev": 1,
+      "metadata": "affected_product FortiClient_EMS, attack_target Server, tls_state plaintext, created_at 2026_03_26, cve CVE_2026_21643, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2026_03_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "/api/v1/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Site|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> $HOME_NET any (msg:\"ET WEB_SPECIFIC_APPS Fortigate Forticlient EMS HTTP Site Header SQL injection attempt (CVE-2026-21643)\"; flow:established,to_server; http.uri; content:\"/api/v1/\"; startswith; fast_pattern; pcre:\"/^(?:init_consts|auth\\x2fsignin)$/R\"; http.header; content:\"Site|3a 20|\"; pcre:\"/^[^<]*?(?:'|%27|-{2}|%2d%2d)?(?:(?:S(?:HOW.+(?:C(?:UR(?:DAT|TIM)E|HARACTER.+SET)|(?:VARI|T)ABLES)|ELECT.+(?:FROM|USER|SLEEP|CONCAT|CASE))|U(?:NION.+SELEC|PDATE.+SE)T|DELETE.+FROM|INSERT.+INTO)|S(?:HOW.+(?:C(?:HARACTER.+SET|UR(DATE|TIME))|(?:VARI|T)ABLES)|ELECT.+(?:FROM|USER))|U(?:NION.+SELEC|PDATE.+SE)T|(?:NULL(?:\\x2c|%2[cC])){2,}|(?:\\x2f|%2[fF])(?:\\x2a|%2[aA]).+(?:\\x2a|%2[aA]).+(?:\\x2f|%2[fF])|CONCAT.+SELECT|EXTRACTVALUE|UNION.+ALL)/Ri\"; reference:cve,2026-21643; reference:url,bishopfox.com/blog/cve-2026-21643-pre-authentication-sql-injection-in-forticlient-ems-7-4-4; classtype:attempted-admin; sid:2068447; rev:1; metadata:affected_product FortiClient_EMS, attack_target Server, tls_state plaintext, created_at 2026_03_26, cve CVE_2026_21643, deployment Perimeter, deployment Internal, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag Exploit, updated_at 2026_03_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 13813,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Microsoft SharePoint Authentication Bypass and Privilege Escalation (CVE-2023-29357)",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.header": true,
+      "base64_decode": "relative",
+      "base64_data": true,
+      "reference": [
+        "url,sec.vnpt.vn/2023/08/phan-tich-cve-2023-29357-microsoft-sharepoint-validatetokenissuer-authentication-bypass-vulnerability",
+        "cve,2023-29357"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2071421,
+      "rev": 1,
+      "metadata": "affected_product Microsoft_Sharepoint, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_07, cve CVE_2023_29357, deployment Perimeter, deployment Internal, deployment SSLDecrypt, confidence High, signature_severity Major, tag Exploit, updated_at 2026_08_07, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "/_api/web/siteusers",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "X-PROOF_TOKEN|3a 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|alg|22 3a 22|none|22|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET WEB_SPECIFIC_APPS Microsoft SharePoint Authentication Bypass and Privilege Escalation (CVE-2023-29357)\"; flow:established,to_server; http.uri; content:\"/_api/web/siteusers\"; fast_pattern; http.header; content:\"X-PROOF_TOKEN|3a 20|\"; base64_decode:relative; base64_data; content:\"|22|alg|22 3a 22|none|22|\"; reference:url,sec.vnpt.vn/2023/08/phan-tich-cve-2023-29357-microsoft-sharepoint-validatetokenissuer-authentication-bypass-vulnerability; reference:cve,2023-29357; classtype:web-application-attack; sid:2071421; rev:1; metadata:affected_product Microsoft_Sharepoint, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_07, cve CVE_2023_29357, deployment Perimeter, deployment Internal, deployment SSLDecrypt, confidence High, signature_severity Major, tag Exploit, updated_at 2026_08_07, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 13823,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Microsoft SharePoint JWT Token Authentication Bypass (CVE-2026-55040) M1",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.header": true,
+      "base64_decode": "relative",
+      "base64_data": true,
+      "pcre": "/^\\s*\\x3a\\s*\\x22none\\x22/R",
+      "reference": [
+        "url,www.rapid7.com/blog/post/ra-microsoft-sharepoint-jwt-token-authentication-bypass-cve-2026-55040/",
+        "cve,2026-55040"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2071485,
+      "rev": 1,
+      "metadata": "affected_product Microsoft_Sharepoint, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_12, cve CVE_2026_55040, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2026_08_12, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "/_api/web/currentuser",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Authorization|3a 20|Bearer|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|alg|22|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET WEB_SPECIFIC_APPS Microsoft SharePoint JWT Token Authentication Bypass (CVE-2026-55040) M1\"; flow:established,to_server; http.uri; content:\"/_api/web/currentuser\"; fast_pattern; http.header; content:\"Authorization|3a 20|Bearer|20|\"; base64_decode:relative; base64_data; content:\"|22|alg|22|\"; pcre:\"/^\\s*\\x3a\\s*\\x22none\\x22/R\"; reference:url,www.rapid7.com/blog/post/ra-microsoft-sharepoint-jwt-token-authentication-bypass-cve-2026-55040/; reference:cve,2026-55040; classtype:web-application-attack; sid:2071485; rev:1; metadata:affected_product Microsoft_Sharepoint, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_12, cve CVE_2026_55040, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2026_08_12, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-web_specific_apps.rules",
+    "line_number": 13825,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SPECIFIC_APPS Microsoft SharePoint JWT Token Authentication Bypass (CVE-2026-55040) M2",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.header": true,
+      "base64_decode": "relative",
+      "base64_data": true,
+      "pcre": "/^\\s*\\x3a\\s*\\x22none\\x22/R",
+      "reference": [
+        "url,www.rapid7.com/blog/post/ra-microsoft-sharepoint-jwt-token-authentication-bypass-cve-2026-55040/",
+        "cve,2026-55040"
+      ],
+      "classtype": "web-application-attack",
+      "sid": 2071486,
+      "rev": 1,
+      "metadata": "affected_product Microsoft_Sharepoint, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_12, cve CVE_2026_55040, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2026_08_12, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "/_api/contextinfo",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Authorization|3a 20|Bearer|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22|alg|22|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET WEB_SPECIFIC_APPS Microsoft SharePoint JWT Token Authentication Bypass (CVE-2026-55040) M2\"; flow:established,to_server; http.uri; content:\"/_api/contextinfo\"; fast_pattern; http.header; content:\"Authorization|3a 20|Bearer|20|\"; base64_decode:relative; base64_data; content:\"|22|alg|22|\"; pcre:\"/^\\s*\\x3a\\s*\\x22none\\x22/R\"; reference:url,www.rapid7.com/blog/post/ra-microsoft-sharepoint-jwt-token-authentication-bypass-cve-2026-55040/; reference:cve,2026-55040; classtype:web-application-attack; sid:2071486; rev:1; metadata:affected_product Microsoft_Sharepoint, attack_target Server, tls_state TLSDecrypt, created_at 2026_08_12, cve CVE_2026_55040, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Exploit, updated_at 2026_08_12, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:dest_ip;)"
+  }
+]

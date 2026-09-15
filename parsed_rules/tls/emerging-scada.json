@@ -1,0 +1,625 @@
+[
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 117,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-3620 Default Cert Subject Common Name",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048648,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, reviewed_at 2023_10_18",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=http|3a 2f 2f|www.sel-secure.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-3620 Default Cert Subject Common Name\"; flow:established,to_client; tls.cert_subject; content:\"CN=http|3a 2f 2f|www.sel-secure.com\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048648; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, reviewed_at 2023_10_18; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 119,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-3620 Default Cert Issuer Common Name",
+      "flow": "established,to_client",
+      "tls.cert_issuer": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048649,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, reviewed_at 2023_10_18",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=http|3a 2f 2f|www.sel-secure.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-3620 Default Cert Issuer Common Name\"; flow:established,to_client; tls.cert_issuer; content:\"CN=http|3a 2f 2f|www.sel-secure.com\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048649; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, reviewed_at 2023_10_18; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 121,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-2488 Default Cert Subject Common Name",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048663,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=http|3a 2f 2f|www.selinc.com/EthernetCommunications/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-2488 Default Cert Subject Common Name\"; flow:established,to_client; tls.cert_subject; content:\"CN=http|3a 2f 2f|www.selinc.com/EthernetCommunications/\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048663; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-2488 Default Cert Issuer Common Name",
+      "flow": "established,to_client",
+      "tls.cert_issuer": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048664,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=http|3a 2f 2f|www.selinc.com/EthernetCommunications/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-2488 Default Cert Issuer Common Name\"; flow:established,to_client; tls.cert_issuer; content:\"CN=http|3a 2f 2f|www.selinc.com/EthernetCommunications/\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048664; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 165,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Siemens S7-1200 Default Cert Subject Common Name",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048687,
+      "rev": 1,
+      "metadata": "affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=S7-1200 Controller Family",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Siemens S7-1200 Default Cert Subject Common Name\"; flow:established,to_client; tls.cert_subject; content:\"CN=S7-1200 Controller Family\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048687; rev:1; metadata:affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 167,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Siemens S7-1200 Default Cert Issuer Common Name",
+      "flow": "established,to_client",
+      "tls.cert_issuer": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048688,
+      "rev": 1,
+      "metadata": "affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=S7-1200 Controller Family",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Siemens S7-1200 Default Cert Issuer Common Name\"; flow:established,to_client; tls.cert_issuer; content:\"CN=S7-1200 Controller Family\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048688; rev:1; metadata:affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 169,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraAX Default Cert Issuer Common Name",
+      "flow": "established,to_client",
+      "tls.cert_issuer": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048692,
+      "rev": 2,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=NiagaraAX",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraAX Default Cert Issuer Common Name\"; flow:established,to_client; tls.cert_issuer; content:\"CN=NiagaraAX\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048692; rev:2; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 171,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraAX Default Cert Subject Common Name",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048691,
+      "rev": 2,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=NiagaraAX",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraAX Default Cert Subject Common Name\"; flow:established,to_client; tls.cert_subject; content:\"CN=NiagaraAX\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048691; rev:2; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 173,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraN4 Default Cert Subject Common Name",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048722,
+      "rev": 2,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=NiagaraN4",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraN4 Default Cert Subject Common Name\"; flow:established,to_client; tls.cert_subject; content:\"CN=NiagaraN4\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048722; rev:2; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 175,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraN4 Default Cert Issuer Common Name",
+      "flow": "established,to_client",
+      "tls.cert_issuer": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048743,
+      "rev": 1,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=NiagaraN4",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraN4 Default Cert Issuer Common Name\"; flow:established,to_client; tls.cert_issuer; content:\"CN=NiagaraN4\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048743; rev:1; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 177,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara4 Default Cert Subject Common Name",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048745,
+      "rev": 1,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=Niagara4",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara4 Default Cert Subject Common Name\"; flow:established,to_client; tls.cert_subject; content:\"CN=Niagara4\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048745; rev:1; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 179,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara4 Default Cert Issuer Common Name",
+      "flow": "established,to_client",
+      "tls.cert_issuer": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048746,
+      "rev": 1,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=Niagara4",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara4 Default Cert Issuer Common Name\"; flow:established,to_client; tls.cert_issuer; content:\"CN=Niagara4\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048746; rev:1; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 181,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara Default Cert Subject Common Name",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048748,
+      "rev": 1,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=Niagara",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara Default Cert Subject Common Name\"; flow:established,to_client; tls.cert_subject; content:\"CN=Niagara\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048748; rev:1; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara Default Cert Issuer Common Name",
+      "flow": "established,to_client",
+      "tls.cert_issuer": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048749,
+      "rev": 1,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CN=Niagara",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara Default Cert Issuer Common Name\"; flow:established,to_client; tls.cert_issuer; content:\"CN=Niagara\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048749; rev:1; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_23, reviewed_at 2023_10_23; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 213,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-3620 Default X509 Certificate String",
+      "flow": "established,to_client",
+      "tls.certs": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048647,
+      "rev": 2,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "http|3a 2f 2f|www.sel-secure.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-3620 Default X509 Certificate String\"; flow:established,to_client; tls.certs; content:\"http|3a 2f 2f|www.sel-secure.com\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048647; rev:2; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 215,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Siemens S7-1200 Default X509 Certificate String",
+      "flow": "established,to_client",
+      "tls.certs": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048686,
+      "rev": 2,
+      "metadata": "affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "S7-1200 Controller Family",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Siemens S7-1200 Default X509 Certificate String\"; flow:established,to_client; tls.certs; content:\"S7-1200 Controller Family\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048686; rev:2; metadata:affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 217,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara Default X509 Certificate",
+      "flow": "established,to_client",
+      "tls.certs": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048747,
+      "rev": 2,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "Niagara",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara Default X509 Certificate\"; flow:established,to_client; tls.certs; content:\"Niagara\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048747; rev:2; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 219,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara4 Default X509 Certificate String",
+      "flow": "established,to_client",
+      "tls.certs": true,
+      "target": [
+        "src_ip",
+        "src_ip"
+      ],
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048744,
+      "rev": 2,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_24, reviewed_at 2024_10_02",
+      "contents": [
+        {
+          "pattern": "Niagara4",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara4 Default X509 Certificate String\"; flow:established,to_client; tls.certs; content:\"Niagara4\"; fast_pattern; target:src_ip; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048744; rev:2; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_23, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_24, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 221,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraAX Default X509 Certificate String",
+      "flow": "established,to_client",
+      "tls.certs": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048690,
+      "rev": 2,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "NiagaraAX",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraAX Default X509 Certificate String\"; flow:established,to_client; tls.certs; content:\"NiagaraAX\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048690; rev:2; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 223,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraN4 Default X509 Certificate String",
+      "flow": "established,to_client",
+      "tls.certs": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048721,
+      "rev": 2,
+      "metadata": "affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "NiagaraN4",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Tridium NiagaraN4 Default X509 Certificate String\"; flow:established,to_client; tls.certs; content:\"NiagaraN4\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048721; rev:2; metadata:affected_product Tridum_Niagara_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_25, reviewed_at 2024_10_02; target:src_ip;)"
+  }
+]

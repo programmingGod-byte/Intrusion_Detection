@@ -1,0 +1,110 @@
+[
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "6112",
+    "options": {
+      "msg": "ET GAMES Guild Wars connection",
+      "flow": "established,to_server",
+      "classtype": "policy-violation",
+      "sid": 2002154,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|01 00 00 00 00 F1 00 10 00 01 00 00 00 00 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 6112 (msg:\"ET GAMES Guild Wars connection\"; flow:established,to_server; content:\"|01 00 00 00 00 F1 00 10 00 01 00 00 00 00 00 00 00 00 00 00 00|\"; classtype:policy-violation; sid:2002154; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "27020:27050",
+    "options": {
+      "msg": "ET GAMES STEAM Connection (v2)",
+      "flow": "established,to_server",
+      "dsize": "4",
+      "classtype": "policy-violation",
+      "sid": 2003089,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 00 03|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 27020:27050 (msg:\"ET GAMES STEAM Connection (v2)\"; flow:established,to_server; content:\"|00 00 00 03|\"; dsize:4; classtype:policy-violation; sid:2003089; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "20000",
+    "options": {
+      "msg": "ET GAMES Gold VIP Club Casino Client in Use",
+      "flow": "established,to_server",
+      "dsize": "25",
+      "classtype": "policy-violation",
+      "sid": 2007746,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "Gold VIP Club Casino",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 20000 (msg:\"ET GAMES Gold VIP Club Casino Client in Use\"; flow:established,to_server; dsize:25; content:\"Gold VIP Club Casino\"; classtype:policy-violation; sid:2007746; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 161,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "25565",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES MINECRAFT Server response inbound",
+      "flow": "established,to_client",
+      "classtype": "policy-violation",
+      "sid": 2021701,
+      "rev": 2,
+      "metadata": "created_at 2015_08_21, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "|7B 22|",
+          "modifiers": {
+            "depth": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 25565 -> $HOME_NET any (msg:\"ET GAMES MINECRAFT Server response inbound\"; flow:established,to_client; content:\"|7B 22|\"; depth:10; classtype:policy-violation; sid:2021701; rev:2; metadata:created_at 2015_08_21, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  }
+]

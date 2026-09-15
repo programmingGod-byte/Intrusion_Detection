@@ -1,0 +1,65 @@
+[
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL MISC HP Web JetAdmin remote file upload attempt",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.content_type": true,
+      "reference": "bugtraq,9978",
+      "classtype": "web-application-activity",
+      "sid": 2102547,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "/plugins/hpjwja/script/devices_update_printer_fw_upload.hts",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Multipart",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL MISC HP Web JetAdmin remote file upload attempt\"; flow:established,to_server; http.uri; content:\"/plugins/hpjwja/script/devices_update_printer_fw_upload.hts\"; http.content_type; content:\"Multipart\"; reference:bugtraq,9978; classtype:web-application-activity; sid:2102547; rev:6; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "8000",
+    "options": {
+      "msg": "GPL MISC HP Web JetAdmin setinfo access",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": "bugtraq,9972",
+      "classtype": "web-application-activity",
+      "sid": 2102548,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "/plugins/hpjdwm/script/test/setinfo.hts",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET 8000 (msg:\"GPL MISC HP Web JetAdmin setinfo access\"; flow:established,to_server; http.uri; content:\"/plugins/hpjdwm/script/test/setinfo.hts\"; nocase; reference:bugtraq,9972; classtype:web-application-activity; sid:2102548; rev:5; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08;)"
+  }
+]

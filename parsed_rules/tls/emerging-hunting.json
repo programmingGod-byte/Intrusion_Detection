@@ -1,0 +1,1403 @@
+[
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 95,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Lets Encrypt Certificate - Possible COVID-19 Related M1",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "tls.cert_issuer": true,
+      "classtype": "bad-unknown",
+      "sid": 2029703,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_03_23",
+      "contents": [
+        {
+          "pattern": "covid",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "Lets Encrypt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Lets Encrypt Certificate - Possible COVID-19 Related M1\"; flow:established,to_client; tls.cert_subject; content:\"covid\"; nocase; tls.cert_issuer; content:\"Lets Encrypt\"; classtype:bad-unknown; sid:2029703; rev:2; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_03_23;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Lets Encrypt Certificate - Possible COVID-19 Related M2",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "tls.cert_issuer": true,
+      "classtype": "bad-unknown",
+      "sid": 2029704,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_03_23",
+      "contents": [
+        {
+          "pattern": "corona",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Lets Encrypt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Lets Encrypt Certificate - Possible COVID-19 Related M2\"; flow:established,to_client; tls.cert_subject; content:\"corona\"; nocase; fast_pattern; tls.cert_issuer; content:\"Lets Encrypt\"; classtype:bad-unknown; sid:2029704; rev:2; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_03_23;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 149,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.ml)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "tls.cert_issuer": true,
+      "classtype": "bad-unknown",
+      "sid": 2025189,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": ".ml",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Let's Encrypt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.ml)\"; flow:established,to_client; tls.cert_subject; content:\".ml\"; endswith; tls.cert_issuer; content:\"Let's Encrypt\"; classtype:bad-unknown; sid:2025189; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.gdn)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "tls.cert_issuer": true,
+      "classtype": "bad-unknown",
+      "sid": 2025190,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": ".gdn",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Let's Encrypt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.gdn)\"; flow:established,to_client; tls.cert_subject; content:\".gdn\"; endswith; tls.cert_issuer; content:\"Let's Encrypt\"; classtype:bad-unknown; sid:2025190; rev:3; metadata:attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.gq)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "tls.cert_issuer": true,
+      "classtype": "bad-unknown",
+      "sid": 2025191,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": ".gq",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Let's Encrypt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.gq)\"; flow:established,to_client; tls.cert_subject; content:\".gq\"; endswith; tls.cert_issuer; content:\"Let's Encrypt\"; classtype:bad-unknown; sid:2025191; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.ga)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "tls.cert_issuer": true,
+      "classtype": "bad-unknown",
+      "sid": 2025192,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": ".ga",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Let's Encrypt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.ga)\"; flow:established,to_client; tls.cert_subject; content:\".ga\"; endswith; tls.cert_issuer; content:\"Let's Encrypt\"; classtype:bad-unknown; sid:2025192; rev:3; metadata:attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 157,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.cf)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "tls.cert_issuer": true,
+      "classtype": "bad-unknown",
+      "sid": 2025193,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": ".cf",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Let's Encrypt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.cf)\"; flow:established,to_client; tls.cert_subject; content:\".cf\"; endswith; tls.cert_issuer; content:\"Let's Encrypt\"; classtype:bad-unknown; sid:2025193; rev:3; metadata:attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 159,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.xyz)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "tls.cert_issuer": true,
+      "classtype": "bad-unknown",
+      "sid": 2025194,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": ".xyz",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Let's Encrypt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.xyz)\"; flow:established,to_client; tls.cert_subject; content:\".xyz\"; endswith; tls.cert_issuer; content:\"Let's Encrypt\"; classtype:bad-unknown; sid:2025194; rev:3; metadata:attack_target Client_Endpoint, created_at 2018_01_09, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 163,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.icu)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "tls.cert_issuer": true,
+      "classtype": "bad-unknown",
+      "sid": 2026890,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2019_02_06, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": ".icu",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Let's Encrypt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Let's Encrypt Certificate for Suspicious TLD (.icu)\"; flow:established,to_client; tls.cert_subject; content:\".icu\"; endswith; tls.cert_issuer; content:\"Let's Encrypt\"; classtype:bad-unknown; sid:2026890; rev:3; metadata:attack_target Client_Endpoint, created_at 2019_02_06, deployment Perimeter, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 257,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Telegram API Certificate Observed",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2029322,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_01_27, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_10_27",
+      "contents": [
+        {
+          "pattern": "CN=api.telegram.org",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Telegram API Certificate Observed\"; flow:established,to_client; tls.cert_subject; content:\"CN=api.telegram.org\"; fast_pattern; nocase; endswith; classtype:misc-activity; sid:2029322; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_01_27, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_10_27;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 329,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious Glitch Hosted TLS SNI Request - Possible Phishing Landing",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "endswith": true,
+      "pcre": "/^[a-z]+\\-[a-z]+\\-[a-z]+\\.glitch\\.me$/",
+      "classtype": "social-engineering",
+      "sid": 2031919,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_03_10, deployment Perimeter, confidence Low, signature_severity Minor, tag Phishing, updated_at 2021_03_10, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": ".glitch.me",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Suspicious Glitch Hosted TLS SNI Request - Possible Phishing Landing\"; flow:established,to_server; tls.sni; content:\".glitch.me\"; endswith; pcre:\"/^[a-z]+\\-[a-z]+\\-[a-z]+\\.glitch\\.me$/\"; classtype:social-engineering; sid:2031919; rev:1; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_03_10, deployment Perimeter, confidence Low, signature_severity Minor, tag Phishing, updated_at 2021_03_10, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 341,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious Netlify Hosted TLS SNI Request - Possible Phishing Landing",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "pcre": "/^[a-z0-9]+\\-[a-z0-9]+\\-[a-f0-9]{6}\\.netlify\\.app$/",
+      "classtype": "social-engineering",
+      "sid": 2032760,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_04_14, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2021_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": ".netlify.app",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Suspicious Netlify Hosted TLS SNI Request - Possible Phishing Landing\"; flow:established,to_server; tls.sni; content:\".netlify.app\"; pcre:\"/^[a-z0-9]+\\-[a-z0-9]+\\-[a-f0-9]{6}\\.netlify\\.app$/\"; classtype:social-engineering; sid:2032760; rev:1; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_04_14, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2021_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 417,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING SUSPICIOUS OVH Shared Host SSL Certificate (Observed In Use by Some Trojans)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "pcre": "/CN=ssl\\d{1,2}.ovh.net(?:$|,)/",
+      "reference": [
+        "url,help.ovh.co.uk/SslOnHosting",
+        "md5,63079a2471fc18323f355ec28f36303c",
+        "md5,20b1c30ef1f5dae656529b277e5b73fb"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2018364,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2014_04_05, deployment Perimeter, confidence Medium, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2022_03_16",
+      "contents": [
+        {
+          "pattern": "CN=ssl",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".ovh.net",
+          "modifiers": {
+            "within": "10",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING SUSPICIOUS OVH Shared Host SSL Certificate (Observed In Use by Some Trojans)\"; flow:established,to_client; tls.cert_subject; content:\"CN=ssl\"; content:\".ovh.net\"; within:10; fast_pattern; pcre:\"/CN=ssl\\d{1,2}.ovh.net(?:$|,)/\"; reference:url,help.ovh.co.uk/SslOnHosting; reference:md5,63079a2471fc18323f355ec28f36303c; reference:md5,20b1c30ef1f5dae656529b277e5b73fb; classtype:bad-unknown; sid:2018364; rev:3; metadata:attack_target Client_Endpoint, created_at 2014_04_05, deployment Perimeter, confidence Medium, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2022_03_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 507,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "443",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Self-Signed Cert O=XX Observed",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "tls.cert_issuer": true,
+      "reference": "md5,00e7afce84c84cd70fe329d8bb8c0731",
+      "classtype": "trojan-activity",
+      "sid": 2018284,
+      "rev": 5,
+      "metadata": "attack_target Client_Endpoint, created_at 2014_03_17, deployment Perimeter, confidence Medium, signature_severity Minor, updated_at 2022_06_28, reviewed_at 2024_04_23",
+      "contents": [
+        {
+          "pattern": "O=XX",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "O=XX",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET 443 -> $HOME_NET any (msg:\"ET HUNTING Self-Signed Cert O=XX Observed\"; flow:established,to_client; tls.cert_subject; content:\"O=XX\"; fast_pattern; tls.cert_issuer; content:\"O=XX\"; reference:md5,00e7afce84c84cd70fe329d8bb8c0731; classtype:trojan-activity; sid:2018284; rev:5; metadata:attack_target Client_Endpoint, created_at 2014_03_17, deployment Perimeter, confidence Medium, signature_severity Minor, updated_at 2022_06_28, reviewed_at 2024_04_23;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 517,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Possible COVID-19 Domain in SSL Certificate M2",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "isdataat": [
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2029706,
+      "rev": 5,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_08_02",
+      "contents": [
+        {
+          "pattern": "covid",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\".jhu.edu",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".ncsc.gov.ie",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhs.wales",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".govt.nz",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhp.gov.in",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".oracle.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".cdc.gov",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".canada.ca",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"CN=*.nicovideo.jp",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Possible COVID-19 Domain in SSL Certificate M2\"; flow:established,to_client; tls.cert_subject; content:\"covid\"; nocase; content:!\".jhu.edu\"; isdataat:!1,relative; content:!\".ncsc.gov.ie\"; isdataat:!1,relative; content:!\".nhs.wales\"; isdataat:!1,relative; content:!\".govt.nz\"; isdataat:!1,relative; content:!\".nhp.gov.in\"; isdataat:!1,relative; content:!\".oracle.com\"; isdataat:!1,relative; content:!\".cdc.gov\"; isdataat:!1,relative; content:!\".canada.ca\"; isdataat:!1,relative; content:!\"CN=*.nicovideo.jp\"; classtype:bad-unknown; sid:2029706; rev:5; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_08_02;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1575,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Suspicious SSL Cert (External IP Lookup - ident .me)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "endswith": true,
+      "classtype": "external-ip-check",
+      "sid": 2026743,
+      "rev": 5,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2018_12_26, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2022_10_25, reviewed_at 2024_04_22, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1614, mitre_technique_name System_Location_Discovery",
+      "contents": [
+        {
+          "pattern": "CN=any.ident.me",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Observed Suspicious SSL Cert (External IP Lookup - ident .me)\"; flow:established,to_client; tls.cert_subject; content:\"CN=any.ident.me\"; nocase; endswith; classtype:external-ip-check; sid:2026743; rev:5; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2018_12_26, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2022_10_25, reviewed_at 2024_04_22, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1614, mitre_technique_name System_Location_Discovery;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1589,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Possible COVID-19 Domain in SSL Certificate M1",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "isdataat": [
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2029705,
+      "rev": 4,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_12_13",
+      "contents": [
+        {
+          "pattern": "corona",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\".jhu.edu",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".ncsc.gov.ie",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhs.wales",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".govt.nz",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhp.gov.in",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".oracle.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".cdc.gov",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"CN=coronawarn.app",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Possible COVID-19 Domain in SSL Certificate M1\"; flow:established,to_client; tls.cert_subject; content:\"corona\"; nocase; content:!\".jhu.edu\"; isdataat:!1,relative; content:!\".ncsc.gov.ie\"; isdataat:!1,relative; content:!\".nhs.wales\"; isdataat:!1,relative; content:!\".govt.nz\"; isdataat:!1,relative; content:!\".nhp.gov.in\"; isdataat:!1,relative; content:!\".oracle.com\"; isdataat:!1,relative; content:!\".cdc.gov\"; isdataat:!1,relative; content:!\"CN=coronawarn.app\"; isdataat:!1,relative; classtype:bad-unknown; sid:2029705; rev:4; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_12_13;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1591,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious TLS SNI Request for Possible COVID-19 Domain M2",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "isdataat": [
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2029708,
+      "rev": 4,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_12_13",
+      "contents": [
+        {
+          "pattern": "corona",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\".jhu.edu",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".ncsc.gov.ie",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhs.wales",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".govt.nz",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhp.gov.in",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".oracle.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".cdc.gov",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"www.coronawarn.app",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls any any -> any any (msg:\"ET HUNTING Suspicious TLS SNI Request for Possible COVID-19 Domain M2\"; flow:established,to_server; tls.sni; content:\"corona\"; nocase; content:!\".jhu.edu\"; isdataat:!1,relative; content:!\".ncsc.gov.ie\"; isdataat:!1,relative; content:!\".nhs.wales\"; isdataat:!1,relative; content:!\".govt.nz\"; isdataat:!1,relative; content:!\".nhp.gov.in\"; isdataat:!1,relative; content:!\".oracle.com\"; isdataat:!1,relative; content:!\".cdc.gov\"; isdataat:!1,relative; content:!\"www.coronawarn.app\"; isdataat:!1,relative; classtype:bad-unknown; sid:2029708; rev:4; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_12_13;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1653,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious TLS SNI Request for Possible COVID-19 Domain M1",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "isdataat": [
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative",
+        "!1,relative"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2029707,
+      "rev": 9,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_03_28",
+      "contents": [
+        {
+          "pattern": "covid",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\".jhu.edu",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".ncsc.gov.ie",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhs.wales",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".govt.nz",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nhp.gov.in",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".oracle.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".cdc.gov",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"covid19.wisc.edu",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".canada.ca",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".nicovideo.jp",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"strib-covid-data.s3.amazonaws.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\".tousanticovid.gouv.fr",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls any any -> any any (msg:\"ET HUNTING Suspicious TLS SNI Request for Possible COVID-19 Domain M1\"; flow:established,to_server; tls.sni; content:\"covid\"; nocase; content:!\".jhu.edu\"; isdataat:!1,relative; content:!\".ncsc.gov.ie\"; isdataat:!1,relative; content:!\".nhs.wales\"; isdataat:!1,relative; content:!\".govt.nz\"; isdataat:!1,relative; content:!\".nhp.gov.in\"; isdataat:!1,relative; content:!\".oracle.com\"; isdataat:!1,relative; content:!\".cdc.gov\"; isdataat:!1,relative; content:!\"covid19.wisc.edu\"; isdataat:!1,relative; content:!\".canada.ca\"; isdataat:!1,relative; content:!\".nicovideo.jp\"; isdataat:!1,relative; content:!\"strib-covid-data.s3.amazonaws.com\"; isdataat:!1,relative; content:!\".tousanticovid.gouv.fr\"; isdataat:!1,relative; classtype:bad-unknown; sid:2029707; rev:9; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_03_23, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_03_28;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1677,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Domain (autoitscript .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2045141,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21",
+      "contents": [
+        {
+          "pattern": ".autoitscript.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed Domain (autoitscript .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".autoitscript.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2045141; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1685,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed IPFS Gateway Domain (ipfs .w3s .link) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,ipfs.github.io/public-gateway-checker/",
+        "url,unit42.paloaltonetworks.com/ipfs-used-maliciously/"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2045145,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21",
+      "contents": [
+        {
+          "pattern": ".ipfs.w3s.link",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed IPFS Gateway Domain (ipfs .w3s .link) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".ipfs.w3s.link\"; endswith; fast_pattern; reference:url,ipfs.github.io/public-gateway-checker/; reference:url,unit42.paloaltonetworks.com/ipfs-used-maliciously/; classtype:misc-activity; sid:2045145; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1687,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed IPFS Gateway Domain (ipfs .dweb .link) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,ipfs.github.io/public-gateway-checker/",
+        "url,unit42.paloaltonetworks.com/ipfs-used-maliciously/"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2045146,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21",
+      "contents": [
+        {
+          "pattern": ".ipfs.dweb.link",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed IPFS Gateway Domain (ipfs .dweb .link) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".ipfs.dweb.link\"; endswith; fast_pattern; reference:url,ipfs.github.io/public-gateway-checker/; reference:url,unit42.paloaltonetworks.com/ipfs-used-maliciously/; classtype:misc-activity; sid:2045146; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1689,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed IPFS Gateway Domain (gateway .pinata .cloud) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,ipfs.github.io/public-gateway-checker/",
+        "url,unit42.paloaltonetworks.com/ipfs-used-maliciously/"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2045147,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21",
+      "contents": [
+        {
+          "pattern": ".gateway.pinata.cloud",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed IPFS Gateway Domain (gateway .pinata .cloud) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".gateway.pinata.cloud\"; endswith; fast_pattern; reference:url,ipfs.github.io/public-gateway-checker/; reference:url,unit42.paloaltonetworks.com/ipfs-used-maliciously/; classtype:misc-activity; sid:2045147; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2023_04_21;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1799,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspected Andariel/TA430 Related Domain in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "10",
+      "reference": [
+        "url,asec.ahnlab.com/en/56405/",
+        "md5,3532a0d5911a407f2632eeba906009ea"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2051117,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_02_27, deployment Perimeter, performance_impact Low, confidence Low, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_02_27, reviewed_at 2024_03_28",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "clientName",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Suspected Andariel/TA430 Related Domain in TLS SNI\"; flow:established,to_server; tls.sni; bsize:10; content:\"clientName\"; fast_pattern; reference:url,asec.ahnlab.com/en/56405/; reference:md5,3532a0d5911a407f2632eeba906009ea; classtype:bad-unknown; sid:2051117; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_02_27, deployment Perimeter, performance_impact Low, confidence Low, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_02_27, reviewed_at 2024_03_28; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1801,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspected Andariel/TA430 Related Domain in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "9",
+      "reference": "url,asec.ahnlab.com/en/56405/",
+      "classtype": "bad-unknown",
+      "sid": 2051118,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_02_27, deployment Perimeter, performance_impact Low, confidence Low, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_02_27, reviewed_at 2024_03_28",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "sslClient",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Suspected Andariel/TA430 Related Domain in TLS SNI\"; flow:established,to_server; tls.sni; bsize:9; content:\"sslClient\"; fast_pattern; reference:url,asec.ahnlab.com/en/56405/; classtype:bad-unknown; sid:2051118; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_02_27, deployment Perimeter, performance_impact Low, confidence Low, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_02_27, reviewed_at 2024_03_28; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1861,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Suspicious SSL Cert (Metasploit Self Signed CA)",
+      "flow": "established,to_client",
+      "tls.cert_issuer": true,
+      "classtype": "policy-violation",
+      "sid": 2031932,
+      "rev": 2,
+      "metadata": "attack_target Client_and_Server, created_at 2021_03_11, deployment Perimeter, deployment Internet, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "CN=MetasploitSelfSignedCA",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls any any -> $HOME_NET any (msg:\"ET HUNTING Observed Suspicious SSL Cert (Metasploit Self Signed CA)\"; flow:established,to_client; tls.cert_issuer; content:\"CN=MetasploitSelfSignedCA\"; classtype:policy-violation; sid:2031932; rev:2; metadata:attack_target Client_and_Server, created_at 2021_03_11, deployment Perimeter, deployment Internet, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1863,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Suspicious SSL Cert (Metasploit in TLS Subject)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "classtype": "policy-violation",
+      "sid": 2031933,
+      "rev": 3,
+      "metadata": "attack_target Client_and_Server, created_at 2021_03_11, deployment Perimeter, deployment Internet, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "Metasploit",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls any any -> $HOME_NET any (msg:\"ET HUNTING Observed Suspicious SSL Cert (Metasploit in TLS Subject)\"; flow:established,to_client; tls.cert_subject; content:\"Metasploit\"; nocase; classtype:policy-violation; sid:2031933; rev:3; metadata:attack_target Client_and_Server, created_at 2021_03_11, deployment Perimeter, deployment Internet, deployment Internal, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2029,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING SSL/TLS Certificate Observed (OpenNIC Project API)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "bsize": "25",
+      "reference": "url,wiki.opennic.org/API",
+      "classtype": "bad-unknown",
+      "sid": 2032744,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_04_12, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "CN=api.opennicproject.org",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING SSL/TLS Certificate Observed (OpenNIC Project API)\"; flow:established,to_client; tls.cert_subject; bsize:25; content:\"CN=api.opennicproject.org\"; fast_pattern; reference:url,wiki.opennic.org/API; classtype:bad-unknown; sid:2032744; rev:2; metadata:attack_target Client_Endpoint, created_at 2021_04_12, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2041,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Telegram API Domain (api .telegram .org in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "16",
+      "classtype": "misc-activity",
+      "sid": 2033967,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_09_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "api.telegram.org",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed Telegram API Domain (api .telegram .org in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:16; content:\"api.telegram.org\"; fast_pattern; classtype:misc-activity; sid:2033967; rev:2; metadata:attack_target Client_Endpoint, created_at 2021_09_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2043,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed AutoDesk Domain in TLS SNI (api .autodesk .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "26",
+      "classtype": "bad-unknown",
+      "sid": 2034098,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_10_04, deployment Perimeter, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "developer.api.autodesk.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed AutoDesk Domain in TLS SNI (api .autodesk .com)\"; flow:established,to_server; tls.sni; bsize:26; content:\"developer.api.autodesk.com\"; fast_pattern; classtype:bad-unknown; sid:2034098; rev:2; metadata:attack_target Client_Endpoint, created_at 2021_10_04, deployment Perimeter, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2067,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious Empty SSL Certificate - Observed in Cobalt Strike",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "bsize": "25",
+      "endswith": true,
+      "classtype": "targeted-activity",
+      "sid": 2023629,
+      "rev": 7,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2016_10_24, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2024_03_27",
+      "contents": [
+        {
+          "pattern": "C=, ST=, L=, O=, OU=, CN=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Suspicious Empty SSL Certificate - Observed in Cobalt Strike\"; flow:established,to_client; tls.cert_subject; bsize:25; content:\"C=, ST=, L=, O=, OU=, CN=\"; endswith; fast_pattern; classtype:targeted-activity; sid:2023629; rev:7; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2016_10_24, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2024_03_27;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2157,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious TLS SNI Request for Root",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "startswith": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2029191,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2019_12_23, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "Root",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls any any -> any any (msg:\"ET HUNTING Suspicious TLS SNI Request for Root\"; flow:established,to_server; tls.sni; content:\"Root\"; startswith; endswith; nocase; classtype:bad-unknown; sid:2029191; rev:3; metadata:attack_target Client_Endpoint, created_at 2019_12_23, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2479,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious SSL/TLS Certificate Observed (L=Sprinal-ield)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "classtype": "domain-c2",
+      "sid": 2055768,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2024_09_06, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_06",
+      "contents": [
+        {
+          "pattern": "C=US, ST=Denial, L=Sprinal-ield, O=Dis",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET HUNTING Suspicious SSL/TLS Certificate Observed (L=Sprinal-ield)\"; flow:established,to_client; tls.cert_subject; content:\"C=US, ST=Denial, L=Sprinal-ield, O=Dis\"; fast_pattern; classtype:domain-c2; sid:2055768; rev:1; metadata:attack_target Client_and_Server, created_at 2024_09_06, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_06;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2613,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING TryCloudFlare Domain in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,developers.cloudflare.com/cloudflare-one/connections/connect-networks/do-more-with-tunnels/trycloudflare/",
+        "url,www.proofpoint.com/uk/blog/threat-insight/threat-actor-abuses-cloudflare-tunnels-deliver-rats"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2058175,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2024_12_10, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_10",
+      "contents": [
+        {
+          "pattern": ".trycloudflare.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING TryCloudFlare Domain in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".trycloudflare.com\"; endswith; reference:url,developers.cloudflare.com/cloudflare-one/connections/connect-networks/do-more-with-tunnels/trycloudflare/; reference:url,www.proofpoint.com/uk/blog/threat-insight/threat-actor-abuses-cloudflare-tunnels-deliver-rats; classtype:misc-activity; sid:2058175; rev:1; metadata:attack_target Client_and_Server, created_at 2024_12_10, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_10;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2641,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Fake Updates/Login Domain (security-check-... in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "startswith": true,
+      "reference": "url,urlscan.io/search/#page.domain%3A*security-check-*%20AND%20page.status%3A200",
+      "classtype": "misc-activity",
+      "sid": 2062220,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, tls_state plaintext, created_at 2025_05_09, deployment Perimeter, confidence Medium, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_09",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "security-check-",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed Fake Updates/Login Domain (security-check-... in TLS SNI)\"; flow:established,to_server; tls.sni; content:\"security-check-\"; startswith; fast_pattern; reference:url,urlscan.io/search/#page.domain%3A*security-check-*%20AND%20page.status%3A200; classtype:misc-activity; sid:2062220; rev:1; metadata:attack_target Client_Endpoint, tls_state plaintext, created_at 2025_05_09, deployment Perimeter, confidence Medium, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_09; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2777,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Valve Steam Store Domain in TLS SNI (store .steampowered .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "24",
+      "reference": "url,community.emergingthreats.net/t/vidar-stealer-picks-up-steam/271",
+      "classtype": "misc-activity",
+      "sid": 2063969,
+      "rev": 5,
+      "metadata": "attack_target Client_Endpoint, tls_state plaintext, created_at 2025_08_11, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_01",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "store.steampowered.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Valve Steam Store Domain in TLS SNI (store .steampowered .com)\"; flow:established,to_server; tls.sni; bsize:24; content:\"store.steampowered.com\"; fast_pattern; reference:url,community.emergingthreats.net/t/vidar-stealer-picks-up-steam/271; classtype:misc-activity; sid:2063969; rev:5; metadata:attack_target Client_Endpoint, tls_state plaintext, created_at 2025_08_11, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_01; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2825,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Deprecated Github URL Shortener Domain in TLS SNI (git .io)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "6",
+      "reference": "url,git.io",
+      "classtype": "bad-unknown",
+      "sid": 2067830,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_18, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, updated_at 2026_02_18, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1189, mitre_technique_name Drive_by_Compromise",
+      "contents": [
+        {
+          "pattern": "git.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed Deprecated Github URL Shortener Domain in TLS SNI (git .io)\"; flow:established,to_server; tls.sni; bsize:6; content:\"git.io\"; fast_pattern; reference:url,git.io; classtype:bad-unknown; sid:2067830; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_18, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, updated_at 2026_02_18, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1189, mitre_technique_name Drive_by_Compromise;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2869,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Observed Suspicious Domain (bromechoku .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2069382,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_05_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_05_20",
+      "contents": [
+        {
+          "pattern": ".bromechoku.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET HUNTING Observed Suspicious Domain (bromechoku .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bromechoku.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2069382; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_05_20, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_05_20;)"
+  }
+]

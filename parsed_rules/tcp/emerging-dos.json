@@ -1,0 +1,374 @@
+[
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 133,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET DOS Microsoft Windows LSASS Remote Memory Corruption (CVE-2017-0004)",
+      "flow": "established,to_server",
+      "byte_test": [
+        "1,&,0x80,6,relative",
+        "1,&,0x08,6,relative",
+        "1,&,0x10,5,relative",
+        "1,&,0x04,5,relative",
+        "1,&,0x02,5,relative",
+        "1,&,0x01,5,relative"
+      ],
+      "reference": [
+        "url,github.com/lgandx/PoC/tree/master/LSASS",
+        "url,support.microsoft.com/en-us/kb/3216771",
+        "url,support.microsoft.com/en-us/kb/3199173",
+        "cve,2017-0004",
+        "url,technet.microsoft.com/library/security/MS17-004"
+      ],
+      "classtype": "attempted-dos",
+      "sid": 2023497,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2016_11_11, cve CVE_2017_0004, deployment Perimeter, deployment Datacenter, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|FF|SMB|73|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "5"
+          }
+        },
+        {
+          "pattern": "|ff 00|",
+          "modifiers": {
+            "distance": "28",
+            "within": "2"
+          }
+        },
+        {
+          "pattern": "|84|",
+          "modifiers": {
+            "distance": "25",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "NTLMSSP",
+          "modifiers": {
+            "fast_pattern": true,
+            "within": "64"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 445 (msg:\"ET DOS Microsoft Windows LSASS Remote Memory Corruption (CVE-2017-0004)\"; flow:established,to_server; content:\"|FF|SMB|73|\"; offset:4; depth:5; byte_test:1,&,0x80,6,relative; byte_test:1,&,0x08,6,relative; byte_test:1,&,0x10,5,relative; byte_test:1,&,0x04,5,relative; byte_test:1,&,0x02,5,relative; byte_test:1,&,0x01,5,relative; content:\"|ff 00|\"; distance:28; within:2; content:\"|84|\"; distance:25; within:1; content:\"NTLMSSP\"; fast_pattern; within:64; reference:url,github.com/lgandx/PoC/tree/master/LSASS; reference:url,support.microsoft.com/en-us/kb/3216771; reference:url,support.microsoft.com/en-us/kb/3199173; reference:cve,2017-0004; reference:url,technet.microsoft.com/library/security/MS17-004; classtype:attempted-dos; sid:2023497; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2016_11_11, cve CVE_2017_0004, deployment Perimeter, deployment Datacenter, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 137,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[139,445]",
+    "options": {
+      "msg": "ET DOS SMBLoris NBSS Length Mem Exhaustion Attempt (PoC Based)",
+      "flow": "established,to_server",
+      "threshold": "type both,track by_dst,count 30, seconds 300",
+      "reference": "url,isc.sans.edu/forums/diary/SMBLoris+the+new+SMB+flaw/22662/",
+      "classtype": "trojan-activity",
+      "sid": 2024511,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2017_08_02, deployment Internal, performance_impact Significant, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 01 ff ff|",
+          "modifiers": {
+            "depth": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET [139,445] (msg:\"ET DOS SMBLoris NBSS Length Mem Exhaustion Attempt (PoC Based)\"; flow:established,to_server; content:\"|00 01 ff ff|\"; depth:4; threshold:type both,track by_dst,count 30, seconds 300; reference:url,isc.sans.edu/forums/diary/SMBLoris+the+new+SMB+flaw/22662/; classtype:trojan-activity; sid:2024511; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2017_08_02, deployment Internal, performance_impact Significant, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 203,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET DOS Terse HTTP GET Likely LOIC",
+      "flow": "established,to_server",
+      "dsize": "18",
+      "threshold": "type both,track by_dst,count 500,seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2019346,
+      "rev": 3,
+      "metadata": "created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "GET / HTTP/1.1|0d 0a 0d 0a|",
+          "modifiers": {
+            "depth": "18"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:\"ET DOS Terse HTTP GET Likely LOIC\"; flow:established,to_server; dsize:18; content:\"GET / HTTP/1.1|0d 0a 0d 0a|\"; depth:18; threshold:type both,track by_dst,count 500,seconds 60; classtype:attempted-dos; sid:2019346; rev:3; metadata:created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 205,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET DOS HTTP GET AAAAAAAA Likely FireFlood",
+      "flow": "established,to_server",
+      "threshold": "type both,track by_dst,count 500,seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2019347,
+      "rev": 3,
+      "metadata": "created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "GET AAAAAAAA HTTP/1.1",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"Accept",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"|0d 0a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:\"ET DOS HTTP GET AAAAAAAA Likely FireFlood\"; flow:established,to_server; content:\"GET AAAAAAAA HTTP/1.1\"; content:!\"Referer|3a|\"; distance:0; content:!\"Accept\"; distance:0; content:!\"|0d 0a|\"; distance:0; threshold:type both,track by_dst,count 500,seconds 60; classtype:attempted-dos; sid:2019347; rev:3; metadata:created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 207,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET DOS Terse HTTP GET Likely AnonMafiaIC DDoS tool",
+      "flow": "established,to_server",
+      "dsize": "20",
+      "threshold": "type both,track by_dst,count 500,seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2019348,
+      "rev": 3,
+      "metadata": "created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "GET / HTTP/1.0|0d 0a 0d 0a 0d 0a|",
+          "modifiers": {
+            "depth": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:\"ET DOS Terse HTTP GET Likely AnonMafiaIC DDoS tool\"; flow:established,to_server; dsize:20; content:\"GET / HTTP/1.0|0d 0a 0d 0a 0d 0a|\"; depth:20; threshold:type both,track by_dst,count 500,seconds 60; classtype:attempted-dos; sid:2019348; rev:3; metadata:created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 209,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET DOS Terse HTTP GET Likely AnonGhost DDoS tool",
+      "flow": "established,to_server",
+      "dsize": "20",
+      "threshold": "type both,track by_dst,count 500,seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2019349,
+      "rev": 3,
+      "metadata": "created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "GET / HTTP/1.1|0d 0a 0d 0a 0d 0a|",
+          "modifiers": {
+            "depth": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:\"ET DOS Terse HTTP GET Likely AnonGhost DDoS tool\"; flow:established,to_server; dsize:20; content:\"GET / HTTP/1.1|0d 0a 0d 0a 0d 0a|\"; depth:20; threshold:type both,track by_dst,count 500,seconds 60; classtype:attempted-dos; sid:2019349; rev:3; metadata:created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 211,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "$HTTP_PORTS",
+    "options": {
+      "msg": "ET DOS Terse HTTP GET Likely GoodBye 5.2 DDoS tool",
+      "flow": "established,to_server",
+      "dsize": "<50",
+      "threshold": "type both,track by_dst,count 500,seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2019350,
+      "rev": 3,
+      "metadata": "created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "|20|HTTP/1.1Host|3a 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:\"ET DOS Terse HTTP GET Likely GoodBye 5.2 DDoS tool\"; flow:established,to_server; dsize:<50; content:\"|20|HTTP/1.1Host|3a 20|\"; threshold:type both,track by_dst,count 500,seconds 60; classtype:attempted-dos; sid:2019350; rev:3; metadata:created_at 2014_10_03, confidence Medium, signature_severity Major, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 215,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "445",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS Excessive Large Tree Connect Response",
+      "flow": "established,to_client",
+      "byte_test": "3,>,1000,1",
+      "reference": "url,isc.sans.edu/forums/diary/Windows+SMBv3+Denial+of+Service+Proof+of+Concept+0+Day+Exploit/22029/",
+      "classtype": "attempted-dos",
+      "sid": 2023831,
+      "rev": 4,
+      "metadata": "affected_product SMBv3, attack_target Client_and_Server, created_at 2017_02_03, deployment Datacenter, signature_severity Major, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "|fe 53 4d 42 40 00|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "6"
+          }
+        },
+        {
+          "pattern": "|03 00|",
+          "modifiers": {
+            "offset": "16",
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 445 -> $HOME_NET any (msg:\"ET DOS Excessive Large Tree Connect Response\"; flow:established,to_client; byte_test:  3,>,1000,1; content: \"|fe 53 4d 42 40 00|\"; offset: 4; depth: 6; content: \"|03 00|\"; offset: 16; depth:2; reference:url,isc.sans.edu/forums/diary/Windows+SMBv3+Denial+of+Service+Proof+of+Concept+0+Day+Exploit/22029/; classtype:attempted-dos; sid:2023831; rev:4; metadata:affected_product SMBv3, attack_target Client_and_Server, created_at 2017_02_03, deployment Datacenter, signature_severity Major, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 217,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "445",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS SMB Tree_Connect Stack Overflow Attempt (CVE-2017-0016)",
+      "flow": "established,to_client",
+      "byte_test": "1,&,1,2,relative",
+      "byte_jump": [
+        "2,8,little,from_beginning",
+        "2,4,relative,little"
+      ],
+      "isdataat": "1000,relative",
+      "reference": "cve,2017-0016",
+      "classtype": "attempted-dos",
+      "sid": 2023832,
+      "rev": 4,
+      "metadata": "affected_product SMBv3, attack_target Client_and_Server, created_at 2017_02_03, cve CVE_2017_0016, deployment Datacenter, confidence High, signature_severity Major, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "|FE|SMB",
+          "modifiers": {
+            "offset": "4",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|03 00|",
+          "modifiers": {
+            "distance": "8",
+            "within": "2"
+          }
+        },
+        {
+          "pattern": "!\"|FE|SMB",
+          "modifiers": {
+            "within": "1000"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 445 -> $HOME_NET any (msg:\"ET DOS SMB Tree_Connect Stack Overflow Attempt (CVE-2017-0016)\"; flow:established,to_client; content:\"|FE|SMB\"; offset:4; depth:4; content:\"|03 00|\"; distance:8; within:2; byte_test:1,&,1,2,relative; byte_jump:2,8,little,from_beginning; byte_jump:2,4,relative,little; isdataat:1000,relative; content:!\"|FE|SMB\"; within:1000; reference:cve,2017-0016; classtype:attempted-dos; sid:2023832; rev:4; metadata:affected_product SMBv3, attack_target Client_and_Server, created_at 2017_02_03, cve CVE_2017_0016, deployment Datacenter, confidence High, signature_severity Major, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-dos.rules",
+    "line_number": 237,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "3389",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DOS Microsoft Remote Desktop (RDP) Syn/Ack Outbound Flowbit Set",
+      "flow": "from_server",
+      "flowbits": [
+        "isnotset,ms.rdp.synack",
+        "set,ms.rdp.synack",
+        "noalert"
+      ],
+      "flags": "SA",
+      "reference": "cve,2012-0152",
+      "classtype": "not-suspicious",
+      "sid": 2014385,
+      "rev": 6,
+      "metadata": "created_at 2012_03_15, cve CVE_2012_0152, confidence Medium, signature_severity Major, updated_at 2024_03_14"
+    },
+    "raw_rule": "alert tcp $HOME_NET 3389 -> any any (msg:\"ET DOS Microsoft Remote Desktop (RDP) Syn/Ack Outbound Flowbit Set\"; flow:from_server; flowbits:isnotset,ms.rdp.synack; flowbits:set,ms.rdp.synack; flowbits:noalert; flags:SA; reference:cve,2012-0152; classtype:not-suspicious; sid:2014385; rev:6; metadata:created_at 2012_03_15, cve CVE_2012_0152, confidence Medium, signature_severity Major, updated_at 2024_03_14;)"
+  }
+]

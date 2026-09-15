@@ -1,0 +1,745 @@
+[
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "912",
+    "options": {
+      "msg": "ET SCADA RealWin SCADA System Buffer Overflow",
+      "flow": "established,to_server",
+      "isdataat": "220",
+      "pcre": "/\\x64\\x12\\x54\\x6a[\\x20\\x10\\x02]\\x00\\x00\\x00\\xf4\\x1f\\x00\\x00/",
+      "reference": "url,www.exploit-db.com/exploits/15337/",
+      "classtype": "attempted-dos",
+      "sid": 2011976,
+      "rev": 1,
+      "metadata": "created_at 2010_11_24, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|64 12 54 6a|",
+          "modifiers": {
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|00 00 00 f4 1f 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "!\"|0a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 912 (msg:\"ET SCADA RealWin SCADA System Buffer Overflow\"; flow:established,to_server; content:\"|64 12 54 6a|\"; depth:4; content:\"|00 00 00 f4 1f 00 00|\"; distance:1; within:7; isdataat:220; content:!\"|0a|\"; distance:0; pcre:\"/\\x64\\x12\\x54\\x6a[\\x20\\x10\\x02]\\x00\\x00\\x00\\xf4\\x1f\\x00\\x00/\"; reference:url,www.exploit-db.com/exploits/15337/; classtype:attempted-dos; sid:2011976; rev:1; metadata:created_at 2010_11_24, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "7580",
+    "options": {
+      "msg": "ET SCADA Siemens FactoryLink 8 CSService Logging  Buffer Overflow Vulnerability",
+      "flow": "established,to_server",
+      "isdataat": "1000,relative",
+      "reference": "url,packetstormsecurity.org/files/view/102579/factorylink_csservice.rb.txt",
+      "classtype": "denial-of-service",
+      "sid": 2013120,
+      "rev": 1,
+      "metadata": "created_at 2011_06_28, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "CSService",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"|0A|",
+          "modifiers": {
+            "within": "1000"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 7580 (msg:\"ET SCADA Siemens FactoryLink 8 CSService Logging  Buffer Overflow Vulnerability\"; flow:established,to_server; content:\"CSService\"; nocase; isdataat:1000,relative; content:!\"|0A|\"; within:1000; reference:url,packetstormsecurity.org/files/view/102579/factorylink_csservice.rb.txt; classtype:denial-of-service; sid:2013120; rev:1; metadata:created_at 2011_06_28, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "910",
+    "options": {
+      "msg": "ET SCADA DATAC RealWin SCADA Server 2 On_FC_CONNECT_FCS_a_FILE Buffer Overflow Vulnerability",
+      "flow": "established,to_server",
+      "isdataat": "1000,relative",
+      "reference": "url,exploit-db.com/exploits/17417/",
+      "classtype": "denial-of-service",
+      "sid": 2013074,
+      "rev": 2,
+      "metadata": "created_at 2011_06_21, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "GetFlexMLangIResourceBrowser",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0A|",
+          "modifiers": {
+            "within": "1000"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 910 (msg:\"ET SCADA DATAC RealWin SCADA Server 2 On_FC_CONNECT_FCS_a_FILE Buffer Overflow Vulnerability\"; flow:established,to_server; content:\"GetFlexMLangIResourceBrowser\"; isdataat:1000,relative; content:!\"|0A|\"; within:1000; reference:url,exploit-db.com/exploits/17417/; classtype:denial-of-service; sid:2013074; rev:2; metadata:created_at 2011_06_21, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "4444",
+    "options": {
+      "msg": "ET SCADA Golden FTP Server PASS Command Remote Buffer Overflow Attempt",
+      "flow": "established,to_server",
+      "isdataat": "1000,relative",
+      "reference": "bugtraq,45957",
+      "classtype": "denial-of-service",
+      "sid": 2013235,
+      "rev": 2,
+      "metadata": "created_at 2011_07_08, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "PASS",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"|0A|",
+          "modifiers": {
+            "within": "1000"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 4444 (msg:\"ET SCADA Golden FTP Server PASS Command Remote Buffer Overflow Attempt\"; flow:established,to_server; content:\"PASS\"; nocase; isdataat:1000,relative; content:!\"|0A|\"; within:1000; reference:bugtraq,45957; classtype:denial-of-service; sid:2013235; rev:2; metadata:created_at 2011_07_08, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 49,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "20222",
+    "options": {
+      "msg": "ET SCADA CitectSCADA ODBC Overflow Attempt",
+      "flow": "established,to_server",
+      "dsize": "4",
+      "byte_test": "4,>,399,0",
+      "reference": [
+        "cve,2008-2639",
+        "url,www.digitalbond.com/index.php/2008/09/08/ids-signature-for-citect-vuln/",
+        "url,digitalbond.com/tools/quickdraw/vulnerability-rules"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2008542,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, cve CVE_2008_2639, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26"
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 20222 (msg:\"ET SCADA CitectSCADA ODBC Overflow Attempt\"; flow:established,to_server; dsize:4; byte_test:4,>,399,0; reference:cve,2008-2639; reference:url,www.digitalbond.com/index.php/2008/09/08/ids-signature-for-citect-vuln/; reference:url,digitalbond.com/tools/quickdraw/vulnerability-rules; classtype:attempted-user; sid:2008542; rev:8; metadata:created_at 2010_07_30, cve CVE_2008_2639, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "12397",
+    "options": {
+      "msg": "ET SCADA SEIG SYSTEM 9 - Remote Code Execution",
+      "flow": "established,to_server",
+      "reference": [
+        "url,exploit-db.com/exploits/45218/",
+        "cve,2013-0657"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2026003,
+      "rev": 1,
+      "metadata": "created_at 2018_08_21, cve CVE_2013_0657, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "|14 60 00 00 66 66 07 00 10 00 00 00 19 00 00 00 00 00 04 00 00 00 60 00|",
+          "modifiers": {
+            "depth": "24"
+          }
+        },
+        {
+          "pattern": "!\"|0d|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"|0a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"|ff|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|00|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 12397 (msg:\"ET SCADA SEIG SYSTEM 9 - Remote Code Execution\"; flow:established,to_server; content:\"|14 60 00 00 66 66 07 00 10 00 00 00 19 00 00 00 00 00 04 00 00 00 60 00|\"; depth:24; content:!\"|0d|\"; distance:0; content:!\"|0a|\"; distance:0; content:!\"|ff|\"; content:!\"|00|\"; distance:0; reference:url,exploit-db.com/exploits/45218/; reference:cve,2013-0657; classtype:attempted-user; sid:2026003; rev:1; metadata:created_at 2018_08_21, cve CVE_2013_0657, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "27700",
+    "options": {
+      "msg": "ET SCADA SEIG Modbus 3.4 - Remote Code Execution",
+      "flow": "established,to_server",
+      "reference": [
+        "url,exploit-db.com/exploits/45220/",
+        "cve,2013-0662"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2026005,
+      "rev": 1,
+      "metadata": "created_at 2018_08_21, cve CVE_2013_0662, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "|42 42 ff ff 07 03 44 00 64|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|90 90 90 90 90 90 90 90 90 90|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 27700 (msg:\"ET SCADA SEIG Modbus 3.4 - Remote Code Execution\"; flow:established,to_server; content:\"|42 42 ff ff 07 03 44 00 64|\"; fast_pattern; content:\"|90 90 90 90 90 90 90 90 90 90|\"; distance:0; reference:url,exploit-db.com/exploits/45220/; reference:cve,2013-0662; classtype:attempted-user; sid:2026005; rev:1; metadata:created_at 2018_08_21, cve CVE_2013_0662, confidence High, signature_severity Major, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "910",
+    "options": {
+      "msg": "ET SCADA DATAC RealWin SCADA Server Buffer Overflow",
+      "flow": "established,to_server",
+      "isdataat": "744,relative",
+      "reference": [
+        "url,www.securityfocus.com/bid/31418",
+        "cve,2008-4322",
+        "url,secunia.com/advisories/32055"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2012096,
+      "rev": 2,
+      "metadata": "created_at 2010_12_23, cve CVE_2008_4322, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_08_19",
+      "contents": [
+        {
+          "pattern": "|10 23 54 67 00 08 00 00|",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|e3 77 0a 00 05 00 04 00 00 00|",
+          "modifiers": {
+            "within": "10"
+          }
+        },
+        {
+          "pattern": "!\"|0a|",
+          "modifiers": {
+            "within": "744"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 910 (msg:\"ET SCADA DATAC RealWin SCADA Server Buffer Overflow\"; flow:established,to_server; content:\"|10 23 54 67 00 08 00 00|\"; depth:8; content:\"|e3 77 0a 00 05 00 04 00 00 00|\"; within:10; isdataat:744,relative; content:!\"|0a|\"; within:744; reference:url,www.securityfocus.com/bid/31418; reference:cve,2008-4322; reference:url,secunia.com/advisories/32055; classtype:attempted-user; sid:2012096; rev:2; metadata:created_at 2010_12_23, cve CVE_2008_4322, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_08_19;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "2404",
+    "options": {
+      "msg": "ET SCADA IEC-104 TESTFR (Test Frame) Activation",
+      "flow": "established,to_server",
+      "dsize": "6",
+      "reference": [
+        "url,icsdefense.net/pcap",
+        "url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2046158,
+      "rev": 1,
+      "metadata": "affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|68 04 43 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 2404 (msg:\"ET SCADA IEC-104 TESTFR (Test Frame) Activation\"; flow:established,to_server; dsize:6; content:\"|68 04 43 00 00 00|\"; reference:url,icsdefense.net/pcap; reference:url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104; classtype:protocol-command-decode; sid:2046158; rev:1; metadata:affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "2404",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA IEC-104 TESTFR (Test Frame) Confirmation",
+      "flow": "established,to_client",
+      "dsize": "6",
+      "reference": [
+        "url,icsdefense.net/pcap",
+        "url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2046159,
+      "rev": 1,
+      "metadata": "affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|68 04 83 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 2404 -> any any (msg:\"ET SCADA IEC-104 TESTFR (Test Frame) Confirmation\"; flow:established,to_client; dsize:6; content:\"|68 04 83 00 00 00|\"; reference:url,icsdefense.net/pcap; reference:url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104; classtype:protocol-command-decode; sid:2046159; rev:1; metadata:affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "2404",
+    "options": {
+      "msg": "ET SCADA IEC-104 STARTDT (Start Data Transfer) Activation",
+      "flow": "established,to_server",
+      "dsize": "6",
+      "reference": [
+        "url,icsdefense.net/pcap",
+        "url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2046160,
+      "rev": 1,
+      "metadata": "affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|68 04 07 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 2404 (msg:\"ET SCADA IEC-104 STARTDT (Start Data Transfer) Activation\"; flow:established,to_server; dsize:6; content:\"|68 04 07 00 00 00|\"; reference:url,icsdefense.net/pcap; reference:url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104; classtype:protocol-command-decode; sid:2046160; rev:1; metadata:affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "2404",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA IEC-104 STARTDT (Start Data Transfer) Confirmation",
+      "flow": "established,to_client",
+      "dsize": "6",
+      "reference": [
+        "url,icsdefense.net/pcap",
+        "url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2046161,
+      "rev": 1,
+      "metadata": "affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|68 04 0b 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 2404 -> any any (msg:\"ET SCADA IEC-104 STARTDT (Start Data Transfer) Confirmation\"; flow:established,to_client; dsize:6; content:\"|68 04 0b 00 00 00|\"; reference:url,icsdefense.net/pcap; reference:url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104; classtype:protocol-command-decode; sid:2046161; rev:1; metadata:affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "2404",
+    "options": {
+      "msg": "ET SCADA IEC-104 STOPDT (Stop Data Transfer) Activation",
+      "flow": "established,to_server",
+      "dsize": "6",
+      "reference": [
+        "url,icsdefense.net/pcap",
+        "url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2046162,
+      "rev": 1,
+      "metadata": "affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|68 04 13 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 2404 (msg:\"ET SCADA IEC-104 STOPDT (Stop Data Transfer) Activation\"; flow:established,to_server; dsize:6; content:\"|68 04 13 00 00 00|\"; reference:url,icsdefense.net/pcap; reference:url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104; classtype:protocol-command-decode; sid:2046162; rev:1; metadata:affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "2404",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA IEC-104 STOPDT (Stop Data Transfer) Confirmation",
+      "flow": "established,to_client",
+      "dsize": "6",
+      "reference": [
+        "url,icsdefense.net/pcap",
+        "url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2046163,
+      "rev": 1,
+      "metadata": "affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|68 04 23 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 2404 -> any any (msg:\"ET SCADA IEC-104 STOPDT (Stop Data Transfer) Confirmation\"; flow:established,to_client; dsize:6; content:\"|68 04 23 00 00 00|\"; reference:url,icsdefense.net/pcap; reference:url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104; classtype:protocol-command-decode; sid:2046163; rev:1; metadata:affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "2404",
+    "options": {
+      "msg": "ET SCADA IEC-104 Station Interrogation - Global ASDU Broadcast",
+      "flow": "established,to_server",
+      "startswith": true,
+      "reference": [
+        "url,icsdefense.net/pcap",
+        "url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2046164,
+      "rev": 1,
+      "metadata": "affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|68|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|64|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|ff ff 00 00 00 14|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "3"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 2404 (msg:\"ET SCADA IEC-104 Station Interrogation - Global ASDU Broadcast\"; flow:established,to_server; content:\"|68|\"; startswith; content:\"|64|\"; distance:0; content:\"|ff ff 00 00 00 14|\"; fast_pattern; distance:3; reference:url,icsdefense.net/pcap; reference:url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104; classtype:protocol-command-decode; sid:2046164; rev:1; metadata:affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment Perimeter, deployment Internal, deployment Datacenter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_06_07; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 115,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "5432",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-3530-RTAC AcSELerator Firmware Activity",
+      "flow": "established,to_client",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048646,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "SEL-3530 RTAC",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 5432 -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-3530-RTAC AcSELerator Firmware Activity\"; flow:established,to_client; content:\"SEL-3530 RTAC\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048646; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 129,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "23",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL 2032 Processor Telnet Banner",
+      "flow": "established,to_client",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048667,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "COMMUNICATIONS PROCESSOR-S/N",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 23 -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL 2032 Processor Telnet Banner\"; flow:established,to_client; content:\"COMMUNICATIONS PROCESSOR-S/N\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048667; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 131,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "23",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL Calibration Access Level Login Success",
+      "flow": "established,to_client",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "successful-admin",
+      "sid": 2048668,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "Calibration Access Established",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 23 -> any any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL Calibration Access Level Login Success\"; flow:established,to_client; content:\"Calibration Access Established\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:successful-admin; sid:2048668; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 185,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "!443",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[1330,1331,1332,4241,4242,4445,4446,5241,6543,9111,60093,49281]",
+    "options": {
+      "msg": "ET SCADA Rockwell RNA Message Large Header Length - 8Kb",
+      "flow": "established,to_server",
+      "startswith": true,
+      "byte_test": "4,>,0x2000,0,relative,little",
+      "classtype": "attempted-dos",
+      "sid": 2049795,
+      "rev": 5,
+      "metadata": "attack_target ICS, created_at 2011_09_30, cve CVE_2011_3489, deployment Internal, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_12_27, reviewed_at 2024_03_06, former_sid 2803783",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "rna|f2|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any !443 -> $HOME_NET [1330,1331,1332,4241,4242,4445,4446,5241,6543,9111,60093,49281] (msg:\"ET SCADA Rockwell RNA Message Large Header Length - 8Kb\"; flow:established,to_server; content:\"rna|f2|\"; startswith; fast_pattern; byte_test:4,>,0x2000,0,relative,little; classtype:attempted-dos; sid:2049795; rev:5; metadata:attack_target ICS, created_at 2011_09_30, cve CVE_2011_3489, deployment Internal, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_12_27, reviewed_at 2024_03_06, former_sid 2803783; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 187,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "2404",
+    "options": {
+      "msg": "ET SCADA IEC-104 Clock Synchronization Command",
+      "flow": "established,to_server",
+      "reference": "url,icsdefense.net/pcap",
+      "classtype": "protocol-command-decode",
+      "sid": 2046165,
+      "rev": 2,
+      "metadata": "affected_product IoT, attack_target IoT, created_at 2023_06_07, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Moderate, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_01_31, reviewed_at 2024_10_01",
+      "contents": [
+        {
+          "pattern": "|68 14 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|67|",
+          "modifiers": {
+            "distance": "3"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 2404 (msg:\"ET SCADA IEC-104 Clock Synchronization Command\"; flow:established,to_server; content:\"|68 14 00|\"; fast_pattern; content:\"|67|\"; distance:3; reference:url,icsdefense.net/pcap; classtype:protocol-command-decode; sid:2046165; rev:2; metadata:affected_product IoT, attack_target IoT, created_at 2023_06_07, deployment Perimeter, deployment Internal, deployment Datacenter, performance_impact Moderate, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_01_31, reviewed_at 2024_10_01;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 191,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "102",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Siemens S7 Redpoint NSE Request CPU Function Read SZL attempt",
+      "flow": "established,to_server",
+      "startswith": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "attempted-recon",
+      "sid": 2048689,
+      "rev": 2,
+      "metadata": "created_at 2023_10_19, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08, reviewed_at 2024_10_02",
+      "contents": [
+        {
+          "pattern": "|32 07 00 00 00 00 00 08 00 08|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 01 12 04 11 44 01 00|",
+          "modifiers": {
+            "within": "16",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET 102 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Siemens S7 Redpoint NSE Request CPU Function Read SZL attempt\"; flow:established,to_server; content:\"|32 07 00 00 00 00 00 08 00 08|\"; startswith; content:\"|00 01 12 04 11 44 01 00|\"; within:16; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:attempted-recon; sid:2048689; rev:2; metadata:created_at 2023_10_19, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08, reviewed_at 2024_10_02;)"
+  }
+]

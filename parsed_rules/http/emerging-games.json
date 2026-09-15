@@ -1,0 +1,567 @@
+[
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Second Life setup download",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": [
+        "url,en.wikifur.com/wiki/Second_Life",
+        "url,wiki.secondlife.com/wiki/Furry"
+      ],
+      "classtype": "policy-violation",
+      "sid": 2013910,
+      "rev": 4,
+      "metadata": "created_at 2011_11_11, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_04_20",
+      "contents": [
+        {
+          "pattern": "/Second_Life_Setup.exe",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Second Life setup download\"; flow:established,to_server; http.uri; content:\"/Second_Life_Setup.exe\"; reference:url,en.wikifur.com/wiki/Second_Life; reference:url,wiki.secondlife.com/wiki/Furry; classtype:policy-violation; sid:2013910; rev:4; metadata:created_at 2011_11_11, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_04_20;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Nintendo Wii User-Agent",
+      "flow": "established,to_server",
+      "http.header": true,
+      "reference": "url,www.useragentstring.com/pages/Opera/",
+      "classtype": "policy-violation",
+      "sid": 2014718,
+      "rev": 4,
+      "metadata": "created_at 2012_05_08, confidence High, signature_severity Informational, updated_at 2020_04_21",
+      "contents": [
+        {
+          "pattern": "(Nintendo Wii",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Nintendo Wii User-Agent\"; flow:established,to_server; http.header; content:\"(Nintendo Wii\"; reference:url,www.useragentstring.com/pages/Opera/; classtype:policy-violation; sid:2014718; rev:4; metadata:created_at 2012_05_08, confidence High, signature_severity Informational, updated_at 2020_04_21;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Dragon Raja Activity",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "bsize": [
+        "14",
+        "16"
+      ],
+      "http.user_agent": true,
+      "reference": "md5,33200121c71932220c67b9f3ccc57d60",
+      "classtype": "misc-activity",
+      "sid": 2030484,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_07_08, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_07_08",
+      "contents": [
+        {
+          "pattern": "/setup/dir.txt",
+          "modifiers": {}
+        },
+        {
+          "pattern": "DragonRajaOrigin",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Dragon Raja Activity\"; flow:established,to_server; http.uri; bsize:14; content:\"/setup/dir.txt\"; http.user_agent; bsize:16; content:\"DragonRajaOrigin\"; fast_pattern; reference:md5,33200121c71932220c67b9f3ccc57d60; classtype:misc-activity; sid:2030484; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_07_08, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_07_08;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Multiple Game Cheat Application Activity",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "bsize": "11",
+      "reference": "url,www.virustotal.com/gui/file/1276331d3b61566b027ab4a76c0ac0d2e0b7650a7a2891f50bd0ce8cf72c6218/behavior",
+      "classtype": "bad-unknown",
+      "sid": 2044162,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_09, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_12",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php?hwid=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Mozilla/5.0",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Multiple Game Cheat Application Activity\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\".php?hwid=\"; fast_pattern; http.user_agent; bsize:11; content:\"Mozilla/5.0\"; reference:url,www.virustotal.com/gui/file/1276331d3b61566b027ab4a76c0ac0d2e0b7650a7a2891f50bd0ce8cf72c6218/behavior; classtype:bad-unknown; sid:2044162; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_02_09, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_12;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 185,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Multiple Game Cheat Application Activity",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "bsize": "7",
+      "reference": "url,www.virustotal.com/gui/file/1276331d3b61566b027ab4a76c0ac0d2e0b7650a7a2891f50bd0ce8cf72c6218/behavior",
+      "classtype": "bad-unknown",
+      "sid": 2044163,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_09, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_12",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php?hwid=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "EnAgent",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Multiple Game Cheat Application Activity\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\".php?hwid=\"; fast_pattern; http.user_agent; bsize:7; content:\"EnAgent\"; reference:url,www.virustotal.com/gui/file/1276331d3b61566b027ab4a76c0ac0d2e0b7650a7a2891f50bd0ce8cf72c6218/behavior; classtype:bad-unknown; sid:2044163; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_02_09, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_12;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 187,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Blizzard Downloader Client User-Agent (Blizzard Downloader 2.x)",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,www.worldofwarcraft.com/info/faq/blizzarddownloader.html",
+      "classtype": "policy-violation",
+      "sid": 2011708,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_12",
+      "contents": [
+        {
+          "pattern": "Blizzard",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Blizzard Downloader Client User-Agent (Blizzard Downloader 2.x)\"; flow:established,to_server; http.user_agent; content:\"Blizzard\"; startswith; reference:url,www.worldofwarcraft.com/info/faq/blizzarddownloader.html; classtype:policy-violation; sid:2011708; rev:9; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_12;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 189,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Growtopia Hack - WrongGrow CnC Activity",
+      "flow": "established,to_client",
+      "http.stat_code": true,
+      "file.data": true,
+      "reference": "md5,b76a144f412b680e6a04ee4f4fbcf000",
+      "classtype": "bad-unknown",
+      "sid": 2029784,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_04_01, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_14",
+      "contents": [
+        {
+          "pattern": "200",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|20|HeySurfer#1234",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET GAMES Growtopia Hack - WrongGrow CnC Activity\"; flow:established,to_client; http.stat_code; content:\"200\"; file.data; content:\"|20|HeySurfer#1234\"; fast_pattern; reference:md5,b76a144f412b680e6a04ee4f4fbcf000; classtype:bad-unknown; sid:2029784; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_04_01, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_14;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 193,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Blizzard Web Downloader Install Detected",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "classtype": "policy-violation",
+      "sid": 2012170,
+      "rev": 5,
+      "metadata": "created_at 2011_01_10, confidence High, signature_severity Informational, updated_at 2024_03_17",
+      "contents": [
+        {
+          "pattern": "Blizzard Web Client",
+          "modifiers": {
+            "nocase": true,
+            "depth": "19"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Blizzard Web Downloader Install Detected\"; flow:established,to_server; http.user_agent; content: \"Blizzard Web Client\"; nocase; depth:19; classtype:policy-violation; sid:2012170; rev:5; metadata:created_at 2011_01_10, confidence High, signature_severity Informational, updated_at 2024_03_17;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 197,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Playit Activity (playit .gg)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.referer": true,
+      "startswith": true,
+      "http.host": true,
+      "bsize": "9",
+      "reference": "md5,adef7b6d9fcd8c2a0fabd94d73bc9789",
+      "classtype": "policy-violation",
+      "sid": 2031619,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_02_12, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "https://playit.gg/claim/v2/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "playit.gg",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Playit Activity (playit .gg)\"; flow:established,to_server; http.method; content:\"GET\"; http.referer; content:\"https://playit.gg/claim/v2/\"; startswith; http.host; bsize:9; content:\"playit.gg\"; fast_pattern; reference:md5,adef7b6d9fcd8c2a0fabd94d73bc9789; classtype:policy-violation; sid:2031619; rev:2; metadata:attack_target Client_Endpoint, created_at 2021_02_12, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 203,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Moonlight Hack Actvity (GET)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.host": true,
+      "bsize": "13",
+      "reference": "md5,ebfdbc2a60373344e6ab32c866027ea8",
+      "classtype": "policy-violation",
+      "sid": 2034843,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_12_23, deployment Perimeter, deployment SSLDecrypt, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "moonlight.uno",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Moonlight Hack Actvity (GET)\"; flow:established,to_server; http.method; content:\"GET\"; http.host; bsize:13; content:\"moonlight.uno\"; fast_pattern; reference:md5,ebfdbc2a60373344e6ab32c866027ea8; classtype:policy-violation; sid:2034843; rev:2; metadata:attack_target Client_Endpoint, created_at 2021_12_23, deployment Perimeter, deployment SSLDecrypt, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 209,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Solaris2 Checkin",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "startswith": true,
+      "http.user_agent": true,
+      "bsize": "7",
+      "http.request_body": true,
+      "reference": [
+        "md5,9953874a71e5df4a8b73a83db9576ae4",
+        "url,solaris2.hu"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2037905,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "POST|20|/patch/serial.php|20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Solaris",
+          "modifiers": {}
+        },
+        {
+          "pattern": "cpuid=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "&hddserial=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&macaddr=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&machineguid=",
+          "modifiers": {
+            "distance": "16",
+            "within": "13"
+          }
+        },
+        {
+          "pattern": "&name=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&serial=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "!\"&",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Solaris2 Checkin\"; flow:established,to_server; http.request_line; content:\"POST|20|/patch/serial.php|20|\"; startswith; fast_pattern; http.user_agent; bsize:7; content:\"Solaris\"; http.request_body; content:\"cpuid=\"; startswith; content:\"&hddserial=\"; distance:0; content:\"&macaddr=\"; distance:0; content:\"&machineguid=\"; distance:16; within:13; content:\"&name=\"; distance:0; content:\"&serial=\"; distance:0; content:!\"&\"; distance:0; reference:md5,9953874a71e5df4a8b73a83db9576ae4; reference:url,solaris2.hu; classtype:misc-activity; sid:2037905; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_08_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 213,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES FreeRide Games",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "url,freeridegames.comurl,web.archive.org/web/20140318090458/http://forums.comodo.com:80/av-false-positivenegative-detection-reporting/trojwarewin32trojanagentgen-t55152.0.html",
+      "classtype": "misc-activity",
+      "sid": 2013710,
+      "rev": 9,
+      "metadata": "attack_target Client_Endpoint, created_at 2011_09_28, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_04_13, reviewed_at 2024_03_11",
+      "contents": [
+        {
+          "pattern": "/do/SDM",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "action=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "AHTTPConnection",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES FreeRide Games\"; flow:established,to_server; http.uri; content:\"/do/SDM\"; nocase; content:\"action=\"; nocase; http.user_agent; content:\"AHTTPConnection\"; nocase; startswith; reference:url,freeridegames.comurl,web.archive.org/web/20140318090458/http://forums.comodo.com:80/av-false-positivenegative-detection-reporting/trojwarewin32trojanagentgen-t55152.0.html; classtype:misc-activity; sid:2013710; rev:9; metadata:attack_target Client_Endpoint, created_at 2011_09_28, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_04_13, reviewed_at 2024_03_11;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 215,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Wolfteam HileYapak Server Response",
+      "flow": "established,to_client",
+      "http.stat_code": true,
+      "http.content_type": true,
+      "file.data": true,
+      "startswith": true,
+      "reference": "md5,85cf4df17fcf04286fcbbdf9fbe11077",
+      "classtype": "policy-violation",
+      "sid": 2027417,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_05_31, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "200",
+          "modifiers": {}
+        },
+        {
+          "pattern": "text/plain",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Temizleme Yapildi HileYapak",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET GAMES Wolfteam HileYapak Server Response\"; flow:established,to_client; http.stat_code; content:\"200\"; http.content_type; content:\"text/plain\"; file.data; content:\"Temizleme Yapildi HileYapak\"; startswith; fast_pattern; reference:md5,85cf4df17fcf04286fcbbdf9fbe11077; classtype:policy-violation; sid:2027417; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_05_31, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 217,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES Multiple Game Cheat Application Related Activity",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.header_names": true,
+      "to_lowercase": true,
+      "reference": "md5,dc058da156fc9a901abc787d1baa32d9",
+      "classtype": "unknown",
+      "sid": 2043101,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_12_29, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_26",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|2f 3f|tqos|3d 7b 22|Head|22 3a 7b 22|Cmd|22 3a|5|7d 2c 22|Body|22 3a 7b 22|QOSRep|22 3a 7b 22|BusinessID|22 3a|1|2c 22|QosNum|22 3a|1|2c 22|QosList|22 3a 5b 7b 22|QosID|22 3a|12418",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"|0d 0a|referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0d 0a|user-agent|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES Multiple Game Cheat Application Related Activity\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"|2f 3f|tqos|3d 7b 22|Head|22 3a 7b 22|Cmd|22 3a|5|7d 2c 22|Body|22 3a 7b 22|QOSRep|22 3a 7b 22|BusinessID|22 3a|1|2c 22|QosNum|22 3a|1|2c 22|QosList|22 3a 5b 7b 22|QosID|22 3a|12418\"; startswith; fast_pattern; http.header_names; to_lowercase; content:!\"|0d 0a|referer|0d 0a|\"; content:!\"|0d 0a|user-agent|0d 0a|\"; reference:md5,dc058da156fc9a901abc787d1baa32d9; classtype:unknown; sid:2043101; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_12_29, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_26;)"
+  }
+]

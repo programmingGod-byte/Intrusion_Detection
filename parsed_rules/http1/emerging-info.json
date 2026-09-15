@@ -1,0 +1,1267 @@
+[
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3951,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "8080",
+    "options": {
+      "msg": "GPL INFO Linksys router default username and password login attempt",
+      "flow": "established,to_server",
+      "http.header": true,
+      "reference": "nessus,10999",
+      "classtype": "default-login-attempt",
+      "sid": 2101861,
+      "rev": 15,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2024_04_03",
+      "contents": [
+        {
+          "pattern": "Authorization|3a 20|YWRtaW46YWRtaW4",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET 8080 (msg:\"GPL INFO Linksys router default username and password login attempt\"; flow:established,to_server; http.header; content:\"Authorization|3a 20|YWRtaW46YWRtaW4\"; nocase; reference:nessus,10999; classtype:default-login-attempt; sid:2101861; rev:15; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2024_04_03;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3953,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "8080",
+    "options": {
+      "msg": "GPL INFO Linksys router default password login attempt",
+      "flow": "established,to_server",
+      "http.header": true,
+      "reference": "nessus,10999",
+      "classtype": "default-login-attempt",
+      "sid": 2101860,
+      "rev": 12,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2024_04_03",
+      "contents": [
+        {
+          "pattern": "Authorization|3a 20|OmFkbWlu",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET 8080 (msg:\"GPL INFO Linksys router default password login attempt\"; flow:established,to_server; http.header; content:\"Authorization|3a 20|OmFkbWlu\"; nocase; reference:nessus,10999; classtype:default-login-attempt; sid:2101860; rev:12; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2024_04_03;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3957,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Smocker Server Mock Tool Response",
+      "flow": "established,to_client",
+      "http.response_line": true,
+      "bsize": "28",
+      "reference": "url,github.com/Thiht/smocker",
+      "classtype": "misc-activity",
+      "sid": 2048898,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_10_25, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2023_10_25",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "HTTP/1.1 666 status code 666",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET INFO Smocker Server Mock Tool Response\"; flow:established,to_client; http.response_line; bsize:28; content:\"HTTP/1.1 666 status code 666\"; fast_pattern; reference:url,github.com/Thiht/smocker; classtype:misc-activity; sid:2048898; rev:3; metadata:attack_target Client_Endpoint, created_at 2023_10_25, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2023_10_25; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3959,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO 404/Snake/Matiex Keylogger Style External IP Check",
+      "flow": "established,to_server",
+      "http.start": true,
+      "bsize": "151",
+      "reference": "md5,017e7b6b886cce51eb03ce097c1a4c80",
+      "classtype": "external-ip-check",
+      "sid": 2039190,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_05_13, deployment Perimeter, malware_family 404Keylogger, confidence High, signature_severity Informational, updated_at 2024_04_03",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET / HTTP/1.1|0d 0a|User-Agent|3a 20|Mozilla/4.0 (compatible|3b 20|MSIE 6.0|3b 20|Windows NT 5.2|3b 20|.NET CLR1.0.3705|3b|)|0d 0a|Host|3a 20|checkip.dyndns.org|0d 0a|Connection|3a 20|Keep-Alive|0d 0a 0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO 404/Snake/Matiex Keylogger Style External IP Check\"; flow:established,to_server; http.start; bsize:151; content:\"GET / HTTP/1.1|0d 0a|User-Agent|3a 20|Mozilla/4.0 (compatible|3b 20|MSIE 6.0|3b 20|Windows NT 5.2|3b 20|.NET CLR1.0.3705|3b|)|0d 0a|Host|3a 20|checkip.dyndns.org|0d 0a|Connection|3a 20|Keep-Alive|0d 0a 0d 0a|\"; fast_pattern; reference:md5,017e7b6b886cce51eb03ce097c1a4c80; classtype:external-ip-check; sid:2039190; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_05_13, deployment Perimeter, malware_family 404Keylogger, confidence High, signature_severity Informational, updated_at 2024_04_03; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3961,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO 404 Response with Javascript Variable in Page",
+      "flow": "established,to_client",
+      "http.response_line": true,
+      "file.data": true,
+      "classtype": "bad-unknown",
+      "sid": 2039070,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03",
+      "contents": [
+        {
+          "pattern": "HTTP/1.1 404 Not Found",
+          "modifiers": {}
+        },
+        {
+          "pattern": "<script language=|22|Javascript|22|>var _skz_pid|20|=|20 22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET INFO 404 Response with Javascript Variable in Page\"; flow:established,to_client; http.response_line; content:\"HTTP/1.1 404 Not Found\"; file.data; content:\"<script language=|22|Javascript|22|>var _skz_pid|20|=|20 22|\"; fast_pattern; classtype:bad-unknown; sid:2039070; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3963,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO SQLite DLL Retrieval by Name (GET)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.header_names": true,
+      "bsize": "22",
+      "classtype": "bad-unknown",
+      "sid": 2038819,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_09_13, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/sqlite64.dll",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Connection|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO SQLite DLL Retrieval by Name (GET)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/sqlite64.dll\"; endswith; fast_pattern; http.header_names; bsize:22; content:\"|0d 0a|Connection|0d 0a|Host|0d 0a 0d 0a|\"; classtype:bad-unknown; sid:2038819; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_09_13, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3967,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Terse Request For Bitbucket Snippet",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.host": true,
+      "bsize": [
+        "13",
+        "22"
+      ],
+      "http.header_names": true,
+      "classtype": "bad-unknown",
+      "sid": 2036349,
+      "rev": 3,
+      "metadata": "created_at 2022_04_25, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/|21|api/2.0/snippets/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "bitbucket.org",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Terse Request For Bitbucket Snippet\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/|21|api/2.0/snippets/\"; startswith; http.host; bsize:13; content:\"bitbucket.org\"; fast_pattern; http.header_names; bsize:22; content:\"|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; classtype:bad-unknown; sid:2036349; rev:3; metadata:created_at 2022_04_25, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3969,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET INFO Empty POST with Terse Headers Over Non Standard Port",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "http.header_names": true,
+      "bsize": "26",
+      "http.host": true,
+      "pcre": "/^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$/",
+      "http.content_len": true,
+      "byte_test": "0,=,0,0,string,dec",
+      "reference": [
+        "url,twitter.com/3xp0rtblog/status/1509267848958562305",
+        "md5,52a46f058ec6b726fe2829a590a15155"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2036225,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_14, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2023_09_01",
+      "contents": [
+        {
+          "pattern": "POST / HTTP/1.1",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET 1024: (msg:\"ET INFO Empty POST with Terse Headers Over Non Standard Port\"; flow:established,to_server; http.request_line; content:\"POST / HTTP/1.1\"; fast_pattern; http.header_names; bsize:26; content:\"|0d 0a|Host|0d 0a|Content-Length|0d 0a 0d 0a|\"; http.host; pcre:\"/^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$/\"; http.content_len; byte_test:0,=,0,0,string,dec; reference:url,twitter.com/3xp0rtblog/status/1509267848958562305; reference:md5,52a46f058ec6b726fe2829a590a15155; classtype:bad-unknown; sid:2036225; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_04_14, deployment Perimeter, performance_impact Moderate, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2023_09_01;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3987,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Packity Proxy Connection",
+      "flow": "established,to_server",
+      "http.start": true,
+      "startswith": true,
+      "reference": "md5,9d245ac24d0dad591d01d2ef52da3ead",
+      "classtype": "bad-unknown",
+      "sid": 2030800,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_08_26, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "CONNECT /PROVIDER/PROXY2 HTTP/1.1|0d 0a|Host|3a 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Proxy-Authorization|3a 20|Basic ",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "=|0d 0a|",
+          "modifiers": {
+            "distance": "119",
+            "within": "3"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Packity Proxy Connection\"; flow:established,to_server; http.start; content:\"CONNECT /PROVIDER/PROXY2 HTTP/1.1|0d 0a|Host|3a 20|\"; startswith; fast_pattern; content:\"|0d 0a|Proxy-Authorization|3a 20|Basic \"; distance:0; content:\"=|0d 0a|\"; distance:119; within:3; reference:md5,9d245ac24d0dad591d01d2ef52da3ead; classtype:bad-unknown; sid:2030800; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_08_26, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3989,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO LumOffice Uploading Screenshot",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "bsize": "32",
+      "http.header": true,
+      "http.request_body": true,
+      "reference": [
+        "md5,084995c3cdee01147226542eb63de872",
+        "url,lumoffice.com/"
+      ],
+      "classtype": "policy-violation",
+      "sid": 2030408,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_06_29, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "POST /SMService001.asx HTTP/1.1",
+          "modifiers": {}
+        },
+        {
+          "pattern": "SOAPAction|3a 20 22|http://tempuri.org/PushScreen|22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "<soap:Body><PushScreen ",
+          "modifiers": {}
+        },
+        {
+          "pattern": "<accountID>",
+          "modifiers": {}
+        },
+        {
+          "pattern": "</accountID><activityID>",
+          "modifiers": {}
+        },
+        {
+          "pattern": "</activityID><time>",
+          "modifiers": {}
+        },
+        {
+          "pattern": "</time><screen>/9j/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO LumOffice Uploading Screenshot\"; flow:established,to_server; http.request_line; bsize:32; content:\"POST /SMService001.asx HTTP/1.1\"; http.header; content:\"SOAPAction|3a 20 22|http://tempuri.org/PushScreen|22|\"; http.request_body; content:\"<soap:Body><PushScreen \"; content:\"<accountID>\"; content:\"</accountID><activityID>\"; content:\"</activityID><time>\"; content:\"</time><screen>/9j/\"; fast_pattern; reference:md5,084995c3cdee01147226542eb63de872; reference:url,lumoffice.com/; classtype:policy-violation; sid:2030408; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_06_29, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 4035,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Minimal HTTP GET Request to Bit.ly",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.start": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2026674,
+      "rev": 4,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2018_11_29, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2024_04_05",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "HTTP/1.1|0d 0a|Host|3a 20|bit.ly|0d 0a|Connection|3a 20|Keep-Alive|0d 0a 0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Minimal HTTP GET Request to Bit.ly\"; flow:established,to_server; http.method; content:\"GET\"; http.start; content:\"HTTP/1.1|0d 0a|Host|3a 20|bit.ly|0d 0a|Connection|3a 20|Keep-Alive|0d 0a 0d 0a|\"; endswith; fast_pattern; classtype:bad-unknown; sid:2026674; rev:4; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2018_11_29, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2024_04_05;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 4037,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Possible MSXMLHTTP Request to Dotted Quad",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,et.MS.XMLHTTP.ip.request",
+        "noalert"
+      ],
+      "http.start": true,
+      "http.header_names": true,
+      "http.host": true,
+      "pcre": "/^(?:\\d{1,3}\\.){3}\\d{1,3}/",
+      "classtype": "misc-activity",
+      "sid": 2022054,
+      "rev": 8,
+      "metadata": "created_at 2015_11_10, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_06",
+      "contents": [
+        {
+          "pattern": "HTTP/1.1|0d 0a|Accept|3a 20|*/*|0d 0a|Accept-Encoding|3a 20|gzip, deflate|0d 0a|User-Agent|3a 20|Mozilla/4.0 (compatible|3b 20|MSIE 7.0|3b 20|Windows NT",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"UA-CPU",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Cookie",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Accept-Language",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Possible MSXMLHTTP Request to Dotted Quad\"; flow:established,to_server; flowbits:set,et.MS.XMLHTTP.ip.request; flowbits:noalert; http.start; content:\"HTTP/1.1|0d 0a|Accept|3a 20|*/*|0d 0a|Accept-Encoding|3a 20|gzip, deflate|0d 0a|User-Agent|3a 20|Mozilla/4.0 (compatible|3b 20|MSIE 7.0|3b 20|Windows NT\"; fast_pattern; http.header_names; content:!\"UA-CPU\"; content:!\"Cookie\"; content:!\"Referer\"; content:!\"Accept-Language\"; http.host; pcre:\"/^(?:\\d{1,3}\\.){3}\\d{1,3}/\"; classtype:misc-activity; sid:2022054; rev:8; metadata:created_at 2015_11_10, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_06;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 4115,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Centralops.net Domain Dossier Utility Probe",
+      "flow": "established,to_server",
+      "http.header": true,
+      "reference": "url,centralops.net",
+      "classtype": "policy-violation",
+      "sid": 2003623,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_11",
+      "contents": [
+        {
+          "pattern": "USER-Agent|3a 20|Domain Dossier utility (http|3a|//CentralOps.net/)",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET INFO Centralops.net Domain Dossier Utility Probe\"; flow:established,to_server; http.header; content:\"USER-Agent|3a 20|Domain Dossier utility (http|3a|//CentralOps.net/)\"; nocase; reference:url,centralops.net; classtype:policy-violation; sid:2003623; rev:8; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_11;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 4281,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO GET to Puu.sh for TXT File with Minimal Headers",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "endswith": true,
+      "http.host": true,
+      "startswith": true,
+      "http.header_names": true,
+      "classtype": "bad-unknown",
+      "sid": 2026569,
+      "rev": 6,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2018_11_02, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".txt",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "puu.sh",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO GET to Puu.sh for TXT File with Minimal Headers\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\".txt\"; nocase; endswith; http.host; content:\"puu.sh\"; startswith; endswith; fast_pattern; http.header_names; content:\"|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; startswith; endswith; classtype:bad-unknown; sid:2026569; rev:6; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2018_11_02, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2024_04_14;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 4283,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Possible MSXMLHTTP Request (no .exe)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,et.MS.XMLHTTP.no.exe.request",
+        "noalert"
+      ],
+      "http.uri": true,
+      "http.start": true,
+      "http.header_names": true,
+      "startswith": true,
+      "classtype": "misc-activity",
+      "sid": 2022049,
+      "rev": 8,
+      "metadata": "created_at 2015_11_09, performance_impact Moderate, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "!\".exe",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\".msi",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\".msp",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "HTTP/1.1|0d 0a|Accept|3a 20|*/*|0d 0a|Accept-Encoding|3a 20|gzip, deflate|0d 0a|User-Agent|3a 20|Mozilla/4.0 (compatible|3b 20|MSIE 7.0|3b 20|Windows NT",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Accept|0d 0a|Accept-Encoding|0d 0a|User-Agent|0d 0a|Host|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Cookie|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Accept-Language|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"UA-CPU|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Possible MSXMLHTTP Request (no .exe)\"; flow:established,to_server; flowbits:set,et.MS.XMLHTTP.no.exe.request; flowbits:noalert; http.uri; content:!\".exe\"; nocase; content:!\".msi\"; nocase; content:!\".msp\"; nocase; http.start; content:\"HTTP/1.1|0d 0a|Accept|3a 20|*/*|0d 0a|Accept-Encoding|3a 20|gzip, deflate|0d 0a|User-Agent|3a 20|Mozilla/4.0 (compatible|3b 20|MSIE 7.0|3b 20|Windows NT\"; fast_pattern; http.header_names; content:\"|0d 0a|Accept|0d 0a|Accept-Encoding|0d 0a|User-Agent|0d 0a|Host|0d 0a|\"; startswith; content:!\"Cookie|0d 0a|\"; content:!\"Referer|0d 0a|\"; content:!\"Accept-Language|0d 0a|\"; content:!\"UA-CPU|0d 0a|\"; classtype:misc-activity; sid:2022049; rev:8; metadata:created_at 2015_11_09, performance_impact Moderate, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_14;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 4317,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO RealThinClient Outbound Communication",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.header": true,
+      "http.header_names": true,
+      "reference": [
+        "md5,e6fe6b5f943a45018d2d0da4357cfe6d",
+        "url,rtc.teppi.net"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2036704,
+      "rev": 7,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2015_09_24, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_19",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/$rdgate?ACTION=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "HOST|3a|",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"Accept",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"User-Agent|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO RealThinClient Outbound Communication\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/$rdgate?ACTION=\"; startswith; fast_pattern; http.header; content:\"HOST|3a|\"; nocase; http.header_names; content:!\"Accept\"; content:!\"User-Agent|0d 0a|\"; content:!\"Referer|0d 0a|\"; reference:md5,e6fe6b5f943a45018d2d0da4357cfe6d; reference:url,rtc.teppi.net; classtype:bad-unknown; sid:2036704; rev:7; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2015_09_24, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_19;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 4527,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO StumbleUpon Submission Detected",
+      "flow": "established,to_server",
+      "http.header_names": true,
+      "threshold": "type both, count 2, seconds 300, track by_src",
+      "classtype": "policy-violation",
+      "sid": 2013013,
+      "rev": 6,
+      "metadata": "created_at 2011_06_10, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_05_06",
+      "contents": [
+        {
+          "pattern": "|0d 0a|X-SU-Version|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO StumbleUpon Submission Detected\"; flow:established,to_server; http.header_names; content:\"|0d 0a|X-SU-Version|0d 0a|\"; threshold: type both, count 2, seconds 300, track by_src; classtype:policy-violation; sid:2013013; rev:6; metadata:created_at 2011_06_10, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_05_06;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 5183,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Internet Printing Protocol (IPP) Get-Printer-Attributes Outbound Request",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.content_type": true,
+      "http.user_agent": true,
+      "startswith": true,
+      "http.header": true,
+      "http.request_body": true,
+      "classtype": "misc-activity",
+      "sid": 2056212,
+      "rev": 1,
+      "metadata": "created_at 2024_09_26, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_26",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "application/ipp",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "CUPS|2f|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Expect|3a 20|100-continue",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 0b|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET INFO Internet Printing Protocol (IPP) Get-Printer-Attributes Outbound Request\"; flow:established,to_server; http.method; content:\"POST\"; http.content_type; content:\"application/ipp\"; fast_pattern; http.user_agent; content:\"CUPS|2f|\"; startswith; http.header; content:\"|0d 0a|Expect|3a 20|100-continue\"; http.request_body; content:\"|00 0b|\"; offset:2; depth:2; classtype:misc-activity; sid:2056212; rev:1; metadata:created_at 2024_09_26, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8487,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO External IP Lookup via FreeIpAPI",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": "<11",
+      "startswith": true,
+      "http.host": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2060212,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2025_02_19, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Informational, tag IP_address_lookup_website, updated_at 2025_02_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1614, mitre_technique_name System_Location_Discovery",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/api/json",
+          "modifiers": {}
+        },
+        {
+          "pattern": "freeipapi.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO External IP Lookup via FreeIpAPI\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; bsize:<11; content:\"/api/json\"; startswith; http.host; content:\"freeipapi.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2060212; rev:1; metadata:attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2025_02_19, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Informational, tag IP_address_lookup_website, updated_at 2025_02_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1614, mitre_technique_name System_Location_Discovery;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8533,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO External IP Lookup via Country .is",
+      "flow": "established,to_server",
+      "urilen": "1",
+      "http.method": true,
+      "http.uri": true,
+      "http.host": true,
+      "bsize": [
+        "14",
+        "1"
+      ],
+      "http.content_len": true,
+      "classtype": "misc-activity",
+      "sid": 2061045,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2025_03_25, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Informational, updated_at 2025_03_25, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1614, mitre_technique_name System_Location_Discovery",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "api.country.is",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "0",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO External IP Lookup via Country .is\"; flow:established,to_server; urilen:1; http.method; content:\"GET\"; http.uri; content:\"/\"; http.host; bsize:14; content:\"api.country.is\"; fast_pattern; http.content_len; bsize:1; content:\"0\"; classtype:misc-activity; sid:2061045; rev:1; metadata:attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2025_03_25, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Informational, updated_at 2025_03_25, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1614, mitre_technique_name System_Location_Discovery; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8611,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Dotted Quad Host M1 (noalert)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,http.dottedquadhost",
+        "noalert"
+      ],
+      "http.header.raw": true,
+      "pcre": "/^\\d{0,2}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R",
+      "classtype": "bad-unknown",
+      "sid": 2021067,
+      "rev": 8,
+      "metadata": "created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13",
+      "contents": [
+        {
+          "pattern": "host|3a 20|1",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Dotted Quad Host M1 (noalert)\"; flow:established,to_server; flowbits:set,http.dottedquadhost; flowbits:noalert; http.header.raw; content:\"host|3a 20|1\"; nocase; fast_pattern; pcre:\"/^\\d{0,2}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R\"; classtype:bad-unknown; sid:2021067; rev:8; metadata:created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8613,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Dotted Quad Host M2 (noalert)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,http.dottedquadhost",
+        "noalert"
+      ],
+      "http.header.raw": true,
+      "pcre": "/^\\d{0,2}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R",
+      "classtype": "bad-unknown",
+      "sid": 2021068,
+      "rev": 8,
+      "metadata": "created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13",
+      "contents": [
+        {
+          "pattern": "host|3a 20|2",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Dotted Quad Host M2 (noalert)\"; flow:established,to_server; flowbits:set,http.dottedquadhost; flowbits:noalert; http.header.raw; content:\"host|3a 20|2\"; nocase; fast_pattern; pcre:\"/^\\d{0,2}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R\"; classtype:bad-unknown; sid:2021068; rev:8; metadata:created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8615,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Dotted Quad Host M3 (noalert)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,http.dottedquadhost",
+        "noalert"
+      ],
+      "http.header.raw": true,
+      "pcre": "/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R",
+      "classtype": "bad-unknown",
+      "sid": 2021069,
+      "rev": 8,
+      "metadata": "created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13",
+      "contents": [
+        {
+          "pattern": "host|3a 20|3",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Dotted Quad Host M3 (noalert)\"; flow:established,to_server; flowbits:set,http.dottedquadhost; flowbits:noalert; http.header.raw; content:\"host|3a 20|3\"; nocase; fast_pattern; pcre:\"/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R\"; classtype:bad-unknown; sid:2021069; rev:8; metadata:created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8617,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Dotted Quad Host M4 (noalert)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,http.dottedquadhost",
+        "noalert"
+      ],
+      "http.header.raw": true,
+      "pcre": "/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R",
+      "classtype": "bad-unknown",
+      "sid": 2021070,
+      "rev": 8,
+      "metadata": "created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13",
+      "contents": [
+        {
+          "pattern": "host|3a 20|4",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Dotted Quad Host M4 (noalert)\"; flow:established,to_server; flowbits:set,http.dottedquadhost; flowbits:noalert; http.header.raw; content:\"host|3a 20|4\"; nocase; fast_pattern; pcre:\"/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R\"; classtype:bad-unknown; sid:2021070; rev:8; metadata:created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8619,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Dotted Quad Host M5 (noalert)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,http.dottedquadhost",
+        "noalert"
+      ],
+      "http.header.raw": true,
+      "pcre": "/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R",
+      "classtype": "bad-unknown",
+      "sid": 2021071,
+      "rev": 8,
+      "metadata": "created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13",
+      "contents": [
+        {
+          "pattern": "host|3a 20|5",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Dotted Quad Host M5 (noalert)\"; flow:established,to_server; flowbits:set,http.dottedquadhost; flowbits:noalert; http.header.raw; content:\"host|3a 20|5\"; nocase; fast_pattern; pcre:\"/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R\"; classtype:bad-unknown; sid:2021071; rev:8; metadata:created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8621,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Dotted Quad Host M6 (noalert)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,http.dottedquadhost",
+        "noalert"
+      ],
+      "http.header.raw": true,
+      "pcre": "/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R",
+      "classtype": "bad-unknown",
+      "sid": 2021072,
+      "rev": 8,
+      "metadata": "created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13",
+      "contents": [
+        {
+          "pattern": "host|3a 20|6",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Dotted Quad Host M6 (noalert)\"; flow:established,to_server; flowbits:set,http.dottedquadhost; flowbits:noalert; http.header.raw; content:\"host|3a 20|6\"; nocase; fast_pattern; pcre:\"/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R\"; classtype:bad-unknown; sid:2021072; rev:8; metadata:created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8623,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Dotted Quad Host M7 (noalert)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,http.dottedquadhost",
+        "noalert"
+      ],
+      "http.header.raw": true,
+      "pcre": "/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R",
+      "classtype": "bad-unknown",
+      "sid": 2021073,
+      "rev": 8,
+      "metadata": "created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13",
+      "contents": [
+        {
+          "pattern": "host|3a 20|7",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Dotted Quad Host M7 (noalert)\"; flow:established,to_server; flowbits:set,http.dottedquadhost; flowbits:noalert; http.header.raw; content:\"host|3a 20|7\"; nocase; fast_pattern; pcre:\"/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R\"; classtype:bad-unknown; sid:2021073; rev:8; metadata:created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8625,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Dotted Quad Host M9 (noalert)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,http.dottedquadhost",
+        "noalert"
+      ],
+      "http.header.raw": true,
+      "pcre": "/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R",
+      "classtype": "bad-unknown",
+      "sid": 2021075,
+      "rev": 8,
+      "metadata": "created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13",
+      "contents": [
+        {
+          "pattern": "host|3a 20|9",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Dotted Quad Host M9 (noalert)\"; flow:established,to_server; flowbits:set,http.dottedquadhost; flowbits:noalert; http.header.raw; content:\"host|3a 20|9\"; nocase; fast_pattern; pcre:\"/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R\"; classtype:bad-unknown; sid:2021075; rev:8; metadata:created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8627,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Dotted Quad Host M8 (noalert)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,http.dottedquadhost",
+        "noalert"
+      ],
+      "http.header.raw": true,
+      "pcre": "/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R",
+      "classtype": "bad-unknown",
+      "sid": 2021074,
+      "rev": 8,
+      "metadata": "created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13",
+      "contents": [
+        {
+          "pattern": "host|3a 20|8",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Dotted Quad Host M8 (noalert)\"; flow:established,to_server; flowbits:set,http.dottedquadhost; flowbits:noalert; http.header.raw; content:\"host|3a 20|8\"; nocase; fast_pattern; pcre:\"/^\\d{0,1}\\.(?:\\d{1,3}\\.){2}\\d{1,3}(?:\\x3a\\d{1,5})?/R\"; classtype:bad-unknown; sid:2021074; rev:8; metadata:created_at 2015_05_08, confidence High, signature_severity Informational, updated_at 2025_06_13;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 10261,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Pagekite Tunneling Service ping Heartbeat",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": [
+        "5",
+        "13"
+      ],
+      "http.header_names": true,
+      "http.host": true,
+      "threshold": "type limit,track by_src,count 5,seconds 300",
+      "reference": "url,github.com/pagekite/libpagekite",
+      "classtype": "misc-activity",
+      "sid": 2067928,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, tls_state plaintext, created_at 2026_02_26, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Tunnel, updated_at 2026_02_26",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "HEAD",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/ping",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "ping.pagekite",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Pagekite Tunneling Service ping Heartbeat\"; flow:established,to_server; http.method; content:\"HEAD\"; http.uri; bsize:5; content:\"/ping\"; http.header_names; content:\"|0d 0a|Host|0d 0a 0d 0a|\"; http.host; bsize:13; content:\"ping.pagekite\"; fast_pattern; threshold:type limit,track by_src,count 5,seconds 300; reference:url,github.com/pagekite/libpagekite; classtype:misc-activity; sid:2067928; rev:1; metadata:affected_product Any, attack_target Client_and_Server, tls_state plaintext, created_at 2026_02_26, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Tunnel, updated_at 2026_02_26; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 10263,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Pagekite Tunneling Service ping Heartbeat Response",
+      "flow": "established,to_client",
+      "http.header": true,
+      "pcre": "/^[a-f0-9]{40}/R",
+      "threshold": "type limit,track by_src,count 5,seconds 300",
+      "reference": "url,github.com/pagekite/libpagekite",
+      "classtype": "misc-activity",
+      "sid": 2067929,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, tls_state plaintext, created_at 2026_02_26, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Tunnel, updated_at 2026_02_26",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "X-PageKite-UUID|3a 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET INFO Pagekite Tunneling Service ping Heartbeat Response\"; flow:established,to_client; http.header; content:\"X-PageKite-UUID|3a 20|\"; fast_pattern; pcre:\"/^[a-f0-9]{40}/R\"; threshold:type limit,track by_src,count 5,seconds 300; reference:url,github.com/pagekite/libpagekite; classtype:misc-activity; sid:2067929; rev:1; metadata:affected_product Any, attack_target Client_and_Server, tls_state plaintext, created_at 2026_02_26, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Tunnel, updated_at 2026_02_26; target:dest_ip;)"
+  }
+]

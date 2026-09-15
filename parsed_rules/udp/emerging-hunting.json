@@ -1,0 +1,337 @@
+[
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 389,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (upper UDP Bypass) (CVE-2021-44228)",
+      "reference": "cve,2021-44228",
+      "classtype": "misc-activity",
+      "sid": 2034664,
+      "rev": 1,
+      "metadata": "created_at 2021_12_11, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_16",
+      "contents": [
+        {
+          "pattern": "|24 7b|jndi|3a|",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|24 7b|upper|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (upper UDP Bypass) (CVE-2021-44228)\"; content:\"|24 7b|jndi|3a|\"; nocase; fast_pattern; content:\"|24 7b|upper|3a|\"; distance:0; reference:cve,2021-44228; classtype:misc-activity; sid:2034664; rev:1; metadata:created_at 2021_12_11, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 393,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (lower UDP Bypass) (CVE-2021-44228)",
+      "reference": "cve,2021-44228",
+      "classtype": "misc-activity",
+      "sid": 2034666,
+      "rev": 1,
+      "metadata": "created_at 2021_12_11, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_16",
+      "contents": [
+        {
+          "pattern": "|24 7b|jndi|3a|",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|24 7b|lower|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (lower UDP Bypass) (CVE-2021-44228)\"; content:\"|24 7b|jndi|3a|\"; nocase; fast_pattern; content:\"|24 7b|lower|3a|\"; distance:0; reference:cve,2021-44228; classtype:misc-activity; sid:2034666; rev:1; metadata:created_at 2021_12_11, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_16;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 397,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (upper UDP Bypass) (Outbound) (CVE-2021-44228)",
+      "reference": "cve,2021-44228",
+      "classtype": "misc-activity",
+      "sid": 2034801,
+      "rev": 2,
+      "metadata": "attack_target Server, created_at 2021_12_17, cve CVE_2021_44228, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2021_12_18, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "|24 7b|jndi|3a|",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|24 7b|upper|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> any any (msg:\"ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (upper UDP Bypass) (Outbound) (CVE-2021-44228)\"; content:\"|24 7b|jndi|3a|\"; nocase; fast_pattern; content:\"|24 7b|upper|3a|\"; distance:0; reference:cve,2021-44228; classtype:misc-activity; sid:2034801; rev:2; metadata:attack_target Server, created_at 2021_12_17, cve CVE_2021_44228, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2021_12_18, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 401,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (lower UDP Bypass) (Outbound) (CVE-2021-44228)",
+      "reference": "cve,2021-44228",
+      "classtype": "misc-activity",
+      "sid": 2034803,
+      "rev": 2,
+      "metadata": "attack_target Server, created_at 2021_12_18, cve CVE_2021_44228, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2021_12_18, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "|24 7b|jndi|3a|",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|24 7b|lower|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> any any (msg:\"ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (lower UDP Bypass) (Outbound) (CVE-2021-44228)\"; content:\"|24 7b|jndi|3a|\"; nocase; fast_pattern; content:\"|24 7b|lower|3a|\"; distance:0; reference:cve,2021-44228; classtype:misc-activity; sid:2034803; rev:2; metadata:attack_target Server, created_at 2021_12_18, cve CVE_2021_44228, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2021_12_18, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1879,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol UDP (CVE-2021-44228)",
+      "reference": "cve,2021-44228",
+      "classtype": "misc-activity",
+      "sid": 2034662,
+      "rev": 3,
+      "metadata": "created_at 2021_12_11, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "|24 7b|jndi|3a|",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|3a 2f 2f|",
+          "modifiers": {
+            "within": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol UDP (CVE-2021-44228)\"; content:\"|24 7b|jndi|3a|\"; nocase; fast_pattern; content:\"|3a 2f 2f|\"; within:20; reference:cve,2021-44228; classtype:misc-activity; sid:2034662; rev:3; metadata:created_at 2021_12_11, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1885,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol UDP (Outbound) (CVE-2021-44228)",
+      "reference": "cve,2021-44228",
+      "classtype": "misc-activity",
+      "sid": 2034784,
+      "rev": 3,
+      "metadata": "attack_target Server, created_at 2021_12_17, cve CVE_2021_44228, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2024_03_08, reviewed_at 2024_05_07, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "|24 7b|jndi|3a|",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|3a 2f 2f|",
+          "modifiers": {
+            "within": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> any any (msg:\"ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol UDP (Outbound) (CVE-2021-44228)\"; content:\"|24 7b|jndi|3a|\"; nocase; fast_pattern; content:\"|3a 2f 2f|\"; within:20; reference:cve,2021-44228; classtype:misc-activity; sid:2034784; rev:3; metadata:attack_target Server, created_at 2021_12_17, cve CVE_2021_44228, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag Exploit, tag CISA_KEV, updated_at 2024_03_08, reviewed_at 2024_05_07, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1889,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Apache log4j RCE Attempt - Any Protocol (lower UDP Bypass) (CVE-2021-44228)",
+      "reference": "cve,2021-44228",
+      "classtype": "attempted-admin",
+      "sid": 2034809,
+      "rev": 2,
+      "metadata": "created_at 2021_12_20, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1210, mitre_technique_name Exploitation_Of_Remote_Services",
+      "contents": [
+        {
+          "pattern": "|24 7b|lower|3a|j",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "n",
+          "modifiers": {
+            "within": "12"
+          }
+        },
+        {
+          "pattern": "d",
+          "modifiers": {
+            "within": "12"
+          }
+        },
+        {
+          "pattern": "i",
+          "modifiers": {
+            "within": "12"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET HUNTING Apache log4j RCE Attempt - Any Protocol (lower UDP Bypass) (CVE-2021-44228)\"; content:\"|24 7b|lower|3a|j\"; nocase; fast_pattern; content:\"n\"; within:12; content:\"d\"; within:12; content:\"i\"; within:12; reference:cve,2021-44228; classtype:attempted-admin; sid:2034809; rev:2; metadata:created_at 2021_12_20, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1210, mitre_technique_name Exploitation_Of_Remote_Services;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1893,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Apache log4j RCE Attempt - Any Protocol (upper UDP Bypass) (CVE-2021-44228)",
+      "reference": "cve,2021-44228",
+      "classtype": "attempted-admin",
+      "sid": 2034811,
+      "rev": 2,
+      "metadata": "created_at 2021_12_20, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1210, mitre_technique_name Exploitation_Of_Remote_Services",
+      "contents": [
+        {
+          "pattern": "|24 7b|upper|3a|j",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "n",
+          "modifiers": {
+            "within": "12"
+          }
+        },
+        {
+          "pattern": "d",
+          "modifiers": {
+            "within": "12"
+          }
+        },
+        {
+          "pattern": "i",
+          "modifiers": {
+            "within": "12"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET HUNTING Apache log4j RCE Attempt - Any Protocol (upper UDP Bypass) (CVE-2021-44228)\"; content:\"|24 7b|upper|3a|j\"; nocase; fast_pattern; content:\"n\"; within:12; content:\"d\"; within:12; content:\"i\"; within:12; reference:cve,2021-44228; classtype:attempted-admin; sid:2034811; rev:2; metadata:created_at 2021_12_20, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1210, mitre_technique_name Exploitation_Of_Remote_Services;)"
+  },
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 2811,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "53",
+    "options": {
+      "msg": "ET HUNTING Large non-DNS Packet on Port 53",
+      "dsize": ">500",
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "reference": "url,resecurity.com/es/blog/article/pdfsider-malware-exploitation-of-dll-side-loading-for-av-and-edr-evasion",
+      "classtype": "misc-activity",
+      "sid": 2067113,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state plaintext, created_at 2026_01_26, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_26",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "!\"|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "depth": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:\"ET HUNTING Large non-DNS Packet on Port 53\"; dsize:>500; content:!\"|00 01 00 00 00 00 00|\"; depth:20; threshold:type limit,count 1,seconds 300,track by_src; reference:url,resecurity.com/es/blog/article/pdfsider-malware-exploitation-of-dll-side-loading-for-av-and-edr-evasion; classtype:misc-activity; sid:2067113; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state plaintext, created_at 2026_01_26, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_01_26; target:src_ip;)"
+  }
+]

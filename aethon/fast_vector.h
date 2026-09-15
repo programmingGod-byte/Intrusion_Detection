@@ -168,7 +168,9 @@ public:
     return *slot;
   }
 
-  AETHON_ALWAYS_INLINE void push_back(const T &value) { emplace_back(value); }
+  AETHON_ALWAYS_INLINE void push_back(const T &value) { emplace_back(value);
+    // in the emplace back (slot) T (value) copy constructor call 
+  }
 
   AETHON_ALWAYS_INLINE void push_back(T &&value) {
     emplace_back(std::move(value));

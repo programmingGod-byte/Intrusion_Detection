@@ -1,0 +1,1205 @@
+[
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Firefox Plugin Parameter EnsureCachedAttrParamArrays Remote Code Execution Attempt",
+      "flow": "established,to_client",
+      "reference": [
+        "url,www.exploit-db.com/moaub-17-firefox-plugin-parameter-ensurecachedattrparamarrays-remote-code-execution/",
+        "url,www.mozilla.org/security/announce/2010/mfsa2010-37.html",
+        "bugtraq,41842",
+        "cve,2010-1214"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2011538,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_09_27, cve CVE_2010_1214, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "appletComponentArch.DynamicTreeApplet",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "PARAM",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Firefox Plugin Parameter EnsureCachedAttrParamArrays Remote Code Execution Attempt\"; flow:established,to_client; content:\"appletComponentArch.DynamicTreeApplet\"; nocase; content:\"PARAM\"; nocase; distance:0; content:\"PARAM\"; nocase; distance:0; content:\"PARAM\"; nocase; distance:0; content:\"PARAM\"; nocase; distance:0; content:\"PARAM\"; nocase; distance:0; content:\"PARAM\"; nocase; distance:0; content:\"PARAM\"; nocase; distance:0; content:\"PARAM\"; nocase; distance:0; content:\"PARAM\"; nocase; distance:0; content:\"PARAM\"; nocase; distance:0; reference:url,www.exploit-db.com/moaub-17-firefox-plugin-parameter-ensurecachedattrparamarrays-remote-code-execution/; reference:url,www.mozilla.org/security/announce/2010/mfsa2010-37.html; reference:bugtraq,41842; reference:cve,2010-1214; classtype:attempted-user; sid:2011538; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_09_27, cve CVE_2010_1214, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT RealPlayer FLV Parsing Integer Overflow Attempt",
+      "flow": "established,to_client",
+      "reference": [
+        "url,service.real.com/realplayer/security/08262010_player/en/",
+        "url,www.exploit-db.com/moaub-13-realplayer-flv-parsing-multiple-integer-overflow/",
+        "bugtraq,42775",
+        "cve,2010-3000"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2011485,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_09_28, cve CVE_2010_3000, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "FLV",
+          "modifiers": {
+            "nocase": true,
+            "depth": "300"
+          }
+        },
+        {
+          "pattern": "onMetaData",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|07 50 75 08|",
+          "modifiers": {
+            "within": "100"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT RealPlayer FLV Parsing Integer Overflow Attempt\"; flow:established,to_client; content:\"FLV\"; nocase; depth:300; content:\"onMetaData\"; nocase; distance:0; content:\"|07 50 75 08|\"; within:100; reference:url,service.real.com/realplayer/security/08262010_player/en/; reference:url,www.exploit-db.com/moaub-13-realplayer-flv-parsing-multiple-integer-overflow/; reference:bugtraq,42775; reference:cve,2010-3000; classtype:attempted-user; sid:2011485; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_09_28, cve CVE_2010_3000, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 49,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of String.fromCharCode % Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012041,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_11, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%53%74%72%69%6e%67%2e%66%72%6f%6d%43%68%61%72%43%6f%64%65",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of String.fromCharCode % Encoding\"; flow:established,to_client; content:\"%53%74%72%69%6e%67%2e%66%72%6f%6d%43%68%61%72%43%6f%64%65\"; nocase; fast_pattern; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012041; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_11, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of charCodeAt % Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012043,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_11, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%63%68%61%72%43%6f%64%65%41%74",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of charCodeAt % Encoding\"; flow:established,to_client; content:\"%63%68%61%72%43%6f%64%65%41%74\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012043; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_11, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of charCodeAt %u UTF-8 Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012044,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_11, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u63%u68%u61%u72%u43%u6f%u64%u65%u41%u74",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of charCodeAt %u UTF-8 Encoding\"; flow:established,to_client; content:\"%u63%u68%u61%u72%u43%u6f%u64%u65%u41%u74\"; nocase; fast_pattern; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012044; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_11, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of String.fromCharCode %u UTF-8 Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012042,
+      "rev": 4,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_11, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u53%u74%u72%u69%u6e%u67%u2e%u66%u72%u6f%u6d%u43%u68%u61%u72%u43%u6f%u64%u65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of String.fromCharCode %u UTF-8 Encoding\"; flow:established,to_client; content:\"%u53%u74%u72%u69%u6e%u67%u2e%u66%u72%u6f%u6d%u43%u68%u61%u72%u43%u6f%u64%u65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012042; rev:4; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_11, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Winzip 15.0 WZFLDVW.OCX IconIndex Property Denial of Service",
+      "flow": "established,to_client",
+      "pcre": "/<object\\s*[^>]*\\s*classid\\s*=\\s*(\\x22|\\x27)\\s*clsid\\s*\\x3a\\s*{?\\s*4E3770F4-1937-4F05-B9A2-959BE7321909\\s*}?(.*)\\>/si",
+      "reference": "url,www.exploit-db.com/exploits/15695/",
+      "classtype": "misc-attack",
+      "sid": 2012052,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_14, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "clsid",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "4E3770F4-1937-4F05-B9A2-959BE7321909",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|22|IconIndex|22|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Winzip 15.0 WZFLDVW.OCX IconIndex Property Denial of Service\"; flow:established,to_client; content:\"clsid\"; nocase; content:\"4E3770F4-1937-4F05-B9A2-959BE7321909\"; nocase; content:\"|22|IconIndex|22|\"; distance:0; pcre:\"/<object\\s*[^>]*\\s*classid\\s*=\\s*(\\x22|\\x27)\\s*clsid\\s*\\x3a\\s*{?\\s*4E3770F4-1937-4F05-B9A2-959BE7321909\\s*}?(.*)\\>/si\"; reference:url,www.exploit-db.com/exploits/15695/; classtype:misc-attack; sid:2012052; rev:1; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_14, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Winzip 15.0 WZFLDVW.OCX Text Property Denial of Service",
+      "flow": "established,to_client",
+      "pcre": "/<object\\s*[^>]*\\s*classid\\s*=\\s*(\\x22|\\x27)\\s*clsid\\s*\\x3a\\s*{?\\s*4E3770F4-1937-4F05-B9A2-959BE7321909\\s*}?(.*)\\>/si",
+      "reference": "url,www.exploit-db.com/exploits/15694/",
+      "classtype": "misc-attack",
+      "sid": 2012053,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_14, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "clsid",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "4E3770F4-1937-4F05-B9A2-959BE7321909",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|22|Text|22|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Winzip 15.0 WZFLDVW.OCX Text Property Denial of Service\"; flow:established,to_client; content:\"clsid\"; nocase; content:\"4E3770F4-1937-4F05-B9A2-959BE7321909\"; nocase; content:\"|22|Text|22|\"; distance:0; pcre:\"/<object\\s*[^>]*\\s*classid\\s*=\\s*(\\x22|\\x27)\\s*clsid\\s*\\x3a\\s*{?\\s*4E3770F4-1937-4F05-B9A2-959BE7321909\\s*}?(.*)\\>/si\"; reference:url,www.exploit-db.com/exploits/15694/; classtype:misc-attack; sid:2012053; rev:1; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_14, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of document.write % Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012059,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%64%6f%63%75%6d%65%6e%74%2e%77%72%69%74%65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of document.write % Encoding\"; flow:established,to_client; content:\"%64%6f%63%75%6d%65%6e%74%2e%77%72%69%74%65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012059; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of document.write %u UTF-8 Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012060,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u64%u6f%u63%u75%u6d%u65%u6e%u74%u2e%u77%u72%u69%u74%u65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of document.write %u UTF-8 Encoding\"; flow:established,to_client; content:\"%u64%u6f%u63%u75%u6d%u65%u6e%u74%u2e%u77%u72%u69%u74%u65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012060; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of arguments.callee % Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012061,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%61%72%67%75%6d%65%6e%74%73%2e%63%61%6c%6c%65%65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of arguments.callee % Encoding\"; flow:established,to_client; content:\"%61%72%67%75%6d%65%6e%74%73%2e%63%61%6c%6c%65%65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012061; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of arguments.callee %u UTF-8 Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012062,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u61%u72%u67%u75%u6d%u65%u6e%u74%u73%u2e%u63%u61%u6c%u6c%u65%u65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of arguments.callee %u UTF-8 Encoding\"; flow:established,to_client; content:\"%u61%u72%u67%u75%u6d%u65%u6e%u74%u73%u2e%u63%u61%u6c%u6c%u65%u65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012062; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of document.write %u UTF-16 Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012107,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_28, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u646f%u6375%u6d65%u6e74%u2e77%u7269%u7465",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of document.write %u UTF-16 Encoding\"; flow:established,to_client; content:\"%u646f%u6375%u6d65%u6e74%u2e77%u7269%u7465\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012107; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_28, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of charCodeAt %u UTF-16 Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012108,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_28, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u6368%u6172%u436f%u6465%u4174",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of charCodeAt %u UTF-16 Encoding\"; flow:established,to_client; content:\"%u6368%u6172%u436f%u6465%u4174\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012108; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_28, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of String.fromCharCode %u UTF-16 Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012109,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_28, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u5374%u7269%u6e67%u2e66%u726f%u6d43%u6861%u7243%u6f64%u65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of String.fromCharCode %u UTF-16 Encoding\"; flow:established,to_client; content:\"%u5374%u7269%u6e67%u2e66%u726f%u6d43%u6861%u7243%u6f64%u65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012109; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_28, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of arguments.callee %u UTF-16 Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012106,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_28, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u6172%u6775%u6d65%u6e74%u732e%u6361%u6c6c%u6565",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of arguments.callee %u UTF-16 Encoding\"; flow:established,to_client; content:\"%u6172%u6775%u6d65%u6e74%u732e%u6361%u6c6c%u6565\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012106; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_28, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Microsoft Windows MPEG Layer-3 Audio Decoder Buffer Overflow",
+      "flow": "established,to_client",
+      "flowbits": "isset,ET.AVI.RIFF.Chunk",
+      "reference": [
+        "cve,2010-0480",
+        "url,www.exploit-db.com/moaub-5-microsoft-mpeg-layer-3-audio-stack-based-overflow/",
+        "url,www.exploit-db.com/exploits/14895/",
+        "url,www.microsoft.com/technet/security/Bulletin/MS10-026.mspx"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2012143,
+      "rev": 3,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_05, cve CVE_2010_0480, deployment Perimeter, confidence High, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|73 74 72 66|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|93 00 00 00|",
+          "modifiers": {
+            "distance": "8",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Microsoft Windows MPEG Layer-3 Audio Decoder Buffer Overflow\"; flow:established,to_client; flowbits:isset,ET.AVI.RIFF.Chunk; content:\"|73 74 72 66|\"; content:\"|93 00 00 00|\"; distance:8; within:4; reference:cve,2010-0480; reference:url,www.exploit-db.com/moaub-5-microsoft-mpeg-layer-3-audio-stack-based-overflow/; reference:url,www.exploit-db.com/exploits/14895/; reference:url,www.microsoft.com/technet/security/Bulletin/MS10-026.mspx; classtype:attempted-user; sid:2012143; rev:3; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_05, cve CVE_2010_0480, deployment Perimeter, confidence High, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Microsoft Office Visio DXF File Processing Remote Code Execution",
+      "flow": "established,to_client",
+      "flowbits": "isset,DXF.Ext.Access",
+      "byte_test": "1,>,81,2,relative",
+      "reference": [
+        "url,www.exploit-db.com/moaub-8-microsoft-office-visio-dxf-file-stack-overflow",
+        "url,www.exploit-db.com/exploits/14944/",
+        "cve,2010-1681",
+        "url,www.microsoft.com/technet/security/bulletin/ms10-028.mspx",
+        "bid,39836"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2012153,
+      "rev": 3,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_06, cve CVE_2010_1681, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "|0A 45 4E 44 53 45 43|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0a|",
+          "modifiers": {
+            "within": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Microsoft Office Visio DXF File Processing Remote Code Execution\"; flow:established,to_client; flowbits:isset,DXF.Ext.Access; content:\"|0A 45 4E 44 53 45 43|\"; content:!\"|0a|\"; within:2; byte_test:1,>,81,2,relative; reference:url,www.exploit-db.com/moaub-8-microsoft-office-visio-dxf-file-stack-overflow; reference:url,www.exploit-db.com/exploits/14944/; reference:cve,2010-1681; reference:url,www.microsoft.com/technet/security/bulletin/ms10-028.mspx; reference:bid,39836; classtype:attempted-user; sid:2012153; rev:3; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_06, cve CVE_2010_1681, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Possible % Encoded Iframe Tag",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html",
+        "url,www.guardian.co.uk/technology/2008/apr/03/security.google"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012241,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%69%66%72%61%6d%65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Possible % Encoded Iframe Tag\"; flow:established,to_client; content:\"%69%66%72%61%6d%65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; reference:url,www.guardian.co.uk/technology/2008/apr/03/security.google; classtype:bad-unknown; sid:2012241; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Possible %u UTF-8 Encoded Iframe Tag",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html",
+        "url,www.guardian.co.uk/technology/2008/apr/03/security.google"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012242,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u69%u66%u72%u61%u6d%u65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Possible %u UTF-8 Encoded Iframe Tag\"; flow:established,to_client; content:\"%u69%u66%u72%u61%u6d%u65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; reference:url,www.guardian.co.uk/technology/2008/apr/03/security.google; classtype:bad-unknown; sid:2012242; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Possible %u UTF-16 Encoded Iframe Tag",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html",
+        "url,www.guardian.co.uk/technology/2008/apr/03/security.google"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012243,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "%u6966%u7261%u6d65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Possible %u UTF-16 Encoded Iframe Tag\"; flow:established,to_client; content:\"%u6966%u7261%u6d65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; reference:url,www.guardian.co.uk/technology/2008/apr/03/security.google; classtype:bad-unknown; sid:2012243; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Possible # Encoded Iframe Tag",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html",
+        "url,www.guardian.co.uk/technology/2008/apr/03/security.google"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012244,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "#69#66#72#61#6d#65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Possible # Encoded Iframe Tag\"; flow:established,to_client; content:\"#69#66#72#61#6d#65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; reference:url,www.guardian.co.uk/technology/2008/apr/03/security.google; classtype:bad-unknown; sid:2012244; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Hex Obfuscation of document.write # Encoding",
+      "flow": "established,to_client",
+      "reference": [
+        "url,cansecwest.com/slides07/csw07-nazario.pdf",
+        "url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2012245,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "#64#6f#63#75#6d#65#6e#74#2e#77#72#69#74#65",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Hex Obfuscation of document.write # Encoding\"; flow:established,to_client; content:\"#64#6f#63#75#6d#65#6e#74#2e#77#72#69#74#65\"; nocase; reference:url,cansecwest.com/slides07/csw07-nazario.pdf; reference:url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html; classtype:bad-unknown; sid:2012245; rev:2; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_27, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Adobe Reader and Acrobat U3D File Invalid Array Index Remote Code Execution Attempt",
+      "flow": "established,to_client",
+      "pcre": "/<<[^>]*\\x2FU3D\\x2FLength\\x20172[0-5][0-9]{2}/sm",
+      "reference": [
+        "url,labs.idefense.com/intelligence/vulnerabilities/display.php?id=827",
+        "url,www.adobe.com/support/security/bulletins/apsb09-15.html",
+        "bid,36638",
+        "cve,2009-2990"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2012179,
+      "rev": 6,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_15, cve CVE_2009_2990, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "/U3D/Length 172",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Adobe Reader and Acrobat U3D File Invalid Array Index Remote Code Execution Attempt\"; flow:established,to_client; content:\"/U3D/Length 172\"; pcre:\"/<<[^>]*\\x2FU3D\\x2FLength\\x20172[0-5][0-9]{2}/sm\"; reference:url,labs.idefense.com/intelligence/vulnerabilities/display.php?id=827; reference:url,www.adobe.com/support/security/bulletins/apsb09-15.html; reference:bid,36638; reference:cve,2009-2990; classtype:attempted-user; sid:2012179; rev:6; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_15, cve CVE_2009_2990, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Proxy - OWASP Zed Attack Proxy Certificate Seen",
+      "classtype": "misc-activity",
+      "sid": 2021941,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2015_10_10, deployment Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|16|",
+          "modifiers": {
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "OWASP Zed Attack Proxy Root CA",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET any (msg:\"ET WEB_CLIENT Proxy - OWASP Zed Attack Proxy Certificate Seen\"; content:\"|16|\"; depth:1; content:\"OWASP Zed Attack Proxy Root CA\"; nocase; classtype:misc-activity; sid:2021941; rev:1; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2015_10_10, deployment Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Proxy - BurpSuite PortSwigger Proxy Certificate Seen",
+      "classtype": "misc-activity",
+      "sid": 2021942,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2015_10_10, deployment Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|16|",
+          "modifiers": {
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "PortSwigger CA",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET any (msg:\"ET WEB_CLIENT Proxy - BurpSuite PortSwigger Proxy Certificate Seen\"; content:\"|16|\"; depth:1; content:\"PortSwigger CA\"; nocase; classtype:misc-activity; sid:2021942; rev:1; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2015_10_10, deployment Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Proxy - Fiddler Proxy Certificate Seen",
+      "classtype": "misc-activity",
+      "sid": 2021943,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2015_10_10, deployment Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|16|",
+          "modifiers": {
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "DO_NOT_TRUST_FiddlerRoot",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET any (msg:\"ET WEB_CLIENT Proxy - Fiddler Proxy Certificate Seen\"; content:\"|16|\"; depth:1; content:\"DO_NOT_TRUST_FiddlerRoot\"; nocase; classtype:misc-activity; sid:2021943; rev:1; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2015_10_10, deployment Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 641,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Java Web Start Command Injection (.jar)",
+      "flow": "established,to_client",
+      "pcre": "/http\\x3a -J-jar -J\\x5C\\x5C\\x5C\\x5C\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\x5C\\x5C[^\\n]*\\.jar/i",
+      "reference": "url,seclists.org/fulldisclosure/2010/Apr/119",
+      "classtype": "web-application-attack",
+      "sid": 2011698,
+      "rev": 7,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, confidence High, signature_severity Major, tag Web_Client_Attacks, updated_at 2024_03_06, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1210, mitre_technique_name Exploitation_Of_Remote_Services",
+      "contents": [
+        {
+          "pattern": "http|3a| -J-jar -J|5C 5C 5C 5C|",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": ".launch(",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Java Web Start Command Injection (.jar)\"; flow:established,to_client; content:\"http|3a| -J-jar -J|5C 5C 5C 5C|\"; nocase; content:\".launch(\"; nocase; pcre:\"/http\\x3a -J-jar -J\\x5C\\x5C\\x5C\\x5C\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\x5C\\x5C[^\\n]*\\.jar/i\"; reference:url,seclists.org/fulldisclosure/2010/Apr/119; classtype:web-application-attack; sid:2011698; rev:7; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, confidence High, signature_severity Major, tag Web_Client_Attacks, updated_at 2024_03_06, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1210, mitre_technique_name Exploitation_Of_Remote_Services;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 1123,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT AVI RIFF Chunk Access Flowbit Set",
+      "flow": "established,to_client",
+      "flowbits": [
+        "set,ET.AVI.RIFF.Chunk",
+        "noalert"
+      ],
+      "classtype": "not-suspicious",
+      "sid": 2012142,
+      "rev": 3,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_05, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2024_03_14",
+      "contents": [
+        {
+          "pattern": "|52 49 46 46|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|41 56 49 20|",
+          "modifiers": {
+            "distance": "4",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT AVI RIFF Chunk Access Flowbit Set\"; flow:established,to_client; flowbits:set,ET.AVI.RIFF.Chunk; flowbits:noalert; content:\"|52 49 46 46|\"; content:\"|41 56 49 20|\"; distance:4; within:4; classtype:not-suspicious; sid:2012142; rev:3; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_05, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2024_03_14;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 1125,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT DXF Extension File Detection Access Flowbit Set",
+      "flow": "established,to_client",
+      "flowbits": [
+        "set,DXF.Ext.Access",
+        "noalert"
+      ],
+      "classtype": "not-suspicious",
+      "sid": 2012152,
+      "rev": 3,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_06, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2024_03_14",
+      "contents": [
+        {
+          "pattern": "|20 20 30|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0A 53 45 43 54 49 4F 4E|",
+          "modifiers": {
+            "within": "10"
+          }
+        },
+        {
+          "pattern": "|20 20 32|",
+          "modifiers": {
+            "within": "5"
+          }
+        },
+        {
+          "pattern": "|48 45 41 44 45 52|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|0a|",
+          "modifiers": {
+            "within": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT DXF Extension File Detection Access Flowbit Set\"; flow:established,to_client; flowbits:set,DXF.Ext.Access; flowbits:noalert; content:\"|20 20 30|\"; content:\"|0A 53 45 43 54 49 4F 4E|\"; within:10; content:\"|20 20 32|\"; within:5; content:\"|48 45 41 44 45 52|\"; distance:0; content:\"|0a|\"; within:2; classtype:not-suspicious; sid:2012152; rev:3; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2011_01_06, deployment Perimeter, confidence Medium, signature_severity Major, tag Web_Client_Attacks, updated_at 2024_03_14;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 1127,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$HTTP_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Oracle Java 6 Object Tag launchjnlp docbase Parameters Flowbits Set",
+      "flow": "established,to_client",
+      "flowbits": [
+        "set,NtDll.ImageBase.Module.Called",
+        "noalert"
+      ],
+      "classtype": "not-suspicious",
+      "sid": 2012085,
+      "rev": 4,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_22, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2024_03_14",
+      "contents": [
+        {
+          "pattern": "NtDllImageBase|22|",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "getModuleInfos|28|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|27|ntdll.dll|27|",
+          "modifiers": {
+            "nocase": true,
+            "within": "50"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:\"ET WEB_CLIENT Oracle Java 6 Object Tag launchjnlp docbase Parameters Flowbits Set\"; flow:established,to_client; flowbits:set,NtDll.ImageBase.Module.Called; flowbits:noalert; content:\"NtDllImageBase|22|\"; nocase; content:\"getModuleInfos|28|\"; distance:0; content:\"|27|ntdll.dll|27|\"; nocase; within:50; classtype:not-suspicious; sid:2012085; rev:4; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2010_12_22, deployment Perimeter, confidence Low, signature_severity Major, tag Web_Client_Attacks, updated_at 2024_03_14;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 1645,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT The Browser Exploitation Framework (BeEF) Default SSL Cert",
+      "flow": "established,to_client",
+      "classtype": "attempted-user",
+      "sid": 2018089,
+      "rev": 3,
+      "metadata": "affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, tls_state TLSEncrypt, created_at 2014_02_07, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag SSL_Malicious_Cert, tag Web_Client_Attacks, updated_at 2026_08_14",
+      "contents": [
+        {
+          "pattern": "|0b|Bovine Land",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|1e|Browser Exploitation Framework",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> $HOME_NET any (msg:\"ET WEB_CLIENT The Browser Exploitation Framework (BeEF) Default SSL Cert\"; flow:established,to_client; content:\"|0b|Bovine Land\"; fast_pattern; content:\"|1e|Browser Exploitation Framework\"; classtype:attempted-user; sid:2018089; rev:3; metadata:affected_product Web_Browsers, affected_product Web_Browser_Plugins, attack_target Client_Endpoint, tls_state TLSEncrypt, created_at 2014_02_07, deployment Perimeter, deployment Internal, confidence Medium, signature_severity Major, tag SSL_Malicious_Cert, tag Web_Client_Attacks, updated_at 2026_08_14;)"
+  }
+]

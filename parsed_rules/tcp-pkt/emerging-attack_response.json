@@ -1,0 +1,107 @@
+[
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 141,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Apache Spark RPC - Unauthenticated RegisterApplication - Successfully Registered (CVE-2020-9480)",
+      "flow": "established,to_client",
+      "flowbits": "isset,ET.ApacheSpark_UnauthRegisterApplication",
+      "reference": [
+        "cve,2020-9480",
+        "url,www.youtube.com/watch?v=EAzdGo-i8vE",
+        "url,github.com/ayoul3/sparky/"
+      ],
+      "classtype": "successful-admin",
+      "sid": 2035004,
+      "rev": 2,
+      "metadata": "attack_target Server, created_at 2022_01_28, cve CVE_2020_9480, deployment Internal, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2022_01_28",
+      "contents": [
+        {
+          "pattern": "org.apache.spark.deploy.DeployMessages$RegisteredApplication",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE Apache Spark RPC - Unauthenticated RegisterApplication - Successfully Registered (CVE-2020-9480)\"; flow:established,to_client; flowbits:isset,ET.ApacheSpark_UnauthRegisterApplication; content:\"org.apache.spark.deploy.DeployMessages$RegisteredApplication\"; fast_pattern; reference:cve,2020-9480; reference:url,www.youtube.com/watch?v=EAzdGo-i8vE; reference:url,github.com/ayoul3/sparky/; classtype:successful-admin; sid:2035004; rev:2; metadata:attack_target Server, created_at 2022_01_28, cve CVE_2020_9480, deployment Internal, deployment Datacenter, confidence Medium, signature_severity Major, updated_at 2022_01_28;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 189,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Interactive Reverse Shell Without TTY (Outbound)",
+      "flow": "established,to_server",
+      "pcre": "/^(?:ba)?sh/",
+      "reference": [
+        "url,pentestmonkey.net/blog/post-exploitation-without-a-tty",
+        "url,www.mandiant.com/resources/blog/unc961-multiverse-financially-motivated"
+      ],
+      "classtype": "successful-admin",
+      "sid": 2044751,
+      "rev": 1,
+      "metadata": "affected_product Linux, attack_target Client_Endpoint, created_at 2023_03_23, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_03_23, reviewed_at 2024_01_26",
+      "contents": [
+        {
+          "pattern": "|3a 20|no|20|job|20|control|20|in|20|this|20|shell",
+          "modifiers": {
+            "fast_pattern": true,
+            "within": "30"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE Interactive Reverse Shell Without TTY (Outbound)\"; flow:established,to_server; pcre:\"/^(?:ba)?sh/\"; content:\"|3a 20|no|20|job|20|control|20|in|20|this|20|shell\"; fast_pattern; within:30; reference:url,pentestmonkey.net/blog/post-exploitation-without-a-tty; reference:url,www.mandiant.com/resources/blog/unc961-multiverse-financially-motivated; classtype:successful-admin; sid:2044751; rev:1; metadata:affected_product Linux, attack_target Client_Endpoint, created_at 2023_03_23, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_03_23, reviewed_at 2024_01_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1539,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Nishang Invoke-PowerShellTcp Shell Prompt Outbound",
+      "flow": "established,to_server",
+      "stream_size": "server,<,5",
+      "startswith": true,
+      "reference": "url,github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1",
+      "classtype": "bad-unknown",
+      "sid": 2038605,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_24, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12",
+      "contents": [
+        {
+          "pattern": "Windows PowerShell running as user",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|20|on|20|",
+          "modifiers": {
+            "within": "258"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE Nishang Invoke-PowerShellTcp Shell Prompt Outbound\"; flow:established,to_server; stream_size:server,<,5; content:\"Windows PowerShell running as user\"; startswith; fast_pattern; content:\"|20|on|20|\"; within:258; reference:url,github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1; classtype:bad-unknown; sid:2038605; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_08_24, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_12_12;)"
+  }
+]

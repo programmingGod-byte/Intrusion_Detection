@@ -1,0 +1,1449 @@
+[
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "139",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Weak Netbios Lanman Auth Challenge Detected",
+      "flow": "from_server",
+      "classtype": "policy-violation",
+      "sid": 2006417,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|ff 53 4d 42|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 11 22 33 44 55 66 77 88|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 139 -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE Weak Netbios Lanman Auth Challenge Detected\"; flow:from_server; content:\"|ff 53 4d 42|\"; content:\"|00 11 22 33 44 55 66 77 88|\"; classtype:policy-violation; sid:2006417; rev:8; metadata:created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Possible MS CMD Shell opened on local system",
+      "flow": "established",
+      "dsize": "<110",
+      "classtype": "successful-admin",
+      "sid": 2008953,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "Microsoft Windows ",
+          "modifiers": {
+            "depth": "20"
+          }
+        },
+        {
+          "pattern": "Copyright 1985-20",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Microsoft Corp",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|0a 0a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE Possible MS CMD Shell opened on local system\"; flow:established; dsize:<110; content:\"Microsoft Windows \"; depth:20; content:\"Copyright 1985-20\"; distance:0; content:\"Microsoft Corp\"; distance:0; content:\"|0a 0a|\"; distance:0; classtype:successful-admin; sid:2008953; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Net User Command Response",
+      "flow": "established",
+      "classtype": "successful-user",
+      "sid": 2017025,
+      "rev": 3,
+      "metadata": "created_at 2013_06_18, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "User accounts for |5C 5C|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "-------------------------------------------------------------------------------",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any any (msg:\"ET ATTACK_RESPONSE Net User Command Response\"; flow:established; content:\"User accounts for |5C 5C|\"; fast_pattern; content:\"-------------------------------------------------------------------------------\"; distance:0; classtype:successful-user; sid:2017025; rev:3; metadata:created_at 2013_06_18, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE python shell spawn attempt",
+      "flow": "established,to_client",
+      "classtype": "trojan-activity",
+      "sid": 2017317,
+      "rev": 2,
+      "metadata": "created_at 2013_08_12, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "pty|2e|spawn|2822|/bin/sh|2229|",
+          "modifiers": {
+            "depth": "64"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE python shell spawn attempt\"; flow:established,to_client; content:\"pty|2e|spawn|2822|/bin/sh|2229|\"; depth:64; classtype:trojan-activity; sid:2017317; rev:2; metadata:created_at 2013_08_12, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Output of id command from HTTP server",
+      "flow": "established",
+      "pcre": [
+        "/^\\d+[^\\r\\n\\s]+/R",
+        "/^\\d+[^\\r\\n\\s]+/R"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2019284,
+      "rev": 3,
+      "metadata": "created_at 2014_09_26, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "uid=",
+          "modifiers": {}
+        },
+        {
+          "pattern": " gid=",
+          "modifiers": {
+            "within": "5"
+          }
+        },
+        {
+          "pattern": " groups=",
+          "modifiers": {
+            "within": "8"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE Output of id command from HTTP server\"; flow:established; content:\"uid=\"; pcre:\"/^\\d+[^\\r\\n\\s]+/R\"; content:\" gid=\"; within:5; pcre:\"/^\\d+[^\\r\\n\\s]+/R\"; content:\" groups=\"; within:8; classtype:bad-unknown; sid:2019284; rev:3; metadata:created_at 2014_09_26, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Microsoft CScript Banner Outbound",
+      "flow": "established",
+      "classtype": "successful-admin",
+      "sid": 2020085,
+      "rev": 1,
+      "metadata": "created_at 2015_01_05, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "Windows Script Host Version",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Copyright |28|C|29|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Microsoft Corp",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE Microsoft CScript Banner Outbound\"; flow:established; content:\"Windows Script Host Version\"; content:\"Copyright |28|C|29|\"; distance:0; content:\"Microsoft Corp\"; distance:0; classtype:successful-admin; sid:2020085; rev:1; metadata:created_at 2015_01_05, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Microsoft WMIC Prompt Outbound",
+      "flow": "established",
+      "classtype": "successful-admin",
+      "sid": 2020086,
+      "rev": 1,
+      "metadata": "created_at 2015_01_05, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "wmic|3a|root|5c|cli>",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE Microsoft WMIC Prompt Outbound\"; flow:established; content:\"wmic|3a|root|5c|cli>\"; classtype:successful-admin; sid:2020086; rev:1; metadata:created_at 2015_01_05, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Microsoft Netsh Firewall Disable Output Outbound",
+      "flow": "established",
+      "classtype": "successful-admin",
+      "sid": 2020087,
+      "rev": 1,
+      "metadata": "created_at 2015_01_05, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "netsh firewall|22| is deprecated|3b|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "use |22|netsh advfirewall",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Ok.",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE Microsoft Netsh Firewall Disable Output Outbound\"; flow:established; content:\"netsh firewall|22| is deprecated|3b|\"; content:\"use |22|netsh advfirewall\"; distance:0; content:\"Ok.\"; distance:0; classtype:successful-admin; sid:2020087; rev:1; metadata:created_at 2015_01_05, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE SysInternals sc.exe Output Outbound",
+      "flow": "established",
+      "classtype": "successful-admin",
+      "sid": 2020088,
+      "rev": 1,
+      "metadata": "created_at 2015_01_05, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SERVICE_NAME|3a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "TYPE",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "SERVICE_EXIT_CODE",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE SysInternals sc.exe Output Outbound\"; flow:established; content:\"SERVICE_NAME|3a|\"; content:\"TYPE\"; distance:0; content:\"SERVICE_EXIT_CODE\"; distance:0; classtype:successful-admin; sid:2020088; rev:1; metadata:created_at 2015_01_05, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "25",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Possible /etc/passwd via SMTP (linux style)",
+      "flow": "established,to_server",
+      "classtype": "successful-recon-limited",
+      "sid": 2003149,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "root|3a|x|3a|0|3a|0|3a|root|3a|/root|3a|/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 25 (msg:\"ET ATTACK_RESPONSE Possible /etc/passwd via SMTP (linux style)\"; flow:established,to_server; content:\"root|3a|x|3a|0|3a|0|3a|root|3a|/root|3a|/\"; nocase; classtype:successful-recon-limited; sid:2003149; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "25",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Possible /etc/passwd via SMTP (BSD style)",
+      "flow": "established,to_server",
+      "classtype": "successful-recon-limited",
+      "sid": 2003150,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "root|3a|*|3a|0|3a|0|3a|",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|3a|/root|3a|/bin",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 25 (msg:\"ET ATTACK_RESPONSE Possible /etc/passwd via SMTP (BSD style)\"; flow:established,to_server; content:\"root|3a|*|3a|0|3a|0|3a|\"; nocase; content:\"|3a|/root|3a|/bin\"; nocase; classtype:successful-recon-limited; sid:2003150; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "[1024:]",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE LaZagne Artifact Outbound in FTP",
+      "flow": "established,to_server",
+      "reference": "url,github.com/AlessandroZ/LaZagne",
+      "classtype": "trojan-activity",
+      "sid": 2027151,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_04, deployment Perimeter, malware_family Stealer, malware_family LaZange, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "The LaZagne Project",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET [1024:] (msg:\"ET ATTACK_RESPONSE LaZagne Artifact Outbound in FTP\"; flow:established,to_server; content:\"The LaZagne Project\"; fast_pattern; reference:url,github.com/AlessandroZ/LaZagne; classtype:trojan-activity; sid:2027151; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_04_04, deployment Perimeter, malware_family Stealer, malware_family LaZange, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Windows 64bit procdump Dump File Exfiltration",
+      "flow": "established,to_server",
+      "reference": "url,attack.mitre.org/techniques/T1003/",
+      "classtype": "attempted-admin",
+      "sid": 2027435,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_06_05, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, tag T1003, tag credential_dumping, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 2a 00 2a 00 2a 00 20 00|p|00|r|00|o|00|c|00|d|00|u|00|m|00|p|00|6|00|4|00 2e 00|e|00|x|00|e",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE Windows 64bit procdump Dump File Exfiltration\"; flow:established,to_server; content:\"|00 2a 00 2a 00 2a 00 20 00|p|00|r|00|o|00|c|00|d|00|u|00|m|00|p|00|6|00|4|00 2e 00|e|00|x|00|e\"; fast_pattern; reference:url,attack.mitre.org/techniques/T1003/; classtype:attempted-admin; sid:2027435; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_06_05, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, tag T1003, tag credential_dumping, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Windows 32bit procdump Dump File Exfiltration",
+      "flow": "established,to_server",
+      "reference": "url,attack.mitre.org/techniques/T1003/",
+      "classtype": "attempted-admin",
+      "sid": 2027436,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_06_05, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, tag T1003, tag credential_dumping, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 2a 00 2a 00 2a 00 20 00|p|00|r|00|o|00|c|00|d|00|u|00|m|00|p|00 2e 00|e|00|x|00|e",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE Windows 32bit procdump Dump File Exfiltration\"; flow:established,to_server; content:\"|00 2a 00 2a 00 2a 00 20 00|p|00|r|00|o|00|c|00|d|00|u|00|m|00|p|00 2e 00|e|00|x|00|e\"; fast_pattern; reference:url,attack.mitre.org/techniques/T1003/; classtype:attempted-admin; sid:2027436; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at 2019_06_05, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, tag T1003, tag credential_dumping, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Possible  MS CMD Shell opened on local system 2",
+      "dsize": "<200",
+      "classtype": "successful-admin",
+      "sid": 2018392,
+      "rev": 2,
+      "metadata": "created_at 2014_04_16, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_04_12",
+      "contents": [
+        {
+          "pattern": "Microsoft Windows ",
+          "modifiers": {
+            "depth": "40"
+          }
+        },
+        {
+          "pattern": "[Version",
+          "modifiers": {
+            "within": "10"
+          }
+        },
+        {
+          "pattern": "Copyright (c) 2009",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Microsoft Corp",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> any any (msg:\"ET ATTACK_RESPONSE Possible  MS CMD Shell opened on local system 2\"; dsize:<200; content:\"Microsoft Windows \"; depth:40; content:\"[Version\"; within:10; content:\"Copyright (c) 2009\"; distance:0; content:\"Microsoft Corp\"; distance:0; classtype:successful-admin; sid:2018392; rev:2; metadata:created_at 2014_04_16, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_04_12;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Possible CVE-2021-44228 Payload via LDAPv3 Response",
+      "flow": "established,to_client",
+      "startswith": true,
+      "byte_jump": [
+        "1,0,relative",
+        "1,0,relative",
+        "1,0,relative",
+        "1,0,relative"
+      ],
+      "reference": [
+        "url,ldap.com/ldapv3-wire-protocol-reference-ldap-result/",
+        "url,ldap.com/ldapv3-wire-protocol-reference-search/",
+        "cve,2021-44228"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2034722,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2021_12_14, cve CVE_2021_44228, deployment Perimeter, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_14",
+      "contents": [
+        {
+          "pattern": "|30 81|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|02 01|",
+          "modifiers": {
+            "distance": "1",
+            "within": "2"
+          }
+        },
+        {
+          "pattern": "|64|",
+          "modifiers": {
+            "distance": "1",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|04|",
+          "modifiers": {
+            "distance": "2",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|04 0d|javaClassName",
+          "modifiers": {
+            "within": "20",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|04|",
+          "modifiers": {
+            "distance": "2",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|04 0c|javaCodeBase",
+          "modifiers": {
+            "within": "19"
+          }
+        },
+        {
+          "pattern": "|04|",
+          "modifiers": {
+            "distance": "2",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|04 0b|objectClass",
+          "modifiers": {
+            "within": "18"
+          }
+        },
+        {
+          "pattern": "|04|",
+          "modifiers": {
+            "distance": "2",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|04 0b|javaFactory",
+          "modifiers": {
+            "within": "18"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET ATTACK_RESPONSE Possible CVE-2021-44228 Payload via LDAPv3 Response\"; flow:established,to_client; content:\"|30 81|\"; startswith; content:\"|02 01|\"; distance:1; within:2; content:\"|64|\"; distance:1; within:1; content:\"|04|\"; distance:2; within:1; byte_jump:1,0,relative; content:\"|04 0d|javaClassName\"; within:20; fast_pattern; content:\"|04|\"; distance:2; within:1; byte_jump:1,0,relative; content:\"|04 0c|javaCodeBase\"; within:19; content:\"|04|\"; distance:2; within:1; byte_jump:1,0,relative; content:\"|04 0b|objectClass\"; within:18; content:\"|04|\"; distance:2; within:1; byte_jump:1,0,relative; content:\"|04 0b|javaFactory\"; within:18; reference:url,ldap.com/ldapv3-wire-protocol-reference-ldap-result/; reference:url,ldap.com/ldapv3-wire-protocol-reference-search/; reference:cve,2021-44228; classtype:attempted-admin; sid:2034722; rev:1; metadata:attack_target Client_and_Server, created_at 2021_12_14, cve CVE_2021_44228, deployment Perimeter, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_14;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 103,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Possible CVE-2021-44228 Payload via LDAPv3 Response M2",
+      "flow": "established,to_client",
+      "startswith": true,
+      "byte_jump": "1,0,relative",
+      "reference": [
+        "url,ldap.com/ldapv3-wire-protocol-reference-ldap-result/",
+        "url,ldap.com/ldapv3-wire-protocol-reference-search/",
+        "cve,2021-44228"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2034769,
+      "rev": 2,
+      "metadata": "created_at 2021_12_20, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_20",
+      "contents": [
+        {
+          "pattern": "|30|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|04 0d|javaClassName",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|04|",
+          "modifiers": {
+            "distance": "2",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|04 12|javaSerializedData",
+          "modifiers": {
+            "within": "25"
+          }
+        },
+        {
+          "pattern": "|ac ed|",
+          "modifiers": {
+            "within": "10"
+          }
+        },
+        {
+          "pattern": "|2e|exec",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "FromCharCode",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET ATTACK_RESPONSE Possible CVE-2021-44228 Payload via LDAPv3 Response M2\"; flow:established,to_client; content:\"|30|\"; startswith; content:\"|04 0d|javaClassName\"; fast_pattern; content:\"|04|\"; distance:2; within:1; byte_jump:1,0,relative; content:\"|04 12|javaSerializedData\"; within:25; content:\"|ac ed|\"; within:10; content:\"|2e|exec\"; distance:0; content:\"FromCharCode\"; nocase; distance:0; reference:url,ldap.com/ldapv3-wire-protocol-reference-ldap-result/; reference:url,ldap.com/ldapv3-wire-protocol-reference-search/; reference:cve,2021-44228; classtype:attempted-admin; sid:2034769; rev:2; metadata:created_at 2021_12_20, cve CVE_2021_44228, confidence Medium, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_12_20;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 145,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE MalDoc/Generik.ILNMZZB Payload Inbound",
+      "flow": "established,to_client",
+      "reference": [
+        "md5,cbc307d6059925e9abbdbdec4d9ec0c1",
+        "url,twitter.com/h2jazi/status/1570246175747457026"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2038959,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_09_23, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_23",
+      "contents": [
+        {
+          "pattern": "|3c|title|3e 0a|Exploit|0a 3c 2f|title|3e|",
+          "modifiers": {
+            "nocase": true,
+            "offset": "30",
+            "depth": "40",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|3c|script|3e 0a 2f 2f|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "window|2e|location|2e|href|20 3d 20 22|ms|2d|msdt|3a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE MalDoc/Generik.ILNMZZB Payload Inbound\"; flow:established,to_client; content:\"|3c|title|3e 0a|Exploit|0a 3c 2f|title|3e|\"; nocase; offset:30; depth:40; fast_pattern; content:\"|3c|script|3e 0a 2f 2f|\"; distance:0; content:\"window|2e|location|2e|href|20 3d 20 22|ms|2d|msdt|3a|\"; distance:0; reference:md5,cbc307d6059925e9abbdbdec4d9ec0c1; reference:url,twitter.com/h2jazi/status/1570246175747457026; classtype:trojan-activity; sid:2038959; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_09_23, deployment Perimeter, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_09_23;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1087,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "21",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Hostile FTP Server Banner (StnyFtpd)",
+      "flow": "established,to_client",
+      "classtype": "trojan-activity",
+      "sid": 2002809,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220 StnyFtpd 0wns j0",
+          "modifiers": {
+            "offset": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 21 -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Hostile FTP Server Banner (StnyFtpd)\"; flow:established,to_client; content:\"220 StnyFtpd 0wns j0\"; offset:0; nocase; classtype:trojan-activity; sid:2002809; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1089,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "21",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Hostile FTP Server Banner (Reptile)",
+      "flow": "established,to_client",
+      "classtype": "trojan-activity",
+      "sid": 2002810,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220 Reptile welcomes you",
+          "modifiers": {
+            "offset": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 21 -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Hostile FTP Server Banner (Reptile)\"; flow:established,to_client; content:\"220 Reptile welcomes you\"; offset:0; nocase; classtype:trojan-activity; sid:2002810; rev:5; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1091,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "21",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Hostile FTP Server Banner (Bot Server)",
+      "flow": "established,to_client",
+      "classtype": "trojan-activity",
+      "sid": 2002811,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220 Bot Server (Win32)",
+          "modifiers": {
+            "offset": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 21 -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Hostile FTP Server Banner (Bot Server)\"; flow:established,to_client; content:\"220 Bot Server (Win32)\"; offset:0; nocase; classtype:trojan-activity; sid:2002811; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1093,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "21",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Unusual FTP Server Banner (warFTPd)",
+      "flow": "established,to_client",
+      "reference": "url,www.warftp.org",
+      "classtype": "trojan-activity",
+      "sid": 2003464,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220 ",
+          "modifiers": {}
+        },
+        {
+          "pattern": "--warFTPd ",
+          "modifiers": {
+            "depth": "40",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 21 -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Unusual FTP Server Banner (warFTPd)\"; flow:established,to_client; content:\"220 \"; content:\"--warFTPd \"; depth:40; nocase; reference:url,www.warftp.org; classtype:trojan-activity; sid:2003464; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1095,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "21",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Unusual FTP Server Banner (freeFTPd)",
+      "flow": "established,to_client",
+      "reference": "url,www.freeftp.com",
+      "classtype": "trojan-activity",
+      "sid": 2003465,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220 ",
+          "modifiers": {}
+        },
+        {
+          "pattern": "--freeFTPd ",
+          "modifiers": {
+            "depth": "40",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 21 -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Unusual FTP Server Banner (freeFTPd)\"; flow:established,to_client; content:\"220 \"; content:\"--freeFTPd \"; depth:40; nocase; reference:url,www.freeftp.com; classtype:trojan-activity; sid:2003465; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1099,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "1024:",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Unusual FTP Server Banner on High Port (WinFtpd)",
+      "flow": "established,to_client",
+      "dsize": "<18",
+      "classtype": "trojan-activity",
+      "sid": 2007725,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220 WinFtpd",
+          "modifiers": {
+            "depth": "11",
+            "offset": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 1024: -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Unusual FTP Server Banner on High Port (WinFtpd)\"; flow:established,to_client; dsize:<18; content:\"220 WinFtpd\"; depth:11; offset:0; nocase; classtype:trojan-activity; sid:2007725; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1101,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "1024:",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Unusual FTP Server Banner on High Port (StnyFtpd)",
+      "flow": "established,to_client",
+      "dsize": "<30",
+      "classtype": "trojan-activity",
+      "sid": 2007726,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220 StnyFtpd",
+          "modifiers": {
+            "depth": "12",
+            "offset": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 1024: -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Unusual FTP Server Banner on High Port (StnyFtpd)\"; flow:established,to_client; dsize:<30; content:\"220 StnyFtpd\"; depth:12; offset:0; nocase; classtype:trojan-activity; sid:2007726; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1103,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "[21,1024:]",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Unusual FTP Server Banner (fuckFtpd)",
+      "flow": "established,to_client",
+      "dsize": "<18",
+      "classtype": "trojan-activity",
+      "sid": 2009210,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220 fuckFtpd",
+          "modifiers": {
+            "depth": "12",
+            "offset": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any [21,1024:] -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Unusual FTP Server Banner (fuckFtpd)\"; flow:established,to_client; dsize:<18; content:\"220 fuckFtpd\"; depth:12; offset:0; nocase; classtype:trojan-activity; sid:2009210; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1105,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "[21,1024:]",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Unusual FTP Server Banner (NzmxFtpd)",
+      "flow": "established,to_client",
+      "dsize": "<18",
+      "classtype": "trojan-activity",
+      "sid": 2009211,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220 NzmxFtpd",
+          "modifiers": {
+            "depth": "12",
+            "offset": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any [21,1024:] -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Unusual FTP Server Banner (NzmxFtpd)\"; flow:established,to_client; dsize:<18; content:\"220 NzmxFtpd\"; depth:12; offset:0; nocase; classtype:trojan-activity; sid:2009211; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1149,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Metasploit Meterpreter Registry Interation Detected",
+      "flow": "established,to_client",
+      "reference": "url,www.nologin.org/Downloads/Papers/meterpreter.pdf",
+      "classtype": "successful-user",
+      "sid": 2009579,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2010_07_30, deployment Perimeter, deployment Internet, deployment Internal, deployment Datacenter, confidence Medium, signature_severity Critical, tag Metasploit, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "stdapi_registry_create_key",
+          "modifiers": {
+            "depth": "60"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE Metasploit Meterpreter Registry Interation Detected\"; flow:established,to_client; content:\"stdapi_registry_create_key\"; depth:60; reference:url,www.nologin.org/Downloads/Papers/meterpreter.pdf; classtype:successful-user; sid:2009579; rev:3; metadata:affected_product Any, attack_target Client_and_Server, created_at 2010_07_30, deployment Perimeter, deployment Internet, deployment Internal, deployment Datacenter, confidence Medium, signature_severity Critical, tag Metasploit, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1161,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$SQL_SERVERS",
+    "src_port": "3306",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE MySQL User Account Enumeration",
+      "flow": "established,to_client",
+      "threshold": "type both,track by_dst,count 10,seconds 1",
+      "reference": "url,seclists.org/fulldisclosure/2012/Dec/att-9/",
+      "classtype": "protocol-command-decode",
+      "sid": 2015993,
+      "rev": 4,
+      "metadata": "created_at 2012_12_06, confidence Medium, signature_severity Minor, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "|02|",
+          "modifiers": {
+            "offset": "3",
+            "depth": "4"
+          }
+        },
+        {
+          "pattern": "|15 04|Access denied for user",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $SQL_SERVERS 3306 -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE MySQL User Account Enumeration\"; flow:established,to_client; content:\"|02|\"; offset:3; depth:4; content:\"|15 04|Access denied for user\"; fast_pattern; threshold:type both,track by_dst,count 10,seconds 1; reference:url,seclists.org/fulldisclosure/2012/Dec/att-9/; classtype:protocol-command-decode; sid:2015993; rev:4; metadata:created_at 2012_12_06, confidence Medium, signature_severity Minor, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1361,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access COM1",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000499,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/COM1/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access COM1\"; flow:established; content:\"/COM1/\"; nocase; classtype:string-detect; sid:2000499; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1363,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access COM2",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000500,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/COM2/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access COM2\"; flow:established; content:\"/COM2/\"; nocase; classtype:string-detect; sid:2000500; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1365,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access COM3",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000501,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/COM3/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access COM3\"; flow:established; content:\"/COM3/\"; nocase; classtype:string-detect; sid:2000501; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1367,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access COM4",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000502,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/COM4/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access COM4\"; flow:established; content:\"/COM4/\"; nocase; classtype:string-detect; sid:2000502; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1369,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access LPT1",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000503,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/LPT1/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access LPT1\"; flow:established; content:\"/LPT1/\"; nocase; classtype:string-detect; sid:2000503; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1371,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access LPT2",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000504,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/LPT2/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access LPT2\"; flow:established; content:\"/LPT2/\"; nocase; classtype:string-detect; sid:2000504; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1373,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access LPT3",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000505,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/LPT3/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access LPT3\"; flow:established; content:\"/LPT3/\"; nocase; classtype:string-detect; sid:2000505; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1375,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access LPT4",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000506,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/LPT4/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access LPT4\"; flow:established; content:\"/LPT4/\"; nocase; classtype:string-detect; sid:2000506; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1377,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access AUX",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000507,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/AUX/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access AUX\"; flow:established; content:\"/AUX/\"; nocase; classtype:string-detect; sid:2000507; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1379,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE FTP inaccessible directory access NULL",
+      "flow": "established",
+      "classtype": "string-detect",
+      "sid": 2000508,
+      "rev": 9,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16",
+      "contents": [
+        {
+          "pattern": "/NULL/",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"ET ATTACK_RESPONSE FTP inaccessible directory access NULL\"; flow:established; content:\"/NULL/\"; nocase; classtype:string-detect; sid:2000508; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17, reviewed_at 2024_09_16;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1467,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE RuPSRAT Command Inbound (Download/Execute GoBayden)",
+      "flow": "established,to_client",
+      "dsize": "<250",
+      "startswith": true,
+      "endswith": true,
+      "reference": [
+        "md5,c6ef634779facf10516f0dd6d0d1757c",
+        "url,x.com/JAMESWT_MHT/status/1862048169053364405"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2058116,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state plaintext, created_at 2024_12_06, deployment Perimeter, malware_family RuPSRAT, confidence High, signature_severity Critical, updated_at 2024_12_06",
+      "contents": [
+        {
+          "pattern": "powershell|20 2d|Command",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|2e|dll|2c|gobayden|27 7d 22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET ATTACK_RESPONSE RuPSRAT Command Inbound (Download/Execute GoBayden)\"; flow:established,to_client; dsize:<250; content:\"powershell|20 2d|Command\"; startswith; nocase; content:\"|2e|dll|2c|gobayden|27 7d 22|\"; endswith; fast_pattern; reference:md5,c6ef634779facf10516f0dd6d0d1757c; reference:url,x.com/JAMESWT_MHT/status/1862048169053364405; classtype:command-and-control; sid:2058116; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state plaintext, created_at 2024_12_06, deployment Perimeter, malware_family RuPSRAT, confidence High, signature_severity Critical, updated_at 2024_12_06;)"
+  },
+  {
+    "source_file": "emerging-attack_response.rules",
+    "line_number": 1469,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ATTACK_RESPONSE Microsoft Powershell Banner Outbound",
+      "flow": "established",
+      "classtype": "successful-admin",
+      "sid": 2020084,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2015_01_05, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2024_12_12, reviewed_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "Windows PowerShell",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "Copyright |28|C|29|",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "Microsoft Corp",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ATTACK_RESPONSE Microsoft Powershell Banner Outbound\"; flow:established; content:\"Windows PowerShell\"; nocase; content:\"Copyright |28|C|29|\"; distance:0; nocase; content:\"Microsoft Corp\"; distance:0; nocase; classtype:successful-admin; sid:2020084; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2015_01_05, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2024_12_12, reviewed_at 2024_03_26;)"
+  }
+]

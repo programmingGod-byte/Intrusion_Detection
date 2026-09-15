@@ -49,8 +49,8 @@ struct aethon_umen_info {
 
 // 64-byte aligned to prevent False Sharing / Cache Bouncing across CPU cores
 struct alignas(implementation::hardware_destructive_interference_size) aethon_xsk_socket_info {
-  struct xsk_ring_cons rx;
-  struct xsk_ring_prod tx;
+  struct xsk_ring_cons rx; // kernal to af_xdp
+  struct xsk_ring_prod tx;  // af_xdp to kernal
 
   struct xsk_socket *xsk;
   struct aethon_umen_info *umen;
@@ -138,10 +138,16 @@ inline bool raise_memory_locking() {
   return true;
 }
 
-inline void setup_afxdp_program(const char *ifname, const char *prog_name,
-                                const char *prog_section_name,
-                                enum xdp_attach_mode xpd_running_mode,
-                                const char *xdp_xsk_map_name, const int queue_idx) {
+inline void setup_af_xdp_for_all_queue(const char *ifname, const char *prog_name,
+                                       const char *prog_section_name,
+                                       enum xdp_attach_mode xpd_running_mode,
+                                       const char *xdp_xsk_map_name) {
+  int num_queues = aethon::xdp::get_nic_queue_count(ifname);
+  if (num_queues > AETHON_MAX_NIC_QUEUES) {
+    num_queues = AETHON_MAX_NIC_QUEUES;
+  }
+  aethon::xdp::total_active_queues = num_queues;
+
   unsigned int ifindex = if_nametoindex(ifname);
   if (ifindex == 0) {
     AETHON_SAFE_CHECK(Trait::always_false<int>,
@@ -152,12 +158,7 @@ inline void setup_afxdp_program(const char *ifname, const char *prog_name,
     AETHON_SAFE_CHECK(Trait::always_false<int>, "cannot able to lokc pages ");
   }
 
-  std::optional<aethon::xdp::aethon_umen_info *> umen_info = configure_umen();
-  if (!umen_info) {
-    AETHON_SAFE_CHECK(Trait::always_false<int>,
-                      "cannot able to run the aethon_umen_info");
-  }
-
+  // 1. Load eBPF Object ONCE for the interface
   struct bpf_object *obj = bpf_object__open_file(prog_name, NULL);
   if (!obj || bpf_object__load(obj)) {
     AETHON_SAFE_CHECK(Trait::always_false<int>,
@@ -172,13 +173,15 @@ inline void setup_afxdp_program(const char *ifname, const char *prog_name,
   }
 
   int prog_fd = bpf_program__fd(bpf_prog);
+  
+  // Attach the eBPF program to the interface
   int err = bpf_xdp_attach(ifindex, prog_fd, xpd_running_mode, NULL);
   if (err < 0) {
     AETHON_SAFE_CHECK(Trait::always_false<int>,
                       "cannot attach the program to the interface ", ifname);
   }
 
-  // put the afxdp_in BPF map
+  // Find the XSK map which is used to redirect packets to our sockets
   struct bpf_map *map = bpf_object__find_map_by_name(obj, xdp_xsk_map_name);
   if (!map) {
     AETHON_SAFE_CHECK(Trait::always_false<int>,
@@ -193,63 +196,56 @@ inline void setup_afxdp_program(const char *ifname, const char *prog_name,
     return;
   }
 
-  aethon::xdp::xsk_info = (aethon::xdp::aethon_xsk_socket_info *)calloc(
-      1, sizeof(*aethon::xdp::xsk_info));
-
-  struct xsk_socket_config xsk_config {
-    .rx_size = AETHON_RX_RING_SIZE, .tx_size = AETHON_TX_RING,
-    .libxdp_flags = XSK_LIBBPF_FLAGS__INHIBIT_PROG_LOAD,
-    .xdp_flags = AETHON_XDP_RUNNING_MODE, .bind_flags = XDP_COPY
-  };
-
-  err = xsk_socket__create(&aethon::xdp::xsk_info->xsk, ifname, queue_idx,
-                           umen_info.value()->umen, &aethon::xdp::xsk_info->rx,
-                           &aethon::xdp::xsk_info->tx, &xsk_config);
-
-  if (err) {
-    AETHON_SAFE_CHECK(Trait::always_false<int>,
-                      "cannot attack the config to the xsk_socket");
-  }
-
-  aethon::xdp::xsk_info->umen = umen_info.value();
-
-  // Register the socket in the BPF XSK map
-  int xsk_fd = xsk_socket__fd(aethon::xdp::xsk_info->xsk);
-  int map_update_err = bpf_map_update_elem(xsk_map_fd, &queue_idx, &xsk_fd, 0);
-  if (map_update_err < 0) {
-    AETHON_SAFE_CHECK(Trait::always_false<int>,
-                      "cannot update BPF xsk map with socket fd");
-  }
-
-  // Populate Fill Ring with initial UMEM frames
-  uint32_t idx = 0;
-  uint32_t reserve_size = XSK_RING_PROD__DEFAULT_NUM_DESCS;
-  int fq_res = xsk_ring_prod__reserve(&umen_info.value()->fq, reserve_size, &idx);
-  if (fq_res == reserve_size) {
-    for (uint32_t i = 0; i < reserve_size; ++i) {
-      *xsk_ring_prod__fill_addr(&umen_info.value()->fq, idx++) = i * AETHON_FRAME_SIZE;
-    }
-    xsk_ring_prod__submit(&umen_info.value()->fq, reserve_size);
-  } else {
-    fprintf(stderr, "WARNING: Failed to reserve %u slots in Fill Ring (got %d)\n", reserve_size, fq_res);
-  }
-}
-
-// Function to setup AF_XDP for all hardware queues on the interface
-inline void setup_af_xdp_for_all_queue(const char *ifname, const char *prog_name,
-                                       const char *prog_section_name,
-                                       enum xdp_attach_mode xpd_running_mode,
-                                       const char *xdp_xsk_map_name) {
-  int num_queues = aethon::xdp::get_nic_queue_count(ifname);
-  if (num_queues > AETHON_MAX_NIC_QUEUES) {
-    num_queues = AETHON_MAX_NIC_QUEUES;
-  }
-  aethon::xdp::total_active_queues = num_queues;
-
+  // 2. Setup AF_XDP sockets for EACH queue and add them to the shared map
   for (int q = 0; q < num_queues; ++q) {
-    setup_afxdp_program(ifname, prog_name, prog_section_name, xpd_running_mode,
-                        xdp_xsk_map_name, q);
-    aethon::xdp::xsk_sockets[q].socket_info = aethon::xdp::xsk_info;
+    std::optional<aethon::xdp::aethon_umen_info *> umen_info = configure_umen();
+    if (!umen_info) {
+      AETHON_SAFE_CHECK(Trait::always_false<int>,
+                        "cannot able to run the aethon_umen_info for queue");
+    }
+
+    aethon::xdp::aethon_xsk_socket_info *sock_info = (aethon::xdp::aethon_xsk_socket_info *)calloc(
+        1, sizeof(*sock_info));
+
+    struct xsk_socket_config xsk_config {
+      .rx_size = AETHON_RX_RING_SIZE, .tx_size = AETHON_TX_RING,
+      .libxdp_flags = XSK_LIBBPF_FLAGS__INHIBIT_PROG_LOAD,
+      .xdp_flags = AETHON_XDP_RUNNING_MODE, .bind_flags = XDP_COPY
+    };
+
+    err = xsk_socket__create(&sock_info->xsk, ifname, q,
+                             umen_info.value()->umen, &sock_info->rx,
+                             &sock_info->tx, &xsk_config);
+
+    if (err) {
+      AETHON_SAFE_CHECK(Trait::always_false<int>,
+                        "cannot attach the config to the xsk_socket");
+    }
+
+    sock_info->umen = umen_info.value();
+
+    // Register the socket in the BPF XSK map
+    int xsk_fd = xsk_socket__fd(sock_info->xsk);
+    int map_update_err = bpf_map_update_elem(xsk_map_fd, &q, &xsk_fd, 0);
+    if (map_update_err < 0) {
+      AETHON_SAFE_CHECK(Trait::always_false<int>,
+                        "cannot update BPF xsk map with socket fd");
+    }
+
+    // Populate Fill Ring with initial UMEM frames
+    uint32_t idx = 0;
+    uint32_t reserve_size = XSK_RING_PROD__DEFAULT_NUM_DESCS;
+    int fq_res = xsk_ring_prod__reserve(&umen_info.value()->fq, reserve_size, &idx);
+    if (fq_res == reserve_size) {
+      for (uint32_t i = 0; i < reserve_size; ++i) {
+        *xsk_ring_prod__fill_addr(&umen_info.value()->fq, idx++) = i * AETHON_FRAME_SIZE;
+      }
+      xsk_ring_prod__submit(&umen_info.value()->fq, reserve_size);
+    } else {
+      fprintf(stderr, "WARNING: Failed to reserve %u slots in Fill Ring (got %d) on queue %d\n", reserve_size, fq_res, q);
+    }
+    
+    aethon::xdp::xsk_sockets[q].socket_info = sock_info;
   }
 }
 

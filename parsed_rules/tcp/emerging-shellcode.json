@@ -1,0 +1,62 @@
+[
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SHELLCODE Rothenburg Shellcode",
+      "flow": "established",
+      "classtype": "shellcode-detect",
+      "sid": 2009247,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|D9 74 24 F4 5B 81 73 13|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|83 EB FC E2 F4|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any any (msg:\"ET SHELLCODE Rothenburg Shellcode\"; flow:established; content:\"|D9 74 24 F4 5B 81 73 13|\"; content:\"|83 EB FC E2 F4|\"; distance:0; classtype:shellcode-detect; sid:2009247; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-shellcode.rules",
+    "line_number": 293,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$SQL_SERVERS",
+    "dst_port": "1433",
+    "options": {
+      "msg": "GPL SHELLCODE MSSQL shellcode attempt",
+      "flow": "established,to_server",
+      "classtype": "shellcode-detect",
+      "sid": 2100691,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "9 |D0 00 92 01 C2 00|R|00|U|00|9 |EC 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:\"GPL SHELLCODE MSSQL shellcode attempt\"; flow:established,to_server; content:\"9 |D0 00 92 01 C2 00|R|00|U|00|9 |EC 00|\"; fast_pattern; classtype:shellcode-detect; sid:2100691; rev:9; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  }
+]

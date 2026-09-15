@@ -1,0 +1,32 @@
+[
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 707,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN DNS Query for allports.exposed",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,blackhillsinfosec.com/poking-holes-in-the-firewall-egress-testing-with-allports-exposed/",
+      "classtype": "network-scan",
+      "sid": 2032091,
+      "rev": 2,
+      "metadata": "created_at 2021_03_17, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_19",
+      "contents": [
+        {
+          "pattern": "allports.exposed",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> any any (msg:\"ET SCAN DNS Query for allports.exposed\"; dns.query; content:\"allports.exposed\"; nocase; endswith; reference:url,blackhillsinfosec.com/poking-holes-in-the-firewall-egress-testing-with-allports-exposed/; classtype:network-scan; sid:2032091; rev:2; metadata:created_at 2021_03_17, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_19;)"
+  }
+]

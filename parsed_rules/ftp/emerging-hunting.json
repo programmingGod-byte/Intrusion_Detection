@@ -1,0 +1,30 @@
+[
+  {
+    "source_file": "emerging-hunting.rules",
+    "line_number": 1811,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$HOME_NET",
+    "src_port": "[0:20,22:24,26:118,120:138,140:444,446:464,466:586,588:901,903:1432,1434:65535]",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET HUNTING Suspicious FTP 220 Banner on Local Port (-)",
+      "flow": "established,to_client",
+      "classtype": "non-standard-protocol",
+      "sid": 2003055,
+      "rev": 14,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "220-",
+          "modifiers": {
+            "depth": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $HOME_NET [0:20,22:24,26:118,120:138,140:444,446:464,466:586,588:901,903:1432,1434:65535] -> any any (msg:\"ET HUNTING Suspicious FTP 220 Banner on Local Port (-)\"; flow:established,to_client; content:\"220-\"; depth:4; classtype:non-standard-protocol; sid:2003055; rev:14; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  }
+]

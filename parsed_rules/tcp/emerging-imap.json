@@ -1,0 +1,549 @@
+[
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP rename overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sRENAME\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,1110",
+        "cve,2000-0284",
+        "nessus,10374"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2101903,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, cve CVE_2000_0284, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "RENAME",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP rename overflow attempt\"; flow:established,to_server; content:\"RENAME\"; nocase; isdataat:100,relative; pcre:\"/\\sRENAME\\s[^\\n]{100}/smi\"; reference:bugtraq,1110; reference:cve,2000-0284; reference:nessus,10374; classtype:misc-attack; sid:2101903; rev:9; metadata:created_at 2010_09_23, cve CVE_2000_0284, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP find overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sFIND\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,1110",
+        "cve,2000-0284",
+        "nessus,10374"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2101904,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, cve CVE_2000_0284, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "FIND",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP find overflow attempt\"; flow:established,to_server; content:\"FIND\"; nocase; isdataat:100,relative; pcre:\"/\\sFIND\\s[^\\n]{100}/smi\"; reference:bugtraq,1110; reference:cve,2000-0284; reference:nessus,10374; classtype:misc-attack; sid:2101904; rev:8; metadata:created_at 2010_09_23, cve CVE_2000_0284, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 47,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP fetch overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "500,relative",
+      "pcre": "/\\sFETCH\\s[^\\n]{500}/smi",
+      "reference": "bugtraq,11775",
+      "classtype": "misc-attack",
+      "sid": 2103070,
+      "rev": 3,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "FETCH",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP fetch overflow attempt\"; flow:established,to_server; content:\"FETCH\"; nocase; isdataat:500,relative; pcre:\"/\\sFETCH\\s[^\\n]{500}/smi\"; reference:bugtraq,11775; classtype:misc-attack; sid:2103070; rev:3; metadata:created_at 2010_09_23, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 49,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP login buffer overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sLOGIN\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,13727",
+        "bugtraq,502",
+        "cve,1999-0005",
+        "cve,1999-1557",
+        "cve,2005-1255",
+        "nessus,10123",
+        "cve,2007-2795",
+        "nessus,10125"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2101842,
+      "rev": 16,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0005, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "LOGIN",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP login buffer overflow attempt\"; flow:established,to_server; content:\"LOGIN\"; isdataat:100,relative; pcre:\"/\\sLOGIN\\s[^\\n]{100}/smi\"; reference:bugtraq,13727; reference:bugtraq,502; reference:cve,1999-0005; reference:cve,1999-1557; reference:cve,2005-1255; reference:nessus,10123; reference:cve,2007-2795; reference:nessus,10125; classtype:attempted-user; sid:2101842; rev:16; metadata:created_at 2010_09_23, cve CVE_1999_0005, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP authenticate overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sAUTHENTICATE\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,12995",
+        "bugtraq,130",
+        "cve,1999-0005",
+        "cve,1999-0042",
+        "nessus,10292"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2101844,
+      "rev": 12,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0005, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "AUTHENTICATE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP authenticate overflow attempt\"; flow:established,to_server; content:\"AUTHENTICATE\"; nocase; isdataat:100,relative; pcre:\"/\\sAUTHENTICATE\\s[^\\n]{100}/smi\"; reference:bugtraq,12995; reference:bugtraq,130; reference:cve,1999-0005; reference:cve,1999-0042; reference:nessus,10292; classtype:misc-attack; sid:2101844; rev:12; metadata:created_at 2010_09_23, cve CVE_1999_0005, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP auth overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/AUTH\\s[^\\n]{100}/smi",
+      "reference": "bugtraq,8861",
+      "classtype": "misc-attack",
+      "sid": 2102330,
+      "rev": 3,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "AUTH",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP auth overflow attempt\"; flow:established,to_server; content:\"AUTH\"; nocase; isdataat:100,relative; pcre:\"/AUTH\\s[^\\n]{100}/smi\"; reference:bugtraq,8861; classtype:misc-attack; sid:2102330; rev:3; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP unsubscribe overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sUNSUBSCRIBE\\s[^\\n]{100}/smi",
+      "reference": "bugtraq,11775",
+      "classtype": "misc-attack",
+      "sid": 2103076,
+      "rev": 2,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "UNSUBSCRIBE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP unsubscribe overflow attempt\"; flow:established,to_server; content:\"UNSUBSCRIBE\"; nocase; isdataat:100,relative; pcre:\"/\\sUNSUBSCRIBE\\s[^\\n]{100}/smi\"; reference:bugtraq,11775; classtype:misc-attack; sid:2103076; rev:2; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP unsubscribe literal overflow attempt",
+      "flow": "established,to_server",
+      "pcre": "/\\sUNSUBSCRIBE\\s[^\\n]*?\\s\\{/smi",
+      "byte_test": "5,>,256,0,string,dec,relative",
+      "reference": "bugtraq,11775",
+      "classtype": "misc-attack",
+      "sid": 2103075,
+      "rev": 2,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "UNSUBSCRIBE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP unsubscribe literal overflow attempt\"; flow:established,to_server; content:\"UNSUBSCRIBE\"; nocase; pcre:\"/\\sUNSUBSCRIBE\\s[^\\n]*?\\s\\{/smi\"; byte_test:5,>,256,0,string,dec,relative; reference:bugtraq,11775; classtype:misc-attack; sid:2103075; rev:2; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP subscribe overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sSUBSCRIBE\\s[^\\n]{100}/smi",
+      "reference": "bugtraq,11775",
+      "classtype": "misc-attack",
+      "sid": 2103074,
+      "rev": 2,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SUBSCRIBE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP subscribe overflow attempt\"; flow:established,to_server; content:\"SUBSCRIBE\"; nocase; isdataat:100,relative; pcre:\"/\\sSUBSCRIBE\\s[^\\n]{100}/smi\"; reference:bugtraq,11775; classtype:misc-attack; sid:2103074; rev:2; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP subscribe literal overflow attempt",
+      "flow": "established,to_server",
+      "pcre": "/\\sSUBSCRIBE\\s[^\\n]*?\\s\\{/smi",
+      "byte_test": "5,>,256,0,string,dec,relative",
+      "reference": "bugtraq,11775",
+      "classtype": "misc-attack",
+      "sid": 2103073,
+      "rev": 2,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SUBSCRIBE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP subscribe literal overflow attempt\"; flow:established,to_server; content:\"SUBSCRIBE\"; nocase; pcre:\"/\\sSUBSCRIBE\\s[^\\n]*?\\s\\{/smi\"; byte_test:5,>,256,0,string,dec,relative; reference:bugtraq,11775; classtype:misc-attack; sid:2103073; rev:2; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP status overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sSTATUS\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,11775",
+        "bugtraq,13727",
+        "cve,2005-1256"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2103072,
+      "rev": 3,
+      "metadata": "created_at 2010_09_23, cve CVE_2005_1256, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "STATUS",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP status overflow attempt\"; flow:established,to_server; content:\"STATUS\"; nocase; isdataat:100,relative; pcre:\"/\\sSTATUS\\s[^\\n]{100}/smi\"; reference:bugtraq,11775; reference:bugtraq,13727; reference:cve,2005-1256; classtype:misc-attack; sid:2103072; rev:3; metadata:created_at 2010_09_23, cve CVE_2005_1256, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP examine overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sEXAMINE\\s[^\\n]{100}/smi",
+      "reference": "bugtraq,11775",
+      "classtype": "misc-attack",
+      "sid": 2103068,
+      "rev": 2,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "EXAMINE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP examine overflow attempt\"; flow:established,to_server; content:\"EXAMINE\"; nocase; isdataat:100,relative; pcre:\"/\\sEXAMINE\\s[^\\n]{100}/smi\"; reference:bugtraq,11775; classtype:misc-attack; sid:2103068; rev:2; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP append overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sAPPEND\\s[^\\n]{256}/smi",
+      "reference": "bugtraq,11775",
+      "classtype": "misc-attack",
+      "sid": 2103066,
+      "rev": 3,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "APPEND",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP append overflow attempt\"; flow:established,to_server; content:\"APPEND\"; nocase; isdataat:100,relative; pcre:\"/\\sAPPEND\\s[^\\n]{256}/smi\"; reference:bugtraq,11775; classtype:misc-attack; sid:2103066; rev:3; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP copy literal overflow attempt",
+      "flow": "established,to_server",
+      "pcre": "/\\sCOPY\\s[^\\n]*?\\{/smi",
+      "byte_test": "5,>,1024,0,string,dec,relative",
+      "reference": "bugtraq,1110",
+      "classtype": "misc-attack",
+      "sid": 2103058,
+      "rev": 2,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "COPY",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP copy literal overflow attempt\"; flow:established,to_server; content:\"COPY\"; nocase; pcre:\"/\\sCOPY\\s[^\\n]*?\\{/smi\"; byte_test:5,>,1024,0,string,dec,relative; reference:bugtraq,1110; classtype:misc-attack; sid:2103058; rev:2; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP delete overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/\\sDELETE\\s[^\\n]{100}/smi",
+      "reference": "bugtraq,11675",
+      "classtype": "misc-attack",
+      "sid": 2103007,
+      "rev": 2,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "DELETE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP delete overflow attempt\"; flow:established,to_server; content:\"DELETE\"; nocase; isdataat:100,relative; pcre:\"/\\sDELETE\\s[^\\n]{100}/smi\"; reference:bugtraq,11675; classtype:misc-attack; sid:2103007; rev:2; metadata:created_at 2010_09_23, confidence Medium, signature_severity Minor, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP Overflow Attempt",
+      "flow": "established,to_server",
+      "classtype": "attempted-admin",
+      "sid": 2100293,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, signature_severity Minor, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "|E8 C0 FF FF FF|/bin/sh",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP Overflow Attempt\"; flow:established,to_server; content:\"|E8 C0 FF FF FF|/bin/sh\"; classtype:attempted-admin; sid:2100293; rev:9; metadata:created_at 2010_09_23, signature_severity Minor, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-imap.rules",
+    "line_number": 95,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "143",
+    "options": {
+      "msg": "GPL IMAP EXPLOIT partial body overflow attempt",
+      "dsize": ">1092",
+      "flow": "established,to_server",
+      "reference": [
+        "bugtraq,4713",
+        "cve,2002-0379"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2101780,
+      "rev": 11,
+      "metadata": "created_at 2010_09_23, cve CVE_2002_0379, confidence Medium, signature_severity Minor, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": " x PARTIAL 1 BODY[",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:\"GPL IMAP EXPLOIT partial body overflow attempt\"; dsize:>1092; flow:established,to_server; content:\" x PARTIAL 1 BODY[\"; reference:bugtraq,4713; reference:cve,2002-0379; classtype:misc-attack; sid:2101780; rev:11; metadata:created_at 2010_09_23, cve CVE_2002_0379, confidence Medium, signature_severity Minor, updated_at 2024_03_08;)"
+  }
+]

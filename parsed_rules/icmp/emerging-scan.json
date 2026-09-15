@@ -1,0 +1,351 @@
+[
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN ICMP PING IPTools",
+      "itype": "8",
+      "icode": "0",
+      "reference": [
+        "url,www.ks-soft.net/ip-tools.eng",
+        "url,www.ks-soft.net/ip-tools.eng/index.htm"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2000575,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7|",
+          "modifiers": {
+            "depth": "64"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCAN ICMP PING IPTools\"; itype: 8; icode: 0; content:\"|A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7|\"; depth: 64; reference:url,www.ks-soft.net/ip-tools.eng; reference:url,www.ks-soft.net/ip-tools.eng/index.htm; classtype:misc-activity; sid:2000575; rev:7; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL SCAN SolarWinds IP scan attempt",
+      "icode": "0",
+      "itype": "8",
+      "classtype": "network-scan",
+      "sid": 2101918,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SolarWinds.Net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL SCAN SolarWinds IP scan attempt\"; icode:0; itype:8; content:\"SolarWinds.Net\"; nocase; classtype:network-scan; sid:2101918; rev:7; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL SCAN ISS Pinger",
+      "itype": "8",
+      "reference": "arachnids,158",
+      "classtype": "attempted-recon",
+      "sid": 2100465,
+      "rev": 4,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "ISSPNGRQ",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL SCAN ISS Pinger\"; itype:8; content:\"ISSPNGRQ\"; depth:32; reference:arachnids,158; classtype:attempted-recon; sid:2100465; rev:4; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL SCAN PING CyberKit 2.2 Windows",
+      "itype": "8",
+      "reference": "arachnids,154",
+      "classtype": "misc-activity",
+      "sid": 2100483,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|AA AA AA AA AA AA AA AA AA AA AA AA AA AA AA AA|",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL SCAN PING CyberKit 2.2 Windows\"; itype:8; content:\"|AA AA AA AA AA AA AA AA AA AA AA AA AA AA AA AA|\"; depth:32; reference:arachnids,154; classtype:misc-activity; sid:2100483; rev:6; metadata:created_at 2010_09_23, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL SCAN PING Delphi-Piette Windows",
+      "itype": "8",
+      "reference": "arachnids,155",
+      "classtype": "misc-activity",
+      "sid": 2100372,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "Pinging from Del",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL SCAN PING Delphi-Piette Windows\"; itype:8; content:\"Pinging from Del\"; depth:32; reference:arachnids,155; classtype:misc-activity; sid:2100372; rev:8; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 113,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL SCAN PING Sniffer Pro/NetXRay network scan",
+      "itype": "8",
+      "classtype": "misc-activity",
+      "sid": 2100484,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "Cinco Network, Inc.",
+          "modifiers": {
+            "depth": "32"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL SCAN PING Sniffer Pro/NetXRay network scan\"; itype:8; content:\"Cinco Network, Inc.\"; depth:32; classtype:misc-activity; sid:2100484; rev:5; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 117,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL SCAN superscan echo",
+      "dsize": "8",
+      "itype": "8",
+      "classtype": "attempted-recon",
+      "sid": 2100474,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL SCAN superscan echo\"; dsize:8; itype:8; content:\"|00 00 00 00 00 00 00 00|\"; classtype:attempted-recon; sid:2100474; rev:5; metadata:created_at 2010_09_23, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 119,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL SCAN webtrends scanner",
+      "icode": "0",
+      "itype": "8",
+      "reference": "arachnids,307",
+      "classtype": "attempted-recon",
+      "sid": 2100476,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 00 00|EEEEEEEEEEEE",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL SCAN webtrends scanner\"; icode:0; itype:8; content:\"|00 00 00 00|EEEEEEEEEEEE\"; reference:arachnids,307; classtype:attempted-recon; sid:2100476; rev:5; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 127,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN Port Unreachable Response to Xprobe2 OS Fingerprint Scan",
+      "itype": "3",
+      "dsize": ">69",
+      "reference": "url,xprobe.sourceforge.net/",
+      "classtype": "attempted-recon",
+      "sid": 2009298,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "securityfocus",
+          "modifiers": {}
+        },
+        {
+          "pattern": "securityfocus",
+          "modifiers": {
+            "distance": "50",
+            "within": "15"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET SCAN Port Unreachable Response to Xprobe2 OS Fingerprint Scan\"; itype:3; dsize:>69; content:\"securityfocus\"; content:\"securityfocus\"; distance:50; within:15; reference:url,xprobe.sourceforge.net/; classtype:attempted-recon; sid:2009298; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN ICMP =XXXXXXXX Likely Precursor to Scan",
+      "itype": "8",
+      "icode": "0",
+      "classtype": "network-scan",
+      "sid": 2010686,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "=XXXXXXXX",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCAN ICMP =XXXXXXXX Likely Precursor to Scan\"; itype:8; icode:0; content:\"=XXXXXXXX\"; classtype:network-scan; sid:2010686; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 209,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN ICMP Delphi Likely Precursor to Scan",
+      "itype": "8",
+      "icode": "0",
+      "reference": "url,www.koders.com/delphi/fid942A4EAF946B244BD3CD9BC83FEAAC35BA1F38AB.aspx",
+      "classtype": "misc-activity",
+      "sid": 2010681,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "Pinging from Delphi code written",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCAN ICMP Delphi Likely Precursor to Scan\"; itype:8; icode:0; content:\"Pinging from Delphi code written\"; reference:url,www.koders.com/delphi/fid942A4EAF946B244BD3CD9BC83FEAAC35BA1F38AB.aspx; classtype:misc-activity; sid:2010681; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 219,
+    "action": "alert",
+    "protocol": "icmp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN ICMP @hello request Likely Precursor to Scan",
+      "itype": "8",
+      "icode": "0",
+      "classtype": "misc-activity",
+      "sid": 2010641,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "@hello ???",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCAN ICMP @hello request Likely Precursor to Scan\"; itype:8; icode:0; content:\"@hello ???\"; classtype:misc-activity; sid:2010641; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  }
+]

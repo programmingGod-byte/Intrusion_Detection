@@ -1,0 +1,467 @@
+[
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 133,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Access Change",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048669,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "USER 2AC",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Access Change\"; flow:established,to_server; content:\"USER 2AC\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048669; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 135,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Current directory /SEL-2701",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048671,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "/SEL-2701",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Current directory /SEL-2701\"; flow:established,to_server; content:\"/SEL-2701\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048671; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 137,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - DNPMAP.TXT File Download Attempt",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048672,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "RETR DNPMAP.TXT",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - DNPMAP.TXT File Download Attempt\"; flow:established,to_server; content:\"RETR DNPMAP.TXT\"; fast_pattern; nocase; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048672; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 139,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - STOR SET_DNP1.TXT File Upload Attempt",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048673,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "STOR SET_DNP1.TXT",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - STOR SET_DNP1.TXT File Upload Attempt\"; flow:established,to_server; content:\"STOR SET_DNP1.TXT\"; fast_pattern; nocase; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048673; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 141,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - SET_ File Upload Attempt",
+      "flow": "established,to_server",
+      "pcre": "/^[A-Z0-9]{1,4}/Ri",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048674,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "STOR SET_",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - SET_ File Upload Attempt\"; flow:established,to_server; content:\"STOR SET_\"; fast_pattern; nocase; pcre:\"/^[A-Z0-9]{1,4}/Ri\"; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048674; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 143,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - User ACC Login Attempt",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "attempted-user",
+      "sid": 2048675,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "USER ACC",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - User ACC Login Attempt\"; flow:established,to_server; content:\"USER ACC\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:attempted-user; sid:2048675; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 145,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Default Password otter",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "attempted-user",
+      "sid": 2048676,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "PASS otter",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Default Password otter\"; flow:established,to_server; content:\"PASS otter\"; fast_pattern; nocase; reference:url,github.com/nsacyber/ELITEWOLF; classtype:attempted-user; sid:2048676; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 147,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - DNPMAP.TXT File Upload Attempt",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048677,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "STOR DNPMAP.TXT",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - DNPMAP.TXT File Upload Attempt\"; flow:established,to_server; content:\"STOR DNPMAP.TXT\"; fast_pattern; nocase; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048677; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 149,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - ERR.TXT File Download Attempt",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048678,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "RETR ERR.TXT",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - ERR.TXT File Download Attempt\"; flow:established,to_server; content:\"RETR ERR.TXT\"; fast_pattern; nocase; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048678; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - SET_DNP1.TXT File Download Attempt",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048679,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "RETR SET_DNP1.TXT",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - SET_DNP1.TXT File Download Attempt\"; flow:established,to_server; content:\"RETR SET_DNP1.TXT\"; fast_pattern; nocase; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048679; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - SET_ File Download Attempt",
+      "flow": "established,to_server",
+      "pcre": "/^[A-Z0-9]{1,4}/Ri",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048680,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "RETR SET_",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - SET_ File Download Attempt\"; flow:established,to_server; content:\"RETR SET_\"; fast_pattern; nocase; pcre:\"/^[A-Z0-9]{1,4}/Ri\"; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048680; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Default User Account FTPUSER Login Attempt",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "attempted-user",
+      "sid": 2048681,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "USER FTPUSER",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Default User Account FTPUSER Login Attempt\"; flow:established,to_server; content:\"USER FTPUSER\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:attempted-user; sid:2048681; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 157,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Default User Account Password TAIL Login Attempt",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048682,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "PASS TAIL",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Default User Account Password TAIL Login Attempt\"; flow:established,to_server; content:\"PASS TAIL\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048682; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 159,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - SEL-751A FTP Banner Observed",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048683,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "SEL-751A",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - SEL-751A FTP Banner Observed\"; flow:established,to_server; content:\"SEL-751A\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048683; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_19, reviewed_at 2023_10_19; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 189,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Change working directory 2701",
+      "flow": "established,to_server",
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "misc-activity",
+      "sid": 2048670,
+      "rev": 2,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_03_08, reviewed_at 2024_10_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "CWD|20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "SEL-2701",
+          "modifiers": {
+            "within": "10",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET 21 (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL FTP Server Activity - Change working directory 2701\"; flow:established,to_server; content:\"CWD|20|\"; content:\"SEL-2701\"; within:10; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:misc-activity; sid:2048670; rev:2; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_03_08, reviewed_at 2024_10_02; target:src_ip;)"
+  }
+]

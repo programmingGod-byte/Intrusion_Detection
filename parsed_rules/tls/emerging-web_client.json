@@ -1,0 +1,243 @@
+[
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 139,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/",
+      "classtype": "targeted-activity",
+      "sid": 2029356,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities",
+      "contents": [
+        {
+          "pattern": "service-issues.site",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)\"; flow:established,to_client; tls.cert_subject; content:\"service-issues.site\"; fast_pattern; reference:url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/; classtype:targeted-activity; sid:2029356; rev:1; metadata:affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 141,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/",
+      "classtype": "targeted-activity",
+      "sid": 2029360,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities",
+      "contents": [
+        {
+          "pattern": "instagram-com.site",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)\"; flow:established,to_client; tls.cert_subject; content:\"instagram-com.site\"; fast_pattern; reference:url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/; classtype:targeted-activity; sid:2029360; rev:1; metadata:affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 143,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/",
+      "classtype": "targeted-activity",
+      "sid": 2029361,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities",
+      "contents": [
+        {
+          "pattern": "recovery-options.site",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)\"; flow:established,to_client; tls.cert_subject; content:\"recovery-options.site\"; fast_pattern; reference:url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/; classtype:targeted-activity; sid:2029361; rev:1; metadata:affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 145,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/",
+      "classtype": "targeted-activity",
+      "sid": 2029365,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities",
+      "contents": [
+        {
+          "pattern": "yah00.site",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)\"; flow:established,to_client; tls.cert_subject; content:\"yah00.site\"; fast_pattern; reference:url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/; classtype:targeted-activity; sid:2029365; rev:1; metadata:affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 147,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/",
+      "classtype": "targeted-activity",
+      "sid": 2029373,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities",
+      "contents": [
+        {
+          "pattern": "customers-service.ddns.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)\"; flow:established,to_client; tls.cert_subject; content:\"customers-service.ddns.net\"; fast_pattern; reference:url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/; classtype:targeted-activity; sid:2029373; rev:1; metadata:affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 149,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/",
+      "classtype": "targeted-activity",
+      "sid": 2029377,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities",
+      "contents": [
+        {
+          "pattern": "w3-schools.org",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)\"; flow:established,to_client; tls.cert_subject; content:\"w3-schools.org\"; fast_pattern; reference:url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/; classtype:targeted-activity; sid:2029377; rev:1; metadata:affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "reference": "url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/",
+      "classtype": "targeted-activity",
+      "sid": 2029378,
+      "rev": 1,
+      "metadata": "affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities",
+      "contents": [
+        {
+          "pattern": "unirsd.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET WEB_CLIENT Observed Malicious SSL Cert (Charming Kitten Phishing Domain)\"; flow:established,to_client; tls.cert_subject; content:\"unirsd.com\"; fast_pattern; reference:url,blog.certfa.com/posts/fake-interview-the-new-activity-of-charming-kitten/; classtype:targeted-activity; sid:2029378; rev:1; metadata:affected_product Web_Browsers, attack_target Client_and_Server, created_at 2020_02_05, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_02_05, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 523,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed Zimbra zauthtoken Exfil Domain (zimbrauser .me in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "13",
+      "reference": "url,twitter.com/__0XYC__/status/1753000391770317099",
+      "classtype": "credential-theft",
+      "sid": 2050660,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_02_01, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Web_Client_Attacks, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_02_01, reviewed_at 2024_05_06",
+      "contents": [
+        {
+          "pattern": "zimbrauser.me",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET WEB_CLIENT Observed Zimbra zauthtoken Exfil Domain (zimbrauser .me in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:13; content:\"zimbrauser.me\"; fast_pattern; reference:url,twitter.com/__0XYC__/status/1753000391770317099; classtype:credential-theft; sid:2050660; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_02_01, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Web_Client_Attacks, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_02_01, reviewed_at 2024_05_06;)"
+  }
+]

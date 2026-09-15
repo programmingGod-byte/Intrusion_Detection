@@ -1,0 +1,1110 @@
+[
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 259,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Win32/Foniad Domain (maraukog .info in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "endswith": true,
+      "reference": "url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad",
+      "classtype": "pup-activity",
+      "sid": 2025487,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": "maraukog.info",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Win32/Foniad Domain (maraukog .info in TLS SNI)\"; flow:established,to_server; tls.sni; content:\"maraukog.info\"; endswith; reference:url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad; classtype:pup-activity; sid:2025487; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 261,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Win32/Foniad Domain (acinster .info in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "endswith": true,
+      "reference": "url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad",
+      "classtype": "pup-activity",
+      "sid": 2025488,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": "acinster.info",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Win32/Foniad Domain (acinster .info in TLS SNI)\"; flow:established,to_server; tls.sni; content:\"acinster.info\"; endswith; reference:url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad; classtype:pup-activity; sid:2025488; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 263,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Win32/Foniad Domain (aclassigned .info in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "endswith": true,
+      "reference": "url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad",
+      "classtype": "pup-activity",
+      "sid": 2025489,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": "aclassigned.info",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Win32/Foniad Domain (aclassigned .info in TLS SNI)\"; flow:established,to_server; tls.sni; content:\"aclassigned.info\"; endswith; reference:url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad; classtype:pup-activity; sid:2025489; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 265,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Win32/Foniad Domain (efishedo .info in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "endswith": true,
+      "reference": "url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad",
+      "classtype": "pup-activity",
+      "sid": 2025490,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": "efishedo.info",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Win32/Foniad Domain (efishedo .info in TLS SNI)\"; flow:established,to_server; tls.sni; content:\"efishedo.info\"; endswith; reference:url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad; classtype:pup-activity; sid:2025490; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 267,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Win32/Foniad Domain (enclosely .info in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "endswith": true,
+      "reference": "url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad",
+      "classtype": "pup-activity",
+      "sid": 2025491,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": "enclosely.info",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Win32/Foniad Domain (enclosely .info in TLS SNI)\"; flow:established,to_server; tls.sni; content:\"enclosely.info\"; endswith; reference:url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad; classtype:pup-activity; sid:2025491; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 269,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Win32/Foniad Domain (insupposity .info in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "endswith": true,
+      "reference": "url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad",
+      "classtype": "pup-activity",
+      "sid": 2025492,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": "insupposity.info",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Win32/Foniad Domain (insupposity .info in TLS SNI)\"; flow:established,to_server; tls.sni; content:\"insupposity.info\"; endswith; reference:url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad; classtype:pup-activity; sid:2025492; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 271,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Win32/Foniad Domain (suggedin .info in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "endswith": true,
+      "reference": "url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad",
+      "classtype": "pup-activity",
+      "sid": 2025493,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": "suggedin.info",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Win32/Foniad Domain (suggedin .info in TLS SNI)\"; flow:established,to_server; tls.sni; content:\"suggedin.info\"; endswith; reference:url,www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad; classtype:pup-activity; sid:2025493; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2018_04_13, deployment Perimeter, malware_family Foniad, performance_impact Moderate, confidence High, signature_severity Minor, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 275,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed OSX/PremierOpinionD Collection Domain in TLS SNI",
+      "flow": "established,to_server",
+      "threshold": "type limit, track by_src, count 1, seconds 600",
+      "tls.sni": true,
+      "endswith": true,
+      "reference": "url,www.airoav.com/mitm-voicefive",
+      "classtype": "pup-activity",
+      "sid": 2027694,
+      "rev": 5,
+      "metadata": "affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2019_07_09, deployment Perimeter, malware_family PremierOpinionD, performance_impact Low, confidence High, signature_severity Minor, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": "oss-content.securestudies.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed OSX/PremierOpinionD Collection Domain in TLS SNI\"; flow:established,to_server; threshold: type limit, track by_src, count 1, seconds 600; tls.sni; content:\"oss-content.securestudies.com\"; endswith; reference:url,www.airoav.com/mitm-voicefive; classtype:pup-activity; sid:2027694; rev:5; metadata:affected_product Mac_OSX, attack_target Client_Endpoint, created_at 2019_07_09, deployment Perimeter, malware_family PremierOpinionD, performance_impact Low, confidence High, signature_severity Minor, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 391,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bypass Ticket Monitoring Domain (www .bypass .cn in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "13",
+      "reference": "md5,8feb11d15b708736189779ddc51a4a0a",
+      "classtype": "pup-activity",
+      "sid": 2048362,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_09_29, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_09_29, reviewed_at 2024_03_04",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "www.bypass.cn",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bypass Ticket Monitoring Domain (www .bypass .cn in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:13; content:\"www.bypass.cn\"; fast_pattern; reference:md5,8feb11d15b708736189779ddc51a4a0a; classtype:pup-activity; sid:2048362; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_09_29, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_09_29, reviewed_at 2024_03_04; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 395,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed PacketShare Proxy Domain Domain (api .packetshare .io in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "18",
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "misc-activity",
+      "sid": 2048495,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_10_09, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2023_10_09, reviewed_at 2023_10_09",
+      "contents": [
+        {
+          "pattern": "api.packetshare.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed PacketShare Proxy Domain Domain (api .packetshare .io in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:18; content:\"api.packetshare.io\"; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:misc-activity; sid:2048495; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_10_09, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2023_10_09, reviewed_at 2023_10_09;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 401,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Seetrol RAT Domain (seetrol .kr in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit,seconds 300,count 1,track by_src",
+      "classtype": "pup-activity",
+      "sid": 2049135,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_11_09, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_11_09",
+      "contents": [
+        {
+          "pattern": ".seetrol.kr",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Seetrol RAT Domain (seetrol .kr in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".seetrol.kr\"; endswith; fast_pattern; threshold:type limit,seconds 300,count 1,track by_src; classtype:pup-activity; sid:2049135; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_11_09, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_11_09;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 403,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Seetrol RAT Domain (seetrol .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit,seconds 300,count 1,track by_src",
+      "classtype": "pup-activity",
+      "sid": 2049136,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_11_09, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_11_09",
+      "contents": [
+        {
+          "pattern": ".seetrol.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Seetrol RAT Domain (seetrol .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".seetrol.com\"; endswith; fast_pattern; threshold:type limit,seconds 300,count 1,track by_src; classtype:pup-activity; sid:2049136; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_11_09, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_11_09;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 409,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Seetrol RAT Domain (seetrol .co .kr in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "pup-activity",
+      "sid": 2049149,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_11_10, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_11_10",
+      "contents": [
+        {
+          "pattern": ".seetrol.co.kr",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Seetrol RAT Domain (seetrol .co .kr in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".seetrol.co.kr\"; endswith; fast_pattern; classtype:pup-activity; sid:2049149; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_11_10, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_11_10;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2253,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Android Fintech Related Domain (qt .qtzhreop .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "reference": [
+        "md5,0514f57975f6a883c5d0a72c13d4ce65",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052106,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "qt.qtzhreop.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Android Fintech Related Domain (qt .qtzhreop .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:15; content:\"qt.qtzhreop.com\"; fast_pattern; reference:md5,0514f57975f6a883c5d0a72c13d4ce65; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths; classtype:pup-activity; sid:2052106; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2257,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Android Fintech Related Domain (iu .iuuaufbt .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "reference": [
+        "md5,1fc4b240b146d44a09d690c8341c571f",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2052108,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "iu.iuuaufbt.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Android Fintech Related Domain (iu .iuuaufbt .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:15; content:\"iu.iuuaufbt.com\"; fast_pattern; reference:md5,1fc4b240b146d44a09d690c8341c571f; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:misc-activity; sid:2052108; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2261,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Android Fintech Related Domain (cy .amorcash .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "reference": [
+        "md5,77ca95be3156b9cd60884f4ba64d6753",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052110,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "cy.amorcash.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Android Fintech Related Domain (cy .amorcash .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:15; content:\"cy.amorcash.com\"; fast_pattern; reference:md5,77ca95be3156b9cd60884f4ba64d6753; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:pup-activity; sid:2052110; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2269,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Android Fintech Related Domain (apitai .coccash .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "18",
+      "reference": [
+        "md5,26d34aa95d7b81443d85bf3be31cf697",
+        "md5,cd2e6e8e8b931cdfc928bf5e191baea3",
+        "md5,9b7ab89bfd5de9e6834920c7b855f758",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052114,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "apitai.coccash.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Android Fintech Related Domain (apitai .coccash .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:18; content:\"apitai.coccash.com\"; fast_pattern; reference:md5,26d34aa95d7b81443d85bf3be31cf697; reference:md5,cd2e6e8e8b931cdfc928bf5e191baea3; reference:md5,9b7ab89bfd5de9e6834920c7b855f758; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:pup-activity; sid:2052114; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2271,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Android Fintech Related Domain (app .truenaira .co in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "16",
+      "reference": [
+        "md5,26d34aa95d7b81443d85bf3be31cf697",
+        "md5,cd2e6e8e8b931cdfc928bf5e191baea3",
+        "md5,9b7ab89bfd5de9e6834920c7b855f758",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052115,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "app.truenaira.co",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Android Fintech Related Domain (app .truenaira .co in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:16; content:\"app.truenaira.co\"; fast_pattern; reference:md5,26d34aa95d7b81443d85bf3be31cf697; reference:md5,cd2e6e8e8b931cdfc928bf5e191baea3; reference:md5,9b7ab89bfd5de9e6834920c7b855f758; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:pup-activity; sid:2052115; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2273,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Android Fintech Related Domain (api .yumicash .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "16",
+      "reference": [
+        "md5,26d34aa95d7b81443d85bf3be31cf697",
+        "md5,cd2e6e8e8b931cdfc928bf5e191baea3",
+        "md5,9b7ab89bfd5de9e6834920c7b855f758",
+        "url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2052116,
+      "rev": 1,
+      "metadata": "attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "api.yumicash.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Android Fintech Related Domain (api .yumicash .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:16; content:\"api.yumicash.com\"; fast_pattern; reference:md5,26d34aa95d7b81443d85bf3be31cf697; reference:md5,cd2e6e8e8b931cdfc928bf5e191baea3; reference:md5,9b7ab89bfd5de9e6834920c7b855f758; reference:url,www.welivesecurity.com/en/eset-research/beware-predatory-fintech-loan-sharks-use-android-apps-reach-new-depths/; classtype:pup-activity; sid:2052116; rev:1; metadata:attack_target Mobile_Client, created_at 2024_04_16, deployment Perimeter, malware_family PUP, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2347,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Carder Card Checking Tool try2check.me SSL Certificate",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "classtype": "pup-activity",
+      "sid": 2014286,
+      "rev": 6,
+      "metadata": "attack_target Client_Endpoint, created_at 2012_02_28, deployment Perimeter, confidence High, signature_severity Minor, tag SSL_Malicious_Cert, updated_at 2024_04_25",
+      "contents": [
+        {
+          "pattern": "try2check.me",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET ADWARE_PUP Carder Card Checking Tool try2check.me SSL Certificate\"; flow:established,to_client; tls.cert_subject; content:\"try2check.me\"; fast_pattern; classtype:pup-activity; sid:2014286; rev:6; metadata:attack_target Client_Endpoint, created_at 2012_02_28, deployment Perimeter, confidence High, signature_severity Minor, tag SSL_Malicious_Cert, updated_at 2024_04_25;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2539,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Abused Tools Domain in TLS SNI - Commonly Used for SMTP Exfil (4t-niagara .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,59f38f999d773fa5cd166fc9f655bc0d",
+      "classtype": "misc-activity",
+      "sid": 2065285,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_10_22, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_22",
+      "contents": [
+        {
+          "pattern": ".4t-niagara.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Abused Tools Domain in TLS SNI - Commonly Used for SMTP Exfil (4t-niagara .com)\"; flow:established,to_server; tls.sni; dotprefix; content:\".4t-niagara.com\"; endswith; fast_pattern; reference:md5,59f38f999d773fa5cd166fc9f655bc0d; classtype:misc-activity; sid:2065285; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_10_22, deployment Perimeter, malware_family PUP, confidence High, signature_severity Minor, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_22;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2567,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (uprock .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067466,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".uprock.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (uprock .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".uprock.com\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067466; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2569,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (grass .io in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067467,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".grass.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (grass .io in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".grass.io\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067467; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2571,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (cashraven .io in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067468,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".cashraven.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (cashraven .io in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".cashraven.io\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067468; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2573,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (mysterium .network in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067469,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".mysterium.network",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (mysterium .network in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".mysterium.network\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067469; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2575,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (passiveapp .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067470,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".passiveapp.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (passiveapp .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".passiveapp.com\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067470; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2577,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (bytelixir .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067471,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".bytelixir.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (bytelixir .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bytelixir.com\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067471; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2579,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (earnapp .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067472,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".earnapp.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (earnapp .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".earnapp.com\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067472; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2581,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (packetstream .io in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067473,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".packetstream.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (packetstream .io in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".packetstream.io\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067473; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2583,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (traffmonetizer .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067474,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".traffmonetizer.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (traffmonetizer .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".traffmonetizer.com\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067474; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2585,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (repocket .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067475,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".repocket.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (repocket .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".repocket.com\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067475; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2587,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (proxyrack .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067476,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".proxyrack.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (proxyrack .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".proxyrack.com\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067476; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2589,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (earn .fm in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html",
+      "classtype": "pup-activity",
+      "sid": 2067477,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11",
+      "contents": [
+        {
+          "pattern": ".earn.fm",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Bandwidth Sharing Tool Domain (earn .fm in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".earn.fm\"; endswith; fast_pattern; reference:url,trendmicro.com/en_us/research/23/b/hijacking-your-bandwidth-how-proxyware-apps-open-you-up-to-risk.html; classtype:pup-activity; sid:2067477; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_02_11, deployment Perimeter, malware_family PUP, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, tag proxyware, updated_at 2026_02_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2595,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Activity Monitoring/Keylogger Domain (refog .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "pup-activity",
+      "sid": 2068336,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_03_19, deployment Perimeter, malware_family PUP, malware_family mipko, malware_family refog, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_03_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "contents": [
+        {
+          "pattern": ".refog.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Activity Monitoring/Keylogger Domain (refog .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".refog.com\"; endswith; fast_pattern; classtype:pup-activity; sid:2068336; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_03_19, deployment Perimeter, malware_family PUP, malware_family mipko, malware_family refog, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_03_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2597,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Observed Activity Monitoring/Keylogger Domain (mipko .ru in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "pup-activity",
+      "sid": 2068337,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2026_03_19, deployment Perimeter, malware_family PUP, malware_family mipko, malware_family refog, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_03_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "contents": [
+        {
+          "pattern": ".mipko.ru",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Observed Activity Monitoring/Keylogger Domain (mipko .ru in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".mipko.ru\"; endswith; fast_pattern; classtype:pup-activity; sid:2068337; rev:1; metadata:affected_product Any, attack_target Client_and_Server, created_at 2026_03_19, deployment Perimeter, malware_family PUP, malware_family mipko, malware_family refog, performance_impact Low, confidence High, signature_severity Major, updated_at 2026_03_19, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery;)"
+  }
+]

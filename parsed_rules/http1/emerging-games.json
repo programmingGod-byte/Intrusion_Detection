@@ -1,0 +1,44 @@
+[
+  {
+    "source_file": "emerging-games.rules",
+    "line_number": 211,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET GAMES GameHouse License Check",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "bsize": "32",
+      "http.header_names": true,
+      "http.request_body": true,
+      "startswith": true,
+      "reference": "md5,0e29380dcc1f9a57f545fc26b4045c94",
+      "classtype": "policy-violation",
+      "sid": 2031878,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2021_03_08, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "POST /lm/dynamicLicense HTTP/1.1",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "parameters=",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET GAMES GameHouse License Check\"; flow:established,to_server; http.request_line; bsize:32; content:\"POST /lm/dynamicLicense HTTP/1.1\"; fast_pattern; http.header_names; content:\"|0d 0a|Referer|0d 0a|\"; http.request_body; content:\"parameters=\"; startswith; reference:md5,0e29380dcc1f9a57f545fc26b4045c94; classtype:policy-violation; sid:2031878; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2021_03_08, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04;)"
+  }
+]

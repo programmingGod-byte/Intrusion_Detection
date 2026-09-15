@@ -1,0 +1,1139 @@
+[
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed TWISTEDPANDA Domain in TLS SNI (www .miniboxmail .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "19",
+      "reference": "url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/",
+      "classtype": "targeted-activity",
+      "sid": 2036659,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_12, reviewed_at 2024_09_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": "www.miniboxmail.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed TWISTEDPANDA Domain in TLS SNI (www .miniboxmail .com)\"; flow:established,to_server; tls.sni; bsize:19; content:\"www.miniboxmail.com\"; fast_pattern; reference:url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/; classtype:targeted-activity; sid:2036659; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_12, reviewed_at 2024_09_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed TWISTEDPANDA Domain in TLS SNI (www .microtreely .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "19",
+      "reference": "url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/",
+      "classtype": "targeted-activity",
+      "sid": 2036660,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_12, reviewed_at 2024_09_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": "www.microtreely.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed TWISTEDPANDA Domain in TLS SNI (www .microtreely .com)\"; flow:established,to_server; tls.sni; bsize:19; content:\"www.microtreely.com\"; fast_pattern; reference:url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/; classtype:targeted-activity; sid:2036660; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_12, reviewed_at 2024_09_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed TWISTEDPANDA Domain in TLS SNI (www .minzdravros .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "19",
+      "reference": "url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/",
+      "classtype": "targeted-activity",
+      "sid": 2036661,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_12, reviewed_at 2024_09_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": "www.minzdravros.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed TWISTEDPANDA Domain in TLS SNI (www .minzdravros .com)\"; flow:established,to_server; tls.sni; bsize:19; content:\"www.minzdravros.com\"; fast_pattern; reference:url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/; classtype:targeted-activity; sid:2036661; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_12, reviewed_at 2024_09_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed TWISTEDPANDA Domain in TLS SNI (img .elliotterusties .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "23",
+      "reference": "url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/",
+      "classtype": "targeted-activity",
+      "sid": 2036662,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_12, reviewed_at 2024_09_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": "img.elliotterusties.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed TWISTEDPANDA Domain in TLS SNI (img .elliotterusties .com)\"; flow:established,to_server; tls.sni; bsize:23; content:\"img.elliotterusties.com\"; fast_pattern; reference:url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/; classtype:targeted-activity; sid:2036662; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter, former_category MALWARE, malware_family TwistedPanda, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_12, reviewed_at 2024_09_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 253,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Playful Taurus Malicious SSL Certificate Observed",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "bsize": "53",
+      "reference": "url,unit42.paloaltonetworks.com/playful-taurus/",
+      "classtype": "trojan-activity",
+      "sid": 2043362,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_01_19, deployment Perimeter, former_category MALWARE, malware_family PlayfulTaurus, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "C=SN, L=Dakar, O=GIE GAINDE 2000, CN=diplosen.gouv.sn",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED Playful Taurus Malicious SSL Certificate Observed\"; flow:established,to_client; tls.cert_subject; bsize:53; content:\"C=SN, L=Dakar, O=GIE GAINDE 2000, CN=diplosen.gouv.sn\"; fast_pattern; reference:url,unit42.paloaltonetworks.com/playful-taurus/; classtype:trojan-activity; sid:2043362; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_01_19, deployment Perimeter, former_category MALWARE, malware_family PlayfulTaurus, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 267,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed URL Shortener Service Domain (fanlink .to) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2044047,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_02_01, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "fanlink.to",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed URL Shortener Service Domain (fanlink .to) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:10; content:\"fanlink.to\"; fast_pattern; classtype:misc-activity; sid:2044047; rev:3; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_02_01, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_30, reviewed_at 2024_09_30;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 497,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (snxn298y5brpxd67rbntynb6p4qupuuv .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048068,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".snxn298y5brpxd67rbntynb6p4qupuuv.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (snxn298y5brpxd67rbntynb6p4qupuuv .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".snxn298y5brpxd67rbntynb6p4qupuuv.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048068; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 499,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (3aqulcx8xkg6qxrhxgmisecrt98kxlenzj .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048069,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".3aqulcx8xkg6qxrhxgmisecrt98kxlenzj.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (3aqulcx8xkg6qxrhxgmisecrt98kxlenzj .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".3aqulcx8xkg6qxrhxgmisecrt98kxlenzj.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048069; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 501,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q922jh6d3zk0aelqdfc7yygzjr29sle .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048070,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1q922jh6d3zk0aelqdfc7yygzjr29sle.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q922jh6d3zk0aelqdfc7yygzjr29sle .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1q922jh6d3zk0aelqdfc7yygzjr29sle.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048070; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 503,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qc230lt32ey73qlaj9rkujm0ujtv090 .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048071,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1qc230lt32ey73qlaj9rkujm0ujtv090.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qc230lt32ey73qlaj9rkujm0ujtv090 .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1qc230lt32ey73qlaj9rkujm0ujtv090.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048071; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 505,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q8hn7d0uhpspz9xcp3hl9e5erddlew .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048072,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1q8hn7d0uhpspz9xcp3hl9e5erddlew.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q8hn7d0uhpspz9xcp3hl9e5erddlew .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1q8hn7d0uhpspz9xcp3hl9e5erddlew.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048072; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 507,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qr0kxc4gcqt2lcpkdnz8ehs02u9n2xkgz89rwpr .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048073,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1qr0kxc4gcqt2lcpkdnz8ehs02u9n2xkgz89rwpr.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qr0kxc4gcqt2lcpkdnz8ehs02u9n2xkgz89rwpr .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1qr0kxc4gcqt2lcpkdnz8ehs02u9n2xkgz89rwpr.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048073; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 509,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qp2we64k79237y0npqehprfgynlz02fwpktlwte .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048074,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1qp2we64k79237y0npqehprfgynlz02fwpktlwte.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qp2we64k79237y0npqehprfgynlz02fwpktlwte .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1qp2we64k79237y0npqehprfgynlz02fwpktlwte.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048074; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 511,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q6zd25jmkfh5x24ymp60tq99xdugpq .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048075,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1q6zd25jmkfh5x24ymp60tq99xdugpq.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q6zd25jmkfh5x24ymp60tq99xdugpq .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1q6zd25jmkfh5x24ymp60tq99xdugpq.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048075; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 513,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qm34lmk6eesc65zpw79lxes69zkq3ew .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048076,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1qm34lmk6eesc65zpw79lxes69zkq3ew.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qm34lmk6eesc65zpw79lxes69zkq3ew .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1qm34lmk6eesc65zpw79lxes69zkq3ew.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048076; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 515,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (1kmtet1wyig94bxbcke45nivfx1w3m3hth .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048077,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".1kmtet1wyig94bxbcke45nivfx1w3m3hth.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (1kmtet1wyig94bxbcke45nivfx1w3m3hth .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".1kmtet1wyig94bxbcke45nivfx1w3m3hth.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048077; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 517,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (13fzyjcfqhnryc4dkxkykbaawkzwrmhcfc .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048078,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".13fzyjcfqhnryc4dkxkykbaawkzwrmhcfc.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (13fzyjcfqhnryc4dkxkykbaawkzwrmhcfc .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".13fzyjcfqhnryc4dkxkykbaawkzwrmhcfc.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048078; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 519,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q6crq62w2sclm0cwwk6m2wugr6jkh .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048079,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1q6crq62w2sclm0cwwk6m2wugr6jkh.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q6crq62w2sclm0cwwk6m2wugr6jkh .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1q6crq62w2sclm0cwwk6m2wugr6jkh.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048079; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 521,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q0hcvl2p88zdv4dj97mfwtwv4usxm .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048080,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1q0hcvl2p88zdv4dj97mfwtwv4usxm.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1q0hcvl2p88zdv4dj97mfwtwv4usxm .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1q0hcvl2p88zdv4dj97mfwtwv4usxm.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048080; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 523,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qm34lsc65zpw79lxes69zkqmk6ee3ew .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048081,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1qm34lsc65zpw79lxes69zkqmk6ee3ew.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qm34lsc65zpw79lxes69zkqmk6ee3ew .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1qm34lsc65zpw79lxes69zkqmk6ee3ew.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048081; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 525,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qjywr9cpsm5u7e4yrmnx2jsahgzzmm7 .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048082,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1qjywr9cpsm5u7e4yrmnx2jsahgzzmm7.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qjywr9cpsm5u7e4yrmnx2jsahgzzmm7 .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1qjywr9cpsm5u7e4yrmnx2jsahgzzmm7.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048082; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 527,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2048083,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED [TW] Observed Microsoft Credential Phish V3 Domain (bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h.com\"; endswith; fast_pattern; classtype:trojan-activity; sid:2048083; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category PHISHING, confidence High, signature_severity Major, tag Phishing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 539,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed TrollAgent Domain (winters .r-e .kr in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,twitter.com/asdasd13asbz/status/1744279858778456325",
+        "url,twitter.com/jaydinbas/status/1744288770524918119"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049970,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".winters.r-e.kr",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed TrollAgent Domain (winters .r-e .kr in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".winters.r-e.kr\"; endswith; fast_pattern; reference:url,twitter.com/asdasd13asbz/status/1744279858778456325; reference:url,twitter.com/jaydinbas/status/1744288770524918119; classtype:trojan-activity; sid:2049970; rev:3; metadata:attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 541,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed TrollAgent Domain (ai .kostin .p-e .kr in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,twitter.com/asdasd13asbz/status/1744279858778456325",
+        "url,twitter.com/jaydinbas/status/1744288770524918119"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049971,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".ai.kostin.p-e.kr",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed TrollAgent Domain (ai .kostin .p-e .kr in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".ai.kostin.p-e.kr\"; endswith; fast_pattern; reference:url,twitter.com/asdasd13asbz/status/1744279858778456325; reference:url,twitter.com/jaydinbas/status/1744288770524918119; classtype:trojan-activity; sid:2049971; rev:3; metadata:attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 543,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed TrollAgent Domain (ol .negapa .p-e .kr in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,twitter.com/asdasd13asbz/status/1744279858778456325",
+        "url,twitter.com/jaydinbas/status/1744288770524918119"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049972,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".ol.negapa.p-e.kr",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed TrollAgent Domain (ol .negapa .p-e .kr in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".ol.negapa.p-e.kr\"; endswith; fast_pattern; reference:url,twitter.com/asdasd13asbz/status/1744279858778456325; reference:url,twitter.com/jaydinbas/status/1744288770524918119; classtype:trojan-activity; sid:2049972; rev:3; metadata:attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 545,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed TrollAgent Domain (ar .kostin .p-e .kr in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": [
+        "url,twitter.com/asdasd13asbz/status/1744279858778456325",
+        "url,twitter.com/jaydinbas/status/1744288770524918119"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2049973,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol",
+      "contents": [
+        {
+          "pattern": ".ar.kostin.p-e.kr",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed TrollAgent Domain (ar .kostin .p-e .kr in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".ar.kostin.p-e.kr\"; endswith; fast_pattern; reference:url,twitter.com/asdasd13asbz/status/1744279858778456325; reference:url,twitter.com/jaydinbas/status/1744288770524918119; classtype:trojan-activity; sid:2049973; rev:3; metadata:attack_target Client_Endpoint, created_at 2024_01_10, deployment Perimeter, former_category MALWARE, malware_family TrollAgent, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_15, reviewed_at 2024_10_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 775,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed GobRAT Domain (ktlvz .dnsfailover .net) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "21",
+      "reference": "url,blogs.jpcert.or.jp/en/2023/05/gobrat.html",
+      "classtype": "command-and-control",
+      "sid": 2046733,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "ktlvz.dnsfailover.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed GobRAT Domain (ktlvz .dnsfailover .net) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:21; content:\"ktlvz.dnsfailover.net\"; fast_pattern; reference:url,blogs.jpcert.or.jp/en/2023/05/gobrat.html; classtype:command-and-control; sid:2046733; rev:2; metadata:affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 777,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed GobRAT Domain (wpksi .mefound .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "17",
+      "reference": "url,blogs.jpcert.or.jp/en/2023/05/gobrat.html",
+      "classtype": "command-and-control",
+      "sid": 2046734,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "wpksi.mefound.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed GobRAT Domain (wpksi .mefound .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:17; content:\"wpksi.mefound.com\"; fast_pattern; reference:url,blogs.jpcert.or.jp/en/2023/05/gobrat.html; classtype:command-and-control; sid:2046734; rev:2; metadata:affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 779,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed GobRAT Domain (su .vealcat .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "14",
+      "reference": "url,blogs.jpcert.or.jp/en/2023/05/gobrat.html",
+      "classtype": "command-and-control",
+      "sid": 2046735,
+      "rev": 2,
+      "metadata": "affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "su.vealcat.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed GobRAT Domain (su .vealcat .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:14; content:\"su.vealcat.com\"; fast_pattern; reference:url,blogs.jpcert.or.jp/en/2023/05/gobrat.html; classtype:command-and-control; sid:2046735; rev:2; metadata:affected_product Linux, attack_target Networking_Equipment, created_at 2023_07_05, deployment Perimeter, former_category MALWARE, malware_family GobRAT, performance_impact Low, confidence High, signature_severity Major, tag RAT, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 797,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed APT29 Domain (sgrhf .org .pk) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "12",
+      "reference": "url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs",
+      "classtype": "domain-c2",
+      "sid": 2047641,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "sgrhf.org.pk",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed APT29 Domain (sgrhf .org .pk) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:12; content:\"sgrhf.org.pk\"; fast_pattern; reference:url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs; classtype:domain-c2; sid:2047641; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 799,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed APT29 Domain (toyy .zulipchat .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "18",
+      "reference": "url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs",
+      "classtype": "domain-c2",
+      "sid": 2047642,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "toyy.zulipchat.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed APT29 Domain (toyy .zulipchat .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:18; content:\"toyy.zulipchat.com\"; fast_pattern; reference:url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs; classtype:domain-c2; sid:2047642; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 801,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed APT29 Domain (edenparkweddings .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "20",
+      "reference": "url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs",
+      "classtype": "domain-c2",
+      "sid": 2047643,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17",
+      "contents": [
+        {
+          "pattern": "edenparkweddings.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed APT29 Domain (edenparkweddings .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:20; content:\"edenparkweddings.com\"; fast_pattern; reference:url,blog.eclecticiq.com/german-embassy-lure-likely-part-of-campaign-against-nato-aligned-ministries-of-foreign-affairs; classtype:domain-c2; sid:2047643; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category MALWARE, performance_impact Low, confidence High, signature_severity Major, tag APT29, updated_at 2025_04_17, reviewed_at 2025_04_17;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 895,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed Epsilon Stealer Domain (3ps1l0n .life) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "12",
+      "reference": "md5,e8c8434a3cd4cf970f864c7273810642",
+      "classtype": "trojan-activity",
+      "sid": 2050014,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_11, deployment Perimeter, former_category MALWARE, malware_family EpsilonStealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": "3ps1l0n.life",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed Epsilon Stealer Domain (3ps1l0n .life) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:12; content:\"3ps1l0n.life\"; fast_pattern; reference:md5,e8c8434a3cd4cf970f864c7273810642; classtype:trojan-activity; sid:2050014; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2024_01_11, deployment Perimeter, former_category MALWARE, malware_family EpsilonStealer, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 917,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed EvasivePanda/Daggerfly APT Domain (devicebug .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.welivesecurity.com/en/eset-research/evasive-panda-leverages-monlam-festival-target-tibetans/",
+      "classtype": "trojan-activity",
+      "sid": 2051520,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_03_07, deployment Perimeter, former_category MALWARE, malware_family EvasivePanda, malware_family Nightdoor, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": ".devicebug.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed EvasivePanda/Daggerfly APT Domain (devicebug .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".devicebug.com\"; endswith; fast_pattern; reference:url,www.welivesecurity.com/en/eset-research/evasive-panda-leverages-monlam-festival-target-tibetans/; classtype:trojan-activity; sid:2051520; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Mac_OSX, affected_product Windows_11, attack_target Client_Endpoint, created_at 2024_03_07, deployment Perimeter, former_category MALWARE, malware_family EvasivePanda, malware_family Nightdoor, performance_impact Low, confidence High, signature_severity Major, updated_at 2025_07_14, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 921,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Observed NGC2180/DFKRAT CnC Domain (windowscer .shop) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "reference": "url,rt-solar.ru/solar-4rays/blog/4124/",
+      "classtype": "trojan-activity",
+      "sid": 2051522,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2024_03_07, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family NGC2180, malware_family DFKRAT, performance_impact Low, confidence High, signature_severity Major, tag NGC2180, tag DFKRAT, updated_at 2025_07_14, reviewed_at 2025_07_14",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "windowscer.shop",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET RETIRED Observed NGC2180/DFKRAT CnC Domain (windowscer .shop) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:15; content:\"windowscer.shop\"; fast_pattern; reference:url,rt-solar.ru/solar-4rays/blog/4124/; classtype:trojan-activity; sid:2051522; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, attack_target Client_Endpoint, tls_state TLSDecrypt, created_at 2024_03_07, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, malware_family NGC2180, malware_family DFKRAT, performance_impact Low, confidence High, signature_severity Major, tag NGC2180, tag DFKRAT, updated_at 2025_07_14, reviewed_at 2025_07_14; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-retired.rules",
+    "line_number": 943,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET RETIRED Playful Taurus Observe malicious SSL Cert (self-signed www .netgate .com)",
+      "flow": "established,to_client",
+      "tls.cert_issuer": true,
+      "reference": "url,unit42.paloaltonetworks.com/playful-taurus/",
+      "classtype": "trojan-activity",
+      "sid": 2043364,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_01_19, deployment Perimeter, malware_family PlayfulTaurus, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2025_07_24, reviewed_at 2024_09_30",
+      "contents": [
+        {
+          "pattern": "C=us, ST=ny, L=ny, O=netgate, OU=netgate, CN=www.netgate.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "email@netgate.com",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET RETIRED Playful Taurus Observe malicious SSL Cert (self-signed www .netgate .com)\"; flow:established,to_client; tls.cert_issuer; content:\"C=us, ST=ny, L=ny, O=netgate, OU=netgate, CN=www.netgate.com\"; content:\"email@netgate.com\"; distance:0; fast_pattern; reference:url,unit42.paloaltonetworks.com/playful-taurus/; classtype:trojan-activity; sid:2043364; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2023_01_19, deployment Perimeter, malware_family PlayfulTaurus, performance_impact Low, confidence High, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2025_07_24, reviewed_at 2024_09_30;)"
+  }
+]

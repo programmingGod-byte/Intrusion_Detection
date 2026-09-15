@@ -1,0 +1,580 @@
+[
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Query for .su TLD (Soviet Union) Often Malware Related",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,www.abuse.ch/?p=3581",
+      "classtype": "bad-unknown",
+      "sid": 2014169,
+      "rev": 4,
+      "metadata": "created_at 2012_01_31, confidence Medium, signature_severity Major, updated_at 2020_09_14",
+      "contents": [
+        {
+          "pattern": ".su",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS Query for .su TLD (Soviet Union) Often Malware Related\"; dns.query; content:\".su\"; nocase; endswith; reference:url,www.abuse.ch/?p=3581; classtype:bad-unknown; sid:2014169; rev:4; metadata:created_at 2012_01_31, confidence Medium, signature_severity Major, updated_at 2020_09_14;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Query to a *.top domain - Likely Hostile",
+      "threshold": "type limit, track by_src, count 1, seconds 30",
+      "dns.query": true,
+      "endswith": true,
+      "reference": [
+        "url,www.symantec.com/connect/blogs/shady-tld-research-gdn-and-our-2016-wrap",
+        "url,www.spamhaus.org/statistics/tlds/"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2023883,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_02_07, deployment Perimeter, confidence Medium, signature_severity Major, updated_at 2020_09_15",
+      "contents": [
+        {
+          "pattern": ".top",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS Query to a *.top domain - Likely Hostile\"; threshold:type limit, track by_src, count 1, seconds 30; dns.query; content:\".top\"; nocase; endswith; reference:url,www.symantec.com/connect/blogs/shady-tld-research-gdn-and-our-2016-wrap; reference:url,www.spamhaus.org/statistics/tlds/; classtype:bad-unknown; sid:2023883; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_02_07, deployment Perimeter, confidence Medium, signature_severity Major, updated_at 2020_09_15;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Query for .to TLD",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2027757,
+      "rev": 5,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2019_07_26, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": ".to",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS Query for .to TLD\"; dns.query; content:\".to\"; endswith; fast_pattern; classtype:bad-unknown; sid:2027757; rev:5; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2019_07_26, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Query for .cc TLD",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2027758,
+      "rev": 5,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2019_07_26, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": ".cc",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS Query for .cc TLD\"; dns.query; content:\".cc\"; endswith; fast_pattern; classtype:bad-unknown; sid:2027758; rev:5; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2019_07_26, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Query to a .tk domain - Likely Hostile",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2012811,
+      "rev": 7,
+      "metadata": "created_at 2011_05_15, confidence High, signature_severity Informational, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": ".tk",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"www.google.tk",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS Query to a .tk domain - Likely Hostile\"; dns.query; content:\".tk\"; fast_pattern; nocase; endswith; content:!\"www.google.tk\"; classtype:bad-unknown; sid:2012811; rev:7; metadata:created_at 2011_05_15, confidence High, signature_severity Informational, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Query to a *.pw domain - Likely Hostile",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2016778,
+      "rev": 8,
+      "metadata": "created_at 2013_04_20, confidence Medium, signature_severity Informational, updated_at 2020_11_19, reviewed_at 2024_04_22",
+      "contents": [
+        {
+          "pattern": ".pw",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\".u.pw",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS Query to a *.pw domain - Likely Hostile\"; dns.query; content:\".pw\"; nocase; endswith; content:!\".u.pw\"; endswith; nocase; classtype:bad-unknown; sid:2016778; rev:8; metadata:created_at 2013_04_20, confidence Medium, signature_severity Informational, updated_at 2020_11_19, reviewed_at 2024_04_22;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Reply Sinkhole - sinkhole.cert.pl 148.81.111.111",
+      "classtype": "trojan-activity",
+      "sid": 2016413,
+      "rev": 5,
+      "metadata": "created_at 2013_02_15, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 04 94 51 6f 6f|",
+          "modifiers": {
+            "distance": "4",
+            "within": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET DNS Reply Sinkhole - sinkhole.cert.pl 148.81.111.111\"; content:\"|00 01 00 01|\"; content:\"|00 04 94 51 6f 6f|\"; distance:4; within:6; classtype:trojan-activity; sid:2016413; rev:5; metadata:created_at 2013_02_15, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Reply Sinkhole - Dr. Web",
+      "reference": "url,virustracker.info",
+      "classtype": "trojan-activity",
+      "sid": 2016418,
+      "rev": 6,
+      "metadata": "created_at 2013_02_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 04 5b e9 f4 6a|",
+          "modifiers": {
+            "distance": "4",
+            "within": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET DNS Reply Sinkhole - Dr. Web\"; content:\"|00 01 00 01|\"; content:\"|00 04 5b e9 f4 6a|\"; distance:4; within:6; reference:url,virustracker.info; classtype:trojan-activity; sid:2016418; rev:6; metadata:created_at 2013_02_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Reply Sinkhole - Zinkhole.org",
+      "classtype": "trojan-activity",
+      "sid": 2016419,
+      "rev": 6,
+      "metadata": "created_at 2013_02_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 04 b0 1f 3e 4c|",
+          "modifiers": {
+            "distance": "4",
+            "within": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET DNS Reply Sinkhole - Zinkhole.org\"; content:\"|00 01 00 01|\"; content:\"|00 04 b0 1f 3e 4c|\"; distance:4; within:6; classtype:trojan-activity; sid:2016419; rev:6; metadata:created_at 2013_02_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Reply Sinkhole - Georgia Tech (1)",
+      "reference": "url,virustracker.info",
+      "classtype": "trojan-activity",
+      "sid": 2016422,
+      "rev": 6,
+      "metadata": "created_at 2013_02_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 04 c6 3d e3 06|",
+          "modifiers": {
+            "distance": "4",
+            "within": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET DNS Reply Sinkhole - Georgia Tech (1)\"; content:\"|00 01 00 01|\"; content:\"|00 04 c6 3d e3 06|\"; distance:4; within:6; reference:url,virustracker.info; classtype:trojan-activity; sid:2016422; rev:6; metadata:created_at 2013_02_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Reply Sinkhole - Georgia Tech (2)",
+      "reference": "url,virustracker.info",
+      "classtype": "trojan-activity",
+      "sid": 2016423,
+      "rev": 7,
+      "metadata": "created_at 2013_02_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 04 32 3e 0c 67|",
+          "modifiers": {
+            "distance": "4",
+            "within": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET DNS Reply Sinkhole - Georgia Tech (2)\"; content:\"|00 01 00 01|\"; content:\"|00 04 32 3e 0c 67|\"; distance:4; within:6; reference:url,virustracker.info; classtype:trojan-activity; sid:2016423; rev:7; metadata:created_at 2013_02_16, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS Reply Sinkhole - 106.187.96.49 blacklistthisdomain.com",
+      "classtype": "trojan-activity",
+      "sid": 2016591,
+      "rev": 7,
+      "metadata": "created_at 2013_03_19, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13, reviewed_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "|00 01 00 01|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 04 6a bb 60 31|",
+          "modifiers": {
+            "distance": "4",
+            "within": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns any any -> $HOME_NET any (msg:\"ET DNS Reply Sinkhole - 106.187.96.49 blacklistthisdomain.com\"; content:\"|00 01 00 01|\"; content:\"|00 04 6a bb 60 31|\"; distance:4; within:6; classtype:trojan-activity; sid:2016591; rev:7; metadata:created_at 2013_03_19, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_07_13, reviewed_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "options": {
+      "msg": "ET DNS Hiloti DNS CnC Channel Successful Install Message",
+      "dns.query": true,
+      "reference": [
+        "url,sign.kaffenews.com/?p=104",
+        "url,blog.fortinet.com/hiloti-the-botmaster-of-disguise/"
+      ],
+      "classtype": "command-and-control",
+      "sid": 2011911,
+      "rev": 4,
+      "metadata": "created_at 2010_11_09, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "empty",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "explorer_exe",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any 53 (msg:\"ET DNS Hiloti DNS CnC Channel Successful Install Message\"; dns.query; content:\"empty\"; nocase; content:\"explorer_exe\"; nocase; distance:0; fast_pattern; reference:url,sign.kaffenews.com/?p=104; reference:url,blog.fortinet.com/hiloti-the-botmaster-of-disguise/; classtype:command-and-control; sid:2011911; rev:4; metadata:created_at 2010_11_09, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 125,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS APT_NGO_wuaclt C2 Domain micorsofts.net",
+      "dns.query": true,
+      "endswith": true,
+      "threshold": "type limit, track by_src, count 1, seconds 300",
+      "reference": "url,labs.alienvault.com",
+      "classtype": "targeted-activity",
+      "sid": 2016569,
+      "rev": 5,
+      "metadata": "created_at 2013_03_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "micorsofts.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS APT_NGO_wuaclt C2 Domain micorsofts.net\"; dns.query; content:\"micorsofts.net\"; endswith; fast_pattern; threshold: type limit, track by_src, count 1, seconds 300; reference:url,labs.alienvault.com; classtype:targeted-activity; sid:2016569; rev:5; metadata:created_at 2013_03_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 127,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS APT_NGO_wuaclt C2 Domain hotmal1.com",
+      "dns.query": true,
+      "endswith": true,
+      "threshold": "type limit, track by_src, count 1, seconds 300",
+      "reference": "url,labs.alienvault.com",
+      "classtype": "targeted-activity",
+      "sid": 2016571,
+      "rev": 3,
+      "metadata": "created_at 2013_03_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "hotmal1.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS APT_NGO_wuaclt C2 Domain hotmal1.com\"; dns.query; content:\"hotmal1.com\"; endswith; fast_pattern; threshold: type limit, track by_src, count 1, seconds 300; reference:url,labs.alienvault.com; classtype:targeted-activity; sid:2016571; rev:3; metadata:created_at 2013_03_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 129,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS APT_NGO_wuaclt C2 Domain micorsofts.com",
+      "dns.query": true,
+      "endswith": true,
+      "threshold": "type limit, track by_src, count 1, seconds 300",
+      "reference": "url,labs.alienvault.com",
+      "classtype": "targeted-activity",
+      "sid": 2016570,
+      "rev": 4,
+      "metadata": "created_at 2013_03_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26",
+      "contents": [
+        {
+          "pattern": "micorsofts.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS APT_NGO_wuaclt C2 Domain micorsofts.com\"; dns.query; content:\"micorsofts.com\"; endswith; fast_pattern; threshold: type limit, track by_src, count 1, seconds 300; reference:url,labs.alienvault.com; classtype:targeted-activity; sid:2016570; rev:4; metadata:created_at 2013_03_14, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_26;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 131,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS DNS Query for Illegal Drug Sales Site (SilkRoad)",
+      "dns.query": true,
+      "startswith": true,
+      "classtype": "policy-violation",
+      "sid": 2013016,
+      "rev": 6,
+      "metadata": "created_at 2011_06_13, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "ianxz6zefk72ulzz.onion",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS DNS Query for Illegal Drug Sales Site (SilkRoad)\"; dns.query; content:\"ianxz6zefk72ulzz.onion\"; startswith; classtype:policy-violation; sid:2013016; rev:6; metadata:created_at 2011_06_13, confidence Medium, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-dns.rules",
+    "line_number": 133,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET DNS DNS Query for vpnoverdns - indicates DNS tunnelling",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": "url,osint.bambenekconsulting.com/manual/vpnoverdns.txt",
+      "classtype": "bad-unknown",
+      "sid": 2018438,
+      "rev": 7,
+      "metadata": "created_at 2014_05_02, confidence Medium, signature_severity Minor, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "tun.vpnoverdns.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET DNS DNS Query for vpnoverdns - indicates DNS tunnelling\"; dns.query; content:\"tun.vpnoverdns.com\"; startswith; fast_pattern; nocase; endswith; reference:url,osint.bambenekconsulting.com/manual/vpnoverdns.txt; classtype:bad-unknown; sid:2018438; rev:7; metadata:created_at 2014_05_02, confidence Medium, signature_severity Minor, updated_at 2024_04_13;)"
+  }
+]

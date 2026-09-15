@@ -1,0 +1,1304 @@
+[
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP SITE CPWD overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^SITE\\s+CPWD\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,5427",
+        "cve,2002-0826"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2101888,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, cve CVE_2002_0826, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SITE",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "CPWD",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP SITE CPWD overflow attempt\"; flow:established,to_server; content:\"SITE\"; nocase; content:\"CPWD\"; distance:0; nocase; isdataat:100,relative; pcre:\"/^SITE\\s+CPWD\\s[^\\n]{100}/smi\"; reference:bugtraq,5427; reference:cve,2002-0826; classtype:misc-attack; sid:2101888; rev:9; metadata:created_at 2010_09_23, cve CVE_2002_0826, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP .forward",
+      "flow": "established,to_server",
+      "reference": "arachnids,319",
+      "classtype": "suspicious-filename-detect",
+      "sid": 2100334,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": ".forward",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP .forward\"; flow:established,to_server; content:\".forward\"; reference:arachnids,319; classtype:suspicious-filename-detect; sid:2100334; rev:8; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP MKD overflow",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "reference": [
+        "bugtraq,113",
+        "bugtraq,2242",
+        "cve,1999-0368"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2100349,
+      "rev": 14,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0368, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "MKD ",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP MKD overflow\"; flow:established,to_server; content:\"MKD \"; isdataat:100,relative; reference:bugtraq,113; reference:bugtraq,2242; reference:cve,1999-0368; classtype:attempted-admin; sid:2100349; rev:14; metadata:created_at 2010_09_23, cve CVE_1999_0368, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 103,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP iss scan",
+      "flow": "established,to_server",
+      "reference": "arachnids,331",
+      "classtype": "suspicious-login",
+      "sid": 2100354,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "pass -iss@iss",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP iss scan\"; flow:established,to_server; content:\"pass -iss@iss\"; fast_pattern; reference:arachnids,331; classtype:suspicious-login; sid:2100354; rev:9; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP pass wh00t",
+      "flow": "established,to_server",
+      "reference": "arachnids,324",
+      "classtype": "suspicious-login",
+      "sid": 2100355,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "pass wh00t",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP pass wh00t\"; flow:established,to_server; content:\"pass wh00t\"; nocase; fast_pattern; reference:arachnids,324; classtype:suspicious-login; sid:2100355; rev:9; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP passwd retrieval attempt",
+      "flow": "established,to_server",
+      "reference": "arachnids,213",
+      "classtype": "suspicious-filename-detect",
+      "sid": 2100356,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "RETR",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "passwd",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP passwd retrieval attempt\"; flow:established,to_server; content:\"RETR\"; nocase; content:\"passwd\"; reference:arachnids,213; classtype:suspicious-filename-detect; sid:2100356; rev:8; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP piss scan",
+      "flow": "established,to_server",
+      "classtype": "suspicious-login",
+      "sid": 2100357,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "pass -cklaus",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP piss scan\"; flow:established,to_server; content:\"pass -cklaus\"; fast_pattern; classtype:suspicious-login; sid:2100357; rev:9; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 111,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP saint scan",
+      "flow": "established,to_server",
+      "reference": "arachnids,330",
+      "classtype": "suspicious-login",
+      "sid": 2100358,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "pass -saint",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP saint scan\"; flow:established,to_server; content:\"pass -saint\"; fast_pattern; reference:arachnids,330; classtype:suspicious-login; sid:2100358; rev:9; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 113,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP satan scan",
+      "flow": "established,to_server",
+      "reference": "arachnids,329",
+      "classtype": "suspicious-login",
+      "sid": 2100359,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "pass -satan",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP satan scan\"; flow:established,to_server; content:\"pass -satan\"; fast_pattern; reference:arachnids,329; classtype:suspicious-login; sid:2100359; rev:9; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 115,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP SITE EXEC attempt",
+      "flow": "established,to_server",
+      "pcre": "/^SITE\\s+EXEC/smi",
+      "reference": [
+        "arachnids,317",
+        "bugtraq,2241",
+        "cve,1999-0080",
+        "cve,1999-0955"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2100361,
+      "rev": 18,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0080, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "SITE",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "EXEC",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP SITE EXEC attempt\"; flow:established,to_server; content:\"SITE\"; nocase; content:\"EXEC\"; distance:0; nocase; pcre:\"/^SITE\\s+EXEC/smi\"; reference:arachnids,317; reference:bugtraq,2241; reference:cve,1999-0080; reference:cve,1999-0955; classtype:bad-unknown; sid:2100361; rev:18; metadata:created_at 2010_09_23, cve CVE_1999_0080, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 117,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP tar parameters",
+      "flow": "established,to_server",
+      "reference": [
+        "arachnids,134",
+        "bugtraq,2240",
+        "cve,1999-0202",
+        "cve,1999-0997"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2100362,
+      "rev": 16,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0202, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": " --use-compress-program ",
+          "modifiers": {
+            "nocase": true,
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP tar parameters\"; flow:established,to_server; content:\" --use-compress-program \"; nocase; fast_pattern; reference:arachnids,134; reference:bugtraq,2240; reference:cve,1999-0202; reference:cve,1999-0997; classtype:bad-unknown; sid:2100362; rev:16; metadata:created_at 2010_09_23, cve CVE_1999_0202, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 147,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP SITE overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^SITE\\s[^\\n]{100}/smi",
+      "reference": [
+        "cve,1999-0838",
+        "cve,2001-0755",
+        "cve,2001-0770"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101529,
+      "rev": 13,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0838, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "SITE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP SITE overflow attempt\"; flow:established,to_server; content:\"SITE\"; nocase; isdataat:100,relative; pcre:\"/^SITE\\s[^\\n]{100}/smi\"; reference:cve,1999-0838; reference:cve,2001-0755; reference:cve,2001-0770; classtype:attempted-admin; sid:2101529; rev:13; metadata:created_at 2010_09_23, cve CVE_1999_0838, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP SITE CHOWN overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^SITE\\s+CHOWN\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,2120",
+        "cve,2001-0065"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101562,
+      "rev": 14,
+      "metadata": "created_at 2010_09_23, cve CVE_2001_0065, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "SITE",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "CHOWN",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP SITE CHOWN overflow attempt\"; flow:established,to_server; content:\"SITE\"; nocase; content:\"CHOWN\"; distance:0; nocase; isdataat:100,relative; pcre:\"/^SITE\\s+CHOWN\\s[^\\n]{100}/smi\"; reference:bugtraq,2120; reference:cve,2001-0065; classtype:attempted-admin; sid:2101562; rev:14; metadata:created_at 2010_09_23, cve CVE_2001_0065, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 153,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP CMD overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^CMD\\s[^\\n]{100}/smi",
+      "classtype": "attempted-admin",
+      "sid": 2101621,
+      "rev": 13,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "CMD",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP CMD overflow attempt\"; flow:established,to_server; content:\"CMD\"; nocase; isdataat:100,relative; pcre:\"/^CMD\\s[^\\n]{100}/smi\"; classtype:attempted-admin; sid:2101621; rev:13; metadata:created_at 2010_09_23, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP RNFR ././ attempt",
+      "flow": "established,to_server",
+      "classtype": "misc-attack",
+      "sid": 2101622,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "RNFR ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": " ././",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP RNFR ././ attempt\"; flow:established,to_server; content:\"RNFR \"; nocase; content:\" ././\"; nocase; classtype:misc-attack; sid:2101622; rev:8; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 157,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP invalid MODE",
+      "flow": "established,to_server",
+      "pcre": "/^MODE\\s+[^ABSC]{1}/msi",
+      "classtype": "protocol-command-decode",
+      "sid": 2101623,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "MODE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP invalid MODE\"; flow:established,to_server; content:\"MODE\"; nocase; pcre:\"/^MODE\\s+[^ABSC]{1}/msi\"; classtype:protocol-command-decode; sid:2101623; rev:8; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 159,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP large PWD command",
+      "flow": "established,to_server",
+      "isdataat": "7,relative",
+      "classtype": "protocol-command-decode",
+      "sid": 2101624,
+      "rev": 10,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "PWD",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"|0A|",
+          "modifiers": {
+            "within": "7",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP large PWD command\"; flow:established,to_server; content:\"PWD\"; isdataat:7,relative; content:!\"|0A|\"; within:7; nocase; classtype:protocol-command-decode; sid:2101624; rev:10; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 165,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP CWD ~<CR><NEWLINE> attempt",
+      "flow": "established,to_server",
+      "reference": [
+        "bugtraq,2601",
+        "cve,2001-0421"
+      ],
+      "classtype": "denial-of-service",
+      "sid": 2101728,
+      "rev": 10,
+      "metadata": "created_at 2010_09_23, cve CVE_2001_0421, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "CWD ",
+          "modifiers": {}
+        },
+        {
+          "pattern": " ~|0D 0A|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP CWD ~<CR><NEWLINE> attempt\"; flow:established,to_server; content:\"CWD \"; content:\" ~|0D 0A|\"; reference:bugtraq,2601; reference:cve,2001-0421; classtype:denial-of-service; sid:2101728; rev:10; metadata:created_at 2010_09_23, cve CVE_2001_0421, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 167,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP USER overflow attempt",
+      "flow": "established,to_server,no_stream",
+      "isdataat": "100,relative",
+      "pcre": "/^USER\\x20[^\\x00\\x20\\x0a\\x0d]{100}/smi",
+      "reference": [
+        "bugtraq,10078",
+        "bugtraq,1227",
+        "bugtraq,1504",
+        "bugtraq,1690",
+        "bugtraq,4638",
+        "bugtraq,7307",
+        "bugtraq,8376",
+        "cve,1999-1510",
+        "cve,1999-1514",
+        "cve,1999-1519",
+        "cve,1999-1539",
+        "cve,2000-0479",
+        "cve,2000-0656",
+        "cve,2000-0761",
+        "cve,2000-0943",
+        "cve,2000-1035",
+        "cve,2000-1194",
+        "cve,2001-0256",
+        "cve,2001-0794",
+        "cve,2001-0826",
+        "cve,2002-0126",
+        "cve,2002-1522",
+        "cve,2003-0271",
+        "cve,2004-0286"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101734,
+      "rev": 37,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_1510, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "USER|20|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP USER overflow attempt\"; flow:established,to_server,no_stream; content:\"USER|20|\"; nocase; isdataat:100,relative; pcre:\"/^USER\\x20[^\\x00\\x20\\x0a\\x0d]{100}/smi\"; reference:bugtraq,10078; reference:bugtraq,1227; reference:bugtraq,1504; reference:bugtraq,1690; reference:bugtraq,4638; reference:bugtraq,7307; reference:bugtraq,8376; reference:cve,1999-1510; reference:cve,1999-1514; reference:cve,1999-1519; reference:cve,1999-1539; reference:cve,2000-0479; reference:cve,2000-0656; reference:cve,2000-0761; reference:cve,2000-0943; reference:cve,2000-1035; reference:cve,2000-1194; reference:cve,2001-0256; reference:cve,2001-0794; reference:cve,2001-0826; reference:cve,2002-0126; reference:cve,2002-1522; reference:cve,2003-0271; reference:cve,2004-0286; classtype:attempted-admin; sid:2101734; rev:37; metadata:created_at 2010_09_23, cve CVE_1999_1510, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 175,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP CWD .... attempt",
+      "flow": "established,to_server",
+      "reference": "bugtraq,4884",
+      "classtype": "denial-of-service",
+      "sid": 2101779,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "CWD ",
+          "modifiers": {}
+        },
+        {
+          "pattern": " ....",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP CWD .... attempt\"; flow:established,to_server; content:\"CWD \"; content:\" ....\"; reference:bugtraq,4884; classtype:denial-of-service; sid:2101779; rev:6; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 177,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP SITE NEWER attempt",
+      "flow": "established,to_server",
+      "pcre": "/^SITE\\s+NEWER/smi",
+      "reference": [
+        "cve,1999-0880",
+        "nessus,10319"
+      ],
+      "classtype": "attempted-dos",
+      "sid": 2101864,
+      "rev": 10,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0880, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "SITE",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "NEWER",
+          "modifiers": {
+            "distance": "1",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP SITE NEWER attempt\"; flow:established,to_server; content:\"SITE\"; nocase; content:\"NEWER\"; distance:1; nocase; pcre:\"/^SITE\\s+NEWER/smi\"; reference:cve,1999-0880; reference:nessus,10319; classtype:attempted-dos; sid:2101864; rev:10; metadata:created_at 2010_09_23, cve CVE_1999_0880, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 179,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP CWD overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^CWD\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,11069",
+        "bugtraq,1227",
+        "bugtraq,1690",
+        "bugtraq,6869",
+        "bugtraq,7251",
+        "bugtraq,7950",
+        "cve,1999-0219",
+        "cve,1999-1058",
+        "cve,1999-1510",
+        "cve,2000-1035",
+        "cve,2000-1194",
+        "cve,2001-0781",
+        "cve,2002-0126",
+        "cve,2002-0405"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101919,
+      "rev": 25,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0219, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "CWD",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP CWD overflow attempt\"; flow:established,to_server; content:\"CWD\"; nocase; isdataat:100,relative; pcre:\"/^CWD\\s[^\\n]{100}/smi\"; reference:bugtraq,11069; reference:bugtraq,1227; reference:bugtraq,1690; reference:bugtraq,6869; reference:bugtraq,7251; reference:bugtraq,7950; reference:cve,1999-0219; reference:cve,1999-1058; reference:cve,1999-1510; reference:cve,2000-1035; reference:cve,2000-1194; reference:cve,2001-0781; reference:cve,2002-0126; reference:cve,2002-0405; classtype:attempted-admin; sid:2101919; rev:25; metadata:created_at 2010_09_23, cve CVE_1999_0219, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 181,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "GPL FTP SITE NEWER overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^SITE\\s+NEWER\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,229",
+        "cve,1999-0800"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101920,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0800, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "SITE",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "NEWER",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"GPL FTP SITE NEWER overflow attempt\"; flow:established,to_server; content:\"SITE\"; nocase; content:\"NEWER\"; distance:0; nocase; isdataat:100,relative; pcre:\"/^SITE\\s+NEWER\\s[^\\n]{100}/smi\"; reference:bugtraq,229; reference:cve,1999-0800; classtype:attempted-admin; sid:2101920; rev:9; metadata:created_at 2010_09_23, cve CVE_1999_0800, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "GPL FTP SITE ZIPCHK overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^SITE\\s+ZIPCHK\\s[^\\n]{100}/smi",
+      "reference": "cve,2000-0040",
+      "classtype": "attempted-admin",
+      "sid": 2101921,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, cve CVE_2000_0040, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "SITE",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "ZIPCHK",
+          "modifiers": {
+            "distance": "1",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"GPL FTP SITE ZIPCHK overflow attempt\"; flow:established,to_server; content:\"SITE\"; nocase; content:\"ZIPCHK\"; distance:1; nocase; isdataat:100,relative; pcre:\"/^SITE\\s+ZIPCHK\\s[^\\n]{100}/smi\"; reference:cve,2000-0040; classtype:attempted-admin; sid:2101921; rev:8; metadata:created_at 2010_09_23, cve CVE_2000_0040, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 185,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP authorized_keys file transferred",
+      "flow": "established,to_server",
+      "classtype": "suspicious-filename-detect",
+      "sid": 2101927,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "authorized_keys",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP authorized_keys file transferred\"; flow:established,to_server; content:\"authorized_keys\"; classtype:suspicious-filename-detect; sid:2101927; rev:8; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 187,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP shadow retrieval attempt",
+      "flow": "established,to_server",
+      "classtype": "suspicious-filename-detect",
+      "sid": 2101928,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "RETR",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "shadow",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP shadow retrieval attempt\"; flow:established,to_server; content:\"RETR\"; nocase; content:\"shadow\"; classtype:suspicious-filename-detect; sid:2101928; rev:8; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 193,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "options": {
+      "msg": "GPL FTP PASS overflow attempt",
+      "flow": "established,to_server,no_stream",
+      "isdataat": "100,relative",
+      "pcre": "/^PASS\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,10078",
+        "bugtraq,10720",
+        "bugtraq,1690",
+        "bugtraq,3884",
+        "bugtraq,8601",
+        "bugtraq,9285",
+        "cve,1999-1519",
+        "cve,1999-1539",
+        "cve,2000-1035",
+        "cve,2002-0126",
+        "cve,2002-0895"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101972,
+      "rev": 19,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_1519, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "PASS",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET 21 (msg:\"GPL FTP PASS overflow attempt\"; flow:established,to_server,no_stream; content:\"PASS\"; nocase; isdataat:100,relative; pcre:\"/^PASS\\s[^\\n]{100}/smi\"; reference:bugtraq,10078; reference:bugtraq,10720; reference:bugtraq,1690; reference:bugtraq,3884; reference:bugtraq,8601; reference:bugtraq,9285; reference:cve,1999-1519; reference:cve,1999-1539; reference:cve,2000-1035; reference:cve,2002-0126; reference:cve,2002-0895; classtype:attempted-admin; sid:2101972; rev:19; metadata:created_at 2010_09_23, cve CVE_1999_1519, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 195,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP MKD overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^MKD\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,612",
+        "bugtraq,7278",
+        "bugtraq,9872",
+        "cve,1999-0911",
+        "nessus,12108"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101973,
+      "rev": 12,
+      "metadata": "created_at 2010_09_23, cve CVE_1999_0911, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "MKD",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP MKD overflow attempt\"; flow:established,to_server; content:\"MKD\"; nocase; isdataat:100,relative; pcre:\"/^MKD\\s[^\\n]{100}/smi\"; reference:bugtraq,612; reference:bugtraq,7278; reference:bugtraq,9872; reference:cve,1999-0911; reference:nessus,12108; classtype:attempted-admin; sid:2101973; rev:12; metadata:created_at 2010_09_23, cve CVE_1999_0911, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 197,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP REST overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^REST\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,2972",
+        "cve,2001-0826"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101974,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, cve CVE_2001_0826, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "REST",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP REST overflow attempt\"; flow:established,to_server; content:\"REST\"; nocase; isdataat:100,relative; pcre:\"/^REST\\s[^\\n]{100}/smi\"; reference:bugtraq,2972; reference:cve,2001-0826; classtype:attempted-admin; sid:2101974; rev:8; metadata:created_at 2010_09_23, cve CVE_2001_0826, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 199,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP DELE overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^DELE\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,2972",
+        "cve,2001-0826",
+        "cve,2001-1021"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101975,
+      "rev": 10,
+      "metadata": "created_at 2010_09_23, cve CVE_2001_0826, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "DELE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP DELE overflow attempt\"; flow:established,to_server; content:\"DELE\"; nocase; isdataat:100,relative; pcre:\"/^DELE\\s[^\\n]{100}/smi\"; reference:bugtraq,2972; reference:cve,2001-0826; reference:cve,2001-1021; classtype:attempted-admin; sid:2101975; rev:10; metadata:created_at 2010_09_23, cve CVE_2001_0826, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 201,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP RMD overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^RMD\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,2972",
+        "cve,2000-0133",
+        "cve,2001-0826",
+        "cve,2001-1021"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2101976,
+      "rev": 11,
+      "metadata": "created_at 2010_09_23, cve CVE_2000_0133, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "RMD",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP RMD overflow attempt\"; flow:established,to_server; content:\"RMD\"; nocase; isdataat:100,relative; pcre:\"/^RMD\\s[^\\n]{100}/smi\"; reference:bugtraq,2972; reference:cve,2000-0133; reference:cve,2001-0826; reference:cve,2001-1021; classtype:attempted-admin; sid:2101976; rev:11; metadata:created_at 2010_09_23, cve CVE_2000_0133, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 231,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP APPE overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^APPE\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,8315",
+        "bugtraq,8542",
+        "cve,2000-0133",
+        "cve,2003-0466"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2102391,
+      "rev": 12,
+      "metadata": "created_at 2010_09_23, cve CVE_2000_0133, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "APPE",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP APPE overflow attempt\"; flow:established,to_server; content:\"APPE\"; nocase; isdataat:100,relative; pcre:\"/^APPE\\s[^\\n]{100}/smi\"; reference:bugtraq,8315; reference:bugtraq,8542; reference:cve,2000-0133; reference:cve,2003-0466; classtype:attempted-admin; sid:2102391; rev:12; metadata:created_at 2010_09_23, cve CVE_2000_0133, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 235,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP invalid MDTM command attempt",
+      "flow": "established,to_server",
+      "pcre": "/^MDTM \\d+[-+]\\D/smi",
+      "reference": [
+        "bugtraq,9751",
+        "cve,2001-1021",
+        "cve,2004-0330"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2102416,
+      "rev": 9,
+      "metadata": "created_at 2010_09_23, cve CVE_2001_1021, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "MDTM",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP invalid MDTM command attempt\"; flow:established,to_server; content:\"MDTM\"; fast_pattern; nocase; pcre:\"/^MDTM \\d+[-+]\\D/smi\"; reference:bugtraq,9751; reference:cve,2001-1021; reference:cve,2004-0330; classtype:attempted-admin; sid:2102416; rev:9; metadata:created_at 2010_09_23, cve CVE_2001_1021, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 237,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP ALLO overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^ALLO\\s[^\\n]{100}/smi",
+      "reference": "bugtraq,9953",
+      "classtype": "attempted-admin",
+      "sid": 2102449,
+      "rev": 4,
+      "metadata": "created_at 2010_09_23, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "ALLO",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP ALLO overflow attempt\"; flow:established,to_server; content:\"ALLO\"; nocase; isdataat:100,relative; pcre:\"/^ALLO\\s[^\\n]{100}/smi\"; reference:bugtraq,9953; classtype:attempted-admin; sid:2102449; rev:4; metadata:created_at 2010_09_23, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 239,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP MDTM overflow attempt",
+      "flow": "established,to_server",
+      "isdataat": "100,relative",
+      "pcre": "/^MDTM\\s[^\\n]{100}/smi",
+      "reference": [
+        "bugtraq,9751",
+        "cve,2001-1021",
+        "cve,2004-0330",
+        "nessus,12080"
+      ],
+      "classtype": "attempted-admin",
+      "sid": 2102546,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, cve CVE_2001_1021, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "MDTM",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP MDTM overflow attempt\"; flow:established,to_server; content:\"MDTM\"; nocase; isdataat:100,relative; pcre:\"/^MDTM\\s[^\\n]{100}/smi\"; reference:bugtraq,9751; reference:cve,2001-1021; reference:cve,2004-0330; reference:nessus,12080; classtype:attempted-admin; sid:2102546; rev:8; metadata:created_at 2010_09_23, cve CVE_2001_1021, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 251,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FTP Outbound Java Anonymous FTP Login",
+      "flow": "established,to_server",
+      "flowbits": "set,ET.Java.FTP.Logon",
+      "pcre": "/^\\d\\.\\d(_\\d+)?\\@\\r\\n/R",
+      "classtype": "misc-activity",
+      "sid": 2016687,
+      "rev": 6,
+      "metadata": "created_at 2013_03_29, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_14, reviewed_at 2024_01_25",
+      "contents": [
+        {
+          "pattern": "USER anonymous|0d 0a|PASS Java1.",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FTP Outbound Java Anonymous FTP Login\"; flow:established,to_server; flowbits:set,ET.Java.FTP.Logon; content:\"USER anonymous|0d 0a|PASS Java1.\"; fast_pattern; pcre:\"/^\\d\\.\\d(_\\d+)?\\@\\r\\n/R\"; classtype:misc-activity; sid:2016687; rev:6; metadata:created_at 2013_03_29, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_14, reviewed_at 2024_01_25;)"
+  },
+  {
+    "source_file": "emerging-ftp.rules",
+    "line_number": 269,
+    "action": "alert",
+    "protocol": "ftp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL FTP LIST directory traversal attempt",
+      "flow": "established,to_server",
+      "reference": [
+        "cve,2002-1054",
+        "bugtraq,2618",
+        "nessus,11112",
+        "cve,2001-0680"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2101992,
+      "rev": 12,
+      "metadata": "created_at 2010_09_23, cve CVE_2001_0680, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_11_26, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1083, mitre_technique_name File_And_Directory_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "LIST",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "..",
+          "modifiers": {
+            "distance": "1"
+          }
+        },
+        {
+          "pattern": "..",
+          "modifiers": {
+            "distance": "1"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:\"GPL FTP LIST directory traversal attempt\"; flow:established,to_server; content:\"LIST\"; nocase; content:\"..\"; distance:1; content:\"..\"; distance:1; reference:cve,2002-1054; reference:bugtraq,2618; reference:nessus,11112; reference:cve,2001-0680; classtype:protocol-command-decode; sid:2101992; rev:12; metadata:created_at 2010_09_23, cve CVE_2001_0680, deployment Perimeter, deployment Internal, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_11_26, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1083, mitre_technique_name File_And_Directory_Discovery; target:dest_ip;)"
+  }
+]

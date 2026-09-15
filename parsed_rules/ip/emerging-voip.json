@@ -1,0 +1,86 @@
+[
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "5060",
+    "options": {
+      "msg": "GPL VOIP SIP INVITE message flooding",
+      "threshold": "type both, track by_src, count 100, seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2100158,
+      "rev": 4,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "INVITE",
+          "modifiers": {
+            "depth": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ip any any -> any 5060 (msg:\"GPL VOIP SIP INVITE message flooding\"; content:\"INVITE\"; depth:6; threshold: type both, track by_src, count 100, seconds 60; classtype:attempted-dos; sid:2100158; rev:4; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "5060",
+    "options": {
+      "msg": "GPL VOIP SIP 407 Proxy Authentication Required Flood",
+      "threshold": "type both, track by_src, count 100, seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2100163,
+      "rev": 4,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SIP/2.0 407 Proxy Authentication Required",
+          "modifiers": {
+            "depth": "42"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ip any any -> any 5060 (msg:\"GPL VOIP SIP 407 Proxy Authentication Required Flood\"; content:\"SIP/2.0 407 Proxy Authentication Required\"; depth:42; threshold: type both, track by_src, count 100, seconds 60; classtype:attempted-dos; sid:2100163; rev:4; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-voip.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "ip",
+    "src_ip": "any",
+    "src_port": "5060",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL VOIP SIP 401 Unauthorized Flood",
+      "threshold": "type both, track by_dst, count 100, seconds 60",
+      "classtype": "attempted-dos",
+      "sid": 2100162,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SIP/2.0 401 Unauthorized",
+          "modifiers": {
+            "depth": "24"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ip any 5060 -> any any (msg:\"GPL VOIP SIP 401 Unauthorized Flood\"; content:\"SIP/2.0 401 Unauthorized\"; depth:24; threshold: type both, track by_dst, count 100, seconds 60; classtype:attempted-dos; sid:2100162; rev:5; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2019_07_26;)"
+  }
+]

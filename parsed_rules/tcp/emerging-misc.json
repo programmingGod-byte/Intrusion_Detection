@@ -1,0 +1,499 @@
+[
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "5631",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL MISC Invalid PCAnywhere Login",
+      "flow": "established,to_client",
+      "classtype": "unsuccessful-user",
+      "sid": 2100511,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "Invalid login",
+          "modifiers": {
+            "depth": "13",
+            "offset": "5"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 5631 -> $EXTERNAL_NET any (msg:\"GPL MISC Invalid PCAnywhere Login\"; flow:established,to_client; content:\"Invalid login\"; depth:13; offset:5; classtype:unsuccessful-user; sid:2100511; rev:7; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "513",
+    "options": {
+      "msg": "GPL MISC rlogin bin",
+      "flow": "established,to_server",
+      "reference": "arachnids,384",
+      "classtype": "attempted-user",
+      "sid": 2100602,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "bin|00|bin|00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:\"GPL MISC rlogin bin\"; flow:established,to_server; content:\"bin|00|bin|00|\"; reference:arachnids,384; classtype:attempted-user; sid:2100602; rev:7; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "513",
+    "options": {
+      "msg": "GPL MISC rlogin echo++",
+      "flow": "established,to_server",
+      "reference": "arachnids,385",
+      "classtype": "bad-unknown",
+      "sid": 2100603,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "echo |22| + + |22|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:\"GPL MISC rlogin echo++\"; flow:established,to_server; content:\"echo |22| + + |22|\"; reference:arachnids,385; classtype:bad-unknown; sid:2100603; rev:7; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 103,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "513",
+    "options": {
+      "msg": "GPL MISC rlogin root",
+      "flow": "established,to_server",
+      "reference": "arachnids,389",
+      "classtype": "attempted-admin",
+      "sid": 2100606,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "root|00|root|00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 513 (msg:\"GPL MISC rlogin root\"; flow:established,to_server; content:\"root|00|root|00|\"; reference:arachnids,389; classtype:attempted-admin; sid:2100606; rev:7; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "514",
+    "options": {
+      "msg": "GPL MISC rsh echo + +",
+      "flow": "established,to_server",
+      "reference": "arachnids,388",
+      "classtype": "attempted-user",
+      "sid": 2100608,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "echo |22|+ +|22|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:\"GPL MISC rsh echo + +\"; flow:established,to_server; content:\"echo |22|+ +|22|\"; reference:arachnids,388; classtype:attempted-user; sid:2100608; rev:7; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "514",
+    "options": {
+      "msg": "GPL MISC rsh froot",
+      "flow": "established,to_server",
+      "reference": "arachnids,387",
+      "classtype": "attempted-admin",
+      "sid": 2100609,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "-froot|00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:\"GPL MISC rsh froot\"; flow:established,to_server; content:\"-froot|00|\"; reference:arachnids,387; classtype:attempted-admin; sid:2100609; rev:7; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "514",
+    "options": {
+      "msg": "GPL MISC rsh root",
+      "flow": "established,to_server",
+      "reference": "arachnids,391",
+      "classtype": "attempted-admin",
+      "sid": 2100610,
+      "rev": 7,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "root|00|root|00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 514 (msg:\"GPL MISC rsh root\"; flow:established,to_server; content:\"root|00|root|00|\"; reference:arachnids,391; classtype:attempted-admin; sid:2100610; rev:7; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 111,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "113",
+    "options": {
+      "msg": "GPL MISC ident version request",
+      "flow": "established,to_server",
+      "reference": "arachnids,303",
+      "classtype": "attempted-recon",
+      "sid": 2100616,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "VERSION|0A|",
+          "modifiers": {
+            "depth": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 113 (msg:\"GPL MISC ident version request\"; flow:established,to_server; content:\"VERSION|0A|\"; depth:16; reference:arachnids,303; classtype:attempted-recon; sid:2100616; rev:6; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 113,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "4321",
+    "options": {
+      "msg": "GPL MISC rwhoisd format string attempt",
+      "flow": "established,to_server",
+      "reference": [
+        "bugtraq,3474",
+        "cve,2001-0838"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2101323,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, cve CVE_2001_0838, signature_severity Informational, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "-soa %p",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 4321 (msg:\"GPL MISC rwhoisd format string attempt\"; flow:established,to_server; content:\"-soa %p\"; reference:bugtraq,3474; reference:cve,2001-0838; classtype:misc-attack; sid:2101323; rev:8; metadata:created_at 2010_09_23, cve CVE_2001_0838, signature_severity Informational, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 119,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "2401",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL MISC CVS invalid user authentication response",
+      "flow": "established,to_client",
+      "classtype": "misc-attack",
+      "sid": 2102008,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "E Fatal error, aborting.",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3A| no such user",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 2401 -> $EXTERNAL_NET any (msg:\"GPL MISC CVS invalid user authentication response\"; flow:established,to_client; content:\"E Fatal error, aborting.\"; content:\"|3A| no such user\"; classtype:misc-attack; sid:2102008; rev:6; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 121,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "2401",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL MISC CVS invalid repository response",
+      "flow": "established,to_client",
+      "classtype": "misc-attack",
+      "sid": 2102009,
+      "rev": 4,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "error ",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|3A| no such repository",
+          "modifiers": {}
+        },
+        {
+          "pattern": "I HATE YOU",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 2401 -> $EXTERNAL_NET any (msg:\"GPL MISC CVS invalid repository response\"; flow:established,to_client; content:\"error \"; content:\"|3A| no such repository\"; content:\"I HATE YOU\"; classtype:misc-attack; sid:2102009; rev:4; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "2401",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL MISC CVS double free exploit attempt response",
+      "flow": "established,to_client",
+      "reference": [
+        "bugtraq,6650",
+        "cve,2003-0015"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2102010,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, cve CVE_2003_0015, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "free|28 29 3A| warning|3A| chunk is already free",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 2401 -> $EXTERNAL_NET any (msg:\"GPL MISC CVS double free exploit attempt response\"; flow:established,to_client; content:\"free|28 29 3A| warning|3A| chunk is already free\"; reference:bugtraq,6650; reference:cve,2003-0015; classtype:misc-attack; sid:2102010; rev:6; metadata:created_at 2010_09_23, cve CVE_2003_0015, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 125,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "2401",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL MISC CVS invalid directory response",
+      "flow": "established,to_client",
+      "reference": [
+        "bugtraq,6650",
+        "cve,2003-0015"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2102011,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, cve CVE_2003_0015, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "E protocol error|3A| invalid directory syntax in",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 2401 -> $EXTERNAL_NET any (msg:\"GPL MISC CVS invalid directory response\"; flow:established,to_client; content:\"E protocol error|3A| invalid directory syntax in\"; reference:bugtraq,6650; reference:cve,2003-0015; classtype:misc-attack; sid:2102011; rev:6; metadata:created_at 2010_09_23, cve CVE_2003_0015, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 127,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "2401",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL MISC CVS missing cvsroot response",
+      "flow": "established,to_client",
+      "classtype": "misc-attack",
+      "sid": 2102012,
+      "rev": 4,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "E protocol error|3A| Root request missing",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 2401 -> $EXTERNAL_NET any (msg:\"GPL MISC CVS missing cvsroot response\"; flow:established,to_client; content:\"E protocol error|3A| Root request missing\"; classtype:misc-attack; sid:2102012; rev:4; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 129,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "2401",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL MISC CVS invalid module response",
+      "flow": "established,to_client",
+      "classtype": "misc-attack",
+      "sid": 2102013,
+      "rev": 4,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "cvs server|3A| cannot find module",
+          "modifiers": {}
+        },
+        {
+          "pattern": "error",
+          "modifiers": {
+            "distance": "1"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 2401 -> $EXTERNAL_NET any (msg:\"GPL MISC CVS invalid module response\"; flow:established,to_client; content:\"cvs server|3A| cannot find module\"; content:\"error\"; distance:1; classtype:misc-attack; sid:2102013; rev:4; metadata:created_at 2010_09_23, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 131,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "2401",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL MISC CVS non-relative path error response",
+      "flow": "established,to_client",
+      "reference": [
+        "bugtraq,9178",
+        "cve,2003-0977"
+      ],
+      "classtype": "misc-attack",
+      "sid": 2102317,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, cve CVE_2003_0977, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "E cvs server|3A| warning|3A| cannot make directory CVS in /",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 2401 -> $EXTERNAL_NET any (msg:\"GPL MISC CVS non-relative path error response\"; flow:established,to_client; content:\"E cvs server|3A| warning|3A| cannot make directory CVS in /\"; reference:bugtraq,9178; reference:cve,2003-0977; classtype:misc-attack; sid:2102317; rev:6; metadata:created_at 2010_09_23, cve CVE_2003_0977, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-misc.rules",
+    "line_number": 155,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "8000",
+    "options": {
+      "msg": "GPL MISC HP Web JetAdmin file write attempt",
+      "flow": "established,to_server",
+      "reference": "bugtraq,9973",
+      "classtype": "web-application-activity",
+      "sid": 2102549,
+      "rev": 3,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "/plugins/framework/script/tree.xms",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "WriteToFile",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 8000 (msg:\"GPL MISC HP Web JetAdmin file write attempt\"; flow:established,to_server; content:\"/plugins/framework/script/tree.xms\"; nocase; content:\"WriteToFile\"; nocase; reference:bugtraq,9973; classtype:web-application-activity; sid:2102549; rev:3; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_08;)"
+  }
+]

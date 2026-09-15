@@ -1,0 +1,532 @@
+[
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 401,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Cryptocurrency Miner Checkin M2",
+      "flow": "established,to_server",
+      "classtype": "policy-violation",
+      "sid": 2027316,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_05_06, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|7b 22|id|22 3a|",
+          "modifiers": {
+            "nocase": true,
+            "depth": "6"
+          }
+        },
+        {
+          "pattern": "|22|jsonrpc|22 3a|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|22 2c 22|method|22 3a 22|login|22 2c 22|params|22 3a|",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|22|agent|22 3a 22|",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"<title",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"<script",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"<html",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"|22|pass|22 3a 22|",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Cryptocurrency Miner Checkin M2\"; flow:established,to_server; content:\"|7b 22|id|22 3a|\"; nocase; depth:6; content:\"|22|jsonrpc|22 3a|\"; nocase; distance:0; content:\"|22 2c 22|method|22 3a 22|login|22 2c 22|params|22 3a|\"; fast_pattern; nocase; content:\"|22|agent|22 3a 22|\"; nocase; content:!\"<title\"; nocase; content:!\"<script\"; nocase; content:!\"<html\"; nocase; content:!\"|22|pass|22 3a 22|\"; nocase; classtype:policy-violation; sid:2027316; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_05_06, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1073,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "443",
+    "options": {
+      "msg": "ET INFO ToDesk Remote Access Control Tool",
+      "flow": "established,to_server",
+      "startswith": true,
+      "byte_jump": [
+        "1,0,relative",
+        "1,0,relative"
+      ],
+      "isdataat": "!68,relative",
+      "reference": "md5,d428709903e8c86bc02dfc29ab903634",
+      "classtype": "policy-violation",
+      "sid": 2031242,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_11_30, deployment Perimeter, performance_impact Significant, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_11_30",
+      "contents": [
+        {
+          "pattern": "|00 00 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|01 0a 20|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": "|12|",
+          "modifiers": {
+            "offset": "39",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|18 01 22|",
+          "modifiers": {
+            "within": "3"
+          }
+        },
+        {
+          "pattern": "|3a 3f|",
+          "modifiers": {
+            "within": "2"
+          }
+        },
+        {
+          "pattern": "B$",
+          "modifiers": {
+            "distance": "63",
+            "within": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $HOME_NET any -> $EXTERNAL_NET 443 (msg:\"ET INFO ToDesk Remote Access Control Tool\"; flow:established,to_server; content:\"|00 00 00|\"; startswith; content:\"|01 0a 20|\"; offset:4; depth:3; content:\"|12|\"; offset:39; depth:1; byte_jump:1,0,relative; content:\"|18 01 22|\"; within:3; byte_jump:1,0,relative; content:\"|3a 3f|\"; within:2; content:\"B$\"; distance:63; within:2; isdataat:!68,relative; reference:md5,d428709903e8c86bc02dfc29ab903634; classtype:policy-violation; sid:2031242; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_11_30, deployment Perimeter, performance_impact Significant, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_11_30;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1095,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS,$SMTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Possible Overflow Attempt - Abnormally Large SMTP EHLO Inbound",
+      "flow": "established,to_server",
+      "startswith": true,
+      "isdataat": "1000,relative",
+      "classtype": "bad-unknown",
+      "sid": 2032926,
+      "rev": 2,
+      "metadata": "attack_target SMTP_Server, created_at 2021_05_10, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_05_11",
+      "contents": [
+        {
+          "pattern": "EHLO",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> [$HOME_NET,$HTTP_SERVERS,$SMTP_SERVERS] any (msg:\"ET INFO Possible Overflow Attempt - Abnormally Large SMTP EHLO Inbound\"; flow:established,to_server; content:\"EHLO\"; startswith; isdataat:1000,relative; classtype:bad-unknown; sid:2032926; rev:2; metadata:attack_target SMTP_Server, created_at 2021_05_10, deployment Perimeter, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2021_05_11;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1259,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Apache Spark RPC - Auth Request (set)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,ET.ApacheSpark_AuthAttempted",
+        "noalert"
+      ],
+      "endswith": true,
+      "classtype": "not-suspicious",
+      "sid": 2035002,
+      "rev": 2,
+      "metadata": "attack_target Server, created_at 2022_01_28, deployment Internal, deployment Datacenter, confidence High, signature_severity Informational, updated_at 2022_01_28",
+      "contents": [
+        {
+          "pattern": "sparkSaslUser|00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET any (msg:\"ET INFO Apache Spark RPC - Auth Request (set)\"; flow:established,to_server; flowbits:set,ET.ApacheSpark_AuthAttempted; flowbits:noalert; content:\"sparkSaslUser|00 00 00 00|\"; endswith; classtype:not-suspicious; sid:2035002; rev:2; metadata:attack_target Server, created_at 2022_01_28, deployment Internal, deployment Datacenter, confidence High, signature_severity Informational, updated_at 2022_01_28;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1515,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO SAFIB Assistant Remote Administration Tool Keepalive",
+      "flow": "established,to_server",
+      "dsize": "92",
+      "startswith": true,
+      "endswith": true,
+      "threshold": "type limit,track by_src,seconds 180,count 1",
+      "classtype": "misc-activity",
+      "sid": 2038601,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_23, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_08_23",
+      "contents": [
+        {
+          "pattern": "|02 32 00 00 5c 00 00 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 00 00 01 00 00 00 91 55 50 01|",
+          "modifiers": {
+            "distance": "48",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|00 00 00 00 00 00 00 00 00 00 00 00|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO SAFIB Assistant Remote Administration Tool Keepalive\"; flow:established,to_server; dsize:92; content:\"|02 32 00 00 5c 00 00 00|\"; startswith; content:\"|00 00 00 00 01 00 00 00 91 55 50 01|\"; distance:48; fast_pattern; content:\"|00 00 00 00 00 00 00 00 00 00 00 00|\"; endswith; threshold:type limit,track by_src,seconds 180,count 1; classtype:misc-activity; sid:2038601; rev:1; metadata:attack_target Client_Endpoint, created_at 2022_08_23, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_08_23;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1863,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "[443,5665]",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO PTsecurity Remote Desktop AeroAdmin Server Hello",
+      "flow": "established,to_client",
+      "dsize": "9",
+      "stream_size": [
+        "client,=,1",
+        "server,=,10"
+      ],
+      "reference": [
+        "url,www.aeroadmin.com/en",
+        "md5,fa6ad2e8eef98abc0bbb252ff994a38d"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2025008,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_11_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_05_09",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|05 00 00 00 00 ff ff ff ff|",
+          "modifiers": {
+            "depth": "9",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $EXTERNAL_NET [443,5665] -> $HOME_NET any (msg:\"ET INFO PTsecurity Remote Desktop AeroAdmin Server Hello\"; flow:established,to_client; dsize:9; stream_size:client,=,1; stream_size:server,=,10; content:\"|05 00 00 00 00 ff ff ff ff|\"; depth:9; fast_pattern; reference:url,www.aeroadmin.com/en; reference:md5,fa6ad2e8eef98abc0bbb252ff994a38d; classtype:misc-activity; sid:2025008; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_11_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_05_09; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1865,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "[443,5665]",
+    "options": {
+      "msg": "ET INFO PTsecurity Remote Desktop AeroAdmin handshake",
+      "flow": "established,to_server",
+      "startswith": true,
+      "threshold": "type limit, track by_src, count 1, seconds 30",
+      "reference": [
+        "url,www.aeroadmin.com/en/",
+        "md5,fa6ad2e8eef98abc0bbb252ff994a38d"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2025009,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_11_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_05_09",
+      "contents": [
+        {
+          "pattern": "|e1 00 00 00 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00 00 d8 00 00 00 4d 49 47 64 4d 41|",
+          "modifiers": {
+            "distance": "2",
+            "within": "12",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $HOME_NET any -> $EXTERNAL_NET [443,5665] (msg:\"ET INFO PTsecurity Remote Desktop AeroAdmin handshake\"; flow:established,to_server; content:\"|e1 00 00 00 00|\"; startswith; content:\"|00 00 d8 00 00 00 4d 49 47 64 4d 41|\"; distance:2; within:12; fast_pattern; threshold: type limit, track by_src, count 1, seconds 30; reference:url,www.aeroadmin.com/en/; reference:md5,fa6ad2e8eef98abc0bbb252ff994a38d; classtype:misc-activity; sid:2025009; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_11_16, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag RemoteAccessTool, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_05_09;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3107,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO [401TRG] RPCNetlogon UUID (CVE-2020-1472) (Set)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "set,dcerpc.rpcnetlogon",
+        "noalert"
+      ],
+      "reference": "cve,2020-1472",
+      "classtype": "misc-activity",
+      "sid": 2030888,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Server, created_at 2020_09_18, cve CVE_2020_1472, deployment Internal, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_14",
+      "contents": [
+        {
+          "pattern": "|05 00 0B|",
+          "modifiers": {
+            "depth": "3"
+          }
+        },
+        {
+          "pattern": "|78 56 34 12 34 12 cd ab ef 00 01 23 45 67 cf fb|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> any any (msg:\"ET INFO [401TRG] RPCNetlogon UUID (CVE-2020-1472) (Set)\"; flow:established,to_server; flowbits:set,dcerpc.rpcnetlogon; flowbits:noalert; content:\"|05 00 0B|\"; depth:3; content:\"|78 56 34 12 34 12 cd ab ef 00 01 23 45 67 cf fb|\"; distance:0; reference:cve,2020-1472; classtype:misc-activity; sid:2030888; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Server, created_at 2020_09_18, cve CVE_2020_1472, deployment Internal, confidence High, signature_severity Major, tag CISA_KEV, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_14;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3127,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Apache Spark RPC - CheckExistence Request (set)",
+      "flow": "established,to_server",
+      "flowbits": [
+        "isnotset,ET.ApacheSpark_CE",
+        "set,ET.ApacheSpark_CE",
+        "noalert"
+      ],
+      "classtype": "not-suspicious",
+      "sid": 2035001,
+      "rev": 3,
+      "metadata": "attack_target Server, created_at 2022_01_28, deployment Internal, deployment Datacenter, confidence High, signature_severity Informational, updated_at 2024_03_14",
+      "contents": [
+        {
+          "pattern": "endpoint-verifier",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "CheckExistence",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any any -> $HOME_NET any (msg:\"ET INFO Apache Spark RPC - CheckExistence Request (set)\"; flow:established,to_server; flowbits:isnotset,ET.ApacheSpark_CE; flowbits:set,ET.ApacheSpark_CE; flowbits:noalert; content:\"endpoint-verifier\"; fast_pattern; content:\"CheckExistence\"; distance:0; classtype:not-suspicious; sid:2035001; rev:3; metadata:attack_target Server, created_at 2022_01_28, deployment Internal, deployment Datacenter, confidence High, signature_severity Informational, updated_at 2024_03_14;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 3137,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO IDrive Backup Connection",
+      "flow": "established,to_client",
+      "flowbits": "set,ET.IDriveConnection",
+      "stream_size": "server,<,15",
+      "dsize": "12",
+      "startswith": true,
+      "endswith": true,
+      "threshold": "type limit, count 1, seconds 600, track by_dst",
+      "reference": "url,www.idrive.com",
+      "classtype": "misc-activity",
+      "sid": 2046716,
+      "rev": 2,
+      "metadata": "attack_target Client_and_Server, created_at 2023_07_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_14",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "@IDEVSD|3a 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET INFO IDrive Backup Connection\"; flow:established,to_client; flowbits:set,ET.IDriveConnection; stream_size:server,<,15; dsize:12; content:\"@IDEVSD|3a 20|\"; startswith; fast_pattern; content:\"|0a|\"; endswith; threshold:type limit, count 1, seconds 600, track by_dst; reference:url,www.idrive.com; classtype:misc-activity; sid:2046716; rev:2; metadata:attack_target Client_and_Server, created_at 2023_07_03, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_14; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 9789,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO NTLM Session Setup Request - Negotiate",
+      "flow": "established,to_server",
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "classtype": "misc-activity",
+      "sid": 2067085,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state plaintext, created_at 2026_01_26, deployment Perimeter, deployment Internal, performance_impact Significant, confidence Medium, signature_severity Informational, updated_at 2026_01_26",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "NTLMSSP|00 01 00 00 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $HOME_NET any -> any 445 (msg:\"ET INFO NTLM Session Setup Request - Negotiate\"; flow:established,to_server; content:\"NTLMSSP|00 01 00 00 00|\"; fast_pattern; threshold:type limit,count 1,seconds 300,track by_src; classtype:misc-activity; sid:2067085; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state plaintext, created_at 2026_01_26, deployment Perimeter, deployment Internal, performance_impact Significant, confidence Medium, signature_severity Informational, updated_at 2026_01_26; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 9791,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "any",
+    "src_port": "445",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO NTLMv1 Session Setup Response - Challenge",
+      "flow": "established,to_client",
+      "threshold": "type limit,count 1,seconds 300,track by_dst",
+      "classtype": "misc-activity",
+      "sid": 2067086,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state plaintext, created_at 2026_01_26, deployment Perimeter, deployment Internal, performance_impact Significant, confidence Medium, signature_severity Informational, updated_at 2026_01_26",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|2b 06 01 04 01 82 37 02 02 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "NTLMSSP|00 02 00 00 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt any 445 -> $HOME_NET any (msg:\"ET INFO NTLMv1 Session Setup Response - Challenge\"; flow:established,to_client; content:\"|2b 06 01 04 01 82 37 02 02 0a|\"; content:\"NTLMSSP|00 02 00 00 00|\"; fast_pattern; threshold:type limit,count 1,seconds 300,track by_dst; classtype:misc-activity; sid:2067086; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state plaintext, created_at 2026_01_26, deployment Perimeter, deployment Internal, performance_impact Significant, confidence Medium, signature_severity Informational, updated_at 2026_01_26; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 9793,
+    "action": "alert",
+    "protocol": "tcp-pkt",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "445",
+    "options": {
+      "msg": "ET INFO NTLM Session Setup Request - Auth",
+      "flow": "established,to_server",
+      "threshold": "type limit,count 1,seconds 300,track by_src",
+      "classtype": "misc-activity",
+      "sid": 2067087,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state plaintext, created_at 2026_01_26, deployment Perimeter, deployment Internal, performance_impact Significant, confidence Medium, signature_severity Informational, updated_at 2026_01_26",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "NTLMSSP|00 03 00 00 00|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp-pkt $HOME_NET any -> any 445 (msg:\"ET INFO NTLM Session Setup Request - Auth\"; flow:established,to_server; content:\"NTLMSSP|00 03 00 00 00|\"; fast_pattern; threshold:type limit,count 1,seconds 300,track by_src; classtype:misc-activity; sid:2067087; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, tls_state plaintext, created_at 2026_01_26, deployment Perimeter, deployment Internal, performance_impact Significant, confidence Medium, signature_severity Informational, updated_at 2026_01_26; target:src_ip;)"
+  }
+]

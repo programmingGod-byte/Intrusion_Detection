@@ -1,0 +1,1233 @@
+[
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "1985",
+    "direction": "->",
+    "dst_ip": "224.0.0.2",
+    "dst_port": "1985",
+    "options": {
+      "msg": "ET INFO HSRP Active Router Changed",
+      "reference": "url,packetlife.net/blog/2008/oct/27/hijacking-hsrp/",
+      "classtype": "bad-unknown",
+      "sid": 2009243,
+      "rev": 2,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 04|",
+          "modifiers": {
+            "depth": "3"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any 1985 -> 224.0.0.2 1985 (msg:\"ET INFO HSRP Active Router Changed\"; content:\"|00 04|\"; depth:3; reference:url,packetlife.net/blog/2008/oct/27/hijacking-hsrp/; classtype:bad-unknown; sid:2009243; rev:2; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "3544",
+    "options": {
+      "msg": "ET INFO Microsoft TEREDO IPv6 tunneling",
+      "classtype": "misc-activity",
+      "sid": 2003155,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|FE 80 00 00 00 00 00 00 80 00|TEREDO",
+          "modifiers": {
+            "offset": "21",
+            "depth": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 3544 (msg:\"ET INFO Microsoft TEREDO IPv6 tunneling\"; content:\"|FE 80 00 00 00 00 00 00 80 00|TEREDO\"; offset:21; depth:16; classtype:misc-activity; sid:2003155; rev:4; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 151,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "5355",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO LLNMR query response to wpad",
+      "isdataat": "7,relative",
+      "classtype": "misc-activity",
+      "sid": 2015842,
+      "rev": 2,
+      "metadata": "created_at 2012_10_25, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|80 00 00 01 00 01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "6"
+          }
+        },
+        {
+          "pattern": "|04|wpad|00 00 01 00 01 04|wpad|00 00 01 00 01|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 5355 -> any any (msg:\"ET INFO LLNMR query response to wpad\"; content:\"|80 00 00 01 00 01|\"; offset:2; depth:6; content:\"|04|wpad|00 00 01 00 01 04|wpad|00 00 01 00 01|\"; distance:0; isdataat:7,relative; classtype:misc-activity; sid:2015842; rev:2; metadata:created_at 2012_10_25, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 183,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "623",
+    "options": {
+      "msg": "ET INFO Possible IPMI 2.0 RAKP Remote SHA1 Password Hash Retrieval RAKP message 1 with default BMC usernames (Admin|root|Administrator|USERID)",
+      "pcre": "/((\\x0d|\\x05)Admin(istrator)?|\\x04root|\\x06USERID)/Ri",
+      "classtype": "protocol-command-decode",
+      "sid": 2017120,
+      "rev": 2,
+      "metadata": "created_at 2013_07_09, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|06 12|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 623 (msg:\"ET INFO Possible IPMI 2.0 RAKP Remote SHA1 Password Hash Retrieval RAKP message 1 with default BMC usernames (Admin|root|Administrator|USERID)\"; content:\"|06 12|\"; offset:4; depth:2; pcre:\"/((\\x0d|\\x05)Admin(istrator)?|\\x04root|\\x06USERID)/Ri\"; classtype:protocol-command-decode; sid:2017120; rev:2; metadata:created_at 2013_07_09, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 221,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "68",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "67",
+    "options": {
+      "msg": "ET INFO Possible Kali Linux hostname in DHCP Request Packet",
+      "reference": "url,www.kali.org",
+      "classtype": "policy-violation",
+      "sid": 2022973,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2016_07_18, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2019_07_26, reviewed_at 2024_04_19",
+      "contents": [
+        {
+          "pattern": "|63 82 53 63 35 01 03|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0c 04|kali",
+          "modifiers": {
+            "distance": "0",
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any 68 -> any 67 (msg:\"ET INFO Possible Kali Linux hostname in DHCP Request Packet\"; content:\"|63 82 53 63 35 01 03|\"; content:\"|0c 04|kali\"; distance:0; nocase; reference:url,www.kali.org; classtype:policy-violation; sid:2022973; rev:1; metadata:attack_target Client_Endpoint, created_at 2016_07_18, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2019_07_26, reviewed_at 2024_04_19;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 223,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Outgoing Chromoting Session Response",
+      "reference": "url,xinn.org/Chromoting.html",
+      "classtype": "not-suspicious",
+      "sid": 2013800,
+      "rev": 3,
+      "metadata": "created_at 2011_10_26, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|63 68 72 6F 6D 6F 74 69 6E 67|",
+          "modifiers": {
+            "depth": "170"
+          }
+        },
+        {
+          "pattern": "|63 68 72 6F 6D 6F 74 69 6E 67|",
+          "modifiers": {
+            "distance": "39"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET INFO Outgoing Chromoting Session Response\"; content:\"|63 68 72 6F 6D 6F 74 69 6E 67|\"; depth:170; content:\"|63 68 72 6F 6D 6F 74 69 6E 67|\"; distance:39; reference:url,xinn.org/Chromoting.html; classtype:not-suspicious; sid:2013800; rev:3; metadata:created_at 2011_10_26, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 225,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Incoming Chromoting Session Response",
+      "reference": "url,xinn.org/Chromoting.html",
+      "classtype": "not-suspicious",
+      "sid": 2013801,
+      "rev": 4,
+      "metadata": "created_at 2011_10_26, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|63 68 72 6F 6D 6F 74 69 6E 67|",
+          "modifiers": {
+            "depth": "170"
+          }
+        },
+        {
+          "pattern": "|63 68 72 6F 6D 6F 74 69 6E 67|",
+          "modifiers": {
+            "distance": "39"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET INFO Incoming Chromoting Session Response\"; content:\"|63 68 72 6F 6D 6F 74 69 6E 67|\"; depth:170; content:\"|63 68 72 6F 6D 6F 74 69 6E 67|\"; distance:39; reference:url,xinn.org/Chromoting.html; classtype:not-suspicious; sid:2013801; rev:4; metadata:created_at 2011_10_26, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 407,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "57621",
+    "options": {
+      "msg": "ET INFO Spotify P2P Client",
+      "flow": "to_server",
+      "dsize": "44",
+      "threshold": "type limit, count 1, track by_src, seconds 300",
+      "classtype": "not-suspicious",
+      "sid": 2027397,
+      "rev": 1,
+      "metadata": "affected_product Windows_Client_Apps, attack_target Client_Endpoint, created_at 2019_05_30, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|53 70 6f 74 55 64 70 30|",
+          "modifiers": {
+            "depth": "8"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> any 57621 (msg:\"ET INFO Spotify P2P Client\"; flow:to_server; dsize:44; content:\"|53 70 6f 74 55 64 70 30|\"; depth:8; threshold:type limit, count 1, track by_src, seconds 300; classtype:not-suspicious; sid:2027397; rev:1; metadata:affected_product Windows_Client_Apps, attack_target Client_Endpoint, created_at 2019_05_30, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 423,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "137",
+    "options": {
+      "msg": "ET INFO NBNS Name Query Response Possible WPAD Spoof BadTunnel",
+      "byte_test": [
+        "1,&,0x80,2",
+        "1,!&,0x40,2",
+        "1,!&,0x20,2",
+        "1,!&,0x10,2",
+        "1,=,0x00,3"
+      ],
+      "reference": [
+        "url,tools.ietf.org/html/draft-ietf-wrec-wpad-01",
+        "url,ietf.org/rfc/rfc1002.txt"
+      ],
+      "classtype": "protocol-command-decode",
+      "sid": 2022914,
+      "rev": 2,
+      "metadata": "created_at 2016_06_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_10_08",
+      "contents": [
+        {
+          "pattern": "|00 00|",
+          "modifiers": {
+            "offset": "4",
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|46 48 46 41 45 42 45|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 137 (msg:\"ET INFO NBNS Name Query Response Possible WPAD Spoof BadTunnel\"; byte_test:1,&,0x80,2; byte_test:1,!&,0x40,2; byte_test:1,!&,0x20,2; byte_test:1,!&,0x10,2; byte_test:1,=,0x00,3; content:\"|00 00|\"; offset:4; depth:2; content:\"|46 48 46 41 45 42 45|\"; fast_pattern; reference:url,tools.ietf.org/html/draft-ietf-wrec-wpad-01; reference:url,ietf.org/rfc/rfc1002.txt; classtype:protocol-command-decode; sid:2022914; rev:2; metadata:created_at 2016_06_23, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_10_08;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1605,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "9993",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "9993",
+    "options": {
+      "msg": "ET INFO ZeroTier Related Activity (udp)",
+      "dsize": "137",
+      "threshold": "type limit,count 1,seconds 120, track by_src",
+      "reference": "url,zerotier.com",
+      "classtype": "bad-unknown",
+      "sid": 2039784,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_11_15, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_11_15",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|77 8c de 71 90|",
+          "modifiers": {
+            "offset": "8",
+            "depth": "5",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 9993 -> $EXTERNAL_NET 9993 (msg:\"ET INFO ZeroTier Related Activity (udp)\"; dsize:137; content:\"|77 8c de 71 90|\"; offset:8; depth:5; fast_pattern; threshold:type limit,count 1,seconds 120, track by_src; reference:url,zerotier.com; classtype:bad-unknown; sid:2039784; rev:1; metadata:attack_target Client_Endpoint, created_at 2022_11_15, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_11_15; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1711,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21116",
+    "options": {
+      "msg": "ET INFO RustDesk Register Peer where serial=1",
+      "dsize": "15",
+      "startswith": true,
+      "endswith": true,
+      "threshold": "type limit, seconds 30, count 1, track by_src",
+      "reference": "url,github.com/rustdesk/rustdesk/issues/594",
+      "classtype": "misc-activity",
+      "sid": 2044070,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02",
+      "contents": [
+        {
+          "pattern": "|32 0d 0a 09|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|10 01|",
+          "modifiers": {
+            "distance": "9",
+            "within": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 21116 (msg:\"ET INFO RustDesk Register Peer where serial=1\"; dsize:15; content:\"|32 0d 0a 09|\"; startswith; fast_pattern; content:\"|10 01|\"; distance:9; within:2; endswith; threshold:type limit, seconds 30, count 1, track by_src; reference:url,github.com/rustdesk/rustdesk/issues/594; classtype:misc-activity; sid:2044070; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1713,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21116",
+    "options": {
+      "msg": "ET INFO RustDesk Register Peer where serial=0",
+      "dsize": "15",
+      "startswith": true,
+      "endswith": true,
+      "threshold": "type limit, seconds 30, count 1, track by_src",
+      "reference": "url,github.com/rustdesk/rustdesk/issues/594",
+      "classtype": "misc-activity",
+      "sid": 2044071,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02",
+      "contents": [
+        {
+          "pattern": "|32 0d 0a 09|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|10 00|",
+          "modifiers": {
+            "distance": "9",
+            "within": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 21116 (msg:\"ET INFO RustDesk Register Peer where serial=0\"; dsize:15; content:\"|32 0d 0a 09|\"; startswith; fast_pattern; content:\"|10 00|\"; distance:9; within:2; endswith; threshold:type limit, seconds 30, count 1, track by_src; reference:url,github.com/rustdesk/rustdesk/issues/594; classtype:misc-activity; sid:2044071; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1715,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21116",
+    "options": {
+      "msg": "ET INFO RustDesk Get Software Update URL",
+      "dsize": "10",
+      "startswith": true,
+      "reference": "url,github.com/rustdesk/rustdesk/issues/594",
+      "classtype": "misc-activity",
+      "sid": 2044072,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02",
+      "contents": [
+        {
+          "pattern": "|8a 01 07 0a 05|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 21116 (msg:\"ET INFO RustDesk Get Software Update URL\"; dsize:10; content:\"|8a 01 07 0a 05|\"; startswith; fast_pattern; reference:url,github.com/rustdesk/rustdesk/issues/594; classtype:misc-activity; sid:2044072; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1717,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21116",
+    "options": {
+      "msg": "ET INFO RustDesk Register Public Key",
+      "startswith": true,
+      "reference": "url,github.com/rustdesk/rustdesk/issues/594",
+      "classtype": "misc-activity",
+      "sid": 2044073,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02",
+      "contents": [
+        {
+          "pattern": "|7A 53 0A 09|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|2d|",
+          "modifiers": {
+            "distance": "19",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|2d|",
+          "modifiers": {
+            "distance": "4",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|2d|",
+          "modifiers": {
+            "distance": "4",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|2d|",
+          "modifiers": {
+            "distance": "4",
+            "within": "1"
+          }
+        },
+        {
+          "pattern": "|1A 20|",
+          "modifiers": {
+            "distance": "12",
+            "within": "2"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 21116 (msg:\"ET INFO RustDesk Register Public Key\"; content:\"|7A 53 0A 09|\"; startswith; fast_pattern; content:\"|2d|\"; distance:19; within:1; content:\"|2d|\"; distance:4; within:1; content:\"|2d|\"; distance:4; within:1; content:\"|2d|\"; distance:4; within:1; content:\"|1A 20|\"; distance:12; within:2; reference:url,github.com/rustdesk/rustdesk/issues/594; classtype:misc-activity; sid:2044073; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1719,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "21119",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO RustDesk Peer Discovery (pong)",
+      "classtype": "misc-activity",
+      "sid": 2044074,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02",
+      "contents": [
+        {
+          "pattern": "|70 6f 6e 67|",
+          "modifiers": {
+            "offset": "5",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|1a 0a|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|22 03|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|2a 20|",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "|32 06|",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET 21119 -> $HOME_NET any (msg:\"ET INFO RustDesk Peer Discovery (pong)\"; content:\"|70 6f 6e 67|\"; offset:5; fast_pattern; content:\"|1a 0a|\"; distance:0; content:\"|22 03|\"; distance:0; content:\"|2a 20|\"; distance:0; content:\"|32 06|\"; distance:0; classtype:misc-activity; sid:2044074; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1721,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21119",
+    "options": {
+      "msg": "ET INFO RustDesk Peer Discovery (ping)",
+      "dsize": "9",
+      "startswith": true,
+      "classtype": "misc-activity",
+      "sid": 2044075,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02",
+      "contents": [
+        {
+          "pattern": "|b2 01 06 0a 04 70 69 6e 67|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 21119 (msg:\"ET INFO RustDesk Peer Discovery (ping)\"; dsize:9; content:\"|b2 01 06 0a 04 70 69 6e 67|\"; startswith; fast_pattern; classtype:misc-activity; sid:2044075; rev:1; metadata:attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2023_02_02;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1741,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "!53",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "!53",
+    "options": {
+      "msg": "ET INFO Non Standard Port DNS Query to google .com (udp)",
+      "classtype": "bad-unknown",
+      "sid": 2035472,
+      "rev": 4,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_03_16, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2023_03_01",
+      "contents": [
+        {
+          "pattern": "|01|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "1"
+          }
+        },
+        {
+          "pattern": "|00 01 00 00 00 00 00|",
+          "modifiers": {
+            "distance": "1",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "|06|google|03|com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET !53 -> $EXTERNAL_NET !53 (msg:\"ET INFO Non Standard Port DNS Query to google .com (udp)\"; content:\"|01|\"; offset:2; depth:1; content:\"|00 01 00 00 00 00 00|\"; distance:1; within:7; content:\"|06|google|03|com\"; fast_pattern; classtype:bad-unknown; sid:2035472; rev:4; metadata:attack_target Client_Endpoint, created_at 2022_03_16, deployment Perimeter, confidence High, signature_severity Informational, updated_at 2023_03_01;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1843,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1900",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959 Vulnerable UPnP device M2",
+      "pcre": "/^Server\\x3a[^\\r\\n]*Intel SDK for UPnP devices/mi",
+      "reference": [
+        "url,community.rapid7.com/community/infosec/blog/2013/01/29/security-flaws-in-universal-plug-and-play-unplug-dont-play",
+        "url,upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.1.pdf",
+        "cve,2012-5958",
+        "cve,2012-5959"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2016303,
+      "rev": 5,
+      "metadata": "created_at 2013_01_30, cve CVE_2012_5958, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2023_05_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "Intel SDK for UPnP devices",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1900 -> any any (msg:\"ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959 Vulnerable UPnP device M2\"; content:\"Intel SDK for UPnP devices\"; pcre:\"/^Server\\x3a[^\\r\\n]*Intel SDK for UPnP devices/mi\"; reference:url,community.rapid7.com/community/infosec/blog/2013/01/29/security-flaws-in-universal-plug-and-play-unplug-dont-play; reference:url,upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.1.pdf; reference:cve,2012-5958; reference:cve,2012-5959; classtype:bad-unknown; sid:2016303; rev:5; metadata:created_at 2013_01_30, cve CVE_2012_5958, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2023_05_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1845,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1900",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959 Vulnerable UPnP device M3",
+      "pcre": "/^Server\\x3a[^\\r\\n]*Portable SDK for UPnP devices(\\/?\\s*$|\\/1\\.([0-5]\\..|8\\.0.|(6\\.[0-9]|6\\.1[0-7])))/m",
+      "reference": [
+        "url,community.rapid7.com/community/infosec/blog/2013/01/29/security-flaws-in-universal-plug-and-play-unplug-dont-play",
+        "url,upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.1.pdf",
+        "cve,2012-5958",
+        "cve,2012-5959"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2016304,
+      "rev": 3,
+      "metadata": "created_at 2013_01_30, cve CVE_2012_5958, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2023_05_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "Portable SDK for UPnP devices",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1900 -> any any (msg:\"ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959 Vulnerable UPnP device M3\"; content:\"Portable SDK for UPnP devices\"; pcre:\"/^Server\\x3a[^\\r\\n]*Portable SDK for UPnP devices(\\/?\\s*$|\\/1\\.([0-5]\\..|8\\.0.|(6\\.[0-9]|6\\.1[0-7])))/m\"; reference:url,community.rapid7.com/community/infosec/blog/2013/01/29/security-flaws-in-universal-plug-and-play-unplug-dont-play; reference:url,upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.1.pdf; reference:cve,2012-5958; reference:cve,2012-5959; classtype:bad-unknown; sid:2016304; rev:3; metadata:created_at 2013_01_30, cve CVE_2012_5958, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2023_05_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 1847,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1900",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959 Vulnerable UPnP device M1",
+      "pcre": "/^Server\\x3a[^\\r\\n]*miniupnpd\\/1\\.[0-3]/mi",
+      "reference": [
+        "url,community.rapid7.com/community/infosec/blog/2013/01/29/security-flaws-in-universal-plug-and-play-unplug-dont-play",
+        "url,upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.1.pdf",
+        "cve,2013-0229"
+      ],
+      "classtype": "bad-unknown",
+      "sid": 2016302,
+      "rev": 7,
+      "metadata": "created_at 2013_01_30, cve CVE_2013_0229, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2023_05_02",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "miniupnpd/1.",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET 1900 -> any any (msg:\"ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959 Vulnerable UPnP device M1\"; content:\"miniupnpd/1.\"; fast_pattern; pcre:\"/^Server\\x3a[^\\r\\n]*miniupnpd\\/1\\.[0-3]/mi\"; reference:url,community.rapid7.com/community/infosec/blog/2013/01/29/security-flaws-in-universal-plug-and-play-unplug-dont-play; reference:url,upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.1.pdf; reference:cve,2013-0229; classtype:bad-unknown; sid:2016302; rev:7; metadata:created_at 2013_01_30, cve CVE_2013_0229, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2023_05_02; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 5187,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "631",
+    "options": {
+      "msg": "ET INFO Observed UDP cups-browsed Add Printer Packet Inbound (HTTP)",
+      "pcre": "/^(?:[A-Fa-f0-9]{1,2}\\x20){2}https?\\x3a\\x2f\\x2f/",
+      "reference": "cve,2024-47176",
+      "classtype": "misc-activity",
+      "sid": 2056210,
+      "rev": 3,
+      "metadata": "created_at 2024_09_26, cve CVE_2024_47176, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_27",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|20|",
+          "modifiers": {
+            "within": "3"
+          }
+        },
+        {
+          "pattern": "|20|http",
+          "modifiers": {
+            "distance": "1",
+            "within": "8",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> [$HOME_NET,$HTTP_SERVERS] 631 (msg:\"ET INFO Observed UDP cups-browsed Add Printer Packet Inbound (HTTP)\"; content:\"|20|\"; within:3; content:\"|20|http\"; distance:1; within:8; fast_pattern; pcre:\"/^(?:[A-Fa-f0-9]{1,2}\\x20){2}https?\\x3a\\x2f\\x2f/\"; reference:cve,2024-47176; classtype:misc-activity; sid:2056210; rev:3; metadata:created_at 2024_09_26, cve CVE_2024_47176, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_27; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 5189,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "631",
+    "options": {
+      "msg": "ET INFO Observed UDP cups-browsed Add Printer Packet Inbound (IPP)",
+      "pcre": "/^(?:[A-Fa-f0-9]{1,2}\\x20){2}ipps?\\x3a\\x2f\\x2f/",
+      "reference": "cve,2024-47176",
+      "classtype": "misc-activity",
+      "sid": 2056211,
+      "rev": 3,
+      "metadata": "created_at 2024_09_26, cve CVE_2024_47176, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_27",
+      "contents": [
+        {
+          "pattern": "|20|",
+          "modifiers": {
+            "within": "3"
+          }
+        },
+        {
+          "pattern": "|20|ipp",
+          "modifiers": {
+            "distance": "1",
+            "within": "7",
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> [$HOME_NET,$HTTP_SERVERS] 631 (msg:\"ET INFO Observed UDP cups-browsed Add Printer Packet Inbound (IPP)\"; content:\"|20|\"; within:3; content:\"|20|ipp\"; distance:1; within:7; fast_pattern; pcre:\"/^(?:[A-Fa-f0-9]{1,2}\\x20){2}ipps?\\x3a\\x2f\\x2f/\"; reference:cve,2024-47176; classtype:misc-activity; sid:2056211; rev:3; metadata:created_at 2024_09_26, cve CVE_2024_47176, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_09_27;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8577,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed Event Log Information From Internal Host Over UDP",
+      "classtype": "misc-activity",
+      "sid": 2062633,
+      "rev": 1,
+      "metadata": "attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30",
+      "contents": [
+        {
+          "pattern": "|0d 0a 20 20|Date|3a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a 20 20|Event|20|ID|3a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a 20 20|Task|3a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a 20 20|Level|3a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET INFO Observed Event Log Information From Internal Host Over UDP\"; content:\"|0d 0a 20 20|Date|3a|\"; content:\"|0d 0a 20 20|Event|20|ID|3a|\"; fast_pattern; content:\"|0d 0a 20 20|Task|3a|\"; content:\"|0d 0a 20 20|Level|3a|\"; classtype:misc-activity; sid:2062633; rev:1; metadata:attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8579,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed netstat Output From Internal Host Over UDP",
+      "classtype": "misc-activity",
+      "sid": 2062634,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|0d 0a 20 20|TCP|20 20 20|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|20 20 20|ESTABLISHED|20 20 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET INFO Observed netstat Output From Internal Host Over UDP\"; content:\"|0d 0a 20 20|TCP|20 20 20|\"; content:\"|20 20 20|ESTABLISHED|20 20 20|\"; fast_pattern; classtype:misc-activity; sid:2062634; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8581,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed netsh advfirewall Output From Internal Host Over UDP",
+      "classtype": "misc-activity",
+      "sid": 2062635,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|0d 0a|Rule|20|source|3a 20 20 20 20 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Action|3a 20 20 20 20 20 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET INFO Observed netsh advfirewall Output From Internal Host Over UDP\"; content:\"|0d 0a|Rule|20|source|3a 20 20 20 20 20|\"; fast_pattern; content:\"|0d 0a|Action|3a 20 20 20 20 20 20|\"; classtype:misc-activity; sid:2062635; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8583,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed net user Output From Internal Host Over UDP",
+      "classtype": "misc-activity",
+      "sid": 2062636,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "User|20|accounts|20|for|20 5c 5c|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|2d 2d 2d 2d 2d 2d 2d 2d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|20 20 20 20 20 20 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET INFO Observed net user Output From Internal Host Over UDP\"; content:\"User|20|accounts|20|for|20 5c 5c|\"; fast_pattern; content:\"|2d 2d 2d 2d 2d 2d 2d 2d|\"; content:\"|20 20 20 20 20 20 20|\"; classtype:misc-activity; sid:2062636; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8585,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed tasklist Output From Internal Host Over UDP",
+      "pcre": "/^\\d+\\x22\\x2c\\x22/R",
+      "classtype": "misc-activity",
+      "sid": 2062637,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": ".exe|22 2c 22|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": ".exe|22 2c 22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".exe|22 2c 22|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET INFO Observed tasklist Output From Internal Host Over UDP\"; content:\".exe|22 2c 22|\"; fast_pattern; pcre:\"/^\\d+\\x22\\x2c\\x22/R\"; content:\".exe|22 2c 22|\"; content:\".exe|22 2c 22|\"; classtype:misc-activity; sid:2062637; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8587,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Observed net localgroup Output From Internal Host Over UDP",
+      "classtype": "misc-activity",
+      "sid": 2062638,
+      "rev": 1,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "Alias|20|name|20 20 20 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|2d 2d 2d 2d 2d 2d 2d 2d|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|20|command|20|completed",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp [$HOME_NET,$HTTP_SERVERS] any -> any any (msg:\"ET INFO Observed net localgroup Output From Internal Host Over UDP\"; content:\"Alias|20|name|20 20 20 20|\"; fast_pattern; content:\"|2d 2d 2d 2d 2d 2d 2d 2d|\"; content:\"|20|command|20|completed\"; classtype:misc-activity; sid:2062638; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product Windows_11, affected_product Windows_8, affected_product Windows_10, attack_target Client_and_Server, created_at 2025_05_30, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, tag AI_Generated_Description, updated_at 2025_05_30; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8795,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "2123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Invalid GTP Response Packet Observed",
+      "flow": "stateless,to_client",
+      "threshold": "type limit,track by_dst,count 1,seconds 600",
+      "reference": [
+        "url,doubleagent.net/telecommunications/backdoor/gtp/2024/02/27/GTPDOOR-COVERT-TELCO-BACKDOOR",
+        "url,github.com/sud0woodo/detect_gtpdoor"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2063369,
+      "rev": 1,
+      "metadata": "affected_product Linux, attack_target Server, tls_state plaintext, created_at 2025_07_09, deployment Perimeter, deployment Internal, deployment Datacenter, malware_family GTPDoor, confidence Medium, signature_severity Informational, updated_at 2025_07_09, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1210, mitre_technique_name Exploitation_Of_Remote_Services",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "|00|",
+          "modifiers": {
+            "depth": "1"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any 2123 -> any any (msg:\"ET INFO Invalid GTP Response Packet Observed\"; flow:stateless,to_client; content:\"|00|\"; depth:1; threshold:type limit,track by_dst,count 1,seconds 600; reference:url,doubleagent.net/telecommunications/backdoor/gtp/2024/02/27/GTPDOOR-COVERT-TELCO-BACKDOOR; reference:url,github.com/sud0woodo/detect_gtpdoor; classtype:misc-activity; sid:2063369; rev:1; metadata:affected_product Linux, attack_target Server, tls_state plaintext, created_at 2025_07_09, deployment Perimeter, deployment Internal, deployment Datacenter, malware_family GTPDoor, confidence Medium, signature_severity Informational, updated_at 2025_07_09, mitre_tactic_id TA0008, mitre_tactic_name Lateral_Movement, mitre_technique_id T1210, mitre_technique_name Exploitation_Of_Remote_Services; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 10407,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[500,4500]",
+    "options": {
+      "msg": "ET INFO IKEv2 SA_INIT with Microsoft Security Realm Vendor ID",
+      "flow": "stateless,to_server",
+      "flowbits": [
+        "set,ET.IKE.MS_Sec_VID",
+        "noalert"
+      ],
+      "reference": "url,www.zerodayinitiative.com/blog/2026/4/22/cve-2026-33824-remote-code-execution-in-windows-ikev2",
+      "classtype": "misc-activity",
+      "sid": 2069042,
+      "rev": 1,
+      "metadata": "attack_target Server, created_at 2026_04_28, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, updated_at 2026_04_28",
+      "contents": [
+        {
+          "pattern": "|22 20 22 08 00 00 00 00|",
+          "modifiers": {
+            "offset": "16",
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "|68 6a 8c bd fe 63 4b 40 51 46 fb 2b af 33 e9 e8|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET [500,4500] (msg:\"ET INFO IKEv2 SA_INIT with Microsoft Security Realm Vendor ID\"; flow:stateless,to_server; flowbits:set,ET.IKE.MS_Sec_VID; flowbits:noalert; content:\"|22 20 22 08 00 00 00 00|\"; offset:16; depth:8; content:\"|68 6a 8c bd fe 63 4b 40 51 46 fb 2b af 33 e9 e8|\"; fast_pattern; reference:url,www.zerodayinitiative.com/blog/2026/4/22/cve-2026-33824-remote-code-execution-in-windows-ikev2; classtype:misc-activity; sid:2069042; rev:1; metadata:attack_target Server, created_at 2026_04_28, deployment Perimeter, deployment Internal, confidence High, signature_severity Informational, updated_at 2026_04_28;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 10485,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "[!3478,1023:]",
+    "options": {
+      "msg": "ET INFO Session Traversal Utilities for NAT (STUN Binding Request On Non-Standard High Port)",
+      "xbits": "set,ET.STUN,track ip_src,expire 60",
+      "reference": "url,tools.ietf.org/html/rfc5389",
+      "classtype": "misc-activity",
+      "sid": 2033078,
+      "rev": 5,
+      "metadata": "created_at 2021_06_03, deployment Perimeter, deployment alert_only, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_06_01",
+      "contents": [
+        {
+          "pattern": "|00 01|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|21 12 a4 42|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "2",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET [!3478,1023:] (msg:\"ET INFO Session Traversal Utilities for NAT (STUN Binding Request On Non-Standard High Port)\"; xbits:set,ET.STUN,track ip_src,expire 60; content:\"|00 01|\"; depth:2; content:\"|21 12 a4 42|\"; fast_pattern; distance:2; within:4; reference:url,tools.ietf.org/html/rfc5389; classtype:misc-activity; sid:2033078; rev:5; metadata:created_at 2021_06_03, deployment Perimeter, deployment alert_only, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_06_01;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 10487,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "3478",
+    "options": {
+      "msg": "ET INFO Session Traversal Utilities for NAT (STUN Binding Request)",
+      "xbits": "set,ET.STUN,track ip_src,expire 60",
+      "reference": "url,tools.ietf.org/html/rfc5389",
+      "classtype": "misc-activity",
+      "sid": 2016149,
+      "rev": 4,
+      "metadata": "created_at 2013_01_04, deployment Perimeter, deployment alert_only, confidence High, signature_severity Informational, updated_at 2026_06_01",
+      "contents": [
+        {
+          "pattern": "|00 01|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|21 12 a4 42|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "2",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET 3478 (msg:\"ET INFO Session Traversal Utilities for NAT (STUN Binding Request)\"; xbits:set,ET.STUN,track ip_src,expire 60; content:\"|00 01|\"; depth:2; content:\"|21 12 a4 42|\"; fast_pattern; distance:2; within:4; reference:url,tools.ietf.org/html/rfc5389; classtype:misc-activity; sid:2016149; rev:4; metadata:created_at 2013_01_04, deployment Perimeter, deployment alert_only, confidence High, signature_severity Informational, updated_at 2026_06_01;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 10489,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "3478",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Session Traversal Utilities for NAT (STUN Binding Response)",
+      "xbits": "isset,ET.STUN,track ip_dst",
+      "classtype": "misc-activity",
+      "sid": 2016150,
+      "rev": 4,
+      "metadata": "created_at 2013_01_04, deployment Perimeter, deployment alert_only, confidence High, signature_severity Informational, updated_at 2026_06_01",
+      "contents": [
+        {
+          "pattern": "|01 01|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|21 12 a4 42|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "2",
+            "within": "4 reference:url,tools.ietf.org/html/rfc5389"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET 3478 -> $HOME_NET any (msg:\"ET INFO Session Traversal Utilities for NAT (STUN Binding Response)\"; xbits:isset,ET.STUN,track ip_dst; content:\"|01 01|\"; depth:2; content:\"|21 12 a4 42|\"; fast_pattern; distance:2; within:4 reference:url,tools.ietf.org/html/rfc5389; classtype:misc-activity; sid:2016150; rev:4; metadata:created_at 2013_01_04, deployment Perimeter, deployment alert_only, confidence High, signature_severity Informational, updated_at 2026_06_01;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 10491,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": ":1024",
+    "options": {
+      "msg": "ET INFO Session Traversal Utilities for NAT (STUN Binding Request On Non-Standard Low Port)",
+      "xbits": "set,ET.STUN,track ip_src,expire 60",
+      "reference": "url,tools.ietf.org/html/rfc5389",
+      "classtype": "misc-activity",
+      "sid": 2033077,
+      "rev": 3,
+      "metadata": "created_at 2021_06_03, deployment Perimeter, deployment alert_only, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_06_01",
+      "contents": [
+        {
+          "pattern": "|00 01|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|21 12 a4 42|",
+          "modifiers": {
+            "fast_pattern": true,
+            "distance": "2",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $HOME_NET any -> $EXTERNAL_NET :1024 (msg:\"ET INFO Session Traversal Utilities for NAT (STUN Binding Request On Non-Standard Low Port)\"; xbits:set,ET.STUN,track ip_src,expire 60; content:\"|00 01|\"; depth:2; content:\"|21 12 a4 42|\"; fast_pattern; distance:2; within:4; reference:url,tools.ietf.org/html/rfc5389; classtype:misc-activity; sid:2033077; rev:3; metadata:created_at 2021_06_03, deployment Perimeter, deployment alert_only, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_06_01;)"
+  }
+]

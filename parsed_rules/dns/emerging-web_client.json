@@ -1,0 +1,483 @@
+[
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 355,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Possible Fake AV Phone Scam Long Domain Mar 30 M2",
+      "dns.query": true,
+      "isdataat": "100,relative",
+      "classtype": "social-engineering",
+      "sid": 2022691,
+      "rev": 6,
+      "metadata": "created_at 2016_03_30, confidence Medium, signature_severity Minor, updated_at 2020_09_01",
+      "contents": [
+        {
+          "pattern": "avirus",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "!\"spotify.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Possible Fake AV Phone Scam Long Domain Mar 30 M2\"; dns.query; content:\"avirus\"; fast_pattern; nocase; isdataat:100,relative; content:!\"spotify.com\"; classtype:social-engineering; sid:2022691; rev:6; metadata:created_at 2016_03_30, confidence Medium, signature_severity Minor, updated_at 2020_09_01;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 357,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Possible Fake AV Phone Scam Long Domain M1 Feb 29",
+      "dns.query": true,
+      "isdataat": "100,relative",
+      "classtype": "social-engineering",
+      "sid": 2022575,
+      "rev": 5,
+      "metadata": "created_at 2016_03_01, confidence Medium, signature_severity Minor, updated_at 2020_09_01",
+      "contents": [
+        {
+          "pattern": "helpdesk",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Possible Fake AV Phone Scam Long Domain M1 Feb 29\"; dns.query; content:\"helpdesk\"; fast_pattern; nocase; isdataat:100,relative; classtype:social-engineering; sid:2022575; rev:5; metadata:created_at 2016_03_01, confidence Medium, signature_severity Minor, updated_at 2020_09_01;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 359,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Fake AV Phone Scam Domain M1 Mar 3",
+      "dns.query": true,
+      "isdataat": "100,relative",
+      "classtype": "social-engineering",
+      "sid": 2022591,
+      "rev": 5,
+      "metadata": "created_at 2016_03_03, confidence High, signature_severity Minor, updated_at 2020_09_01",
+      "contents": [
+        {
+          "pattern": "errorfound",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Fake AV Phone Scam Domain M1 Mar 3\"; dns.query; content:\"errorfound\"; fast_pattern; nocase; isdataat:100,relative; classtype:social-engineering; sid:2022591; rev:5; metadata:created_at 2016_03_03, confidence High, signature_severity Minor, updated_at 2020_09_01;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 361,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Fake AV Phone Scam Domain M2 Mar 3",
+      "dns.query": true,
+      "isdataat": "100,relative",
+      "classtype": "social-engineering",
+      "sid": 2022592,
+      "rev": 5,
+      "metadata": "created_at 2016_03_03, confidence High, signature_severity Minor, updated_at 2020_09_01",
+      "contents": [
+        {
+          "pattern": "unattendedfile",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Fake AV Phone Scam Domain M2 Mar 3\"; dns.query; content:\"unattendedfile\"; fast_pattern; nocase; isdataat:100,relative; classtype:social-engineering; sid:2022592; rev:5; metadata:created_at 2016_03_03, confidence High, signature_severity Minor, updated_at 2020_09_01;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 363,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Fake AV Phone Scam Domain M3 Mar 3",
+      "dns.query": true,
+      "isdataat": "100,relative",
+      "classtype": "social-engineering",
+      "sid": 2022593,
+      "rev": 5,
+      "metadata": "created_at 2016_03_03, confidence High, signature_severity Minor, updated_at 2020_09_01",
+      "contents": [
+        {
+          "pattern": "internetsituation",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Fake AV Phone Scam Domain M3 Mar 3\"; dns.query; content:\"internetsituation\"; fast_pattern; nocase; isdataat:100,relative; classtype:social-engineering; sid:2022593; rev:5; metadata:created_at 2016_03_03, confidence High, signature_severity Minor, updated_at 2020_09_01;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 365,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Possible Fake AV Phone Scam Long Domain Apr 4",
+      "dns.query": true,
+      "isdataat": "100,relative",
+      "classtype": "social-engineering",
+      "sid": 2022696,
+      "rev": 5,
+      "metadata": "created_at 2016_04_04, confidence Medium, signature_severity Minor, updated_at 2020_09_01",
+      "contents": [
+        {
+          "pattern": "callasap",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Possible Fake AV Phone Scam Long Domain Apr 4\"; dns.query; content:\"callasap\"; fast_pattern; nocase; isdataat:100,relative; classtype:social-engineering; sid:2022696; rev:5; metadata:created_at 2016_04_04, confidence Medium, signature_severity Minor, updated_at 2020_09_01;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 369,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Malicious Chrome Extension Domain Request (nyoogle .info in DNS Lookup)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,icebrg.io/blog/malicious-chrome-extensions-enable-criminals-to-impact-over-half-a-million-users-and-global-businesses",
+      "classtype": "trojan-activity",
+      "sid": 2025217,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2018_01_18, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": "nyoogle.info",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Malicious Chrome Extension Domain Request (nyoogle .info in DNS Lookup)\"; dns.query; content:\"nyoogle.info\"; nocase; endswith; reference:url,icebrg.io/blog/malicious-chrome-extensions-enable-criminals-to-impact-over-half-a-million-users-and-global-businesses; classtype:trojan-activity; sid:2025217; rev:3; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2018_01_18, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 371,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Malicious Chrome Extension Domain Request (lite-bookmarks .info in DNS Lookup)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,icebrg.io/blog/malicious-chrome-extensions-enable-criminals-to-impact-over-half-a-million-users-and-global-businesses",
+      "classtype": "trojan-activity",
+      "sid": 2025219,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2018_01_18, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": "lite-bookmarks.info",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Malicious Chrome Extension Domain Request (lite-bookmarks .info in DNS Lookup)\"; dns.query; content:\"lite-bookmarks.info\"; nocase; endswith; reference:url,icebrg.io/blog/malicious-chrome-extensions-enable-criminals-to-impact-over-half-a-million-users-and-global-businesses; classtype:trojan-activity; sid:2025219; rev:3; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2018_01_18, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 373,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Malicious Chrome Extension Domain Request (stickies .pro in DNS Lookup)",
+      "dns.query": true,
+      "endswith": true,
+      "reference": "url,www.icebrg.io/blog/malicious-chrome-extensions-enable-criminals-to-impact-over-half-a-million-users-and-global-businesses",
+      "classtype": "trojan-activity",
+      "sid": 2025218,
+      "rev": 4,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2018_01_18, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2020_09_16",
+      "contents": [
+        {
+          "pattern": "stickies.pro",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Malicious Chrome Extension Domain Request (stickies .pro in DNS Lookup)\"; dns.query; content:\"stickies.pro\"; nocase; endswith; reference:url,www.icebrg.io/blog/malicious-chrome-extensions-enable-criminals-to-impact-over-half-a-million-users-and-global-businesses; classtype:trojan-activity; sid:2025218; rev:4; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2018_01_18, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Major, updated_at 2020_09_16;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 381,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed DNS Query to Malicious Cookie Monster Roulette JS Cookie Stealer Exfil Domain",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2028649,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2019_10_04, deployment Perimeter, malware_family CookieMonster, performance_impact Low, confidence High, signature_severity Major, updated_at 2020_09_17",
+      "contents": [
+        {
+          "pattern": ".connectioncdn.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Observed DNS Query to Malicious Cookie Monster Roulette JS Cookie Stealer Exfil Domain\"; dns.query; content:\".connectioncdn.com\"; nocase; endswith; classtype:trojan-activity; sid:2028649; rev:2; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2019_10_04, deployment Perimeter, malware_family CookieMonster, performance_impact Low, confidence High, signature_severity Major, updated_at 2020_09_17;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 423,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed DNS Query to Malicious Cookie Monster Roulette JS Cookie Stealer Exfil Domain",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2029268,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_01_13, deployment Perimeter, malware_family CookieMonster, performance_impact Low, confidence High, signature_severity Major, updated_at 2020_10_27",
+      "contents": [
+        {
+          "pattern": ".sslproviders.net",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Observed DNS Query to Malicious Cookie Monster Roulette JS Cookie Stealer Exfil Domain\"; dns.query; content:\".sslproviders.net\"; nocase; endswith; classtype:trojan-activity; sid:2029268; rev:2; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2020_01_13, deployment Perimeter, malware_family CookieMonster, performance_impact Low, confidence High, signature_severity Major, updated_at 2020_10_27;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 453,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Observed DNS Query to Malicious Cookie Monster Roulette JS Cookie Stealer Exfil Domain",
+      "dns.query": true,
+      "endswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2031612,
+      "rev": 2,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_02_11, deployment Perimeter, malware_family CookieMonster, performance_impact Low, confidence High, signature_severity Major, updated_at 2021_02_11",
+      "contents": [
+        {
+          "pattern": ".cdncontentdelivery.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Observed DNS Query to Malicious Cookie Monster Roulette JS Cookie Stealer Exfil Domain\"; dns.query; content:\".cdncontentdelivery.com\"; nocase; endswith; classtype:trojan-activity; sid:2031612; rev:2; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2021_02_11, deployment Perimeter, malware_family CookieMonster, performance_impact Low, confidence High, signature_severity Major, updated_at 2021_02_11;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 521,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Zimbra zauthtoken Exfil Domain in DNS Lookup (zimbrauser .me)",
+      "dns.query": true,
+      "bsize": "13",
+      "reference": "url,twitter.com/__0XYC__/status/1753000391770317099",
+      "classtype": "credential-theft",
+      "sid": 2050659,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_02_01, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Web_Client_Attacks, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_02_01, reviewed_at 2024_05_06",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "zimbrauser.me",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Zimbra zauthtoken Exfil Domain in DNS Lookup (zimbrauser .me)\"; dns.query; bsize:13; content:\"zimbrauser.me\"; nocase; reference:url,twitter.com/__0XYC__/status/1753000391770317099; classtype:credential-theft; sid:2050659; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_02_01, deployment Perimeter, performance_impact Low, confidence High, signature_severity Major, tag Web_Client_Attacks, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_02_01, reviewed_at 2024_05_06; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 1219,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT SEO Injection/Fraud DNS Lookup (count.trackstatisticsss .com)",
+      "dns.query": true,
+      "bsize": "27",
+      "classtype": "bad-unknown",
+      "sid": 2030099,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_05_04, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "count.trackstatisticsss.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT SEO Injection/Fraud DNS Lookup (count.trackstatisticsss .com)\"; dns.query; bsize:27; content:\"count.trackstatisticsss.com\"; nocase; classtype:bad-unknown; sid:2030099; rev:3; metadata:attack_target Client_Endpoint, created_at 2020_05_04, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 1221,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT SEO Injection/Fraud Domain in DNS Lookup (stat.trackstatisticsss .com)",
+      "dns.query": true,
+      "bsize": "26",
+      "reference": "url,www.wordfence.com/blog/2020/05/nearly-a-million-wp-sites-targeted-in-large-scale-attacks/",
+      "classtype": "bad-unknown",
+      "sid": 2030118,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2020_05_06, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "stat.trackstatisticsss.com",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT SEO Injection/Fraud Domain in DNS Lookup (stat.trackstatisticsss .com)\"; dns.query; bsize:26; content:\"stat.trackstatisticsss.com\"; nocase; reference:url,www.wordfence.com/blog/2020/05/nearly-a-million-wp-sites-targeted-in-large-scale-attacks/; classtype:bad-unknown; sid:2030118; rev:3; metadata:attack_target Client_Endpoint, created_at 2020_05_06, deployment Perimeter, deployment SSLDecrypt, performance_impact Low, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25;)"
+  },
+  {
+    "source_file": "emerging-web_client.rules",
+    "line_number": 1223,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_CLIENT Exchange Webshell CnC Domain in DNS Lookup",
+      "dns.query": true,
+      "bsize": "25",
+      "reference": "url,krebsonsecurity.com/2021/03/no-i-did-not-hack-your-ms-exchange-server/",
+      "classtype": "domain-c2",
+      "sid": 2032345,
+      "rev": 2,
+      "metadata": "created_at 2021_03_29, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25",
+      "contents": [
+        {
+          "pattern": "brian.krebsonsecurity.top",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HOME_NET any -> any any (msg:\"ET WEB_CLIENT Exchange Webshell CnC Domain in DNS Lookup\"; dns.query; bsize:25; content:\"brian.krebsonsecurity.top\"; nocase; reference:url,krebsonsecurity.com/2021/03/no-i-did-not-hack-your-ms-exchange-server/; classtype:domain-c2; sid:2032345; rev:2; metadata:created_at 2021_03_29, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_25;)"
+  }
+]

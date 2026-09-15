@@ -1,0 +1,1378 @@
+[
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - TCP Statistics",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048624,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=tcp",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - TCP Statistics\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=tcp\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048624; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - UDP Statistics",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048625,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=udp",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - UDP Statistics\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=udp\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048625; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation System Data Details Information Disclosure Attempt",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048626,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/SysDataDetail?name=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation System Data Details Information Disclosure Attempt\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/SysDataDetail?name=\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048626; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - IP Routing Data",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048627,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=iproute",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - IP Routing Data\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=iproute\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048627; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - General Memory Statistics",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048628,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=genmem",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - General Memory Statistics\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=genmem\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048628; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - General Heap Memory Statistics",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048629,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=heap",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - General Heap Memory Statistics\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=heap\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048629; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - ICMP Statistics",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048630,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=icmp",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - ICMP Statistics\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=icmp\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048630; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - IGMP Statistics",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048631,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=igmp",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - IGMP Statistics\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=igmp\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048631; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - ARP Statistics",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048632,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=arp",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - ARP Statistics\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=arp\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048632; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - Interface Statistics",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048633,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=if",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - Interface Statistics\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=if\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048633; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - IP Statistics",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048634,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=ip",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Advanced Diagnostics Information Disclosure Attempt - IP Statistics\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=ip\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048634; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Possible Unauthorized Access Attempt - Request for radevice.css",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048635,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/css/radevice.css",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Possible Unauthorized Access Attempt - Request for radevice.css\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/css/radevice.css\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048635; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 95,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Information Disclosure Attempt - System List",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048636,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/SysListDetail?name=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Information Disclosure Attempt - System List\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/SysListDetail?name=\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048636; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Information Disclosure Attempt - Browse Chasis",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048637,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/chassisWho.asp",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Information Disclosure Attempt - Browse Chasis\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/chassisWho.asp\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048637; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Information Disclosure Attempt - Chassis Detail Request",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048638,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/chassisDetail?slot=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Information Disclosure Attempt - Chassis Detail Request\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/chassisDetail?slot=\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048638; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Information Disclosure Attempt - Crashdump Display",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048639,
+      "rev": 1,
+      "metadata": "affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/rokform/advancedDiags?pagereq=crash",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Allen-Bradley/Rockwell Automation Information Disclosure Attempt - Crashdump Display\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/rokform/advancedDiags?pagereq=crash\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048639; rev:1; metadata:affected_product Allen_Bradley_Rockwell_Automation_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, updated_at 2023_10_18, mitre_tactic_id TA0007, mitre_tactic_name Discovery, mitre_technique_id T1082, mitre_technique_name System_Information_Discovery; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 103,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboraties SEL-series Possible Unauthorized Access - Request for home.sel",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048640,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/home.sel",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboraties SEL-series Possible Unauthorized Access - Request for home.sel\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/home.sel\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048640; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboraties SEL-series Possible Unauthorized Access Attempt - Request for err401.sel",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048641,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/errors/err401.sel?username=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboraties SEL-series Possible Unauthorized Access Attempt - Request for err401.sel\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/errors/err401.sel?username=\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048641; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-series Possible Unauthorized Access - Request for default.sel",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "unsuccessful-user",
+      "sid": 2048642,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/default.sel",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-series Possible Unauthorized Access - Request for default.sel\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/default.sel\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:unsuccessful-user; sid:2048642; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 109,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboraties SEL-2488 Possible Unauthorized Access Attempt - Request for /scripts/dScripts.sel",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048643,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/scripts/dScripts.sel",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboraties SEL-2488 Possible Unauthorized Access Attempt - Request for /scripts/dScripts.sel\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/scripts/dScripts.sel\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048643; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 111,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboraties SEL-2488 Possible Unauthorized Access Attempt - Request for /css/sel.css",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048644,
+      "rev": 1,
+      "metadata": "affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/css/sel.css?vid=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboraties SEL-2488 Possible Unauthorized Access Attempt - Request for /css/sel.css\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/css/sel.css?vid=\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048644; rev:1; metadata:affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_18; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 161,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Possible Siemens S7-1200 Unauthorized Access Attempt - Request for /Images/CPU1200/",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048684,
+      "rev": 1,
+      "metadata": "affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_19",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/Images/CPU1200/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Possible Siemens S7-1200 Unauthorized Access Attempt - Request for /Images/CPU1200/\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/Images/CPU1200/\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048684; rev:1; metadata:affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_19; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 163,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA [nsacyber/ELITEWOLF] Possible Siemens S7-1200 Unauthorized Access Attempt - Request for /CSS/S7Web.css",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": "url,github.com/nsacyber/ELITEWOLF",
+      "classtype": "web-application-activity",
+      "sid": 2048685,
+      "rev": 1,
+      "metadata": "affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_19",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/CSS/S7Web.css",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET any (msg:\"ET SCADA [nsacyber/ELITEWOLF] Possible Siemens S7-1200 Unauthorized Access Attempt - Request for /CSS/S7Web.css\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/CSS/S7Web.css\"; fast_pattern; reference:url,github.com/nsacyber/ELITEWOLF; classtype:web-application-activity; sid:2048685; rev:1; metadata:affected_product Siemens_S7_Series, attack_target ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence Low, signature_severity Minor, updated_at 2023_10_19; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 193,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA PcVue Activex Control Insecure method (AddPage)",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/^[^>]*?classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*?083B40D3-CCBA-11D2-AFE0-00C04F7993D6/Rsi",
+      "reference": "url,exploit-db.com/exploits/17896",
+      "classtype": "attempted-user",
+      "sid": 2013730,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_03_13, reviewed_at 2024_03_11",
+      "contents": [
+        {
+          "pattern": "<OBJECT ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "classid",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "CLSID",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "083B40D3-CCBA-11D2-AFE0-00C04F7993D6",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": ".AddPage",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "<OBJECT",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA PcVue Activex Control Insecure method (AddPage)\"; flow:established,to_client; file.data; content:\"<OBJECT \"; nocase; content:\"classid\"; nocase; distance:0; content:\"CLSID\"; nocase; distance:0; content:\"083B40D3-CCBA-11D2-AFE0-00C04F7993D6\"; nocase; distance:0; content:\".AddPage\"; nocase; content:\"<OBJECT\"; nocase; pcre:\"/^[^>]*?classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*?083B40D3-CCBA-11D2-AFE0-00C04F7993D6/Rsi\"; reference:url,exploit-db.com/exploits/17896; classtype:attempted-user; sid:2013730; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_03_13, reviewed_at 2024_03_11;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 195,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA PcVue Activex Control Insecure method (DeletePage)",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/^[^>]*?classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*083B40D3-CCBA-11D2-AFE0-00C04F7993D6/Rsi",
+      "reference": "url,exploit-db.com/exploits/17896",
+      "classtype": "attempted-user",
+      "sid": 2013731,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_03_13",
+      "contents": [
+        {
+          "pattern": "083B40D3-CCBA-11D2-AFE0-00C04F7993D6",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": ".DeletePage",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "<OBJECT",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA PcVue Activex Control Insecure method (DeletePage)\"; flow:established,to_client; file.data; content:\"083B40D3-CCBA-11D2-AFE0-00C04F7993D6\"; nocase; distance:0; content:\".DeletePage\"; nocase; content:\"<OBJECT\"; pcre:\"/^[^>]*?classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*083B40D3-CCBA-11D2-AFE0-00C04F7993D6/Rsi\"; reference:url,exploit-db.com/exploits/17896; classtype:attempted-user; sid:2013731; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_03_13;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 197,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA PROMOTIC ActiveX Control Insecure method (AddTrend)",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*02000002-9DFA-4B37-ABE9-1929F4BCDEA2/si",
+      "reference": "url,aluigi.altervista.org/adv/promotic_1-adv.txt",
+      "classtype": "attempted-user",
+      "sid": 2013879,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_11_08, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08",
+      "contents": [
+        {
+          "pattern": "<OBJECT ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "classid",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "CLSID",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "02000002-9DFA-4B37-ABE9-1929F4BCDEA2",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": ".AddTrend",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA PROMOTIC ActiveX Control Insecure method (AddTrend)\"; flow:established,to_client; file.data; content:\"<OBJECT \"; nocase; content:\"classid\"; nocase; distance:0; content:\"CLSID\"; nocase; distance:0; content:\"02000002-9DFA-4B37-ABE9-1929F4BCDEA2\"; fast_pattern; nocase; distance:0; content:\".AddTrend\"; nocase; pcre:\"/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*02000002-9DFA-4B37-ABE9-1929F4BCDEA2/si\"; reference:url,aluigi.altervista.org/adv/promotic_1-adv.txt; classtype:attempted-user; sid:2013879; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_11_08, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 199,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA PROMOTIC ActiveX Control Insecure method (SaveCfg)",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*02000002-9DFA-4B37-ABE9-1929F4BCDEA2/si",
+      "reference": "url,aluigi.altervista.org/adv/promotic_1-adv.txt",
+      "classtype": "attempted-user",
+      "sid": 2013878,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_11_08, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08",
+      "contents": [
+        {
+          "pattern": "<OBJECT ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "classid",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "CLSID",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "02000002-9DFA-4B37-ABE9-1929F4BCDEA2",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": ".SaveCfg",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA PROMOTIC ActiveX Control Insecure method (SaveCfg)\"; flow:established,to_client; file.data; content:\"<OBJECT \"; nocase; content:\"classid\"; nocase; distance:0; content:\"CLSID\"; nocase; distance:0; content:\"02000002-9DFA-4B37-ABE9-1929F4BCDEA2\"; fast_pattern; nocase; distance:0; content:\".SaveCfg\"; nocase; pcre:\"/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*02000002-9DFA-4B37-ABE9-1929F4BCDEA2/si\"; reference:url,aluigi.altervista.org/adv/promotic_1-adv.txt; classtype:attempted-user; sid:2013878; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_11_08, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 201,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA Sunway ForceControl Activex Control Remote Code Execution Vulnerability 2",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*3310FA24-A027-47B3-8C49-1091077317E9/si",
+      "reference": "bugtraq,49747",
+      "classtype": "attempted-user",
+      "sid": 2013736,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "contents": [
+        {
+          "pattern": "<OBJECT ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "classid",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "CLSID",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "3310FA24-A027-47B3-8C49-1091077317E9",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA Sunway ForceControl Activex Control Remote Code Execution Vulnerability 2\"; flow:established,to_client; file.data; content:\"<OBJECT \"; nocase; content:\"classid\"; nocase; distance:0; content:\"CLSID\"; nocase; distance:0; content:\"3310FA24-A027-47B3-8C49-1091077317E9\"; fast_pattern; nocase; distance:0; pcre:\"/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*3310FA24-A027-47B3-8C49-1091077317E9/si\"; reference:bugtraq,49747; classtype:attempted-user; sid:2013736; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 203,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA Sunway ForceControl Activex Control Vulnerability",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*BD9E5104-2F20-4A9F-AB14-82D558FF374E/si",
+      "reference": "bugtraq,49747",
+      "classtype": "attempted-user",
+      "sid": 2013735,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08",
+      "contents": [
+        {
+          "pattern": "<OBJECT ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "classid",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "CLSID",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "BD9E5104-2F20-4A9F-AB14-82D558FF374E",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA Sunway ForceControl Activex Control Vulnerability\"; flow:established,to_client; file.data; content:\"<OBJECT \"; nocase; content:\"classid\"; nocase; distance:0; content:\"CLSID\"; nocase; distance:0; content:\"BD9E5104-2F20-4A9F-AB14-82D558FF374E\"; fast_pattern; nocase; distance:0; pcre:\"/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*BD9E5104-2F20-4A9F-AB14-82D558FF374E/si\"; reference:bugtraq,49747; classtype:attempted-user; sid:2013735; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 205,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA PcVue Activex Control Insecure method (GetExtendedColor)",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*2BBD45A5-28AE-11D1-ACAC-0800170967D9/si",
+      "reference": "url,exploit-db.com/exploits/17896",
+      "classtype": "attempted-user",
+      "sid": 2013734,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08",
+      "contents": [
+        {
+          "pattern": "<OBJECT ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "classid",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "CLSID",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "2BBD45A5-28AE-11D1-ACAC-0800170967D9",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": ".GetExtendedColor",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA PcVue Activex Control Insecure method (GetExtendedColor)\"; flow:established,to_client; file.data; content:\"<OBJECT \"; nocase; content:\"classid\"; nocase; distance:0; content:\"CLSID\"; nocase; distance:0; content:\"2BBD45A5-28AE-11D1-ACAC-0800170967D9\"; fast_pattern; nocase; distance:0; content:\".GetExtendedColor\"; nocase; pcre:\"/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*2BBD45A5-28AE-11D1-ACAC-0800170967D9/si\"; reference:url,exploit-db.com/exploits/17896; classtype:attempted-user; sid:2013734; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 207,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA PcVue Activex Control Insecure method (LoadObject)",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*2BBD45A5-28AE-11D1-ACAC-0800170967D9/si",
+      "reference": "url,exploit-db.com/exploits/17896",
+      "classtype": "attempted-user",
+      "sid": 2013733,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08",
+      "contents": [
+        {
+          "pattern": "<OBJECT ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "classid",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "CLSID",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "2BBD45A5-28AE-11D1-ACAC-0800170967D9",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": ".LoadObject",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA PcVue Activex Control Insecure method (LoadObject)\"; flow:established,to_client; file.data; content:\"<OBJECT \"; nocase; content:\"classid\"; nocase; distance:0; content:\"CLSID\"; nocase; distance:0; content:\"2BBD45A5-28AE-11D1-ACAC-0800170967D9\"; fast_pattern; nocase; distance:0; content:\".LoadObject\"; nocase; pcre:\"/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*2BBD45A5-28AE-11D1-ACAC-0800170967D9/si\"; reference:url,exploit-db.com/exploits/17896; classtype:attempted-user; sid:2013733; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 209,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA PcVue Activex Control Insecure method (SaveObject)",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*2BBD45A5-28AE-11D1-ACAC-0800170967D9/si",
+      "reference": "url,exploit-db.com/exploits/17896",
+      "classtype": "attempted-user",
+      "sid": 2013732,
+      "rev": 5,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08",
+      "contents": [
+        {
+          "pattern": "<OBJECT ",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "classid",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "CLSID",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "2BBD45A5-28AE-11D1-ACAC-0800170967D9",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": ".SaveObject",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA PcVue Activex Control Insecure method (SaveObject)\"; flow:established,to_client; file.data; content:\"<OBJECT \"; nocase; content:\"classid\"; nocase; distance:0; content:\"CLSID\"; nocase; distance:0; content:\"2BBD45A5-28AE-11D1-ACAC-0800170967D9\"; fast_pattern; nocase; distance:0; content:\".SaveObject\"; nocase; pcre:\"/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*2BBD45A5-28AE-11D1-ACAC-0800170967D9/si\"; reference:url,exploit-db.com/exploits/17896; classtype:attempted-user; sid:2013732; rev:5; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_10_04, deployment Perimeter, confidence Medium, signature_severity Major, tag ActiveX, updated_at 2024_04_08;)"
+  },
+  {
+    "source_file": "emerging-scada.rules",
+    "line_number": 211,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCADA ICONICS WebHMI ActiveX Stack Overflow",
+      "flow": "established,to_client",
+      "file.data": true,
+      "pcre": "/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*D25FCAFC-F795-4609-89BB-5F78B4ACAF2C/si",
+      "reference": [
+        "url,www.security-assessment.com/files/documents/advisory/ICONICS_WebHMI.pdf",
+        "url,www.exploit-db.com/exploits/17240/"
+      ],
+      "classtype": "attempted-user",
+      "sid": 2012787,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_05_04, deployment Perimeter, confidence High, signature_severity Major, tag ActiveX, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "D25FCAFC-F795-4609-89BB-5F78B4ACAF2C",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "SetActiveXGUID",
+          "modifiers": {
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCADA ICONICS WebHMI ActiveX Stack Overflow\"; flow:established,to_client; file.data; content:\"D25FCAFC-F795-4609-89BB-5F78B4ACAF2C\"; fast_pattern; nocase; content:\"SetActiveXGUID\"; distance:0; pcre:\"/<OBJECT\\s+[^>]*classid\\s*=\\s*[\\x22\\x27]?\\s*clsid\\s*\\x3a\\s*\\x7B?\\s*D25FCAFC-F795-4609-89BB-5F78B4ACAF2C/si\"; reference:url,www.security-assessment.com/files/documents/advisory/ICONICS_WebHMI.pdf; reference:url,www.exploit-db.com/exploits/17240/; classtype:attempted-user; sid:2012787; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_05_04, deployment Perimeter, confidence High, signature_severity Major, tag ActiveX, updated_at 2024_04_09;)"
+  }
+]

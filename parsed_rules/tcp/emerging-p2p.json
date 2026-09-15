@@ -1,0 +1,760 @@
+[
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 41,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET P2P Ares Server Connection",
+      "flow": "established,to_server",
+      "dsize": "<70",
+      "reference": "url,aresgalaxy.sourceforge.net",
+      "classtype": "policy-violation",
+      "sid": 2008591,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "r|be|bloop|00|dV",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Ares|00 0a|",
+          "modifiers": {
+            "distance": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 1024: -> $EXTERNAL_NET 1024: (msg:\"ET P2P Ares Server Connection\"; flow:established,to_server; dsize:<70; content:\"r|be|bloop|00|dV\"; content:\"Ares|00 0a|\"; distance:16; reference:url,aresgalaxy.sourceforge.net; classtype:policy-violation; sid:2008591; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET P2P TOR 1.0 Server Key Retrieval",
+      "flow": "established,to_server",
+      "threshold": "type limit, track by_src, count 1, seconds 30",
+      "reference": "url,tor.eff.org",
+      "classtype": "policy-violation",
+      "sid": 2002950,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "GET /tor/server/",
+          "modifiers": {
+            "depth": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 1024: (msg:\"ET P2P TOR 1.0 Server Key Retrieval\"; flow:established,to_server; content:\"GET /tor/server/\"; depth:16; threshold:type limit, track by_src, count 1, seconds 30; reference:url,tor.eff.org; classtype:policy-violation; sid:2002950; rev:6; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET P2P TOR 1.0 Status Update",
+      "flow": "established,to_server",
+      "threshold": "type limit, track by_src, count 1, seconds 60",
+      "reference": "url,tor.eff.org",
+      "classtype": "policy-violation",
+      "sid": 2002951,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "GET /tor/status/",
+          "modifiers": {
+            "depth": "16"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 1024: (msg:\"ET P2P TOR 1.0 Status Update\"; flow:established,to_server; content:\"GET /tor/status/\"; depth:16; threshold:type limit, track by_src, count 1, seconds 60; reference:url,tor.eff.org; classtype:policy-violation; sid:2002951; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 69,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET P2P TOR 1.0 Inbound Circuit Traffic",
+      "flow": "established",
+      "rawbytes": true,
+      "threshold": "type limit, track by_src, count 1, seconds 120",
+      "reference": "url,tor.eff.org",
+      "classtype": "policy-violation",
+      "sid": 2002952,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "TOR",
+          "modifiers": {}
+        },
+        {
+          "pattern": "<identity>",
+          "modifiers": {
+            "distance": "10",
+            "within": "35"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET any -> $HOME_NET 1024: (msg:\"ET P2P TOR 1.0 Inbound Circuit Traffic\"; flow:established; content:\"TOR\"; content:\"<identity>\"; rawbytes; distance:10; within:35; threshold:type limit, track by_src, count 1, seconds 120; reference:url,tor.eff.org; classtype:policy-violation; sid:2002952; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET P2P TOR 1.0 Outbound Circuit Traffic",
+      "flow": "established",
+      "rawbytes": true,
+      "threshold": "type limit, track by_src, count 1, seconds 120",
+      "reference": "url,tor.eff.org",
+      "classtype": "policy-violation",
+      "sid": 2002953,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "TOR",
+          "modifiers": {}
+        },
+        {
+          "pattern": "<identity>",
+          "modifiers": {
+            "distance": "10",
+            "within": "35"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 1024: (msg:\"ET P2P TOR 1.0 Outbound Circuit Traffic\"; flow:established; content:\"TOR\"; content:\"<identity>\"; rawbytes; distance:10; within:35; threshold:type limit, track by_src, count 1, seconds 120; reference:url,tor.eff.org; classtype:policy-violation; sid:2002953; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "options": {
+      "msg": "ET P2P Vuze BT Connection",
+      "flow": "established",
+      "threshold": "type limit, track by_src, count 10, seconds 600",
+      "reference": "url,vuze.com",
+      "classtype": "policy-violation",
+      "sid": 2010139,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00|",
+          "modifiers": {
+            "depth": "2"
+          }
+        },
+        {
+          "pattern": "|05|AZVER|01|",
+          "modifiers": {
+            "distance": "5",
+            "within": "7"
+          }
+        },
+        {
+          "pattern": "appid",
+          "modifiers": {
+            "within": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:\"ET P2P Vuze BT Connection\"; flow:established; content:\"|00 00|\"; depth:2; content:\"|05|AZVER|01|\"; distance:5; within:7; content:\"appid\"; within:10; threshold:type limit, track by_src, count 10, seconds 600; reference:url,vuze.com; classtype:policy-violation; sid:2010139; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 137,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "7680",
+    "options": {
+      "msg": "ET P2P MS WUDO Peer Sync",
+      "flow": "established",
+      "reference": [
+        "url,bitconjurer.org/BitTorrent/protocol.html",
+        "url,windows.microsoft.com/en-us/windows-10/windows-update-delivery-optimization-faq"
+      ],
+      "classtype": "policy-violation",
+      "sid": 2022371,
+      "rev": 1,
+      "metadata": "created_at 2016_01_15, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00 00 0d 06 00|",
+          "modifiers": {
+            "depth": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 7680 (msg:\"ET P2P MS WUDO Peer Sync\"; flow:established; content:\"|00 00 00 0d 06 00|\"; depth:6; reference:url,bitconjurer.org/BitTorrent/protocol.html; reference:url,windows.microsoft.com/en-us/windows-10/windows-update-delivery-optimization-faq; classtype:policy-violation; sid:2022371; rev:1; metadata:created_at 2016_01_15, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 161,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Direct Connect Traffic (client-server)",
+      "flow": "established,to_server",
+      "reference": "url,en.wikipedia.org/wiki/Direct_connect_file-sharing_application",
+      "classtype": "policy-violation",
+      "sid": 2002814,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "$MyINFO",
+          "modifiers": {
+            "depth": "7"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Direct Connect Traffic (client-server)\"; flow:established,to_server; content:\"$MyINFO\"; depth:7; reference:url,en.wikipedia.org/wiki/Direct_connect_file-sharing_application; classtype:policy-violation; sid:2002814; rev:6; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 167,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "2240",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET P2P SoulSeek P2P Login Response",
+      "flow": "established,to_client",
+      "reference": "url,www.slsknet.org",
+      "classtype": "policy-violation",
+      "sid": 2008611,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "|5c 01 00 00 01 00 00 00|",
+          "modifiers": {
+            "depth": "8"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 2240 -> $HOME_NET 1024: (msg:\"ET P2P SoulSeek P2P Login Response\"; flow:established,to_client; content:\"|5c 01 00 00 01 00 00 00|\"; depth:8; reference:url,www.slsknet.org; classtype:policy-violation; sid:2008611; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 177,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "4660:4799",
+    "options": {
+      "msg": "ET P2P ed2k request part",
+      "flow": "established,to_server",
+      "reference": "url,www.giac.org/practical/GCIH/Ian_Gosling_GCIH.pdf",
+      "classtype": "policy-violation",
+      "sid": 2000332,
+      "rev": 12,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "|e3|",
+          "modifiers": {
+            "offset": "1"
+          }
+        },
+        {
+          "pattern": "|00 00 00 47|",
+          "modifiers": {
+            "distance": "2",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any 4660:4799 (msg:\"ET P2P ed2k request part\"; flow:established,to_server; content:\"|e3|\"; offset: 1; content:\"|00 00 00 47|\"; distance: 2; within: 4; reference:url,www.giac.org/practical/GCIH/Ian_Gosling_GCIH.pdf; classtype:policy-violation; sid:2000332; rev:12; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 179,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "4660:4799",
+    "options": {
+      "msg": "ET P2P ed2k file request answer",
+      "flow": "established,to_server",
+      "reference": "url,www.giac.org/practical/GCIH/Ian_Gosling_GCIH.pdf",
+      "classtype": "policy-violation",
+      "sid": 2000333,
+      "rev": 12,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "|e3|",
+          "modifiers": {
+            "offset": "1"
+          }
+        },
+        {
+          "pattern": "|00 00 00 59|",
+          "modifiers": {
+            "distance": "2",
+            "within": "4"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any 4660:4799 (msg:\"ET P2P ed2k file request answer\"; flow:established,to_server; content:\"|e3|\"; offset: 1; content:\"|00 00 00 59|\"; distance: 2; within: 4; reference:url,www.giac.org/practical/GCIH/Ian_Gosling_GCIH.pdf; classtype:policy-violation; sid:2000333; rev:12; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 181,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "6969",
+    "options": {
+      "msg": "ET P2P BitTorrent Announce",
+      "flow": "established,to_server",
+      "reference": "url,bitconjurer.org/BitTorrent/protocol.html",
+      "classtype": "policy-violation",
+      "sid": 2000369,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "/announce",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 6969 (msg:\"ET P2P BitTorrent Announce\"; flow:established,to_server; content:\"/announce\"; reference:url,bitconjurer.org/BitTorrent/protocol.html; classtype:policy-violation; sid:2000369; rev:7; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 189,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "2234",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Soulseek Filesearch Results",
+      "flow": "established,to_client",
+      "reference": "url,www.slsknet.org",
+      "classtype": "policy-violation",
+      "sid": 2001187,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "|09 00 00 00 78|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $EXTERNAL_NET 2234 -> $HOME_NET any (msg:\"ET P2P Soulseek Filesearch Results\"; flow:established,to_client; content:\"|09 00 00 00 78|\"; reference:url,www.slsknet.org; classtype:policy-violation; sid:2001187; rev:7; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 197,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL P2P GNUTella client request",
+      "flow": "established,to_server",
+      "classtype": "policy-violation",
+      "sid": 2100557,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "GNUTELLA OK",
+          "modifiers": {
+            "depth": "40"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"GPL P2P GNUTella client request\"; flow:established,to_server; content:\"GNUTELLA OK\"; depth:40; classtype:policy-violation; sid:2100557; rev:8; metadata:created_at 2010_09_23, signature_severity Unknown, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 199,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL P2P GNUTella client request",
+      "flow": "established,to_server",
+      "classtype": "policy-violation",
+      "sid": 2101432,
+      "rev": 8,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "GNUTELLA",
+          "modifiers": {
+            "depth": "8"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"GPL P2P GNUTella client request\"; flow:established,to_server; content:\"GNUTELLA\"; depth:8; classtype:policy-violation; sid:2101432; rev:8; metadata:created_at 2010_09_23, signature_severity Unknown, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 205,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "6881:6889",
+    "options": {
+      "msg": "GPL P2P BitTorrent transfer",
+      "flow": "established,to_server",
+      "classtype": "policy-violation",
+      "sid": 2102181,
+      "rev": 4,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "|13|BitTorrent protocol",
+          "modifiers": {
+            "depth": "20"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET 6881:6889 (msg:\"GPL P2P BitTorrent transfer\"; flow:established,to_server; content:\"|13|BitTorrent protocol\"; depth:20; classtype:policy-violation; sid:2102181; rev:4; metadata:created_at 2010_09_23, signature_severity Unknown, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 209,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "4711",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL P2P eDonkey server response",
+      "flow": "established,to_client",
+      "reference": "url,www.emule-project.net",
+      "classtype": "policy-violation",
+      "sid": 2102587,
+      "rev": 5,
+      "metadata": "created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08",
+      "contents": [
+        {
+          "pattern": "Server|3A| eMule",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 4711 -> $HOME_NET any (msg:\"GPL P2P eDonkey server response\"; flow:established,to_client; content:\"Server|3A| eMule\"; reference:url,www.emule-project.net; classtype:policy-violation; sid:2102587; rev:5; metadata:created_at 2010_09_23, signature_severity Unknown, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_08;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 219,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Phatbot Control Connection",
+      "flow": "established",
+      "reference": "url,www.lurhq.com/phatbot.html",
+      "classtype": "trojan-activity",
+      "sid": 2000015,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17",
+      "contents": [
+        {
+          "pattern": "Wonk-",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|00|#waste|00|",
+          "modifiers": {
+            "within": "15"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any any -> any any (msg:\"ET P2P Phatbot Control Connection\"; flow:established; content:\"Wonk-\"; content:\"|00|#waste|00|\"; within: 15; reference:url,www.lurhq.com/phatbot.html; classtype:trojan-activity; sid:2000015; rev:7; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 221,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P BitTorrent Traffic",
+      "flow": "established",
+      "threshold": "type limit, count 1, seconds 120, track by_src",
+      "reference": "url,bitconjurer.org/BitTorrent/protocol.html",
+      "classtype": "policy-violation",
+      "sid": 2000357,
+      "rev": 10,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17",
+      "contents": [
+        {
+          "pattern": "|0000400907000000|",
+          "modifiers": {
+            "depth": "8"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P BitTorrent Traffic\"; flow:established; content:\"|0000400907000000|\"; depth:8; threshold: type limit, count 1, seconds 120, track by_src; reference:url,bitconjurer.org/BitTorrent/protocol.html; classtype:policy-violation; sid:2000357; rev:10; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_17;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 225,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Gnutella Connect",
+      "flow": "established,to_server",
+      "reference": "url,www.gnutella.com",
+      "classtype": "policy-violation",
+      "sid": 2001664,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17",
+      "contents": [
+        {
+          "pattern": "GNUTELLA CONNECT/",
+          "modifiers": {
+            "nocase": true,
+            "depth": "17"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Gnutella Connect\"; flow:established,to_server; content:\"GNUTELLA CONNECT/\"; nocase; depth:17; reference:url,www.gnutella.com; classtype:policy-violation; sid:2001664; rev:8; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 227,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P Gnutella TCP Ultrapeer Traffic",
+      "flow": "established,to_server",
+      "threshold": "type both,track by_src,count 5,seconds 3600",
+      "classtype": "policy-violation",
+      "sid": 2002761,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17",
+      "contents": [
+        {
+          "pattern": "GNUTELLA",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "X-Ultrapeer|3a| True",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P Gnutella TCP Ultrapeer Traffic\"; flow:established,to_server; content:\"GNUTELLA\"; depth:8; content:\"X-Ultrapeer|3a| True\"; nocase; threshold: type both,track by_src,count 5,seconds 3600; classtype:policy-violation; sid:2002761; rev:7; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 229,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET P2P LimeWire P2P Traffic",
+      "flow": "established",
+      "reference": "url,www.limewire.com",
+      "classtype": "policy-violation",
+      "sid": 2007800,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17",
+      "contents": [
+        {
+          "pattern": "Server|3a| LimeWire",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET P2P LimeWire P2P Traffic\"; flow:established; content:\"Server|3a| LimeWire\"; nocase; reference:url,www.limewire.com; classtype:policy-violation; sid:2007800; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 231,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "any",
+    "src_port": "1024:",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "1024:",
+    "options": {
+      "msg": "ET P2P Gnutella TCP Traffic",
+      "flow": "established,to_server",
+      "threshold": "type both,track by_src,count 5,seconds 360",
+      "classtype": "policy-violation",
+      "sid": 2007801,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17",
+      "contents": [
+        {
+          "pattern": "GNUTELLA",
+          "modifiers": {
+            "depth": "8"
+          }
+        },
+        {
+          "pattern": "200 OK|0d 0a|",
+          "modifiers": {
+            "within": "15"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp any 1024: -> any 1024: (msg:\"ET P2P Gnutella TCP Traffic\"; flow:established,to_server; content:\"GNUTELLA\"; depth:8; content:\"200 OK|0d 0a|\"; within:15; threshold: type both,track by_src,count 5,seconds 360; classtype:policy-violation; sid:2007801; rev:5; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_17;)"
+  },
+  {
+    "source_file": "emerging-p2p.rules",
+    "line_number": 275,
+    "action": "alert",
+    "protocol": "tcp",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "![7680,1521]",
+    "options": {
+      "msg": "ET P2P BitTorrent peer sync",
+      "flow": "established,to_server",
+      "threshold": "type limit, track by_dst, seconds 300, count 1",
+      "reference": "url,bitconjurer.org/BitTorrent/protocol.html",
+      "classtype": "policy-violation",
+      "sid": 2000334,
+      "rev": 14,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2025_06_30",
+      "contents": [
+        {
+          "pattern": "|00 00 00 0d 06 00|",
+          "modifiers": {
+            "depth": "6"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tcp $HOME_NET any -> $EXTERNAL_NET ![7680,1521] (msg:\"ET P2P BitTorrent peer sync\"; flow:established,to_server; content:\"|00 00 00 0d 06 00|\"; depth:6; threshold: type limit, track by_dst, seconds 300, count 1; reference:url,bitconjurer.org/BitTorrent/protocol.html; classtype:policy-violation; sid:2000334; rev:14; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2025_06_30;)"
+  }
+]

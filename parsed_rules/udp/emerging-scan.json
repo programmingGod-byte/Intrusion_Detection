@@ -1,0 +1,751 @@
+[
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 43,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN Amap UDP Service Scan Detected",
+      "dsize": "<135",
+      "reference": "url,freeworld.thc.org/thc-amap/",
+      "classtype": "attempted-recon",
+      "sid": 2010372,
+      "rev": 2,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "THCTHCTHCTHCTHC|20 20 20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET SCAN Amap UDP Service Scan Detected\"; dsize:<135; content:\"THCTHCTHCTHCTHC|20 20 20|\"; reference:url,freeworld.thc.org/thc-amap/; classtype:attempted-recon; sid:2010372; rev:2; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 45,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "69",
+    "options": {
+      "msg": "ET SCAN Cisco Torch TFTP Scan",
+      "reference": [
+        "url,www.hackingexposedcisco.com/?link=tools",
+        "url,www.securiteam.com/tools/5EP0F1FEUA.html"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2008414,
+      "rev": 2,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|52 61 6E 64 30 6D 53 54 52 49 4E 47 00 6E 65 74 61 73 63 69 69|",
+          "modifiers": {
+            "offset": "2",
+            "depth": "21"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 69 (msg:\"ET SCAN Cisco Torch TFTP Scan\"; content:\"|52 61 6E 64 30 6D 53 54 52 49 4E 47 00 6E 65 74 61 73 63 69 69|\"; offset:2; depth:21; reference:url,www.hackingexposedcisco.com/?link=tools; reference:url,www.securiteam.com/tools/5EP0F1FEUA.html; classtype:attempted-recon; sid:2008414; rev:2; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 53,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1434",
+    "options": {
+      "msg": "ET SCAN NNG MS02-039 Exploit False Positive Generator - May Conceal A Genuine Attack",
+      "threshold": "type threshold, track by_dst, count 4, seconds 15",
+      "reference": "url,packetstormsecurity.nl/filedesc/nng-4.13r-public.rar.html",
+      "classtype": "misc-activity",
+      "sid": 2008560,
+      "rev": 2,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "nng Snort (Snort)",
+          "modifiers": {
+            "offset": "90"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 1434 (msg:\"ET SCAN NNG MS02-039 Exploit False Positive Generator - May Conceal A Genuine Attack\"; content:\"nng Snort (Snort)\"; offset:90; threshold:type threshold, track by_dst, count 4, seconds 15; reference:url,packetstormsecurity.nl/filedesc/nng-4.13r-public.rar.html; classtype:misc-activity; sid:2008560; rev:2; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Sipvicious Scan",
+      "threshold": "type limit, count 1, seconds 10, track by_src",
+      "reference": "url,blog.sipvicious.org",
+      "classtype": "attempted-recon",
+      "sid": 2008578,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "From|3A 20 22|sipvicious",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Sipvicious Scan\"; content:\"From|3A 20 22|sipvicious\"; threshold: type limit, count 1, seconds 10, track by_src; reference:url,blog.sipvicious.org; classtype:attempted-recon; sid:2008578; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Modified Sipvicious User-Agent Detected (sundayddr)",
+      "threshold": "type limit, count 1, seconds 60, track by_src",
+      "reference": [
+        "url,honeynet.org.au/?q=sunday_scanner",
+        "url,code.google.com/p/sipvicious/",
+        "url,blog.sipvicious.org/"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2011766,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|0d 0a|User-Agent|3A| sundayddr",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Modified Sipvicious User-Agent Detected (sundayddr)\"; content:\"|0d 0a|User-Agent|3A| sundayddr\"; threshold: type limit, count 1, seconds 60, track by_src; reference:url,honeynet.org.au/?q=sunday_scanner; reference:url,code.google.com/p/sipvicious/; reference:url,blog.sipvicious.org/; classtype:attempted-recon; sid:2011766; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Sipsak SIP scan",
+      "reference": "url,sipsak.org/",
+      "classtype": "attempted-recon",
+      "sid": 2008598,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "sip|3a|sipsak@",
+          "modifiers": {
+            "offset": "90"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Sipsak SIP scan\"; content:\"sip|3a|sipsak@\"; offset:90; reference:url,sipsak.org/; classtype:attempted-recon; sid:2008598; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 79,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Sivus VOIP Vulnerability Scanner SIP Scan",
+      "threshold": "type threshold, track by_src, count 3, seconds 10",
+      "reference": [
+        "url,www.security-database.com/toolswatch/SiVus-VoIP-Security-Scanner-1-09.html",
+        "url,www.vopsecurity.org/"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2008609,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "SIVuS_VoIP_Scanner <sip|3a|SIVuS",
+          "modifiers": {
+            "offset": "130"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Sivus VOIP Vulnerability Scanner SIP Scan\"; content:\"SIVuS_VoIP_Scanner <sip|3a|SIVuS\"; offset:130; threshold:type threshold, track by_src, count 3, seconds 10; reference:url,www.security-database.com/toolswatch/SiVus-VoIP-Security-Scanner-1-09.html; reference:url,www.vopsecurity.org/; classtype:attempted-recon; sid:2008609; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 81,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Sivus VOIP Vulnerability Scanner SIP Components Scan",
+      "reference": [
+        "url,www.security-database.com/toolswatch/SiVus-VoIP-Security-Scanner-1-09.html",
+        "url,www.vopsecurity.org/"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2008610,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "sip|3a|sivus-discovery@vopsecurity.org",
+          "modifiers": {
+            "offset": "110"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Sivus VOIP Vulnerability Scanner SIP Components Scan\"; content:\"sip|3a|sivus-discovery@vopsecurity.org\"; offset:110; reference:url,www.security-database.com/toolswatch/SiVus-VoIP-Security-Scanner-1-09.html; reference:url,www.vopsecurity.org/; classtype:attempted-recon; sid:2008610; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 83,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1900",
+    "options": {
+      "msg": "ET SCAN External to Internal UPnP Request udp port 1900",
+      "reference": "url,www.upnp-hacks.org/upnp.html",
+      "classtype": "attempted-recon",
+      "sid": 2008094,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "MSEARCH * HTTP/1.1",
+          "modifiers": {
+            "depth": "18"
+          }
+        },
+        {
+          "pattern": "MAN|3a| ssdp|3a|",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 1900 (msg:\"ET SCAN External to Internal UPnP Request udp port 1900\"; content:\"MSEARCH * HTTP/1.1\"; depth:18; content:\"MAN|3a| ssdp|3a|\"; nocase; distance:0; reference:url,www.upnp-hacks.org/upnp.html; classtype:attempted-recon; sid:2008094; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 85,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Smap VOIP Device Scan",
+      "reference": "url,www.go2linux.org/smap-find-voip-enabled-devices",
+      "classtype": "attempted-recon",
+      "sid": 2008526,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "<sip|3a|smap@",
+          "modifiers": {
+            "offset": "80",
+            "depth": "40"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Smap VOIP Device Scan\"; content:\"<sip|3a|smap@\"; offset:80; depth:40; reference:url,www.go2linux.org/smap-find-voip-enabled-devices; classtype:attempted-recon; sid:2008526; rev:5; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 87,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Voiper Toolkit Torturer Scan",
+      "reference": "url,sourceforge.net/projects/voiper",
+      "classtype": "attempted-recon",
+      "sid": 2008568,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "interesting-Method",
+          "modifiers": {}
+        },
+        {
+          "pattern": "sip|3a|1_unusual.URI",
+          "modifiers": {}
+        },
+        {
+          "pattern": "to-be!sure",
+          "modifiers": {
+            "offset": "20",
+            "depth": "60"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Voiper Toolkit Torturer Scan\"; content:\"interesting-Method\"; content:\"sip|3a|1_unusual.URI\"; content:\"to-be!sure\"; offset:20; depth:60; reference:url,sourceforge.net/projects/voiper; classtype:attempted-recon; sid:2008568; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 89,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Voiper Fuzzing Scan",
+      "threshold": "type threshold, track by_dst, count 5, seconds 15",
+      "reference": "url,sourceforge.net/projects/voiper",
+      "classtype": "attempted-recon",
+      "sid": 2008577,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "sip|3a|tester@",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Via|3a| SIP/2.0",
+          "modifiers": {
+            "offset": "20",
+            "depth": "60"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Voiper Fuzzing Scan\"; content:\"sip|3a|tester@\"; content:\"Via|3a| SIP/2.0\"; offset:20; depth:60; threshold: type threshold, track by_dst, count 5, seconds 15; reference:url,sourceforge.net/projects/voiper; classtype:attempted-recon; sid:2008577; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN SIP erase_registrations/add registrations attempt",
+      "reference": "url,www.hackingvoip.com/sec_tools.html",
+      "classtype": "attempted-recon",
+      "sid": 2008640,
+      "rev": 5,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "REGISTER ",
+          "modifiers": {
+            "depth": "9"
+          }
+        },
+        {
+          "pattern": "User-Agent|3a| Hacker",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN SIP erase_registrations/add registrations attempt\"; content:\"REGISTER \"; depth:9; content:\"User-Agent|3a| Hacker\"; reference:url,www.hackingvoip.com/sec_tools.html; classtype:attempted-recon; sid:2008640; rev:5; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Sipp SIP Stress Test Detected",
+      "threshold": "type threshold, track by_dst, count 20, seconds 15",
+      "reference": "url,sourceforge.net/projects/sipp/",
+      "classtype": "attempted-recon",
+      "sid": 2008579,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "sip|3a|sipp@",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Subject|3a| Performance Test",
+          "modifiers": {
+            "offset": "90",
+            "depth": "90"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Sipp SIP Stress Test Detected\"; content:\"sip|3a|sipp@\"; content:\"Subject|3a| Performance Test\"; offset:90; depth:90; threshold: type threshold, track by_dst, count 20, seconds 15; reference:url,sourceforge.net/projects/sipp/; classtype:attempted-recon; sid:2008579; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 99,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN sipscan probe",
+      "reference": "url,www.hackingvoip.com/sec_tools.html",
+      "classtype": "attempted-recon",
+      "sid": 2008641,
+      "rev": 4,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "sip|3a|thisisthecanary@",
+          "modifiers": {}
+        },
+        {
+          "pattern": "sip|3a|test@",
+          "modifiers": {
+            "offset": "30",
+            "depth": "70"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN sipscan probe\"; content:\"sip|3a|thisisthecanary@\"; content:\"sip|3a|test@\"; offset:30; depth:70; reference:url,www.hackingvoip.com/sec_tools.html; classtype:attempted-recon; sid:2008641; rev:4; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 125,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "4569",
+    "options": {
+      "msg": "ET SCAN Enumiax Inter-Asterisk Exchange Protocol Username Scan",
+      "reference": "url,sourceforge.net/projects/enumiax/",
+      "classtype": "attempted-recon",
+      "sid": 2008606,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|00 00|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|06 0D 06 01 30 13 02 07 08|",
+          "modifiers": {
+            "distance": "40",
+            "within": "10"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 4569 (msg:\"ET SCAN Enumiax Inter-Asterisk Exchange Protocol Username Scan\"; content:\"|00 00|\"; content:\"|06 0D 06 01 30 13 02 07 08|\"; distance:40; within:10; reference:url,sourceforge.net/projects/enumiax/; classtype:attempted-recon; sid:2008606; rev:3; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 157,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Sipvicious User-Agent Detected (friendly-scanner)",
+      "threshold": "type limit, track by_src, count 5, seconds 120",
+      "reference": [
+        "url,code.google.com/p/sipvicious/",
+        "url,blog.sipvicious.org/"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2011716,
+      "rev": 3,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "|0d 0a|User-Agent|3A| friendly-scanner",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Sipvicious User-Agent Detected (friendly-scanner)\"; content:\"|0d 0a|User-Agent|3A| friendly-scanner\"; threshold: type limit, track by_src, count 5, seconds 120; reference:url,code.google.com/p/sipvicious/; reference:url,blog.sipvicious.org/; classtype:attempted-recon; sid:2011716; rev:3; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 233,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "4070",
+    "options": {
+      "msg": "ET SCAN HID VertX and Edge door controllers discover",
+      "dsize": "<45",
+      "reference": "url,exploit-db.com/exploits/44992/",
+      "classtype": "attempted-recon",
+      "sid": 2025822,
+      "rev": 2,
+      "metadata": "attack_target IoT, created_at 2018_07_10, deployment Datacenter, confidence High, signature_severity Informational, updated_at 2019_07_26",
+      "contents": [
+        {
+          "pattern": "discover|3b|013|3b|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp any any -> $HOME_NET 4070 (msg:\"ET SCAN HID VertX and Edge door controllers discover\"; dsize:<45; content:\"discover|3b|013|3b|\"; reference:url,exploit-db.com/exploits/44992/; classtype:attempted-recon; sid:2025822; rev:2; metadata:attack_target IoT, created_at 2018_07_10, deployment Datacenter, confidence High, signature_severity Informational, updated_at 2019_07_26;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 241,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[137,138,139,445]",
+    "options": {
+      "msg": "ET SCAN Nessus Netbios Scanning",
+      "reference": "url,www.tenable.com/products/nessus/nessus-product-overview",
+      "classtype": "attempted-recon",
+      "sid": 2015754,
+      "rev": 3,
+      "metadata": "created_at 2012_10_01, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_10_08",
+      "contents": [
+        {
+          "pattern": "n|00|e|00|s|00|s|00|u|00|s",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET [137,138,139,445] (msg:\"ET SCAN Nessus Netbios Scanning\"; content:\"n|00|e|00|s|00|s|00|u|00|s\"; fast_pattern; reference:url,www.tenable.com/products/nessus/nessus-product-overview; classtype:attempted-recon; sid:2015754; rev:3; metadata:created_at 2012_10_01, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_10_08;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 245,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN SipCLI VOIP Scan",
+      "threshold": "type limit, count 1, seconds 60, track by_src",
+      "reference": "url,www.yasinkaplan.com/SipCli/",
+      "classtype": "attempted-recon",
+      "sid": 2017162,
+      "rev": 3,
+      "metadata": "created_at 2013_07_17, confidence Medium, signature_severity Informational, updated_at 2019_10_08",
+      "contents": [
+        {
+          "pattern": "|0D 0A|User-Agent|3A 20|sipcli/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN SipCLI VOIP Scan\"; content:\"|0D 0A|User-Agent|3A 20|sipcli/\"; fast_pattern; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.yasinkaplan.com/SipCli/; classtype:attempted-recon; sid:2017162; rev:3; metadata:created_at 2013_07_17, confidence Medium, signature_severity Informational, updated_at 2019_10_08;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 247,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "10000:",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "10000:",
+    "options": {
+      "msg": "ET SCAN NMAP OS Detection Probe",
+      "dsize": "300",
+      "classtype": "attempted-recon",
+      "sid": 2018489,
+      "rev": 4,
+      "metadata": "created_at 2014_05_21, confidence Low, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_10_08",
+      "contents": [
+        {
+          "pattern": "CCCCCCCCCCCCCCCCCCCC",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "modifiers": {
+            "depth": "255"
+          }
+        },
+        {
+          "pattern": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "modifiers": {
+            "within": "45"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET 10000: -> $HOME_NET 10000: (msg:\"ET SCAN NMAP OS Detection Probe\"; dsize:300; content:\"CCCCCCCCCCCCCCCCCCCC\"; fast_pattern; content:\"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\"; depth:255; content:\"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\"; within:45; classtype:attempted-recon; sid:2018489; rev:4; metadata:created_at 2014_05_21, confidence Low, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_10_08;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 765,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "options": {
+      "msg": "ET SCAN Modified Sipvicious Sundayddr Scanner (sipsscuser)",
+      "threshold": "type limit, count 1, seconds 60, track by_src",
+      "reference": [
+        "url,code.google.com/p/sipvicious/",
+        "url,blog.sipvicious.org/",
+        "url,honeynet.org.au/?q=sunday_scanner"
+      ],
+      "classtype": "attempted-recon",
+      "sid": 2012204,
+      "rev": 4,
+      "metadata": "attack_target Networking_Equipment, tls_state plaintext, created_at 2011_01_20, deployment Perimeter, deployment Internet, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_12_03",
+      "contents": [
+        {
+          "pattern": "From|3A 20 22|sipsscuser|22|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:\"ET SCAN Modified Sipvicious Sundayddr Scanner (sipsscuser)\"; content:\"From|3A 20 22|sipsscuser|22|\"; threshold: type limit, count 1, seconds 60, track by_src; reference:url,code.google.com/p/sipvicious/; reference:url,blog.sipvicious.org/; reference:url,honeynet.org.au/?q=sunday_scanner; classtype:attempted-recon; sid:2012204; rev:4; metadata:attack_target Networking_Equipment, tls_state plaintext, created_at 2011_01_20, deployment Perimeter, deployment Internet, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_12_03;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 769,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN ELF/Mirai Variant UDP (Inbound) M1",
+      "reference": [
+        "url,rruzi.github.io/In-depth-Analysis-of-a-New-Mirai-Variant",
+        "url,community.emergingthreats.net/t/et-scan-elf-mirai-variant/2303"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2058707,
+      "rev": 1,
+      "metadata": "affected_product Linux, created_at 2024_12_31, malware_family Mirai, confidence High, signature_severity Major, tag IoT, updated_at 2024_12_31",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|38 C4 FB 98 76 1F FC FE F4 00 00 00 01 63 31 7B 62 36 3E B1 A8 93 A8 61 98 8B 11 2A 3F 7C 1E AA BF C0 63 AD B7 50 68 A0 D6 2D 0E 17 3D F8 D4 F4 39 69 8D 69 0D 7D|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> any any (msg:\"ET SCAN ELF/Mirai Variant UDP (Inbound) M1\"; content:\"|38 C4 FB 98 76 1F FC FE F4 00 00 00 01 63 31 7B 62 36 3E B1 A8 93 A8 61 98 8B 11 2A 3F 7C 1E AA BF C0 63 AD B7 50 68 A0 D6 2D 0E 17 3D F8 D4 F4 39 69 8D 69 0D 7D|\"; reference:url,rruzi.github.io/In-depth-Analysis-of-a-New-Mirai-Variant; reference:url,community.emergingthreats.net/t/et-scan-elf-mirai-variant/2303; classtype:trojan-activity; sid:2058707; rev:1; metadata:affected_product Linux, created_at 2024_12_31, malware_family Mirai, confidence High, signature_severity Major, tag IoT, updated_at 2024_12_31; target:dest_ip;)"
+  },
+  {
+    "source_file": "emerging-scan.rules",
+    "line_number": 771,
+    "action": "alert",
+    "protocol": "udp",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET SCAN ELF/Mirai Variant UDP (Inbound) M2",
+      "reference": [
+        "url,rruzi.github.io/In-depth-Analysis-of-a-New-Mirai-Variant",
+        "url,community.emergingthreats.net/t/et-scan-elf-mirai-variant/2303"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2058708,
+      "rev": 1,
+      "metadata": "affected_product Linux, created_at 2024_12_31, confidence High, signature_severity Major, tag IoT, updated_at 2024_12_31",
+      "target": "dest_ip",
+      "contents": [
+        {
+          "pattern": "|A5 E4 43 C7 00 3F 10 16 01 12 2F F8 3C E1 D0 5D 49 2A 43 A4 25 77 00 00 00 F2 60 25 D8 FF FF FF FF F4 6D 89 0B DC 36 47 F7 3A A5 38 8D|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert udp $EXTERNAL_NET any -> any any (msg:\"ET SCAN ELF/Mirai Variant UDP (Inbound) M2\"; content:\"|A5 E4 43 C7 00 3F 10 16 01 12 2F F8 3C E1 D0 5D 49 2A 43 A4 25 77 00 00 00 F2 60 25 D8 FF FF FF FF F4 6D 89 0B DC 36 47 F7 3A A5 38 8D|\"; reference:url,rruzi.github.io/In-depth-Analysis-of-a-New-Mirai-Variant; reference:url,community.emergingthreats.net/t/et-scan-elf-mirai-variant/2303; classtype:trojan-activity; sid:2058708; rev:1; metadata:affected_product Linux, created_at 2024_12_31, confidence High, signature_severity Major, tag IoT, updated_at 2024_12_31; target:dest_ip;)"
+  }
+]

@@ -1,0 +1,523 @@
+[
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 3829,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Dynamic Folder Phishing M1 2016-09-26",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.start": true,
+      "pcre": "/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi",
+      "classtype": "credential-theft",
+      "sid": 2032699,
+      "rev": 7,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_09_26, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "email=",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&pass",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Dynamic Folder Phishing M1 2016-09-26\"; flow:established,to_server; http.method; content:\"POST\"; http.request_body; content:\"email=\"; fast_pattern; startswith; nocase; content:\"&pass\"; nocase; distance:0; http.start; pcre:\"/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi\"; classtype:credential-theft; sid:2032699; rev:7; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_09_26, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 3831,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Dynamic Folder Phishing 2016-09-12",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.start": true,
+      "pcre": "/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi",
+      "classtype": "credential-theft",
+      "sid": 2032698,
+      "rev": 7,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_09_12, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "login=",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "pass",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Dynamic Folder Phishing 2016-09-12\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php\"; nocase; http.request_body; content:\"login=\"; fast_pattern; startswith; nocase; content:\"pass\"; nocase; distance:0; http.start; pcre:\"/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi\"; classtype:credential-theft; sid:2032698; rev:7; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_09_12, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 3833,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Dynamic Folder Phishing 2016-02-23",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.start": true,
+      "pcre": "/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi",
+      "classtype": "credential-theft",
+      "sid": 2032674,
+      "rev": 7,
+      "metadata": "attack_target Client_Endpoint, created_at 2016_02_23, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "username=",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "pass",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Dynamic Folder Phishing 2016-02-23\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php\"; nocase; http.request_body; content:\"username=\"; fast_pattern; startswith; nocase; content:\"pass\"; nocase; distance:0; http.start; pcre:\"/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi\"; classtype:credential-theft; sid:2032674; rev:7; metadata:attack_target Client_Endpoint, created_at 2016_02_23, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 3837,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Dynamic Folder Phish Oct 07 2016",
+      "flow": "established,to_server",
+      "flowbits": "isset,ET.genericphish",
+      "http.start": true,
+      "pcre": "/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi",
+      "http.method": true,
+      "http.request_line": true,
+      "http.content_type": true,
+      "classtype": "credential-theft",
+      "sid": 2031570,
+      "rev": 8,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2016_10_07, deployment Perimeter, performance_impact Significant, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php HTTP/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "application/x-www-form-urlencoded",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Dynamic Folder Phish Oct 07 2016\"; flow:established,to_server; flowbits:isset,ET.genericphish; http.start; pcre:\"/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi\"; http.method; content:\"POST\"; http.request_line; content:\".php HTTP/\"; fast_pattern; http.content_type; content:\"application/x-www-form-urlencoded\"; classtype:credential-theft; sid:2031570; rev:8; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2016_10_07, deployment Perimeter, performance_impact Significant, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 5319,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Paypal (DE) Phish 2016-12-19",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.start": true,
+      "pcre": "/^POST\\x20(?<var>[^\\x20]+).+Referer\\x3a\\x20[^\\r\\n]+(?P=var)[\\r\\n]+/si",
+      "classtype": "credential-theft",
+      "sid": 2032727,
+      "rev": 7,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_12_19, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "t1=",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "|25|40",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&t2=",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Paypal (DE) Phish 2016-12-19\"; flow:established,to_server; http.method; content:\"POST\"; http.request_body; content:\"t1=\"; fast_pattern; startswith; nocase; content:\"|25|40\"; distance:0; content:\"&t2=\"; nocase; distance:0; http.start; pcre:\"/^POST\\x20(?<var>[^\\x20]+).+Referer\\x3a\\x20[^\\r\\n]+(?P=var)[\\r\\n]+/si\"; classtype:credential-theft; sid:2032727; rev:7; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_12_19, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 5321,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Dynamic Folder Phish M2 2016-12-02",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.start": true,
+      "pcre": "/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi",
+      "classtype": "credential-theft",
+      "sid": 2032723,
+      "rev": 7,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_12_02, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "userid=",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&password=",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Dynamic Folder Phish M2 2016-12-02\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php\"; nocase; http.request_body; content:\"userid=\"; fast_pattern; startswith; nocase; content:\"&password=\"; nocase; distance:0; http.start; pcre:\"/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi\"; classtype:credential-theft; sid:2032723; rev:7; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_12_02, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 5323,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Dynamic Folder Phish M1 2016-12-02",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.start": true,
+      "pcre": "/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi",
+      "classtype": "credential-theft",
+      "sid": 2032722,
+      "rev": 7,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_12_02, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "handle=",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&password=",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Dynamic Folder Phish M1 2016-12-02\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php\"; nocase; http.request_body; content:\"handle=\"; fast_pattern; startswith; nocase; content:\"&password=\"; nocase; distance:0; http.start; pcre:\"/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi\"; classtype:credential-theft; sid:2032722; rev:7; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_12_02, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 5325,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Dynamic Folder Phish 2016-11-28",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.start": true,
+      "pcre": "/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi",
+      "classtype": "credential-theft",
+      "sid": 2032719,
+      "rev": 7,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2016_11_28, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "id=",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&password=",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Dynamic Folder Phish 2016-11-28\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php\"; nocase; http.request_body; content:\"id=\"; fast_pattern; startswith; nocase; content:\"&password=\"; nocase; distance:0; http.start; pcre:\"/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi\"; classtype:credential-theft; sid:2032719; rev:7; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2016_11_28, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 5327,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Dynamic Folder Phishing 2016-01-08",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.start": true,
+      "pcre": "/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi",
+      "classtype": "credential-theft",
+      "sid": 2032670,
+      "rev": 8,
+      "metadata": "attack_target Client_Endpoint, created_at 2016_01_08, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php?",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": ".php?",
+          "modifiers": {}
+        },
+        {
+          "pattern": "user=",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&pass=",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Dynamic Folder Phishing 2016-01-08\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php?\"; nocase; http.header; content:\".php?\"; http.request_body; content:\"user=\"; fast_pattern; startswith; nocase; content:\"&pass=\"; nocase; distance:0; http.start; pcre:\"/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi\"; classtype:credential-theft; sid:2032670; rev:8; metadata:attack_target Client_Endpoint, created_at 2016_01_08, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  },
+  {
+    "source_file": "emerging-phishing.rules",
+    "line_number": 5335,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET PHISHING Successful Dynamic Folder Phishing Oct 06 2016",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.start": true,
+      "pcre": "/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi",
+      "classtype": "credential-theft",
+      "sid": 2031569,
+      "rev": 7,
+      "metadata": "affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_10_06, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "form",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&form",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&form",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&form",
+          "modifiers": {
+            "nocase": true,
+            "distance": "0"
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET PHISHING Successful Dynamic Folder Phishing Oct 06 2016\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php\"; nocase; http.request_body; content:\"form\"; fast_pattern; startswith; nocase; content:\"&form\"; nocase; distance:0; content:\"&form\"; nocase; distance:0; content:\"&form\"; nocase; distance:0; http.start; pcre:\"/^POST[^\\r\\n]+(?P<hash>[a-f0-9]{32})\\/(?:[^\\r\\n]+\\r\\n)+Referer\\x3a\\x20http(s)?:\\/\\/[^\\r\\n]+(?P=hash)/mi\"; classtype:credential-theft; sid:2031569; rev:7; metadata:affected_product Web_Browsers, attack_target Client_Endpoint, created_at 2016_10_06, deployment Perimeter, confidence Medium, signature_severity Critical, tag Phishing, updated_at 2024_04_14, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing;)"
+  }
+]

@@ -1,0 +1,337 @@
+[
+  {
+    "source_file": "emerging-chat.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CHAT Facebook Chat (buddy list)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "classtype": "policy-violation",
+      "sid": 2010785,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2020_04_22",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/ajax/chat/buddy_list.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "facebook.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CHAT Facebook Chat (buddy list)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/ajax/chat/buddy_list.php\"; http.header; content:\"facebook.com\"; classtype:policy-violation; sid:2010785; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2020_04_22;)"
+  },
+  {
+    "source_file": "emerging-chat.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CHAT Gadu-Gadu IM Login Server Request",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.host": true,
+      "reference": "url,piotr.trzcionkowski.pl/default.asp?load=/programy/pppgg_protokol.html",
+      "classtype": "policy-violation",
+      "sid": 2008295,
+      "rev": 8,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_08_20",
+      "contents": [
+        {
+          "pattern": "/appsvc/appmsg",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": ".asp",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "fmnumber=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "&version=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "&fmt=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "appmsg.gadu-gadu.",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CHAT Gadu-Gadu IM Login Server Request\"; flow:established,to_server; http.uri; content:\"/appsvc/appmsg\"; nocase; content:\".asp\"; nocase; content:\"fmnumber=\"; content:\"&version=\"; content:\"&fmt=\"; http.host; content:\"appmsg.gadu-gadu.\"; reference:url,piotr.trzcionkowski.pl/default.asp?load=/programy/pppgg_protokol.html; classtype:policy-violation; sid:2008295; rev:8; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_08_20;)"
+  },
+  {
+    "source_file": "emerging-chat.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CHAT Gadu-Gadu Chat Client Checkin via HTTP",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "classtype": "trojan-activity",
+      "sid": 2007866,
+      "rev": 10,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, updated_at 2020_08_20",
+      "contents": [
+        {
+          "pattern": "/appsvc/appmsg",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "fmnumber=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&version=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&fmt=",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&lastmsg=",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CHAT Gadu-Gadu Chat Client Checkin via HTTP\"; flow:established,to_server; http.uri; content:\"/appsvc/appmsg\"; nocase; content:\"fmnumber=\"; nocase; content:\"&version=\"; nocase; content:\"&fmt=\"; nocase; content:\"&lastmsg=\"; nocase; classtype:trojan-activity; sid:2007866; rev:10; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, updated_at 2020_08_20;)"
+  },
+  {
+    "source_file": "emerging-chat.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CHAT Facebook Chat (send message)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header": true,
+      "classtype": "policy-violation",
+      "sid": 2010784,
+      "rev": 6,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2020_09_11",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/ajax/chat/send.php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "facebook.com",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CHAT Facebook Chat (send message)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/ajax/chat/send.php\"; http.header; content:\"facebook.com\"; classtype:policy-violation; sid:2010784; rev:6; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2020_09_11;)"
+  },
+  {
+    "source_file": "emerging-chat.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CHAT Skype User-Agent detected",
+      "flow": "established,to_server",
+      "http.user_agent": true,
+      "classtype": "policy-violation",
+      "sid": 2002157,
+      "rev": 13,
+      "metadata": "created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "Skype",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CHAT Skype User-Agent detected\"; flow:established,to_server; http.user_agent; content:\"Skype\"; classtype:policy-violation; sid:2002157; rev:13; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-chat.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CHAT Skype VOIP Checking Version (Startup)",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": "url,www1.cs.columbia.edu/~library/TR-repository/reports/reports-2004/cucs-039-04.pdf",
+      "classtype": "policy-violation",
+      "sid": 2001595,
+      "rev": 13,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2024_03_07",
+      "contents": [
+        {
+          "pattern": "/ui/",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "/getlatestversion?ver=",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET CHAT Skype VOIP Checking Version (Startup)\"; flow:established,to_server; http.uri; content:\"/ui/\"; nocase; content:\"/getlatestversion?ver=\"; nocase; reference:url,www1.cs.columbia.edu/~library/TR-repository/reports/reports-2004/cucs-039-04.pdf; classtype:policy-violation; sid:2001595; rev:13; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2024_03_07;)"
+  },
+  {
+    "source_file": "emerging-chat.rules",
+    "line_number": 165,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL CHAT Google Talk Version Check",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "classtype": "policy-violation",
+      "sid": 2100876,
+      "rev": 6,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_17",
+      "contents": [
+        {
+          "pattern": "/googletalk/google-talk-versioncheck.txt?",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"GPL CHAT Google Talk Version Check\"; flow:established,to_server; http.uri; content:\"/googletalk/google-talk-versioncheck.txt?\"; nocase; classtype:policy-violation; sid:2100876; rev:6; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2024_03_17;)"
+  },
+  {
+    "source_file": "emerging-chat.rules",
+    "line_number": 169,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "<>",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET CHAT General MSN Chat Activity",
+      "flow": "established,to_server",
+      "http.request_header": true,
+      "header_lowercase": true,
+      "reference": "url,www.hypothetic.org/docs/msn/general/http_examples.php",
+      "classtype": "policy-violation",
+      "sid": 2009375,
+      "rev": 10,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_22",
+      "contents": [
+        {
+          "pattern": "content-type|3a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "application/x-msn-messenger",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any <> $EXTERNAL_NET any (msg:\"ET CHAT General MSN Chat Activity\"; flow:established,to_server; http.request_header; header_lowercase; content:\"content-type|3a|\"; content:\"application/x-msn-messenger\"; fast_pattern; reference:url,www.hypothetic.org/docs/msn/general/http_examples.php; classtype:policy-violation; sid:2009375; rev:10; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_22;)"
+  },
+  {
+    "source_file": "emerging-chat.rules",
+    "line_number": 171,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "GPL CHAT ICQ access",
+      "flow": "established,to_server",
+      "http.header": true,
+      "header_lowercase": true,
+      "classtype": "policy-violation",
+      "sid": 2100541,
+      "rev": 16,
+      "metadata": "created_at 2010_09_23, signature_severity Informational, updated_at 2024_05_21",
+      "contents": [
+        {
+          "pattern": "user-agent|3a 20|ICQ",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"GPL CHAT ICQ access\"; flow:established,to_server; http.header; header_lowercase; content:\"user-agent|3a 20|ICQ\"; classtype:policy-violation; sid:2100541; rev:16; metadata:created_at 2010_09_23, signature_severity Informational, updated_at 2024_05_21;)"
+  }
+]

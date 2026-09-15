@@ -1,0 +1,104 @@
+[
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 5113,
+    "action": "alert",
+    "protocol": "ssh",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Server Responded with Vulnerable OpenSSH Version (CVE-2024-6409)",
+      "flow": "established,to_client",
+      "startswith": true,
+      "pcre": "/^8\\.[78](?:p\\d)?/R",
+      "reference": "cve,2024-6409",
+      "classtype": "successful-recon-largescale",
+      "sid": 2054407,
+      "rev": 1,
+      "metadata": "affected_product OpenSSH, attack_target Server, created_at 2024_07_09, cve CVE_2024_6409, deployment Perimeter, deployment Internal, performance_impact Moderate, confidence High, signature_severity Informational, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_09",
+      "contents": [
+        {
+          "pattern": "SSH-",
+          "modifiers": {}
+        },
+        {
+          "pattern": "-OpenSSH_",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert ssh any any -> [$HOME_NET,$HTTP_SERVERS] any (msg:\"ET INFO Server Responded with Vulnerable OpenSSH Version (CVE-2024-6409)\"; flow:established,to_client; content:\"SSH-\"; startswith; content:\"-OpenSSH_\"; fast_pattern; pcre:\"/^8\\.[78](?:p\\d)?/R\"; reference:cve,2024-6409; classtype:successful-recon-largescale; sid:2054407; rev:1; metadata:affected_product OpenSSH, attack_target Server, created_at 2024_07_09, cve CVE_2024_6409, deployment Perimeter, deployment Internal, performance_impact Moderate, confidence High, signature_severity Informational, tag Exploit, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_07_09;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8771,
+    "action": "alert",
+    "protocol": "ssh",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Potentially Vulnerable Erlang/OTP SSH Server Banner (CVE-2025-32433)",
+      "flow": "established,to_client",
+      "flowbits": "set,ET.ErlangOTPBanner",
+      "ssh.software": true,
+      "pcre": "/^(?:(?:4\\x2e(?:[0-9]|1[0-5])\\x2e[0-3]\\x2e(?:[0-9]|1[0-1]))|(?:5\\x2e2\\x2e(?:[0-9]))|(?:5\\x2e1\\x2e[0-4]\\x2e[0-7]))/R",
+      "reference": [
+        "url,www.runzero.com/blog/erlang-otp-ssh/",
+        "cve,2025-32433"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2061790,
+      "rev": 3,
+      "metadata": "affected_product Erlang_OTP, attack_target Server, tls_state plaintext, created_at 2025_04_22, cve CVE_2025_32433, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Informational, tag Exploit, updated_at 2025_06_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "Erlang/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ssh $HOME_NET any -> any any (msg:\"ET INFO Potentially Vulnerable Erlang/OTP SSH Server Banner (CVE-2025-32433)\"; flow:established,to_client; flowbits:set,ET.ErlangOTPBanner; ssh.software; content:\"Erlang/\"; pcre:\"/^(?:(?:4\\x2e(?:[0-9]|1[0-5])\\x2e[0-3]\\x2e(?:[0-9]|1[0-1]))|(?:5\\x2e2\\x2e(?:[0-9]))|(?:5\\x2e1\\x2e[0-4]\\x2e[0-7]))/R\"; reference:url,www.runzero.com/blog/erlang-otp-ssh/; reference:cve,2025-32433; classtype:misc-activity; sid:2061790; rev:3; metadata:affected_product Erlang_OTP, attack_target Server, tls_state plaintext, created_at 2025_04_22, cve CVE_2025_32433, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Informational, tag Exploit, updated_at 2025_06_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-info.rules",
+    "line_number": 8773,
+    "action": "alert",
+    "protocol": "ssh",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET INFO Potentially Vulnerable Cisco ConfD SSH Server Banner (CVE-2025-32433)",
+      "flow": "established,to_client",
+      "flowbits": "set,ET.ErlangOTPBanner",
+      "ssh.software": true,
+      "reference": [
+        "url,sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-erlang-otp-ssh-xyZZy",
+        "cve,2025-32433"
+      ],
+      "classtype": "misc-activity",
+      "sid": 2061806,
+      "rev": 2,
+      "metadata": "affected_product Erlang_OTP, affected_product Cisco_NSO, affected_product Cisco_ConfD, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_04_23, cve CVE_2025_32433, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Informational, tag Exploit, updated_at 2025_06_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "ConfD-",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert ssh $HOME_NET any -> any any (msg:\"ET INFO Potentially Vulnerable Cisco ConfD SSH Server Banner (CVE-2025-32433)\"; flow:established,to_client; flowbits:set,ET.ErlangOTPBanner; ssh.software; content:\"ConfD-\"; reference:url,sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-erlang-otp-ssh-xyZZy; reference:cve,2025-32433; classtype:misc-activity; sid:2061806; rev:2; metadata:affected_product Erlang_OTP, affected_product Cisco_NSO, affected_product Cisco_ConfD, attack_target Networking_Equipment, tls_state plaintext, created_at 2025_04_23, cve CVE_2025_32433, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Informational, tag Exploit, updated_at 2025_06_26, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id T1190, mitre_technique_name Exploit_Public_Facing_Application; target:src_ip;)"
+  }
+]

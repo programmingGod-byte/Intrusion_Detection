@@ -1,0 +1,142 @@
+[
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1527,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER DNS Query for Suspicious e5b57288.com Domain - Anuna Checkin - Compromised PHP Site",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": [
+        "url,www.symantec.com/security_response/writeup.jsp?docid=2015-111911-4342-99&tabid=2",
+        "url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2023229,
+      "rev": 7,
+      "metadata": "affected_product Apache_HTTP_server, affected_product PHP, attack_target Web_Server, created_at 2016_09_15, deployment Datacenter, confidence Medium, signature_severity Critical, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "e5b57288.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HTTP_SERVERS any -> any any (msg:\"ET WEB_SERVER DNS Query for Suspicious e5b57288.com Domain - Anuna Checkin - Compromised PHP Site\"; dns.query; content:\"e5b57288.com\"; startswith; fast_pattern; endswith; nocase; reference:url,www.symantec.com/security_response/writeup.jsp?docid=2015-111911-4342-99&tabid=2; reference:url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code; classtype:trojan-activity; sid:2023229; rev:7; metadata:affected_product Apache_HTTP_server, affected_product PHP, attack_target Web_Server, created_at 2016_09_15, deployment Datacenter, confidence Medium, signature_severity Critical, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1529,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER DNS Query for Suspicious 33db9538.com Domain - Anuna Checkin - Compromised PHP Site",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": [
+        "url,www.symantec.com/security_response/writeup.jsp?docid=2015-111911-4342-99&tabid=2",
+        "url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2023227,
+      "rev": 7,
+      "metadata": "affected_product Apache_HTTP_server, affected_product PHP, attack_target Web_Server, created_at 2016_09_15, deployment Datacenter, confidence Medium, signature_severity Critical, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "33db9538.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HTTP_SERVERS any -> any any (msg:\"ET WEB_SERVER DNS Query for Suspicious 33db9538.com Domain - Anuna Checkin - Compromised PHP Site\"; dns.query; content:\"33db9538.com\"; startswith; fast_pattern; endswith; nocase; reference:url,www.symantec.com/security_response/writeup.jsp?docid=2015-111911-4342-99&tabid=2; reference:url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code; classtype:trojan-activity; sid:2023227; rev:7; metadata:affected_product Apache_HTTP_server, affected_product PHP, attack_target Web_Server, created_at 2016_09_15, deployment Datacenter, confidence Medium, signature_severity Critical, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1531,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER DNS Query for Suspicious 9507c4e8.com Domain - Anuna Checkin - Compromised PHP Site",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": [
+        "url,www.symantec.com/security_response/writeup.jsp?docid=2015-111911-4342-99&tabid=2",
+        "url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2023228,
+      "rev": 7,
+      "metadata": "affected_product Apache_HTTP_server, affected_product PHP, attack_target Web_Server, created_at 2016_09_15, deployment Datacenter, confidence Medium, signature_severity Critical, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "9507c4e8.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HTTP_SERVERS any -> any any (msg:\"ET WEB_SERVER DNS Query for Suspicious 9507c4e8.com Domain - Anuna Checkin - Compromised PHP Site\"; dns.query; content:\"9507c4e8.com\"; startswith; fast_pattern; endswith; nocase; reference:url,www.symantec.com/security_response/writeup.jsp?docid=2015-111911-4342-99&tabid=2; reference:url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code; classtype:trojan-activity; sid:2023228; rev:7; metadata:affected_product Apache_HTTP_server, affected_product PHP, attack_target Web_Server, created_at 2016_09_15, deployment Datacenter, confidence Medium, signature_severity Critical, updated_at 2024_04_13;)"
+  },
+  {
+    "source_file": "emerging-web_server.rules",
+    "line_number": 1533,
+    "action": "alert",
+    "protocol": "dns",
+    "src_ip": "$HTTP_SERVERS",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WEB_SERVER DNS Query for Suspicious 54dfa1cb.com Domain - Anuna Checkin - Compromised PHP Site",
+      "dns.query": true,
+      "startswith": true,
+      "endswith": true,
+      "reference": [
+        "url,www.symantec.com/security_response/writeup.jsp?docid=2015-111911-4342-99&tabid=2",
+        "url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2023230,
+      "rev": 7,
+      "metadata": "affected_product Apache_HTTP_server, affected_product PHP, attack_target Web_Server, created_at 2016_09_15, deployment Datacenter, confidence Medium, signature_severity Critical, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "54dfa1cb.com",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert dns $HTTP_SERVERS any -> any any (msg:\"ET WEB_SERVER DNS Query for Suspicious 54dfa1cb.com Domain - Anuna Checkin - Compromised PHP Site\"; dns.query; content:\"54dfa1cb.com\"; startswith; fast_pattern; endswith; nocase; reference:url,www.symantec.com/security_response/writeup.jsp?docid=2015-111911-4342-99&tabid=2; reference:url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code; classtype:trojan-activity; sid:2023230; rev:7; metadata:affected_product Apache_HTTP_server, affected_product PHP, attack_target Web_Server, created_at 2016_09_15, deployment Datacenter, confidence Medium, signature_severity Critical, updated_at 2024_04_13;)"
+  }
+]

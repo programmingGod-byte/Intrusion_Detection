@@ -1,0 +1,252 @@
+[
+  {
+    "source_file": "emerging-worm.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WORM W32/Rimecud wg.txt Checkin",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": [
+        "md5,a89f7289d5cce821a194542e90026082",
+        "md5,fd56ce176889d4fbe588760a1da6462b",
+        "url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Worm%3AWin32%2FRimecud"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2014402,
+      "rev": 3,
+      "metadata": "created_at 2012_03_20, confidence Medium, signature_severity Major, updated_at 2020_04_21",
+      "contents": [
+        {
+          "pattern": "/wg.txt",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET WORM W32/Rimecud wg.txt Checkin\"; flow:established,to_server; http.uri; content:\"/wg.txt\"; reference:md5,a89f7289d5cce821a194542e90026082; reference:md5,fd56ce176889d4fbe588760a1da6462b; reference:url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Worm%3AWin32%2FRimecud; classtype:trojan-activity; sid:2014402; rev:3; metadata:created_at 2012_03_20, confidence Medium, signature_severity Major, updated_at 2020_04_21;)"
+  },
+  {
+    "source_file": "emerging-worm.rules",
+    "line_number": 57,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WORM Possible Worm Sohanad.Z or Other Infection Request for setting.nql",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "reference": "md5,a70aad8f27957702febfa162556dc5b5",
+      "classtype": "trojan-activity",
+      "sid": 2012201,
+      "rev": 5,
+      "metadata": "created_at 2011_01_17, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_08_04",
+      "contents": [
+        {
+          "pattern": "/setting.nql",
+          "modifiers": {
+            "nocase": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET WORM Possible Worm Sohanad.Z or Other Infection Request for setting.nql\"; flow:established,to_server; http.uri; content:\"/setting.nql\"; nocase; reference:md5,a70aad8f27957702febfa162556dc5b5; classtype:trojan-activity; sid:2012201; rev:5; metadata:created_at 2011_01_17, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_08_04;)"
+  },
+  {
+    "source_file": "emerging-worm.rules",
+    "line_number": 59,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "8080",
+    "options": {
+      "msg": "ET WORM TheMoon.linksys.router 1",
+      "flow": "established",
+      "urilen": "7",
+      "http.method": true,
+      "http.uri": true,
+      "http.host": true,
+      "pcre": "/^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$/",
+      "reference": "url,isc.sans.edu/forums/diary/Linksys+Worm+Captured/17630",
+      "classtype": "trojan-activity",
+      "sid": 2018131,
+      "rev": 6,
+      "metadata": "created_at 2014_02_13, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_08_18",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/HNAP1/",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET 8080 (msg:\"ET WORM TheMoon.linksys.router 1\"; flow:established; urilen:7; http.method; content:\"GET\"; http.uri; content:\"/HNAP1/\"; http.host; pcre:\"/^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$/\"; reference:url,isc.sans.edu/forums/diary/Linksys+Worm+Captured/17630; classtype:trojan-activity; sid:2018131; rev:6; metadata:created_at 2014_02_13, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2020_08_18;)"
+  },
+  {
+    "source_file": "emerging-worm.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "8080",
+    "options": {
+      "msg": "ET WORM TheMoon.linksys.router 2",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": [
+        "url,isc.sans.edu/forums/diary/Linksys+Worm+Captured/17630",
+        "url,devttys0.com/2014/02/wrt120n-fprintf-stack-overflow/"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2018132,
+      "rev": 6,
+      "metadata": "created_at 2014_02_13, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/tmUnblock.cgi",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET 8080 (msg:\"ET WORM TheMoon.linksys.router 2\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/tmUnblock.cgi\"; reference:url,isc.sans.edu/forums/diary/Linksys+Worm+Captured/17630; reference:url,devttys0.com/2014/02/wrt120n-fprintf-stack-overflow/; classtype:trojan-activity; sid:2018132; rev:6; metadata:created_at 2014_02_13, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-worm.rules",
+    "line_number": 63,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "8080",
+    "options": {
+      "msg": "ET WORM TheMoon.linksys.router 3",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "reference": [
+        "url,isc.sans.edu/forums/diary/Linksys+Worm+Captured/17630",
+        "url,exploit-db.com/exploits/31683/",
+        "url,devttys0.com/2014/02/wrt120n-fprintf-stack-overflow/"
+      ],
+      "classtype": "trojan-activity",
+      "sid": 2018155,
+      "rev": 6,
+      "metadata": "created_at 2014_02_19, confidence Medium, signature_severity Major, updated_at 2024_03_06",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/hndUnblock.cgi",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http any any -> $HOME_NET 8080 (msg:\"ET WORM TheMoon.linksys.router 3\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/hndUnblock.cgi\"; reference:url,isc.sans.edu/forums/diary/Linksys+Worm+Captured/17630; reference:url,exploit-db.com/exploits/31683/; reference:url,devttys0.com/2014/02/wrt120n-fprintf-stack-overflow/; classtype:trojan-activity; sid:2018155; rev:6; metadata:created_at 2014_02_19, confidence Medium, signature_severity Major, updated_at 2024_03_06;)"
+  },
+  {
+    "source_file": "emerging-worm.rules",
+    "line_number": 75,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WORM Win32.Socks.s HTTP Post Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.request_body": true,
+      "startswith": true,
+      "classtype": "trojan-activity",
+      "sid": 2008020,
+      "rev": 7,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_12",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": ".php",
+          "modifiers": {}
+        },
+        {
+          "pattern": "proc=[System Process]|0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET WORM Win32.Socks.s HTTP Post Checkin\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\".php\"; http.request_body; content:\"proc=[System Process]|0a|\"; startswith; classtype:trojan-activity; sid:2008020; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_12;)"
+  },
+  {
+    "source_file": "emerging-worm.rules",
+    "line_number": 77,
+    "action": "alert",
+    "protocol": "http",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET WORM Rimecud Worm checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.user_agent": true,
+      "startswith": true,
+      "reference": "md5,9623efa133415d19c941ef92a4f921fc",
+      "classtype": "trojan-activity",
+      "sid": 2012739,
+      "rev": 5,
+      "metadata": "created_at 2011_04_29, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/taskx.txt",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "Mozilla/3.0 (compatible|3b 20|Indy Library)",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET WORM Rimecud Worm checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/taskx.txt\"; fast_pattern; http.user_agent; content:\"Mozilla/3.0 (compatible|3b 20|Indy Library)\"; startswith; reference:md5,9623efa133415d19c941ef92a4f921fc; classtype:trojan-activity; sid:2012739; rev:5; metadata:created_at 2011_04_29, confidence Medium, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_13;)"
+  }
+]

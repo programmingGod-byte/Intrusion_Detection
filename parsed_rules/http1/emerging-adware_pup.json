@@ -1,0 +1,1243 @@
+[
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1675,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/ReImageRepair.T CnC Activity",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.cookie": true,
+      "http.header_names": true,
+      "bsize": "18",
+      "reference": "md5,39fef85fe114d96dde745b8ce0659b2e",
+      "classtype": "pup-activity",
+      "sid": 2038701,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_08_31, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2025_10_24",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/protection/",
+          "modifiers": {}
+        },
+        {
+          "pattern": "user|3d 22|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|22 3b 20|city|3d|",
+          "modifiers": {
+            "distance": "0",
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Cookie|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/ReImageRepair.T CnC Activity\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/protection/\"; startswith; http.cookie; content:\"user|3d 22|\"; startswith; content:\"|22 3b 20|city|3d|\"; distance:0; fast_pattern; http.header_names; bsize:18; content:\"|0d 0a|Cookie|0d 0a|Host|0d 0a 0d 0a|\"; reference:md5,39fef85fe114d96dde745b8ce0659b2e; classtype:pup-activity; sid:2038701; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2022_08_31, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2025_10_24;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1677,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP pdfspeedup Initial CnC Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/^[a-f0-9]{32}/UR",
+      "http.header_names": true,
+      "reference": "md5,cbb857a25e7dde72364684d2b90fb1ac",
+      "classtype": "pup-activity",
+      "sid": 2038627,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_08_25, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2025_07_14",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/pdf-service/v1/action?",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "os=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "device_id=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "version=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "qd=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "day=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "t=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "product=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "machine_name=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP pdfspeedup Initial CnC Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/pdf-service/v1/action?\"; startswith; fast_pattern; content:\"os=\"; content:\"device_id=\"; pcre:\"/^[a-f0-9]{32}/UR\"; content:\"version=\"; content:\"qd=\"; content:\"day=\"; content:\"t=\"; content:\"product=\"; content:\"machine_name=\"; http.header_names; content:\"Host|0d 0a|Connection|0d 0a 0d 0a|\"; reference:md5,cbb857a25e7dde72364684d2b90fb1ac; classtype:pup-activity; sid:2038627; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_08_25, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03, reviewed_at 2025_07_14;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1679,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/Mando Activity (GET)",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header_names": true,
+      "bsize": "22",
+      "http.host": true,
+      "reference": [
+        "md5,cf26a3650150700c05f33a75fd9bae03",
+        "md5,cbc89b16c4064e7195a24d73d4a179ef",
+        "md5,886ef29d4cc1d69dbb021805d7cd1704"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2037744,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_07_12, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/pas/pas",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "mandotv",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/Mando Activity (GET)\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/pas/pas\"; fast_pattern; http.header_names; bsize:22; content:\"|0d 0a|Host|0d 0a|Connection|0d 0a 0d 0a|\"; http.host; content:\"mandotv\"; reference:md5,cf26a3650150700c05f33a75fd9bae03; reference:md5,cbc89b16c4064e7195a24d73d4a179ef; reference:md5,886ef29d4cc1d69dbb021805d7cd1704; classtype:pup-activity; sid:2037744; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_07_12, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_03;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1681,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/2345.H Variant Activity (POST)",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "http.request_body": true,
+      "startswith": true,
+      "http.header_names": true,
+      "reference": [
+        "md5,3b2806dc35cb7bc4db464a5fe017ab4e",
+        "md5,0b1f16f067ba71f5b8ec87c9f1a544c6"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2034724,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2021_12_14, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "POST /dmdt/dmdt_data.php HTTP/1.1",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "data_version=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "&client_data=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/2345.H Variant Activity (POST)\"; flow:established,to_server; http.request_line; content:\"POST /dmdt/dmdt_data.php HTTP/1.1\"; fast_pattern; http.request_body; content:\"data_version=\"; startswith; content:\"&client_data=\"; http.header_names; content:!\"Referer\"; reference:md5,3b2806dc35cb7bc4db464a5fe017ab4e; reference:md5,0b1f16f067ba71f5b8ec87c9f1a544c6; classtype:pup-activity; sid:2034724; rev:2; metadata:attack_target Client_Endpoint, created_at 2021_12_14, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1683,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP NivesroCheat CnC Activity M2",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.accept": true,
+      "bsize": "6",
+      "http.header_names": true,
+      "startswith": true,
+      "reference": "md5,6aaa1742b89bd72be6ee50709fc457ab",
+      "classtype": "trojan-activity",
+      "sid": 2033222,
+      "rev": 4,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2021_07_02, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "version.php?a=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"&",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "text/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Accept|0d 0a|Host|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP NivesroCheat CnC Activity M2\"; flow:established,to_server; http.uri; content:\"version.php?a=\"; fast_pattern; content:!\"&\"; distance:0; http.accept; bsize:6; content:\"text/*\"; http.header_names; content:\"|0d 0a|Accept|0d 0a|Host|0d 0a|\"; startswith; reference:md5,6aaa1742b89bd72be6ee50709fc457ab; classtype:trojan-activity; sid:2033222; rev:4; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2021_07_02, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1685,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Nivesro Cheat CnC Activity M1",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.accept": true,
+      "bsize": "6",
+      "http.header_names": true,
+      "reference": "md5,6aaa1742b89bd72be6ee50709fc457ab",
+      "classtype": "trojan-activity",
+      "sid": 2033221,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2021_07_02, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "authentication.php?a=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&b=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "text/*",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Accept|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Nivesro Cheat CnC Activity M1\"; flow:established,to_server; http.uri; content:\"authentication.php?a=\"; fast_pattern; content:\"&b=\"; distance:0; http.accept; bsize:6; content:\"text/*\"; http.header_names; content:\"|0d 0a|Accept|0d 0a|Host|0d 0a 0d 0a|\"; reference:md5,6aaa1742b89bd72be6ee50709fc457ab; classtype:trojan-activity; sid:2033221; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2021_07_02, deployment Perimeter, confidence High, signature_severity Major, tag c2, updated_at 2024_04_04, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1687,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Windows Explorer Tab Add-on Post Install Checkin",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "bsize": "18",
+      "http.request_body": true,
+      "startswith": true,
+      "reference": "md5,47d9aee3497bed660b640194dbab5879",
+      "classtype": "pup-activity",
+      "sid": 2031386,
+      "rev": 4,
+      "metadata": "created_at 2020_12_15, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "POST /api HTTP/1.1",
+          "modifiers": {}
+        },
+        {
+          "pattern": "f=100&p=ew0KICAgIk0iOi",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Windows Explorer Tab Add-on Post Install Checkin\"; flow:established,to_server; http.request_line; bsize:18; content:\"POST /api HTTP/1.1\"; http.request_body; content:\"f=100&p=ew0KICAgIk0iOi\"; startswith; fast_pattern; reference:md5,47d9aee3497bed660b640194dbab5879; classtype:pup-activity; sid:2031386; rev:4; metadata:created_at 2020_12_15, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1689,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/Sogou.H Variant Request",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "startswith": true,
+      "pcre": "/^\\d+\\sHTTP/1.1$/R",
+      "http.header_names": true,
+      "bsize": [
+        "22",
+        "12"
+      ],
+      "http.user_agent": true,
+      "reference": "md5,29db559062d82a56c53c70c68dc160ec",
+      "classtype": "pup-activity",
+      "sid": 2031191,
+      "rev": 3,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_11_09, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "GET /appinfo?num=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "HttpDownload",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/Sogou.H Variant Request\"; flow:established,to_server; http.request_line; content:\"GET /appinfo?num=\"; startswith; fast_pattern; pcre:\"/^\\d+\\sHTTP/1.1$/R\"; http.header_names; bsize:22; content:\"|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|\"; http.user_agent; bsize:12; content:\"HttpDownload\"; reference:md5,29db559062d82a56c53c70c68dc160ec; classtype:pup-activity; sid:2031191; rev:3; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_11_09, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1691,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP DownloadAssistant Activity",
+      "flow": "established,to_server",
+      "http.start": true,
+      "http.request_body": true,
+      "startswith": true,
+      "reference": "md5,d6d20eef805a4719f0771321f832bbed",
+      "classtype": "pup-activity",
+      "sid": 2030934,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_09_30, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "POST /v2/events HTTP/1.0|0d 0a|Connection|3a 20|keep-alive|0d 0a|Content-Length|3a 20|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "4F44",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP DownloadAssistant Activity\"; flow:established,to_server; http.start; content:\"POST /v2/events HTTP/1.0|0d 0a|Connection|3a 20|keep-alive|0d 0a|Content-Length|3a 20|\"; fast_pattern; http.request_body; content:\"4F44\"; startswith; reference:md5,d6d20eef805a4719f0771321f832bbed; classtype:pup-activity; sid:2030934; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_09_30, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1693,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/InstallCore.GF CnC Activity",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "startswith": true,
+      "endswith": true,
+      "http.user_agent": true,
+      "bsize": "20",
+      "reference": "md5,37cbc5d7eaa9ce6a097950aa051080b5",
+      "classtype": "pup-activity",
+      "sid": 2030798,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_08_26, deployment Perimeter, malware_family InstallCore, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "GET /installer/configs/",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": " HTTP/1.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "NSISDL/1.2 (Mozilla)",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/InstallCore.GF CnC Activity\"; flow:established,to_server; http.request_line; content:\"GET /installer/configs/\"; startswith; fast_pattern; content:\" HTTP/1.0\"; endswith; http.user_agent; bsize:20; content:\"NSISDL/1.2 (Mozilla)\"; reference:md5,37cbc5d7eaa9ce6a097950aa051080b5; classtype:pup-activity; sid:2030798; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_08_26, deployment Perimeter, malware_family InstallCore, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1695,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP DownLoadAdmin Activity",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "startswith": true,
+      "http.header_names": true,
+      "reference": "md5,cff290dcb07183541783bbc9ce7056b4",
+      "classtype": "pup-activity",
+      "sid": 2030663,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_08_07, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "/install.php?bc=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&d=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "&cb=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|user-agent|0d 0a|x-webinstallcode|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP DownLoadAdmin Activity\"; flow:established,to_server; http.uri; content:\"/install.php?bc=\"; startswith; fast_pattern; content:\"&d=\"; content:\"&cb=\"; http.header_names; content:\"|0d 0a|user-agent|0d 0a|x-webinstallcode|0d 0a|\"; reference:md5,cff290dcb07183541783bbc9ce7056b4; classtype:pup-activity; sid:2030663; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_08_07, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1697,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/Adware.YoutubeDownloaderGuru.A Variant CnC Activity",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "isdataat": "!6,relative",
+      "http.user_agent": true,
+      "bsize": [
+        "24",
+        "37"
+      ],
+      "http.header_names": true,
+      "reference": "md5,638aad567ad2f0fc1a3e223eea6fa9a4",
+      "classtype": "pup-activity",
+      "sid": 2029545,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_02_27, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/php/update.php?m=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "&s=",
+          "modifiers": {
+            "within": "8"
+          }
+        },
+        {
+          "pattern": "Youtube Music Downloader",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|User-Agent|0d 0a|Host|0d 0a|Cache-Control|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/Adware.YoutubeDownloaderGuru.A Variant CnC Activity\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/php/update.php?m=\"; startswith; fast_pattern; content:\"&s=\"; within:8; isdataat:!6,relative; http.user_agent; bsize:24; content:\"Youtube Music Downloader\"; http.header_names; bsize:37; content:\"|0d 0a|User-Agent|0d 0a|Host|0d 0a|Cache-Control|0d 0a 0d 0a|\"; reference:md5,638aad567ad2f0fc1a3e223eea6fa9a4; classtype:pup-activity; sid:2029545; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_02_27, deployment Perimeter, confidence High, signature_severity Minor, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1699,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/YTDDownloader.F Activity",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "startswith": true,
+      "endswith": true,
+      "http.user_agent": true,
+      "bsize": "20",
+      "reference": "md5,a53b0c85d4e65e06c59e854b84ad7f17",
+      "classtype": "pup-activity",
+      "sid": 2029470,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_02_14, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "GET /offers/offers.php?id=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": " HTTP/1.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "NSISDL/1.2 (Mozilla)",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/YTDDownloader.F Activity\"; flow:established,to_server; http.request_line; content:\"GET /offers/offers.php?id=\"; startswith; fast_pattern; content:\" HTTP/1.0\"; endswith; http.user_agent; bsize:20; content:\"NSISDL/1.2 (Mozilla)\"; reference:md5,a53b0c85d4e65e06c59e854b84ad7f17; classtype:pup-activity; sid:2029470; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_02_14, deployment Perimeter, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1701,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/Adware.Agent.NPP CnC Activity",
+      "flow": "established,to_server",
+      "http.request_line": true,
+      "bsize": [
+        "27",
+        "20"
+      ],
+      "http.user_agent": true,
+      "reference": "md5,0bec370f25d557e6dd64d2e9391f23f4",
+      "classtype": "pup-activity",
+      "sid": 2029350,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_02_04, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "GET /show/push.txt HTTP/1.0",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "NSISDL/1.2 (Mozilla)",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/Adware.Agent.NPP CnC Activity\"; flow:established,to_server; http.request_line; bsize:27; content:\"GET /show/push.txt HTTP/1.0\"; fast_pattern; http.user_agent; bsize:20; content:\"NSISDL/1.2 (Mozilla)\"; reference:md5,0bec370f25d557e6dd64d2e9391f23f4; classtype:pup-activity; sid:2029350; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2020_02_04, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1703,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/DownloadAssistant.Q Variant Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "bsize": [
+        "10",
+        "50"
+      ],
+      "http.request_body": true,
+      "pcre": "/^[A-F0-9]+$/",
+      "http.header_names": true,
+      "reference": "md5,0ec90cb6e0e3f8cd86d5d1d08f184e5f",
+      "classtype": "pup-activity",
+      "sid": 2029210,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_12_30, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/v2/events",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "|0d 0a|Connection|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/DownloadAssistant.Q Variant Checkin\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; bsize:10; content:\"/v2/events\"; fast_pattern; http.request_body; pcre:\"/^[A-F0-9]+$/\"; http.header_names; bsize:50; content:\"|0d 0a|Connection|0d 0a|User-Agent|0d 0a|Content-Length|0d 0a|Host|0d 0a 0d 0a|\"; reference:md5,0ec90cb6e0e3f8cd86d5d1d08f184e5f; classtype:pup-activity; sid:2029210; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2019_12_30, deployment Perimeter, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_04;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1709,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP W32/Stan Malvertising.Dropper CnC Beacon",
+      "flow": "established,to_server",
+      "urilen": ">50",
+      "http.method": true,
+      "http.uri": true,
+      "pcre": "/^\\/[a-f0-9]{50,}$/",
+      "http.header": true,
+      "http.host": true,
+      "startswith": true,
+      "http.header_names": true,
+      "reference": "url,blogs.cisco.com/security/kyle-and-stan/",
+      "classtype": "pup-activity",
+      "sid": 2019145,
+      "rev": 6,
+      "metadata": "attack_target Client_Endpoint, created_at 2014_09_10, deployment Perimeter, confidence Medium, signature_severity Minor, tag c2, updated_at 2024_04_07, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "Proxy-Authorization|3a 20|Basic",
+          "modifiers": {}
+        },
+        {
+          "pattern": "stan|2E|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "!\"Accept-",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP W32/Stan Malvertising.Dropper CnC Beacon\"; flow:established,to_server; urilen:>50; http.method; content:\"GET\"; http.uri; pcre:\"/^\\/[a-f0-9]{50,}$/\"; http.header; content:\"Proxy-Authorization|3a 20|Basic\"; http.host; content:\"stan|2E|\"; fast_pattern; startswith; http.header_names; content:!\"Accept-\"; content:!\"Referer|0d 0a|\"; reference:url,blogs.cisco.com/security/kyle-and-stan/; classtype:pup-activity; sid:2019145; rev:6; metadata:attack_target Client_Endpoint, created_at 2014_09_10, deployment Perimeter, confidence Medium, signature_severity Minor, tag c2, updated_at 2024_04_07, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1711,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Downloader.NSIS.OutBrowse.b Checkin",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "http.user_agent": true,
+      "endswith": true,
+      "http.header_names": true,
+      "reference": [
+        "md5,38eeed96ade6037dc299812eeadee164",
+        "url,sophos.com/en-us/threat-center/threat-analyses/adware-and-puas/OutBrowse%20Revenyou/detailed-analysis.aspx"
+      ],
+      "classtype": "pup-activity",
+      "sid": 2018617,
+      "rev": 9,
+      "metadata": "created_at 2014_01_14, confidence Medium, signature_severity Minor, updated_at 2024_04_07",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/Installer/Flow?pubid=",
+          "modifiers": {
+            "fast_pattern": true,
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "&distid=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&productid=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&subpubid=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&campaignid=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&networkid=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&dfb=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&os=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "&version=",
+          "modifiers": {
+            "distance": "0"
+          }
+        },
+        {
+          "pattern": "Chrome/18.0.1025.142 Safari/535.19",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|User-Agent|0d 0a|Host|0d 0a|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Downloader.NSIS.OutBrowse.b Checkin\"; flow:established,to_server; http.method; content:\"GET\"; http.uri; content:\"/Installer/Flow?pubid=\"; fast_pattern; startswith; nocase; content:\"&distid=\"; distance:0; content:\"&productid=\"; distance:0; content:\"&subpubid=\"; distance:0; content:\"&campaignid=\"; distance:0; content:\"&networkid=\"; distance:0; content:\"&dfb=\"; distance:0; content:\"&os=\"; distance:0; content:\"&version=\"; distance:0; http.user_agent; content:\"Chrome/18.0.1025.142 Safari/535.19\"; endswith; http.header_names; content:\"|0d 0a|User-Agent|0d 0a|Host|0d 0a|\"; reference:md5,38eeed96ade6037dc299812eeadee164; reference:url,sophos.com/en-us/threat-center/threat-analyses/adware-and-puas/OutBrowse%20Revenyou/detailed-analysis.aspx; classtype:pup-activity; sid:2018617; rev:9; metadata:created_at 2014_01_14, confidence Medium, signature_severity Minor, updated_at 2024_04_07;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1721,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP UBar Trojan/Adware Checkin 3",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.header": true,
+      "classtype": "pup-activity",
+      "sid": 2013558,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_09_10, deployment Perimeter, confidence Medium, signature_severity Minor, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "size.php?",
+          "modifiers": {}
+        },
+        {
+          "pattern": "file=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|20|from|3a 20|http|3a|//www.bsalsa.com/ EmbeddedWB|20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP UBar Trojan/Adware Checkin 3\"; flow:established,to_server; http.uri; content:\"size.php?\"; content:\"file=\"; http.header; content:\"|20|from|3a 20|http|3a|//www.bsalsa.com/ EmbeddedWB|20|\"; classtype:pup-activity; sid:2013558; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_09_10, deployment Perimeter, confidence Medium, signature_severity Minor, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1723,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP UBar Trojan/Adware Checkin 2",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.header": true,
+      "classtype": "pup-activity",
+      "sid": 2013557,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_09_10, deployment Perimeter, confidence Medium, signature_severity Minor, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "inst.php?",
+          "modifiers": {}
+        },
+        {
+          "pattern": "pcode=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "&ucode=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|20|from|3a 20|http|3a|//www.bsalsa.com/ EmbeddedWB|20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP UBar Trojan/Adware Checkin 2\"; flow:established,to_server; http.uri; content:\"inst.php?\"; content:\"pcode=\"; content:\"&ucode=\"; http.header; content:\"|20|from|3a 20|http|3a|//www.bsalsa.com/ EmbeddedWB|20|\"; classtype:pup-activity; sid:2013557; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_09_10, deployment Perimeter, confidence Medium, signature_severity Minor, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1725,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP UBar Trojan/Adware Checkin 1",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.header": true,
+      "reference": "md5,81a119f7f47663c03053e76146f54fe9",
+      "classtype": "pup-activity",
+      "sid": 2013556,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_09_10, deployment Perimeter, confidence Medium, signature_severity Minor, updated_at 2024_04_09",
+      "contents": [
+        {
+          "pattern": "?gname=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "&pid=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "&m=",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|20|from|3a 20|http|3a|//www.bsalsa.com/ EmbeddedWB|20|",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP UBar Trojan/Adware Checkin 1\"; flow:established,to_server; http.uri; content:\"?gname=\"; content:\"&pid=\"; content:\"&m=\"; http.header; content:\"|20|from|3a 20|http|3a|//www.bsalsa.com/ EmbeddedWB|20|\"; reference:md5,81a119f7f47663c03053e76146f54fe9; classtype:pup-activity; sid:2013556; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2011_09_10, deployment Perimeter, confidence Medium, signature_severity Minor, updated_at 2024_04_09;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1741,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Webhancer Data Post",
+      "flow": "established,to_server",
+      "http.method": true,
+      "http.uri": true,
+      "http.header_names": true,
+      "reference": "url,securityresponse.symantec.com/avcenter/venc/data/spyware.webhancer.html",
+      "classtype": "pup-activity",
+      "sid": 2001677,
+      "rev": 17,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_11",
+      "contents": [
+        {
+          "pattern": "POST",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "http|3a|//prime.webhancer.com",
+          "modifiers": {
+            "nocase": true
+          }
+        },
+        {
+          "pattern": "AgentTag",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Webhancer Data Post\"; flow:established,to_server; http.method; content:\"POST\"; nocase; http.uri; content:\"http|3a|//prime.webhancer.com\"; nocase; http.header_names; content:\"AgentTag\"; reference:url,securityresponse.symantec.com/avcenter/venc/data/spyware.webhancer.html; classtype:pup-activity; sid:2001677; rev:17; metadata:created_at 2010_07_30, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 1745,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP PUP/PUA OSSProxy HTTP Header",
+      "flow": "established,to_server",
+      "threshold": "type limit, count 5, seconds 300, track by_src",
+      "http.header": true,
+      "reference": [
+        "url,www.marketscore.com",
+        "url,www.spysweeper.com/remove-marketscore.html"
+      ],
+      "classtype": "policy-violation",
+      "sid": 2001564,
+      "rev": 15,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2024_04_11",
+      "contents": [
+        {
+          "pattern": "X-OSSProxy|3a 20|OSSProxy",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP PUP/PUA OSSProxy HTTP Header\"; flow:established,to_server; threshold: type limit, count 5, seconds 300, track by_src; http.header; content:\"X-OSSProxy|3a 20|OSSProxy\"; reference:url,www.marketscore.com; reference:url,www.spysweeper.com/remove-marketscore.html; classtype:policy-violation; sid:2001564; rev:15; metadata:created_at 2010_07_30, confidence Medium, signature_severity Minor, updated_at 2024_04_11;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2243,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP MultiPlug.J Checkin",
+      "flow": "established,to_server",
+      "urilen": ">103",
+      "http.method": true,
+      "http.uri": true,
+      "startswith": true,
+      "pcre": "/^\\/(?:[A-Za-z]+\\d?\\/)?\\?q=(?=[a-z0-9+/]*[A-Z])(?=[A-Z0-9+/]*[a-z])(?=[A-Za-z0-9+/\\x25]*\\d)[A-Za-z0-9+/\\x25]{100}/",
+      "http.uri.raw": true,
+      "http.host": true,
+      "http.header_names": true,
+      "reference": "md5,6b95ddc5238cc0576db7b206af13339e",
+      "classtype": "pup-activity",
+      "sid": 2023707,
+      "rev": 6,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_01_09, deployment Perimeter, malware_family PUA, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "GET",
+          "modifiers": {}
+        },
+        {
+          "pattern": "/?q=",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": "+",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"map24.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"aptrk.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "|0d 0a|Accept|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer|0d 0a|",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Accept-",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP MultiPlug.J Checkin\"; flow:established,to_server; urilen:>103; http.method; content:\"GET\"; http.uri; content:\"/?q=\"; fast_pattern; startswith; pcre:\"/^\\/(?:[A-Za-z]+\\d?\\/)?\\?q=(?=[a-z0-9+/]*[A-Z])(?=[A-Z0-9+/]*[a-z])(?=[A-Za-z0-9+/\\x25]*\\d)[A-Za-z0-9+/\\x25]{100}/\"; http.uri.raw; content:\"+\"; http.host; content:!\"map24.com\"; content:!\"aptrk.com\"; http.header_names; content:\"|0d 0a|Accept|0d 0a|User-Agent|0d 0a|Host|0d 0a 0d 0a|\"; content:!\"Referer|0d 0a|\"; content:!\"Accept-\"; reference:md5,6b95ddc5238cc0576db7b206af13339e; classtype:pup-activity; sid:2023707; rev:6; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2017_01_09, deployment Perimeter, malware_family PUA, performance_impact Low, confidence High, signature_severity Minor, updated_at 2024_04_14;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2247,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP Win32/OutBrowse.G Variant Checkin",
+      "flow": "established,to_server",
+      "http.uri": true,
+      "http.user_agent": true,
+      "startswith": true,
+      "http.protocol": true,
+      "endswith": true,
+      "http.header_names": true,
+      "reference": "md5,d75055c45e2c5293c3e0fbffb299ea6d",
+      "classtype": "pup-activity",
+      "sid": 2017992,
+      "rev": 14,
+      "metadata": "created_at 2014_01_20, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_14",
+      "contents": [
+        {
+          "pattern": "/dmresources/instructions",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        },
+        {
+          "pattern": ".dat",
+          "modifiers": {}
+        },
+        {
+          "pattern": "NSISDL/1.2 (Mozilla)",
+          "modifiers": {}
+        },
+        {
+          "pattern": "HTTP/1.0",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"Referer",
+          "modifiers": {}
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP Win32/OutBrowse.G Variant Checkin\"; flow:established,to_server; http.uri; content:\"/dmresources/instructions\"; fast_pattern; content:\".dat\"; http.user_agent; content:\"NSISDL/1.2 (Mozilla)\"; startswith; http.protocol; content:\"HTTP/1.0\"; endswith; http.header_names; content:!\"Referer\"; reference:md5,d75055c45e2c5293c3e0fbffb299ea6d; classtype:pup-activity; sid:2017992; rev:14; metadata:created_at 2014_01_20, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_04_14;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2501,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP ZenoSearch Spyware User-Agent",
+      "flow": "established,to_server",
+      "http.header": true,
+      "http.user_agent": true,
+      "pcre": "/^\\[.*\\][A-F0-9]{2}-[A-F0-9]{2}-[A-F0-9]{2}/i",
+      "classtype": "pup-activity",
+      "sid": 2008279,
+      "rev": 16,
+      "metadata": "attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, confidence High, signature_severity Minor, tag Spyware_User_Agent, updated_at 2024_05_07",
+      "contents": [
+        {
+          "pattern": "User-Agent|3a 20|[",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP ZenoSearch Spyware User-Agent\"; flow:established,to_server; http.header; content:\"User-Agent|3a 20|[\"; fast_pattern; http.user_agent; pcre:\"/^\\[.*\\][A-F0-9]{2}-[A-F0-9]{2}-[A-F0-9]{2}/i\"; classtype:pup-activity; sid:2008279; rev:16; metadata:attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter, confidence High, signature_severity Minor, tag Spyware_User_Agent, updated_at 2024_05_07;)"
+  },
+  {
+    "source_file": "emerging-adware_pup.rules",
+    "line_number": 2505,
+    "action": "alert",
+    "protocol": "http1",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET ADWARE_PUP User-Agent (Mozilla) - Possible Spyware Related",
+      "flow": "established,to_server",
+      "http.host": true,
+      "endswith": true,
+      "http.header": true,
+      "classtype": "pup-activity",
+      "sid": 2007854,
+      "rev": 17,
+      "metadata": "created_at 2010_07_30, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_05_07",
+      "contents": [
+        {
+          "pattern": "!\"smartcom.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"iscoresports.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "!\"popslotscasino.com",
+          "modifiers": {}
+        },
+        {
+          "pattern": "User-Agent|3a 20|Mozilla|0d 0a|",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert http1 $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET ADWARE_PUP User-Agent (Mozilla) - Possible Spyware Related\"; flow:established,to_server; http.host; content:!\"smartcom.com\"; endswith; content:!\"iscoresports.com\"; endswith; content:!\"popslotscasino.com\"; endswith; http.header; content:\"User-Agent|3a 20|Mozilla|0d 0a|\"; fast_pattern; classtype:pup-activity; sid:2007854; rev:17; metadata:created_at 2010_07_30, confidence Medium, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_05_07;)"
+  }
+]

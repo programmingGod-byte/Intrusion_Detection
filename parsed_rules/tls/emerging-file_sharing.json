@@ -1,0 +1,2663 @@
+[
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 51,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Service Domain (docdroid .net) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2039754,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2022_11_08, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".docdroid.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Service Domain (docdroid .net) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".docdroid.net\"; endswith; fast_pattern; classtype:misc-activity; sid:2039754; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2022_11_08, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 55,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (zippyshare .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,fe5cec314cb00b1e74004cbbca5eb949",
+      "classtype": "bad-unknown",
+      "sid": 2044436,
+      "rev": 2,
+      "metadata": "attack_target Client_and_Server, created_at 2023_03_06, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".zippyshare.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (zippyshare .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".zippyshare.com\"; endswith; fast_pattern; reference:md5,fe5cec314cb00b1e74004cbbca5eb949; classtype:bad-unknown; sid:2044436; rev:2; metadata:attack_target Client_and_Server, created_at 2023_03_06, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 61,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observered File Sharing Service in TLS SNI (frocdn .ch)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046304,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_06_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".frocdn.ch",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observered File Sharing Service in TLS SNI (frocdn .ch)\"; flow:established,to_server; tls.sni; dotprefix; content:\".frocdn.ch\"; endswith; fast_pattern; classtype:misc-activity; sid:2046304; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_06_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 65,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Abused File Sharing Domain (put .io) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "6",
+      "classtype": "misc-activity",
+      "sid": 2046654,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "put.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Abused File Sharing Domain (put .io) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:6; content:\"put.io\"; fast_pattern; classtype:misc-activity; sid:2046654; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 67,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Abused File Sharing Domain (wasabi .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2046655,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "wasabi.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Abused File Sharing Domain (wasabi .com) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:10; content:\"wasabi.com\"; fast_pattern; classtype:misc-activity; sid:2046655; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 71,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Domain (wasabisys .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046657,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".wasabisys.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Domain (wasabisys .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".wasabisys.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2046657; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 73,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Peer-to-Peer File Sharing Service Domain (ipfs .io in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "bad-unknown",
+      "sid": 2036874,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_02_27",
+      "contents": [
+        {
+          "pattern": ".ipfs.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Peer-to-Peer File Sharing Service Domain (ipfs .io in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".ipfs.io\"; endswith; fast_pattern; classtype:bad-unknown; sid:2036874; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_02_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 91,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (ipfs .eternum .io)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046681,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".ipfs.eternum.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (ipfs .eternum .io)\"; flow:established,to_server; tls.sni; dotprefix; content:\".ipfs.eternum.io\"; endswith; fast_pattern; classtype:misc-activity; sid:2046681; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 93,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (ipfs .infura .io)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046682,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".ipfs.infura.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (ipfs .infura .io)\"; flow:established,to_server; tls.sni; dotprefix; content:\".ipfs.infura.io\"; endswith; fast_pattern; classtype:misc-activity; sid:2046682; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 95,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (cloudflare-ipfs .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046683,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".cloudflare-ipfs.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (cloudflare-ipfs .com)\"; flow:established,to_server; tls.sni; dotprefix; content:\".cloudflare-ipfs.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2046683; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 97,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (infura-ipfs .io)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046684,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".infura-ipfs.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (infura-ipfs .io)\"; flow:established,to_server; tls.sni; dotprefix; content:\".infura-ipfs.io\"; endswith; fast_pattern; classtype:misc-activity; sid:2046684; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 101,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (2read .net)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046685,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".2read.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (2read .net)\"; flow:established,to_server; tls.sni; dotprefix; content:\".2read.net\"; endswith; fast_pattern; classtype:misc-activity; sid:2046685; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 103,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (cf-ipfs .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046686,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".cf-ipfs.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (cf-ipfs .com)\"; flow:established,to_server; tls.sni; dotprefix; content:\".cf-ipfs.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2046686; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 105,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (hardbin .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046687,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".hardbin.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (hardbin .com)\"; flow:established,to_server; tls.sni; dotprefix; content:\".hardbin.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2046687; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 107,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (ipfs .2read .net)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2046688,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".ipfs.2read.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Peer to Peer File Sharing Service Domain in TLS SNI (ipfs .2read .net)\"; flow:established,to_server; tls.sni; dotprefix; content:\".ipfs.2read.net\"; endswith; fast_pattern; classtype:misc-activity; sid:2046688; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag IPFS, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 113,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Service Domain (dropmefiles .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "classtype": "misc-activity",
+      "sid": 2046789,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_07_11, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_04_09",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "dropmefiles.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Service Domain (dropmefiles .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:15; content:\"dropmefiles.com\"; fast_pattern; classtype:misc-activity; sid:2046789; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_07_11, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_04_09; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 119,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain (pan .tencent .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "reference": "url,urlscan.io/result/e6d1a6ea-1dee-4f68-9b89-3ed24c1a4f46/",
+      "classtype": "misc-activity",
+      "sid": 2046875,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_07_20, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag FileSharing, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "pan.tencent.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain (pan .tencent .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:15; content:\"pan.tencent.com\"; fast_pattern; reference:url,urlscan.io/result/e6d1a6ea-1dee-4f68-9b89-3ed24c1a4f46/; classtype:misc-activity; sid:2046875; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_07_20, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag FileSharing, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 123,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (drive .internxt .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "18",
+      "classtype": "misc-activity",
+      "sid": 2047636,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_03_12",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "drive.internxt.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (drive .internxt .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:18; content:\"drive.internxt.com\"; fast_pattern; classtype:misc-activity; sid:2047636; rev:2; metadata:attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_03_12; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 129,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Anonymous File Sharing Service Domain (qu .ax) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "5",
+      "reference": "url,qu.ax",
+      "classtype": "misc-activity",
+      "sid": 2048382,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_and_Server, created_at 2023_10_02, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2023_10_02",
+      "contents": [
+        {
+          "pattern": "qu.ax",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Anonymous File Sharing Service Domain (qu .ax) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:5; content:\"qu.ax\"; fast_pattern; reference:url,qu.ax; classtype:misc-activity; sid:2048382; rev:2; metadata:affected_product Any, attack_target Client_and_Server, created_at 2023_10_02, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12, reviewed_at 2023_10_02;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 133,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (dracoon .team in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,www.dracoon.com/en/product",
+      "classtype": "misc-activity",
+      "sid": 2049170,
+      "rev": 2,
+      "metadata": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_11_13, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_10_14",
+      "contents": [
+        {
+          "pattern": ".dracoon.team",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (dracoon .team in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".dracoon.team\"; endswith; fast_pattern; reference:url,www.dracoon.com/en/product; classtype:misc-activity; sid:2049170; rev:2; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_Endpoint, created_at 2023_11_13, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12, reviewed_at 2024_10_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 137,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Related Domain in TLS SNI (gofile .io)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2049323,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence Low, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": ".gofile.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Related Domain in TLS SNI (gofile .io)\"; flow:established,to_server; tls.sni; dotprefix; content:\".gofile.io\"; endswith; fast_pattern; classtype:misc-activity; sid:2049323; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence Low, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 193,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (cyberfile .me)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049352,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "cyberfile.me",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (cyberfile .me)\"; flow:established,to_server; tls.sni; bsize:12; content:\"cyberfile.me\"; fast_pattern; classtype:misc-activity; sid:2049352; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 195,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (put .re)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "6",
+      "classtype": "misc-activity",
+      "sid": 2049353,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "put.re",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (put .re)\"; flow:established,to_server; tls.sni; bsize:6; content:\"put.re\"; fast_pattern; classtype:misc-activity; sid:2049353; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 197,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (wetransfer .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049354,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "wetransfer.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (wetransfer .com)\"; flow:established,to_server; tls.sni; bsize:14; content:\"wetransfer.com\"; fast_pattern; classtype:misc-activity; sid:2049354; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 199,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (pomf .lain .la)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049355,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "pomf.lain.la",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (pomf .lain .la)\"; flow:established,to_server; tls.sni; bsize:12; content:\"pomf.lain.la\"; fast_pattern; classtype:misc-activity; sid:2049355; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 201,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (pixeldrain .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049356,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "pixeldrain.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (pixeldrain .com)\"; flow:established,to_server; tls.sni; bsize:14; content:\"pixeldrain.com\"; fast_pattern; classtype:misc-activity; sid:2049356; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 203,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (nitrofile .cc)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049357,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "nitrofile.cc",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (nitrofile .cc)\"; flow:established,to_server; tls.sni; bsize:12; content:\"nitrofile.cc\"; fast_pattern; classtype:misc-activity; sid:2049357; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 205,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (hostr .co)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "8",
+      "classtype": "misc-activity",
+      "sid": 2049358,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "hostr.co",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (hostr .co)\"; flow:established,to_server; tls.sni; bsize:8; content:\"hostr.co\"; fast_pattern; classtype:misc-activity; sid:2049358; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 207,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (p .fuwafuwa .moe)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049359,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "p.fuwafuwa.moe",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (p .fuwafuwa .moe)\"; flow:established,to_server; tls.sni; bsize:14; content:\"p.fuwafuwa.moe\"; fast_pattern; classtype:misc-activity; sid:2049359; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 209,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (anonymfile .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049360,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "anonymfile.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (anonymfile .com)\"; flow:established,to_server; tls.sni; bsize:14; content:\"anonymfile.com\"; fast_pattern; classtype:misc-activity; sid:2049360; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 211,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (send .whateveritworks .org)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "24",
+      "classtype": "misc-activity",
+      "sid": 2049361,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "send.whateveritworks.org",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (send .whateveritworks .org)\"; flow:established,to_server; tls.sni; bsize:24; content:\"send.whateveritworks.org\"; fast_pattern; classtype:misc-activity; sid:2049361; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 213,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (wormhole .app)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049362,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "wormhole.app",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (wormhole .app)\"; flow:established,to_server; tls.sni; bsize:12; content:\"wormhole.app\"; fast_pattern; classtype:misc-activity; sid:2049362; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 215,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (send-anywhere .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "17",
+      "classtype": "misc-activity",
+      "sid": 2049363,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "send-anywhere.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (send-anywhere .com)\"; flow:established,to_server; tls.sni; bsize:17; content:\"send-anywhere.com\"; fast_pattern; classtype:misc-activity; sid:2049363; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 217,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (gofile .cc)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "9",
+      "classtype": "misc-activity",
+      "sid": 2049364,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "gofile.cc",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (gofile .cc)\"; flow:established,to_server; tls.sni; bsize:9; content:\"gofile.cc\"; fast_pattern; classtype:misc-activity; sid:2049364; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 219,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (filecave .lol)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2049365,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "filecave.lol",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (filecave .lol)\"; flow:established,to_server; tls.sni; bsize:12; content:\"filecave.lol\"; fast_pattern; classtype:misc-activity; sid:2049365; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 221,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (instant .io)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2049366,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "instant.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (instant .io)\"; flow:established,to_server; tls.sni; bsize:10; content:\"instant.io\"; fast_pattern; classtype:misc-activity; sid:2049366; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 223,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (send .zcyph .cc)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "13",
+      "classtype": "misc-activity",
+      "sid": 2049367,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "send.zcyph.cc",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (send .zcyph .cc)\"; flow:established,to_server; tls.sni; bsize:13; content:\"send.zcyph.cc\"; fast_pattern; classtype:misc-activity; sid:2049367; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 225,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (sendgb .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2049368,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "sendgb.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (sendgb .com)\"; flow:established,to_server; tls.sni; bsize:10; content:\"sendgb.com\"; fast_pattern; classtype:misc-activity; sid:2049368; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 227,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (drop .chapril .org)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "16",
+      "classtype": "misc-activity",
+      "sid": 2049369,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "drop.chapril.org",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (drop .chapril .org)\"; flow:established,to_server; tls.sni; bsize:16; content:\"drop.chapril.org\"; fast_pattern; classtype:misc-activity; sid:2049369; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 229,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (send .hrzn .cool)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2049370,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "send.hrzn.cool",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (send .hrzn .cool)\"; flow:established,to_server; tls.sni; bsize:14; content:\"send.hrzn.cool\"; fast_pattern; classtype:misc-activity; sid:2049370; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 231,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (bunkrr .su)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "9",
+      "classtype": "misc-activity",
+      "sid": 2049371,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "bunkrr.su",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (bunkrr .su)\"; flow:established,to_server; tls.sni; bsize:9; content:\"bunkrr.su\"; fast_pattern; classtype:misc-activity; sid:2049371; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 233,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (mega .nz)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "7",
+      "classtype": "misc-activity",
+      "sid": 2049372,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "mega.nz",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (mega .nz)\"; flow:established,to_server; tls.sni; bsize:7; content:\"mega.nz\"; fast_pattern; classtype:misc-activity; sid:2049372; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 235,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (qiwi .gg)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "7",
+      "classtype": "misc-activity",
+      "sid": 2049373,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "qiwi.gg",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (qiwi .gg)\"; flow:established,to_server; tls.sni; bsize:7; content:\"qiwi.gg\"; fast_pattern; classtype:misc-activity; sid:2049373; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 237,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (chibisafe .moe)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "13",
+      "classtype": "misc-activity",
+      "sid": 2049374,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "chibisafe.moe",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (chibisafe .moe)\"; flow:established,to_server; tls.sni; bsize:13; content:\"chibisafe.moe\"; fast_pattern; classtype:misc-activity; sid:2049374; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 239,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (krakenfiles .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "classtype": "misc-activity",
+      "sid": 2049375,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "krakenfiles.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (krakenfiles .com)\"; flow:established,to_server; tls.sni; bsize:15; content:\"krakenfiles.com\"; fast_pattern; classtype:misc-activity; sid:2049375; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 241,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (0x0 .st)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "6",
+      "classtype": "misc-activity",
+      "sid": 2049376,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "0x0.st",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (0x0 .st)\"; flow:established,to_server; tls.sni; bsize:6; content:\"0x0.st\"; fast_pattern; classtype:misc-activity; sid:2049376; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 243,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (file .pizza)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "10",
+      "classtype": "misc-activity",
+      "sid": 2049377,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "file.pizza",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (file .pizza)\"; flow:established,to_server; tls.sni; bsize:10; content:\"file.pizza\"; fast_pattern; classtype:misc-activity; sid:2049377; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 245,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (www .sharedrop .io)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "16",
+      "classtype": "misc-activity",
+      "sid": 2049378,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "www.sharedrop.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (www .sharedrop .io)\"; flow:established,to_server; tls.sni; bsize:16; content:\"www.sharedrop.io\"; fast_pattern; classtype:misc-activity; sid:2049378; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 247,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING File Sharing Domain Observed in TLS SNI (peergos .org)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "11",
+      "classtype": "misc-activity",
+      "sid": 2049379,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "peergos.org",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING File Sharing Domain Observed in TLS SNI (peergos .org)\"; flow:established,to_server; tls.sni; bsize:11; content:\"peergos.org\"; fast_pattern; classtype:misc-activity; sid:2049379; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 261,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (transfer .sh in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "11",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035145,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "transfer.sh",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (transfer .sh in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:11; content:\"transfer.sh\"; fast_pattern; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035145; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 263,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (sendspace .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "13",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035146,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "sendspace.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (sendspace .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:13; content:\"sendspace.com\"; fast_pattern; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035146; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 265,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (anonfiles .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "14",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035147,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "anonfiles.com,",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (anonfiles .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:14; content:\"anonfiles.com,\"; fast_pattern; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035147; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 267,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (send .exploit .in in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035148,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "send.exploit.in",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (send .exploit .in in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:15; content:\"send.exploit.in\"; fast_pattern; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035148; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 269,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (fex .net in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "7",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035149,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "fex.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (fex .net in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:7; content:\"fex.net\"; fast_pattern; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035149; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 271,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (privatlab .net in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "13",
+      "reference": "url,www.ic3.gov/Media/News/2022/220204.pdf",
+      "classtype": "misc-activity",
+      "sid": 2035150,
+      "rev": 3,
+      "metadata": "created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "privatlab.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Site Domain Observed (privatlab .net in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:13; content:\"privatlab.net\"; fast_pattern; reference:url,www.ic3.gov/Media/News/2022/220204.pdf; classtype:misc-activity; sid:2035150; rev:3; metadata:created_at 2022_02_08, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 275,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Commonly Abused File Sharing Domain (filetransfer .io in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "classtype": "bad-unknown",
+      "sid": 2036311,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_22, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12",
+      "contents": [
+        {
+          "pattern": "filetransfer.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Commonly Abused File Sharing Domain (filetransfer .io in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:15; content:\"filetransfer.io\"; fast_pattern; classtype:bad-unknown; sid:2036311; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_04_22, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_12;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 277,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Related Domain in TLS SNI (mediafire .com)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "13",
+      "classtype": "misc-activity",
+      "sid": 2049322,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "mediafire.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Related Domain in TLS SNI (mediafire .com)\"; flow:established,to_server; tls.sni; bsize:13; content:\"mediafire.com\"; fast_pattern; classtype:misc-activity; sid:2049322; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2023_11_28, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 285,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Service Domain (drive .filen .io in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "14",
+      "classtype": "bad-unknown",
+      "sid": 2050075,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_16, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "target": "src_ip",
+      "contents": [
+        {
+          "pattern": "drive.filen.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Service Domain (drive .filen .io in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:14; content:\"drive.filen.io\"; fast_pattern; classtype:bad-unknown; sid:2050075; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_01_16, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14; target:src_ip;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 289,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Public File Sharing Service Domain (bashupload .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "14",
+      "classtype": "misc-activity",
+      "sid": 2050107,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_01_17, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_04_16",
+      "contents": [
+        {
+          "pattern": "bashupload.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Public File Sharing Service Domain (bashupload .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:14; content:\"bashupload.com\"; fast_pattern; classtype:misc-activity; sid:2050107; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_01_17, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_04_16;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 295,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed URL Shortening/File Sharing Service Domain (d .pr in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "4",
+      "classtype": "misc-activity",
+      "sid": 2050664,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_02_01, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_05_06",
+      "contents": [
+        {
+          "pattern": "d.pr",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed URL Shortening/File Sharing Service Domain (d .pr in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:4; content:\"d.pr\"; fast_pattern; classtype:misc-activity; sid:2050664; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_02_01, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_05_06;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 299,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Service Domain (arvanstorage .ir in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "threshold": "type limit, count 1, seconds 600, track by_src",
+      "classtype": "misc-activity",
+      "sid": 2050731,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_02_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": ".arvanstorage.ir",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Service Domain (arvanstorage .ir in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".arvanstorage.ir\"; endswith; fast_pattern; threshold: type limit, count 1, seconds 600, track by_src; classtype:misc-activity; sid:2050731; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_02_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 303,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (2zie .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051485,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_05, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": ".2zie.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (2zie .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".2zie.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2051485; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_05, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 307,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Baidu File Sharing Domain Domain (pan .baidu .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "13",
+      "threshold": "type limit, count 1, seconds 600, track by_src",
+      "classtype": "misc-activity",
+      "sid": 2051625,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_12, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "pan.baidu.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Baidu File Sharing Domain Domain (pan .baidu .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:13; content:\"pan.baidu.com\"; fast_pattern; threshold: type limit, count 1, seconds 600, track by_src; classtype:misc-activity; sid:2051625; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_12, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 313,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (freeupload .store in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051747,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": ".freeupload.store",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (freeupload .store in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".freeupload.store\"; endswith; fast_pattern; classtype:misc-activity; sid:2051747; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 317,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (terabox .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051750,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": ".terabox.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (terabox .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".terabox.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2051750; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_03_20, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 323,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (drive .protonmail .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "20",
+      "classtype": "bad-unknown",
+      "sid": 2036352,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "drive.protonmail.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (drive .protonmail .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:20; content:\"drive.protonmail.com\"; fast_pattern; classtype:bad-unknown; sid:2036352; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 327,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (www .cloudme .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "15",
+      "classtype": "bad-unknown",
+      "sid": 2036423,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_04_29, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "www.cloudme.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (www .cloudme .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:15; content:\"www.cloudme.com\"; fast_pattern; classtype:bad-unknown; sid:2036423; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_04_29, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 329,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING External File Sharing Service Domain (api .anonfile .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "16",
+      "classtype": "bad-unknown",
+      "sid": 2036562,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_11, deployment Perimeter, former_category INFO, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "api.anonfile.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING External File Sharing Service Domain (api .anonfile .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:16; content:\"api.anonfile.com\"; fast_pattern; classtype:bad-unknown; sid:2036562; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_11, deployment Perimeter, former_category INFO, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 331,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Anonymous File Sharing Service (fromsmash .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "13",
+      "classtype": "bad-unknown",
+      "sid": 2036665,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_05_24, deployment Perimeter, former_category INFO, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "fromsmash.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Anonymous File Sharing Service (fromsmash .com in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:13; content:\"fromsmash.com\"; fast_pattern; classtype:bad-unknown; sid:2036665; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_05_24, deployment Perimeter, former_category INFO, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 333,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Anonymous File Sharing Service in SSL Cert (fromsmash .co)",
+      "flow": "established,to_client",
+      "tls.cert_subject": true,
+      "bsize": "15",
+      "classtype": "bad-unknown",
+      "sid": 2036871,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "CN=fromsmash.co",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET FILE_SHARING Observed Anonymous File Sharing Service in SSL Cert (fromsmash .co)\"; flow:established,to_client; tls.cert_subject; bsize:15; content:\"CN=fromsmash.co\"; fast_pattern; classtype:bad-unknown; sid:2036871; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter, former_category INFO, confidence High, signature_severity Informational, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 335,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Anonymous File Sharing Service Domain (send .vis .ee in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "11",
+      "classtype": "bad-unknown",
+      "sid": 2039068,
+      "rev": 3,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter, former_category INFO, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "send.vis.ee",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Anonymous File Sharing Service Domain (send .vis .ee in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:11; content:\"send.vis.ee\"; fast_pattern; classtype:bad-unknown; sid:2039068; rev:3; metadata:attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter, former_category INFO, confidence High, signature_severity Major, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 337,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Anonymous File Sharing Service Domain in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2051951,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_04_08, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_05_08",
+      "contents": [
+        {
+          "pattern": ".filedoge.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Anonymous File Sharing Service Domain in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".filedoge.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2051951; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_04_08, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14, reviewed_at 2024_05_08;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 339,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Anonymous File Sharing Service Domain (file-drop .cc in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "12",
+      "classtype": "misc-activity",
+      "sid": 2051968,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_04_10, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14",
+      "contents": [
+        {
+          "pattern": "file-drop.cc",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Anonymous File Sharing Service Domain (file-drop .cc in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:12; content:\"file-drop.cc\"; fast_pattern; classtype:misc-activity; sid:2051968; rev:2; metadata:attack_target Client_Endpoint, created_at 2024_04_10, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_14;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 365,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Abused File Hosting Domain (transferxl .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2035637,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_03_29, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".transferxl.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Abused File Hosting Domain (transferxl .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".transferxl.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2035637; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_03_29, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 367,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Abused File Hosting Domain (transferxl-download .com in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2035638,
+      "rev": 2,
+      "metadata": "attack_target Client_Endpoint, created_at 2022_03_29, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27",
+      "contents": [
+        {
+          "pattern": ".transferxl-download.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Abused File Hosting Domain (transferxl-download .com in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".transferxl-download.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2035638; rev:2; metadata:attack_target Client_Endpoint, created_at 2022_03_29, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_06_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 373,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Abused File Sharing Site Domain Observed (qaz .su) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "6",
+      "reference": "url,isc.sans.edu/diary/rss/29034",
+      "classtype": "misc-activity",
+      "sid": 2038801,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2022_09_12, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "qaz.su",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Abused File Sharing Site Domain Observed (qaz .su) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:6; content:\"qaz.su\"; fast_pattern; reference:url,isc.sans.edu/diary/rss/29034; classtype:misc-activity; sid:2038801; rev:3; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2022_09_12, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 375,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Abused File Sharing Site Domain Observed (qaz .im) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "6",
+      "reference": "url,isc.sans.edu/diary/rss/29034",
+      "classtype": "misc-activity",
+      "sid": 2038802,
+      "rev": 3,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2022_09_12, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_09_17",
+      "contents": [
+        {
+          "pattern": "qaz.im",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Abused File Sharing Site Domain Observed (qaz .im) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:6; content:\"qaz.im\"; fast_pattern; reference:url,isc.sans.edu/diary/rss/29034; classtype:misc-activity; sid:2038802; rev:3; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2022_09_12, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_09_17;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 379,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (d .kuku .lu) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "9",
+      "classtype": "misc-activity",
+      "sid": 2052953,
+      "rev": 2,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_05_29, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_10_04",
+      "contents": [
+        {
+          "pattern": "d.kuku.lu",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (d .kuku .lu) in TLS SNI\"; flow:established,to_server; tls.sni; bsize:9; content:\"d.kuku.lu\"; fast_pattern; classtype:misc-activity; sid:2052953; rev:2; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_05_29, deployment Perimeter, former_category INFO, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_06_27, reviewed_at 2024_10_04;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 387,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Related Domain (4sync .com) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2055338,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2024_08_19, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_08_19, reviewed_at 2024_10_04",
+      "contents": [
+        {
+          "pattern": ".4sync.com",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Related Domain (4sync .com) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".4sync.com\"; endswith; fast_pattern; classtype:misc-activity; sid:2055338; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2024_08_19, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, updated_at 2024_08_19, reviewed_at 2024_10_04;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 397,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Abused File Sharing Service Domain (qaz .is in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "bsize": "6",
+      "reference": "url,cert.gov.ua/article/6281202",
+      "classtype": "misc-activity",
+      "sid": 2057164,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2024_10_31, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_31",
+      "contents": [
+        {
+          "pattern": "qaz.is",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Abused File Sharing Service Domain (qaz .is in TLS SNI)\"; flow:established,to_server; tls.sni; bsize:6; content:\"qaz.is\"; fast_pattern; reference:url,cert.gov.ua/article/6281202; classtype:misc-activity; sid:2057164; rev:1; metadata:attack_target Client_Endpoint, created_at 2024_10_31, deployment Perimeter, confidence High, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2024_10_31;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 401,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Abused File Sharing Domain (uploadnow .io) in TLS SNI",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "url,uploadnow.io",
+      "classtype": "misc-activity",
+      "sid": 2060807,
+      "rev": 1,
+      "metadata": "affected_product Any, attack_target Client_Endpoint, created_at 2025_03_12, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag File_Sharing, updated_at 2025_03_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1102, mitre_technique_name Web_Service",
+      "contents": [
+        {
+          "pattern": ".uploadnow.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Abused File Sharing Domain (uploadnow .io) in TLS SNI\"; flow:established,to_server; tls.sni; dotprefix; content:\".uploadnow.io\"; endswith; fast_pattern; reference:url,uploadnow.io; classtype:misc-activity; sid:2060807; rev:1; metadata:affected_product Any, attack_target Client_Endpoint, created_at 2025_03_12, deployment Perimeter, performance_impact Low, confidence High, signature_severity Informational, tag File_Sharing, updated_at 2025_03_12, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1102, mitre_technique_name Web_Service;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 407,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Actor Abused File Sharing Platform in TLS SNI (krakencloud .net)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,80accd9b7e948bd1936e32103d2df14b",
+      "classtype": "misc-activity",
+      "sid": 2065039,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_07_24, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_03, former_sid 2863629",
+      "contents": [
+        {
+          "pattern": ".krakencloud.net",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Actor Abused File Sharing Platform in TLS SNI (krakencloud .net)\"; flow:established,to_server; tls.sni; dotprefix; content:\".krakencloud.net\"; endswith; fast_pattern; reference:md5,80accd9b7e948bd1936e32103d2df14b; classtype:misc-activity; sid:2065039; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_07_24, deployment Perimeter, confidence High, signature_severity Informational, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_10_03, former_sid 2863629;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 411,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed Abused File Sharing Domain (nullarmorupload .xyz in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "reference": "md5,d39848a04361b13b0d3c56a84cf5cfd4",
+      "classtype": "misc-activity",
+      "sid": 2064062,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_08_20, deployment Perimeter, confidence High, signature_severity Informational, tag FileSharing, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_08_20",
+      "contents": [
+        {
+          "pattern": ".nullarmorupload.xyz",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed Abused File Sharing Domain (nullarmorupload .xyz in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".nullarmorupload.xyz\"; endswith; fast_pattern; reference:md5,d39848a04361b13b0d3c56a84cf5cfd4; classtype:misc-activity; sid:2064062; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_08_20, deployment Perimeter, confidence High, signature_severity Informational, tag FileSharing, tag TA_Abused_Online_Service, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_08_20;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 415,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain (scalingo .io in TLS SNI)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2064192,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2025_08_27, deployment Perimeter, confidence High, signature_severity Informational, tag FileSharing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_08_27",
+      "contents": [
+        {
+          "pattern": ".scalingo.io",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain (scalingo .io in TLS SNI)\"; flow:established,to_server; tls.sni; dotprefix; content:\".scalingo.io\"; endswith; fast_pattern; classtype:misc-activity; sid:2064192; rev:1; metadata:attack_target Client_Endpoint, created_at 2025_08_27, deployment Perimeter, confidence High, signature_severity Informational, tag FileSharing, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2025_08_27;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 427,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain in TLS SNI (filelu .cloud)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2071891,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02",
+      "contents": [
+        {
+          "pattern": ".filelu.cloud",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain in TLS SNI (filelu .cloud)\"; flow:established,to_server; tls.sni; dotprefix; content:\".filelu.cloud\"; endswith; fast_pattern; classtype:misc-activity; sid:2071891; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 429,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain in TLS SNI (filelu .live)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2071892,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02",
+      "contents": [
+        {
+          "pattern": ".filelu.live",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain in TLS SNI (filelu .live)\"; flow:established,to_server; tls.sni; dotprefix; content:\".filelu.live\"; endswith; fast_pattern; classtype:misc-activity; sid:2071892; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02;)"
+  },
+  {
+    "source_file": "emerging-file_sharing.rules",
+    "line_number": 431,
+    "action": "alert",
+    "protocol": "tls",
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "options": {
+      "msg": "ET FILE_SHARING Observed File Sharing Domain in TLS SNI (filelu .online)",
+      "flow": "established,to_server",
+      "tls.sni": true,
+      "dotprefix": true,
+      "endswith": true,
+      "classtype": "misc-activity",
+      "sid": 2071893,
+      "rev": 1,
+      "metadata": "attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02",
+      "contents": [
+        {
+          "pattern": ".filelu.online",
+          "modifiers": {
+            "fast_pattern": true
+          }
+        }
+      ]
+    },
+    "raw_rule": "alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:\"ET FILE_SHARING Observed File Sharing Domain in TLS SNI (filelu .online)\"; flow:established,to_server; tls.sni; dotprefix; content:\".filelu.online\"; endswith; fast_pattern; classtype:misc-activity; sid:2071893; rev:1; metadata:attack_target Client_Endpoint, created_at 2026_09_02, deployment Perimeter, confidence High, signature_severity Informational, tag SSL_Malicious_Cert, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2026_09_02;)"
+  }
+]
