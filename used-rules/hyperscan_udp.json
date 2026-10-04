@@ -1,0 +1,7130 @@
+[
+  {
+    "id": 2007704,
+    "regex": "(?i)RTSP/(?-i).{0,}?(?i)\\x0aContent\\-Type\\x3a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 5,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET WEB_CLIENT Apple Quicktime RTSP Content-Type overflow attempt",
+    "classtype": "attempted-user",
+    "negated_patterns": [
+      {
+        "regex": "\\x0a",
+        "modifiers": {
+          "within": "50"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2017918,
+    "regex": "\\x00\\x02\\x2a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "123",
+    "protocol": "udp",
+    "msg": "ET DOS Possible NTP DDoS Inbound Frequent Un-Authed MON_LIST Requests IMPL 0x02",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2017920,
+    "regex": "\\x00\\x02\\x2a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "$HOME_NET",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DOS Possible NTP DDoS Multiple MON_LIST Seq 0 Response Spanning Multiple Packets IMPL 0x02",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2017921,
+    "regex": "\\x00\\x03\\x2a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "$HOME_NET",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DOS Possible NTP DDoS Multiple MON_LIST Seq 0 Response Spanning Multiple Packets IMPL 0x03",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2017965,
+    "regex": "\\x00\\x02\\x2a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "0:1023",
+    "protocol": "udp",
+    "msg": "ET DOS Likely NTP DDoS In Progress MON_LIST Response to Non-Ephemeral Port IMPL 0x02",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019010,
+    "regex": "\\x00\\x02\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "0:1023",
+    "protocol": "udp",
+    "msg": "ET DOS Likely NTP DDoS In Progress PEER_LIST Response to Non-Ephemeral Port IMPL 0x02",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019011,
+    "regex": "\\x00\\x03\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "0:1023",
+    "protocol": "udp",
+    "msg": "ET DOS Likely NTP DDoS In Progress PEER_LIST Response to Non-Ephemeral Port IMPL 0x03",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019012,
+    "regex": "\\x00\\x02\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "0:1023",
+    "protocol": "udp",
+    "msg": "ET DOS Likely NTP DDoS In Progress PEER_LIST_SUM Response to Non-Ephemeral Port IMPL 0x02",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019013,
+    "regex": "\\x00\\x03\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "0:1023",
+    "protocol": "udp",
+    "msg": "ET DOS Likely NTP DDoS In Progress PEER_LIST_SUM Response to Non-Ephemeral Port IMPL 0x03",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019102,
+    "regex": "M\\-SEARCH\\ \\*\\ HTTP/1\\.1.{0,}?(?i)ST\\x3a\\x20ssdp\\x3aall\\x0d\\x0a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1900",
+    "protocol": "udp",
+    "msg": "ET DOS Possible SSDP Amplification Scan in Progress",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016016,
+    "regex": "\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x01.{0,7}?\\x00\\xff\\x00\\x01\\x00\\x00\\x29",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 10,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET DOS DNS Amplification Attack Inbound",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2017966,
+    "regex": "\\x00\\x03\\x2a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "0:1023",
+    "protocol": "udp",
+    "msg": "ET DOS Likely NTP DDoS In Progress MON_LIST Response to Non-Ephemeral Port IMPL 0x03",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019014,
+    "regex": "\\x00\\x03\\x10",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "0:1023",
+    "protocol": "udp",
+    "msg": "ET DOS Likely NTP DDoS In Progress GET_RESTRICT Response to Non-Ephemeral Port IMPL 0x03",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019015,
+    "regex": "\\x00\\x02\\x10",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "0:1023",
+    "protocol": "udp",
+    "msg": "ET DOS Likely NTP DDoS In Progress GET_RESTRICT Response to Non-Ephemeral Port IMPL 0x02",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019016,
+    "regex": "\\x00\\x03\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "123",
+    "protocol": "udp",
+    "msg": "ET DOS Possible NTP DDoS Inbound Frequent Un-Authed PEER_LIST Requests IMPL 0x03",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019017,
+    "regex": "\\x00\\x02\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "123",
+    "protocol": "udp",
+    "msg": "ET DOS Possible NTP DDoS Inbound Frequent Un-Authed PEER_LIST Requests IMPL 0x02",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019018,
+    "regex": "\\x00\\x03\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "123",
+    "protocol": "udp",
+    "msg": "ET DOS Possible NTP DDoS Inbound Frequent Un-Authed PEER_LIST_SUM Requests IMPL 0x03",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019019,
+    "regex": "\\x00\\x02\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "123",
+    "protocol": "udp",
+    "msg": "ET DOS Possible NTP DDoS Inbound Frequent Un-Authed PEER_LIST_SUM Requests IMPL 0x02",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019021,
+    "regex": "\\x00\\x02\\x10",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "123",
+    "protocol": "udp",
+    "msg": "ET DOS Possible NTP DDoS Inbound Frequent Un-Authed GET_RESTRICT Requests IMPL 0x02",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019020,
+    "regex": "\\x00\\x03\\x10",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "123",
+    "protocol": "udp",
+    "msg": "ET DOS Possible NTP DDoS Inbound Frequent Un-Authed GET_RESTRICT Requests IMPL 0x03",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019022,
+    "regex": "\\xdf\\x00\\x00\\x04\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 5,
+    "src_ip": "any",
+    "src_port": "123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DOS Likely NTP DDoS In Progress Multiple UNSETTRAP Mode 6 Responses",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020305,
+    "regex": "\\x05.*?(?i)ServerName\\x3b(?-i).{0,}?InstanceName\\x3b.{0,}?IsClustered\\x3b.{0,}?Version\\x3b",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "1434",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DOS MC-SQLR Response Outbound Possible DDoS Participation",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020306,
+    "regex": "\\x05.*?(?i)ServerName\\x3b(?-i).{0,}?InstanceName\\x3b.{0,}?IsClustered\\x3b.{0,}?Version\\x3b",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "1434",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DOS MC-SQLR Response Inbound Possible DDoS Target",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2021170,
+    "regex": "\\x7a\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 12,
+    "src_ip": "$HOME_NET",
+    "src_port": "5093",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DOS Possible Sentinal LM  Application attack in progress Outbound (Response)",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2021171,
+    "regex": "\\x7a\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 12,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "5093",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DOS Possible Sentinal LM Amplification attack (Response) Inbound",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2021172,
+    "regex": "\\x7a\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5093",
+    "protocol": "udp",
+    "msg": "ET DOS Possible Sentinal LM Amplification attack (Request) Inbound",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2023054,
+    "regex": "\\x81\\x00\\x00\\x01\\x00\\x00.{0,}?\\x0croot\\-servers\\x03net\\x00.{0,}?\\x0croot\\-servers\\x03net\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 6,
+    "src_ip": "$HOME_NET",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1:1023",
+    "protocol": "udp",
+    "msg": "ET DOS DNS Amplification Attack Possible Outbound Windows Non-Recursive Root Hint Reserved Port",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2023053,
+    "regex": "\\x81\\x00\\x00\\x01\\x00\\x00.{0,}?\\x0croot\\-servers\\x03net\\x00.{0,}?\\x0croot\\-servers\\x03net\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 6,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1:1023",
+    "protocol": "udp",
+    "msg": "ET DOS DNS Amplification Attack Possible Inbound Windows Non-Recursive Root Hint Reserved Port",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2024584,
+    "regex": "\\x30\\x84\\x00\\x00\\x00\\x2d\\x02\\x01\\x01\\x63\\x84\\x00\\x00\\x00\\x24\\x04\\x00\\x0a\\x01\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "389",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "389",
+    "protocol": "udp",
+    "msg": "ET DOS CLDAP Amplification Reflection (PoC based)",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2024585,
+    "regex": "objectclass0",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "389",
+    "protocol": "udp",
+    "msg": "ET DOS Potential CLDAP Amplification Reflection",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2025403,
+    "regex": "STATS\\x20pid",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 9,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "11211",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DOS Possible Memcached DDoS Amplification Inbound",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2025402,
+    "regex": "STATS\\x20pid",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 9,
+    "src_ip": "any",
+    "src_port": "11211",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DOS Possible Memcached DDoS Amplification Response Outbound",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2025401,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x01\\x00.{0,20}?\\x0d\\x0a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 7,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "11211",
+    "protocol": "udp",
+    "msg": "ET DOS Possible Memcached DDoS Amplification Query (set)",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034664,
+    "regex": "(?i)\\x24\\x7bjndi\\x3a(?-i).{0,}?\\x24\\x7bupper\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (upper UDP Bypass) (CVE-2021-44228)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034666,
+    "regex": "(?i)\\x24\\x7bjndi\\x3a(?-i).{0,}?\\x24\\x7blower\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (lower UDP Bypass) (CVE-2021-44228)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034801,
+    "regex": "(?i)\\x24\\x7bjndi\\x3a(?-i).{0,}?\\x24\\x7bupper\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (upper UDP Bypass) (Outbound) (CVE-2021-44228)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034803,
+    "regex": "(?i)\\x24\\x7bjndi\\x3a(?-i).{0,}?\\x24\\x7blower\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol (lower UDP Bypass) (Outbound) (CVE-2021-44228)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034662,
+    "regex": "(?i)\\x24\\x7bjndi\\x3a(?-i).{0,20}?\\x3a\\x2f\\x2f",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol UDP (CVE-2021-44228)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034784,
+    "regex": "(?i)\\x24\\x7bjndi\\x3a(?-i).{0,20}?\\x3a\\x2f\\x2f",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET HUNTING Possible Apache log4j RCE Attempt - Any Protocol UDP (Outbound) (CVE-2021-44228)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034809,
+    "regex": "(?i)\\x24\\x7blower\\x3aj(?-i).{0,12}?n.{0,12}?d.{0,12}?i",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET HUNTING Apache log4j RCE Attempt - Any Protocol (lower UDP Bypass) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034811,
+    "regex": "(?i)\\x24\\x7bupper\\x3aj(?-i).{0,12}?n.{0,12}?d.{0,12}?i",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET HUNTING Apache log4j RCE Attempt - Any Protocol (upper UDP Bypass) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008117,
+    "regex": "\\x00\\x03",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "ET TFTP Outbound TFTP Data Transfer",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008118,
+    "regex": "\\x00\\x04",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "ET TFTP Outbound TFTP ACK",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008119,
+    "regex": "\\x00\\x05",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "ET TFTP Outbound TFTP Error Message",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100518,
+    "regex": "\\x00\\x02",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "GPL TFTP Put",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101442,
+    "regex": "\\x00\\x01.*?(?i)shadow(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "GPL TFTP GET shadow",
+    "classtype": "successful-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101443,
+    "regex": "\\x00\\x01.*?(?i)passwd(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "GPL TFTP GET passwd",
+    "classtype": "successful-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101289,
+    "regex": "\\x00\\x01.*?(?i)admin\\.dll(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "GPL TFTP GET Admin.dll",
+    "classtype": "successful-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101441,
+    "regex": "\\x00\\x01.*?(?i)nc\\.exe(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "GPL TFTP GET nc.exe",
+    "classtype": "successful-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101222,
+    "regex": "\\x00\\x01\\x25\\x2e",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "GPL TFTP MISC TFTP32 Get Format string attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008120,
+    "regex": "\\x00\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$EXTERNAL_NET,!255.255.255.255]",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "ET TFTP Outbound TFTP Read Request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008116,
+    "regex": "\\x00\\x02",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$EXTERNAL_NET,!255.255.255.255]",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "ET TFTP Outbound TFTP Write Request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2015857,
+    "regex": "\\x00\\x03.{2,14}?\\x0a\\x21\\x20version\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "ET TFTP Outbound TFTP Data Transfer with Cisco config",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2024481,
+    "regex": "\\x00\\x03.{0,}?NVRAM\\ config\\ last\\ update",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "ET TFTP Outbound TFTP Data Transfer With Cisco Config 2",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102004,
+    "regex": "\\x04.*?\\x81\\xf1\\x03\\x01\\x04\\x9b\\x81\\xf1.*?sock.*?send",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1434",
+    "protocol": "udp",
+    "msg": "GPL WORM Slammer Worm propagation attempt OUTBOUND",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009698,
+    "regex": "INVITE",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 6,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET VOIP INVITE Message Flood UDP",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009699,
+    "regex": "REGISTER",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 8,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET VOIP REGISTER Message Flood UDP",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009700,
+    "regex": "SIP/2\\.0\\ 401\\ Unauthorized",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 24,
+    "src_ip": "$HOME_NET",
+    "src_port": "5060",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET VOIP Multiple Unauthorized SIP Responses UDP",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2012296,
+    "regex": "(?i)\\x0d\\x0aUser\\-Agent\\x3a\\ Asterisk\\ PBX(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET VOIP Modified Sipvicious Asterisk PBX User-Agent",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2012297,
+    "regex": "(?i)\\x0d\\x0aUser\\-Agent\\x3a\\ Zoiper(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET VOIP Possible Inbound VOIP Scan/Misuse With User-Agent Zoiper",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2011422,
+    "regex": "OPTIONS\\ .{0,}?(?i)ccxllrlflgig\\x22<sip\\x3a100(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 8,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET VOIP Possible Modified Sipvicious OPTIONS Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100223,
+    "regex": "\\x3bbranch\\x3d.*?a\\x3d",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "GPL VOIP EXPLOIT SIP UDP Softphone overflow attempt",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2031295,
+    "regex": "\\xa7\\x06\\x02\\x04\\x6c\\x69\\x6c\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "88",
+    "protocol": "udp",
+    "msg": "ET CURRENT_EVENTS [Fireeye] HackTool.UDP.Rubeus.[nonce 2]",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2031269,
+    "regex": "\\x05.{4,5}?\\x0a.*?Z.{0,25}?\\x6c\\x69\\x6c\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 30,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "88",
+    "protocol": "udp",
+    "msg": "ET CURRENT_EVENTS [Fireeye] HackTool.UDP.Rubeus.[nonce]",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101388,
+    "regex": "(?i)Location\\x3a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1900",
+    "protocol": "udp",
+    "msg": "GPL MISC UPnP Location overflow",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101384,
+    "regex": "(?i)NOTIFY\\ \\*\\ (?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1900",
+    "protocol": "udp",
+    "msg": "GPL MISC UPnP malformed advertisement",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102005,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x87\\}.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap kcms_server request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102015,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x02.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap UNSET attempt UDP 111",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102017,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x05\\xf7u.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap espd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102025,
+    "regex": "\\x00\\x01\\x86\\xa9.{4,8}?\\x00\\x00\\x00\\x01.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "GPL RPC yppasswd username overflow attempt UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101950,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x01.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap SET attempt UDP 111",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101959,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xa3.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap NFS request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101961,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xab.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap RQUOTA request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101963,
+    "regex": "\\x00\\x01\\x86\\xab.{4,8}?\\x00\\x00\\x00\\x01.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "GPL RPC RQUOTA getquota overflow attempt UDP",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101964,
+    "regex": "\\x00\\x01\\x86\\xf3.{4,8}?\\x00\\x00\\x00\\x07.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "GPL RPC tooltalk UDP overflow attempt",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101923,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x05.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap proxy attempt UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101907,
+    "regex": "\\x00\\x01\\x86\\xe4.{4,8}?\\x00\\x00\\x00\\x15.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "GPL RPC CMSD UDP CMSD_CREATE buffer overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101913,
+    "regex": "\\x00\\x01\\x86\\xb8.{4,8}?\\x00\\x00\\x00\\x01.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "GPL RPC STATD UDP stat mon_name format string exploit attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101915,
+    "regex": "\\x00\\x01\\x86\\xb8.{4,8}?\\x00\\x00\\x00\\x02.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "GPL RPC STATD UDP monitor mon_name format string exploit attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101867,
+    "regex": "\\x00\\x01\\x00\\x02\\x00\\x01\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "177",
+    "protocol": "udp",
+    "msg": "GPL RPC xdmcp info query",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101746,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x87\\x8b.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap cachefsd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101732,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xa8.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap rwalld request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101277,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xbc.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap ypupdated request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102256,
+    "regex": "\\x00\\x01\\x87\\x88.{4,12}?\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x01.{0,4}?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "GPL RPC sadmind query with root credentials attempt UDP",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102185,
+    "regex": "\\x00\\x01\\x86\\xa5\\x00.{3,7}?\\x00\\x00\\x00\\x01.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 5,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "GPL RPC mountd UDP mount path overflow attempt",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102035,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x03\\x0dp.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap network-status-monitor request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100585,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x87\\x88.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap sadmind request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100589,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xa9.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap yppasswd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100590,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xa4.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap ypserv request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100575,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xf7.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap admind request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100576,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x87\\x03.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap amountd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100577,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xba.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap bootparam request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100578,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xe4.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap cmsd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101280,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x04.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap listing UDP 111",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100579,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xa5.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap mountd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100580,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x87\\xcc.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap nisd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100581,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x02I\\xf1.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap pcnfsd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100582,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xb1.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap rexd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100583,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xa1.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap rstatd request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100584,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xa2.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap rusers request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100586,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xaf.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap selection_svc request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101279,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x87\\x99.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap snmpXdmi request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100587,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xb8.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap status request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100588,
+    "regex": "\\x00\\x01\\x86\\xa0.{4,8}?\\x00\\x00\\x00\\x03.{0,4}?\\x00\\x01\\x86\\xf3.*?\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": 4,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "111",
+    "protocol": "udp",
+    "msg": "GPL RPC portmap ttdbserv request UDP",
+    "classtype": "rpc-portmap-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2017094,
+    "regex": "\\x07\\x06\\x10\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00.{2,4}?\\x00\\x00.{6,30}?\\x00\\x00\\x00\\x08\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x08\\x00\\x00\\x00\\x00\\x02\\x00\\x00\\x08\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 3,
+    "depth": 11,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[623,664]",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT IPMI Cipher 0 Authentication mode set",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019491,
+    "regex": "\\x82\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "$HOME_NET",
+    "src_port": "5351",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Malicious NAT-PMP Response Successful TCP Map to External Network",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019492,
+    "regex": "\\x81\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "$HOME_NET",
+    "src_port": "5351",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Malicious NAT-PMP Response Successful UDP Map to External Network",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2021572,
+    "regex": "\\x01\\x00\\x00\\x01\\x00\\x01.{0,2}?\\x00\\xf9",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible BIND9 DoS CVE-2015-5477 M1",
+    "classtype": "attempted-dos",
+    "negated_patterns": [
+      {
+        "regex": "\\x00\\xf9",
+        "modifiers": {
+          "within": "2"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2021574,
+    "regex": "\\x00\\x00\\x00\\x01\\x00\\x01.{0,2}?\\x00\\xf9",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible BIND9 DoS CVE-2015-5477 M3",
+    "classtype": "attempted-dos",
+    "negated_patterns": [
+      {
+        "regex": "\\x00\\xf9",
+        "modifiers": {
+          "within": "2"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2021575,
+    "regex": "\\x00\\x00\\x00\\x01.{4,6}?\\x00\\x01.{0,2}?\\x00\\xf9",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 4,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible BIND9 DoS CVE-2015-5477 M4",
+    "classtype": "attempted-dos",
+    "negated_patterns": [
+      {
+        "regex": "\\x00\\xf9",
+        "modifiers": {
+          "within": "2"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2021573,
+    "regex": "\\x01\\x00\\x00\\x01.{4,6}?\\x00\\x01.{0,2}?\\x00\\xf9",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 4,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible BIND9 DoS CVE-2015-5477 M2",
+    "classtype": "attempted-dos",
+    "negated_patterns": [
+      {
+        "regex": "\\x00\\xf9",
+        "modifiers": {
+          "within": "2"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2022542,
+    "regex": "\\x83\\x80\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 10,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible 2015-7547 PoC Server Response",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022543,
+    "regex": "\\x00\\x01.{0,5}?\\x00\\x00\\x01\\x00\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 2,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible CVE-2015-7547 Long Response to A lookup",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022544,
+    "regex": "\\x00\\x01.{0,5}?\\x00\\x00\\x1c\\x00\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 2,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible CVE-2015-7547 Long Response to AAAA lookup",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022545,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 10,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible CVE-2015-7547 Malformed Server Response A/AAAA",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022699,
+    "regex": "HELODBG",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "39889",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Quanta LTE Router UDP Backdoor Activation Attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022820,
+    "regex": "\\x60\\xc7\\x02\\x90\\x67\\xb9\\x09\\x8b\\x45\\xf8\\x8b\\x40\\x5c\\x8b\\x40\\x04\\x8b\\x40\\x08\\x8b\\x40\\x04\\x8b\\x00\\x85\\xc0\\x74\\x3b\\x50\\x8b\\x40\\x08\\x8b\\x40\\x04\\x8d\\x98\\xd8\\x00\\x00\\x00\\x58\\x81\\x3b\\xd0\\xd4\\x00\\xe1\\x75\\xe4\\x83\\x7b\\x04\\x31\\x74\\xde\\x89\\xd8\\x2d\\x00\\x01\\x00\\x00\\xc7\\x40\\x04\\x03\\x01\\x00\\x00\\xc7\\x40\\x0c\\xd0\\x00\\x00\\x00\\xc7\\x80\\xf8",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "500",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT CVE-2016-1287 Public Exploit ShellCode",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2023070,
+    "regex": "\\xbf\\xa5\\xa5\\xa5\\xa5\\xb8\\xd8\\xa5\\xa5\\xa5\\x31\\xf8\\xbb\\xa5.{2,24}?\\xac\\x31\\xfb\\xb9\\xa5\\xb5\\xa5\\xa5\\x31\\xf9\\xba\\xa2\\xa5\\xa5\\xa5\\x31\\xfa\\xcd\\x80\\xeb\\x14\\xbf.{4,28}?\\x31\\xc9\\xb1\\x04\\xfc\\xf3\\xa4\\xe9\\x0c\\x00\\x00\\x00\\x5e\\xeb\\xec\\xe8\\xf8\\xff\\xff\\xff\\x31\\xc0\\x40\\xc3",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Equation Group ExtraBacon Cisco ASA PMCHECK Disable",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2023071,
+    "regex": "\\xbf\\xa5\\xa5\\xa5\\xa5\\xb8\\xd8\\xa5\\xa5\\xa5\\x31\\xf8\\xbb\\xa5.{2,24}?\\xad\\x31\\xfb\\xb9\\xa5\\xb5\\xa5\\xa5\\x31\\xf9\\xba\\xa2\\xa5\\xa5\\xa5\\x31\\xfa\\xcd\\x80\\xeb\\x14\\xbf.{4,28}?\\x31\\xc9\\xb1\\x04\\xfc\\xf3\\xa4\\xe9\\x0c\\x00\\x00\\x00\\x5e\\xeb\\xec\\xe8\\xf8\\xff\\xff\\xff\\x31\\xc0\\x40\\xc3",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Equation Group ExtraBacon Cisco ASA AAAADMINAUTH Disable",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2023086,
+    "regex": "\\x06\\x01\\x04\\x01\\x09\\x09\\x83\\x6b.{0,160}?\\x81\\x10\\x81\\x10\\x81\\x10\\x81\\x10\\x81\\x10\\x81\\x10\\x81\\x10\\x81\\x10",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT CISCO FIREWALL SNMP Buffer Overflow Extrabacon (CVE-2016-6366)",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2023311,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x10.{30,}?\\x80\\x02\\x00.{1,7}?\\x80\\x04\\x00\\x01\\x00\\x06",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 8,
+    "depth": 10,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "500",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Cisco IKEv1 Information Disclosure Vulnerability CVE-2016-6415",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019490,
+    "regex": "\\x80\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 3,
+    "src_ip": "$HOME_NET",
+    "src_port": "5351",
+    "direction": "->",
+    "dst_ip": "[!224.0.0.1,$EXTERNAL_NET]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Malicious NAT-PMP Response to External Network",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022506,
+    "regex": "\\x84\\x00\\x00.{0,3}?\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "500",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible CVE-2016-1287 Invalid Fragment Size Inbound",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022515,
+    "regex": "\\x84\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 16,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "500",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible CVE-2016-1287 Invalid Fragment Size Inbound 2",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022516,
+    "regex": "\\x84\\x10",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 16,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "500",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible CVE-2016-1287 Invalid Fragment Size Inbound 3",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2025765,
+    "regex": "\\x02.{0,}?\\x35\\x01\\x05\\xfc.{0,}?\\x2fbin\\x2fsh",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "any",
+    "src_port": "67",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "68",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT DynoRoot DHCP - Client Command Injection",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2025821,
+    "regex": "command_blink_on\\x3b.{0,44}?\\x60",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "4070",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT HID VertX and Edge door controllers command_blink_on Remote Command Execution",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019237,
+    "regex": "\\x02\\x01.*?\\x28\\x29\\x20\\x7b",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "any",
+    "src_port": "67",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "68",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible CVE-2014-6271 exploit attempt via malicious DHCP ACK",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019289,
+    "regex": "\\x28\\x29\\x20\\x7b",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[5060,5061]",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible CVE-2014-6271 Attempt Against SIP Proxy",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019322,
+    "regex": "\\x20.*?\\x28\\x29\\x20\\x7b",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1194",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible OpenVPN CVE-2014-6271 attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019402,
+    "regex": "\\x28\\x29\\x20\\x7b",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible CVE-2014-6271 malicious DNS response",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2030348,
+    "regex": "\\x3e\\xd1",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "50001",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT AnyDesk UDP Discovery Format String (CVE-2020-13160)",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2018560,
+    "regex": "\\x16\\xfe\\xff\\x00\\x00\\x00\\x00\\x00\\x00\\x00.{3,4}?\\x01.{0,1}?\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 10,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT SUSPICIOUS DTLS 1.0 Fragmented Client Hello Possible CVE-2014-0195",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2024376,
+    "regex": "\\x11\\x49\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x28\\x9e",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "50000",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Win32/Industroyer DDOS Siemens SIPROTEC (CVE-2015-5374)",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2031937,
+    "regex": "\\x00\\x1a\\x00\\x00\\x04\\x00\\x00\\x01\\x01\\xff\\xff\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "60000:",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible NSDP (Netgear) Remote Authentication Bypass with Factory Reset (CVE-2020-35231)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2031938,
+    "regex": "\\x00\\x1a\\x00\\x0a.*?\\xff\\xff\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "60000:",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible NSDP (Netgear) Unauthenticated Buffer Overflow (CVE-2020-35232)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2031940,
+    "regex": "\\x00\\x0b\\x00.{2,6}?\\xff\\xff\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "60000:",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible NSDP (Netgear) Unauthenticated Write Access to DHCP Config (CVE-2020-35226)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2031943,
+    "regex": "\\x00\\x1a\\x00.*?\\x00\\x03.{1,2}?\\xff.*?\\xff\\xff\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "60000:",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible NSDP (Netgear) Write Command Buffer Overflow Attempt - 0x0003 (CVE-2020-35225)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2031944,
+    "regex": "\\x00\\x1a\\x00.*?\\x00\\x05.{1,2}?\\xff.*?\\xff\\xff\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "60000:",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible NSDP (Netgear) Write Command Buffer Overflow Attempt - 0x0005 (CVE-2020-35225)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2031945,
+    "regex": "\\x00\\x1a\\x00.*?\\x00\\x0a.{1,2}?\\xff.*?\\xff\\xff\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "60000:",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible NSDP (Netgear) Write Command Buffer Overflow Attempt - 0x000a (CVE-2020-35225)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2033661,
+    "regex": "TLPU.{4,8}?\\x00\\x00\\x00\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "12345",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT [PwnedPiper] Exploitation Attempt - Small Malformed Translogic Packet (Multiple CVEs)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034652,
+    "regex": "(?i)\\x24\\x7bjndi\\x3armi\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp rmi) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034651,
+    "regex": "(?i)\\x24\\x7bjndi\\x3aldap\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp ldap) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034653,
+    "regex": "(?i)\\x24\\x7bjndi\\x3adns\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp dns) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034656,
+    "regex": "(?i)\\x24\\x7bjndi\\x3aldaps\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp ldaps) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034667,
+    "regex": "(?i)\\x24\\x7bjndi\\x3aiiop\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp iiop) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034660,
+    "regex": "(?i)%7bjndi%3a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt - lower/upper UDP Bypass M1 (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034701,
+    "regex": "(?i)\\x24\\x7bjndi\\x3a(?-i).{0,}?\\x3a\\x2f\\x2f",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt - lower/upper UDP Bypass M2 (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034707,
+    "regex": "\\x24\\x7b\\x24\\x7blower\\x3a\\x24\\x7blower\\x3ajndi",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt - Nested lower (udp) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034709,
+    "regex": "\\x24\\x7b\\x24\\x7bupper\\x3a\\x24\\x7bupper\\x3ajndi",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt - Nested upper (udp) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034711,
+    "regex": "\\x24\\x7bjndi\\x3anis\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt (udp nis) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034713,
+    "regex": "\\x24\\x7bjndi\\x3ands\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt (udp nds) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034715,
+    "regex": "\\x24\\x7bjndi\\x3acorba\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt (udp corba) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034717,
+    "regex": "\\x24\\x7bbase64\\x3aJHtqbmRp",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt - Base64 jndi (udp) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034763,
+    "regex": "(?i)\\x24\\x7bjndi\\x3adns\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp dns) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034750,
+    "regex": "\\x24\\x7bbase64\\x3aJHtqbmRp",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt - Base64 jndi (udp) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034782,
+    "regex": "(?i)%7bjndi%3a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt - lower/upper UDP Bypass M1 (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034788,
+    "regex": "(?i)\\x24\\x7bjndi\\x3aiiop\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp iiop) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034789,
+    "regex": "\\x24\\x7bjndi\\x3acorba\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt (udp corba) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034791,
+    "regex": "\\x24\\x7bjndi\\x3ands\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt (udp nds) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034793,
+    "regex": "\\x24\\x7bjndi\\x3anis\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt (udp nis) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034795,
+    "regex": "\\x24\\x7b\\x24\\x7bupper\\x3a\\x24\\x7bupper\\x3ajndi",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt - Nested upper (udp) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034797,
+    "regex": "\\x24\\x7b\\x24\\x7blower\\x3a\\x24\\x7blower\\x3ajndi",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt - Nested lower (udp) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034799,
+    "regex": "(?i)\\x24\\x7bjndi\\x3a(?-i).{0,}?\\x3a\\x2f\\x2f",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt - lower/upper UDP Bypass M2 (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034805,
+    "regex": "\\x24\\x7b.{0,100}?\\x24\\x7b\\x3a\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt - 2021/12/12 Obfuscation Observed M2 (udp) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2035888,
+    "regex": "\\x30\\x82.{0,}?\\x30\\x0a\\x06\\x08\\x2a\\x86\\x48\\xce\\x3d\\x04\\x03.{0,}?\\x2a\\x86\\x48\\xce\\x3d\\x01\\x01\\x02\\x02\\x02\\xb9.{0,36}?\\x20\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x17.{0,36}?\\x20\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00.{23,25}?\\x04\\x03.{1,3}?\\x00\\x08",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible OpenSSL Infinite Loop Inducing Cert Inbound via UDP (CVE-2022-0778)",
+    "classtype": "denial-of-service",
+    "negated_patterns": []
+  },
+  {
+    "id": 2033662,
+    "regex": "TLPU",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "12345",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT [PwnedPiper] Exploitation Attempt - Large Malformed Translogic Packet (CVE-2021-37164)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034761,
+    "regex": "(?i)\\x24\\x7bjndi\\x3aldap\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp ldap) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034762,
+    "regex": "(?i)\\x24\\x7bjndi\\x3armi\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp rmi) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034766,
+    "regex": "(?i)\\x24\\x7bjndi\\x3aldaps\\x3a\\x2f\\x2f(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Apache log4j RCE Attempt (udp ldaps) (Outbound) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2038669,
+    "regex": "\\x20SIP\\x2f.*?m=audio\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Realtek eCos RSDK/MSDK Stack-based Buffer Overflow Attempt Inbound (CVE-2022-27255)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034674,
+    "regex": "\\x24\\x7b.{0,100}?\\x24\\x7b\\x3a\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "!51820",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Possible Apache log4j RCE Attempt - 2021/12/12 Obfuscation Observed M2 (udp) (CVE-2021-44228)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044008,
+    "regex": "orf\\x3b",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "9034",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Realtek SDK - Command Execution/Backdoor Access Inbound (CVE-2021-35394)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2032326,
+    "regex": "M\\-SEARCH\\x20.*?(?i)\\x0d\\x0aST\\x3a(?-i).{0,6}?uuid\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1900",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT DD-WRT UPNP Unauthenticated Buffer Overflow (CVE-2021-27137)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2055309,
+    "regex": "\\x02\\x09\\x00\\x00\\x00\\xff\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "427",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT OpenBMC slpd-lite Language Tag Length Memory Corruption Attempt (CVE-2024-41660)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2059017,
+    "regex": "\\x30.{2,3}?\\x04.{4,5}?\\x65.{1,3}?\\x0a\\x01.{0,}?\\xa3.{0,7}?ldap",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "389",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Microsoft LDAP Referral Response Inbound (CVE-2024-49113)",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2063094,
+    "regex": "\\x29\\x20\\x22\\x08.{0,}?\\x28\\x00.{4,6}?\\x00\\x0e",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 16,
+    "depth": 4,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "500",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Zyxel ZyWALL/USG OS Command Injection (CVE-2023-28771)",
+    "classtype": "web-application-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2063367,
+    "regex": "\\x01.{15,19}?\\x72\\x1f\\x18\\x08",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 1,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "2123",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT GTPDoor Trigger Packet Request",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2063368,
+    "regex": "\\x02.{15,19}?\\x72\\x1f\\x18\\x08",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 1,
+    "depth": 1,
+    "src_ip": "any",
+    "src_port": "2123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT GTPDoor Trigger Packet Response",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2063532,
+    "regex": "\\x01\\x01\\x01\\x06\\x02\\x03\\x00\\x00\\x00\\x64\\x07",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "32769",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Alcatel-Lucent cluster_cor Command Injection Attempt (CVE-2025-52690)",
+    "classtype": "web-application-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2063558,
+    "regex": "\\x06.{6,7}?\\x07",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 3,
+    "depth": 1,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "32769",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT Alcatel AP1361D Command Injection in cluster_cor Service (CVE-2025-52690)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2069043,
+    "regex": "\\x35\\x20\\x23\\x08\\x00\\x00\\x00\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 16,
+    "depth": 8,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[500,4500]",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT IKEv2 Invalid Fragmented IKE_AUTH (CVE-2026-33824)",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2071956,
+    "regex": "\\x63\\x82\\x53\\x63.{0,1}?\\x35.{0,}?\\x7d.{0,5}?\\xe9\\x0d\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "67",
+    "protocol": "udp",
+    "msg": "ET EXPLOIT D-Link udhcpd option 125, Suboption 1-3 Buffer Overflow Attempt (CVE-2026-86296)",
+    "classtype": "web-application-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2064797,
+    "regex": "M\\-SEARCH\\ .{0,}?ST\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 9,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1900",
+    "protocol": "udp",
+    "msg": "ET WEB_SPECIFIC_APPS D-Link SSDP ST Header Command Injection Attempt (CVE-2025-10629, CVE-2026-3485)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2038708,
+    "regex": "\\x01\\x0c\\x01\\x0a\\x00\\x01\\x00\\x00\\x01\\x82",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 27,
+    "depth": 10,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "9993",
+    "protocol": "udp",
+    "msg": "ET ADWARE_PUP ZeroTier P2P VPN Activity M1",
+    "classtype": "pup-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2015474,
+    "regex": "\\x9e\\x98",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 6,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET MALWARE ZeroAccess udp traffic detected",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2015482,
+    "regex": "\\x28\\x94\\x8d\\xab\\xc9\\xc0\\xd1\\x99",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 8,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE ZeroAccess Outbound udp traffic detected",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2018275,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x38",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 9,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET MALWARE Linux/Onimiki DNS trojan activity long format (Outbound)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2018276,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x38",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 9,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET MALWARE Linux/Onimiki DNS trojan activity long format (Inbound)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2018666,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Zeus P2P Variant DGA NXDOMAIN Responses July 11 2014",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019609,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{15,19}?\\x02ru\\x00.{0,1}?\\x0c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Tinba DGA NXDOMAIN Responses (2)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019692,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{19,23}?\\x02eu\\x00.{0,1}?\\x10",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Emotet DGA NXDOMAIN Responses",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019882,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{37,41}?\\x02cc\\x00.{0,1}?\\x22",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Dyre DGA NXDOMAIN Responses (.cc)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019884,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{37,41}?\\x02to\\x00.{0,1}?\\x22",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Dyre DGA NXDOMAIN Responses (.to)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019885,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{37,41}?\\x02in\\x00.{0,1}?\\x22",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Dyre DGA NXDOMAIN Responses (.in)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019886,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{37,41}?\\x02hk\\x00.{0,1}?\\x22",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Dyre DGA NXDOMAIN Responses (.hk)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019888,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{37,41}?\\x02tk\\x00.{0,1}?\\x22",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Dyre DGA NXDOMAIN Responses (.tk)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019889,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{37,41}?\\x02so\\x00.{0,1}?\\x22",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Dyre DGA NXDOMAIN Responses (.so)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020741,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{53,57}?\\x02su\\x00.{0,1}?\\x32",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Win32.Hyteod.acox Domain Generation Algorithm (DGA) Lookup NXDOMAIN Response",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020742,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{53,57}?\\x02ru\\x00.{0,1}?\\x32",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Win32.Hyteod.acox Domain Generation Algorithm (DGA) Lookup NXDOMAIN Response",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2021385,
+    "regex": "\\x7c\\x2a\\x26.{0,}?\\x7c.{16,17}?\\x7c.{0,}?\\x7c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 3,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Win32/Denisca.A CnC Beacon",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2021389,
+    "regex": "\\x2a\\x26.{22,}?\\x26\\x5e",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Win32/Denisca.A CnC Beacon 2",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2021791,
+    "regex": "\\x00\\x00\\x50\\x00\\x02\\x00\\x00\\x00\\x00\\x04\\x00\\x00\\x00\\x10\\x00\\x00\\x00\\x00\\x00\\x00.{3,16}?\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 20,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "!53",
+    "protocol": "udp",
+    "msg": "ET MALWARE PlugX UDP CnC Beacon",
+    "classtype": "command-and-control",
+    "negated_patterns": [
+      {
+        "regex": "\\x00\\x00",
+        "modifiers": {
+          "within": "2"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2019230,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x01.{15,19}?\\x03com.{0,1}?\\x0c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Possible Tinba DGA NXDOMAIN Responses",
+    "classtype": "trojan-activity",
+    "negated_patterns": [
+      {
+        "regex": "\\x08sophosxl\\x03",
+        "modifiers": {}
+      }
+    ]
+  },
+  {
+    "id": 2024840,
+    "regex": "\\x00\\x10\\x00\\x01.{7,12}?H4sIA",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE DNSMessenger Payload (TXT base64 gzip header)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2027892,
+    "regex": "\\xaf\\x7d\\xa7\\x38\\xeb\\xf9\\xf7\\x47.{4,5}?\\x00.{1,3}?\\x10\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 8,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "8000",
+    "protocol": "udp",
+    "msg": "ET MALWARE Win32/Dostre CnC Activity",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019454,
+    "regex": "\\x01.{1,8}?\\x00\\x01\\x00\\x00\\x00\\x00\\x00.{7,}?(?i)dc(?-i).*?(?i)\\x06beacon(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET MALWARE FrameworkPOS Covert DNS CnC Beacon 1",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019455,
+    "regex": "\\x01.{1,8}?\\x00\\x01\\x00\\x00\\x00\\x00\\x00.{6,}?(?i)dc978a97(?-i).*?(?i)\\x05alert(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET MALWARE FrameworkPOS Covert DNS CnC Beacon 2",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022335,
+    "regex": "\\x01.{1,8}?\\x00\\x01\\x00\\x00\\x00\\x00\\x00.{0,}?(?i)\\x0b/lib32/libc\\x02so\\x016\\x00(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET MALWARE ELF.MrBlack DOS.TF Malformed Lookup (/lib32/libc.so.6)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022836,
+    "regex": "\\x01.{1,8}?\\x00\\x01\\x00\\x00\\x00\\x00\\x00.{1,3}?00.{0,}?00000.{0,}?\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE PowerShell/Agent.A DNS Checkin",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020150,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x32\\x32",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE TinyLoader.A Checkin x86",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020151,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x64\\x32",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE TinyLoader.A Checkin x64",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020849,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x32",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE TinyLoader.B1 Checkin x86",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020850,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x86",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE TinyLoader.B1 Checkin x64",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020851,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x84",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE TinyLoader.B2 Checkin no architecture",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020852,
+    "regex": "Sy\\x5c.{0,}?wininit\\x5c.*?winlogon\\x5c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE TinyLoader.B1 Sending Processes",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022072,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\xba",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE TinyLoader.B2 Checkin x64",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022837,
+    "regex": "\\x01.{1,8}?\\x00\\x01\\x00\\x00\\x00\\x00\\x00.{1,3}?00.{0,}?00000.*?232A",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE PowerShell/Agent.A DNS File Transfer CnC Beacon",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2029042,
+    "regex": "\\x00\\x00\\x00\\x00\\x02\\x8e\\xa5\\x64\\xe2\\xa5\\xf7\\x73\\x6d\\x2e\\xf2\\x86\\xd3\\x7b\\xb7\\x86\\xe4\\x7f\\x0d\\xa7\\xa0\\x77\\xb1\\xad\\x24\\x49\\x5b\\xde\\xd6\\xdb\\xb7\\xe1\\x79",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE ELF/Roboto - Communicating with Hardcoded Peer 1",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2029043,
+    "regex": "\\x00\\x00\\x00\\x00\\x02\\x93\\xda\\x64\\xb3\\x1f\\x49\\x1b\\xa4\\xb5\\x2d\\x28\\x92\\x49\\x52\\x7c\\x3d\\x41\\xd2\\x4f\\xb2\\x8b\\xff\\x2c\\xed\\xa2\\xe7\\x90\\x18\\x4f\\x9e\\xc0\\x7b",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE ELF/Roboto - Communicating with Hardcoded Peer 2",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2029044,
+    "regex": "\\x00\\x00\\x00\\x00\\x02\\xe8\\x78\\x31\\xc6\\x55\\x9a\\x13\\xfc\\xab\\xdb\\x75\\x9b\\xa5\\xb1\\xd6\\x05\\xf2\\x3a\\x72\\xff\\x04\\xb5\\x9f\\x7f\\x5a\\x8b\\x12\\x56\\xf2\\xca\\x01\\x5e",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE ELF/Roboto - Communicating with Hardcoded Peer 3",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2029045,
+    "regex": "\\x00\\x00\\x00\\x00\\x02\\xe7\\x30\\x7d\\x3c\\xbc\\x93\\x4a\\xec\\xed\\xd8\\xfd\\x9f\\xb9\\xfe\\x93\\xb7\\xf3\\x53\\xb3\\x11\\x5d\\xf7\\xc8\\xca\\x0c\\xf8\\x77\\xd1\\x34\\xca\\x37\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE ELF/Roboto - Communicating with Hardcoded Peer 4",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2029046,
+    "regex": "\\x00\\x00\\x00\\x00\\x02\\xb3\\xe5\\xb3\\xd6\\xe6\\xde\\x7c\\x7d\\x79\\x40\\xa5\\x4f\\xd9\\xb0\\xac\\x7b\\x2d\\xc6\\xce\\x69\\xef\\xf3\\xc4\\x58\\xf2\\x98\\xa8\\x92\\xdf\\x92\\x9e\\x0e",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE ELF/Roboto - Communicating with Hardcoded Peer 5",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2030919,
+    "regex": "\\x64\\x31\\x3a\\x72\\x64\\x32\\x3a\\x69\\x64\\x32\\x30\\x3a\\x38\\x38\\x38\\x38\\x38\\x38\\x38\\x38.{13,25}?\\x3a\\x6e\\x6f\\x64\\x65\\x73\\x36\\x32\\x34\\x3a\\x15\\x15",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Mozi Botnet DHT Config Sent",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034254,
+    "regex": "\\x06\\x81\\xda\\x91\\xce\\xc7\\x9f\\x43.{4,8}?\\x14\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "protocol": "udp",
+    "msg": "ET MALWARE Win32/WinDealer CnC Activity (Checkin)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2026040,
+    "regex": "\\x81\\x80\\x00\\x01\\x00\\x01\\x00\\x00\\x00\\x00.*?\\xc0\\x0c\\x00\\x01\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x04\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 10,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE CobaltStrike DNS Beacon Response",
+    "classtype": "targeted-activity",
+    "negated_patterns": [
+      {
+        "regex": "\\x06nessus\\x03org",
+        "modifiers": {}
+      },
+      {
+        "regex": "trr\\x03dns\\x07nextdns\\x02io",
+        "modifiers": {}
+      },
+      {
+        "regex": "\\x08cloudapp\\x03net",
+        "modifiers": {}
+      }
+    ]
+  },
+  {
+    "id": 2036499,
+    "regex": "\\x30\\x00.{9,}?\\x00\\x04\\x00\\x00\\x00\\x10\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "![80,443]",
+    "protocol": "udp",
+    "msg": "ET MALWARE Win32/PlugX Variant CnC Activity",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044077,
+    "regex": "\\x20\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "40500",
+    "protocol": "udp",
+    "msg": "ET MALWARE Win32/Phorpiex UDP Peer-to-Peer CnC",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2045673,
+    "regex": "\\x44\\x30\\xcd\\x9f\\x5e\\x14\\x27\\x66",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[22,80,443]",
+    "protocol": "udp",
+    "msg": "ET MALWARE BPFDoor V2 UDP Magic Packet Inbound",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2047158,
+    "regex": "\\x68\\x61\\x78\\x30\\x72\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "666",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Reptile Rootkit Default UDP Magic Packet Trigger",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2048550,
+    "regex": "\\x00\\x04\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Win32/MataDoor CnC Beacon Over UDP",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2050497,
+    "regex": "\\xfe\\xad\\x01\\x00.{0,7}?\\x00\\x01\\x00\\x00\\x00\\x00\\x00.{1,15}?(?i)\\x09microsoft\\x03com(?-i).{0,14}?\\x00\\x00\\x01\\x00\\x01\\xaa\\x9d\\x9d\\x9d\\x9d\\x9d\\x9d\\xa5\\xaa",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "[53,4499,8000]",
+    "protocol": "udp",
+    "msg": "ET MALWARE nspx30 Backdoor Trigger Response Observed",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2042974,
+    "regex": "\\xf1\\x00.{6,10}?\\x51\\x00\\x00\\x02",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET MALWARE Charming Kitten APT Related DNS Activity",
+    "classtype": "trojan-activity",
+    "negated_patterns": [
+      {
+        "regex": "\\x00\\x00\\x00\\x00\\x00\\x00",
+        "modifiers": {
+          "within": "6"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2051839,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x04\\x00\\x00\\x00.*?\\x00\\x00\\x00\\x00\\x50\\x00\\x04\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "443",
+    "protocol": "udp",
+    "msg": "ET MALWARE Suspected DinodasRAT Related Activity (UDP)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2013075,
+    "regex": "\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 10,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET MALWARE Large DNS Query possible covert channel",
+    "classtype": "bad-unknown",
+    "negated_patterns": [
+      {
+        "regex": "youtube\\x03com\\x00",
+        "modifiers": {}
+      },
+      {
+        "regex": "sophosxl\\x03net\\x00",
+        "modifiers": {}
+      },
+      {
+        "regex": "\\x0ahashserver\\x02cs\\x0atrendmicro\\x03com\\x00",
+        "modifiers": {}
+      },
+      {
+        "regex": "spamhaus\\x03org\\x00",
+        "modifiers": {}
+      }
+    ]
+  },
+  {
+    "id": 2051868,
+    "regex": "\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x04\\x00\\x00\\x00.{6,34}?\\x00\\x00\\x00\\x00\\x50\\x00\\x04\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Linux/Dinodas RAT CnC Checkin - UDP",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2052876,
+    "regex": "\\x00\\x00\\x00\\x00\\xca\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 8,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE Unknown RAT CnC Checkin",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2060870,
+    "regex": "\\xa6\\x04\\xed\\x83\\x92\\x46\\xce\\x40\\x9a\\x34\\x8c\\x7b\\x5a\\xd6\\xe5\\x0d",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[33615,33568]",
+    "protocol": "udp",
+    "msg": "ET MALWARE TINYSHELL impad Variant Encrypted Auth Token",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2060871,
+    "regex": "\\xe3\\xc6\\xb9",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[33615,33568]",
+    "protocol": "udp",
+    "msg": "ET MALWARE TINYSHELL impad Variant Command Packet",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2065005,
+    "regex": "\\x72\\x55\\x00\\x00.*?\\x73",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE BPFDoor UDP Magic Packet (Inbound) M3",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2065003,
+    "regex": "\\x72\\x55\\x00\\x00.*?\\x6a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE BPFDoor UDP Magic Packet (Inbound) M1",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2065004,
+    "regex": "\\x72\\x55\\x00\\x00.*?\\x6d",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET MALWARE BPFDoor UDP Magic Packet (Inbound) M2",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2066686,
+    "regex": "\\x22\\x00FFFFFFFFFFFFFFFF\\x04",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET MALWARE GhostPenguin C2 Beacon Observed",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009245,
+    "regex": "\\x54\\x63\\x6c\\x53\\x68\\x65\\x6c\\x6c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "69",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET ATTACK_RESPONSE Cisco TclShell TFTP Download",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102043,
+    "regex": "\\x10\\x05.{13,21}?\\x00\\x00\\x00\\x01\\x01\\x00\\x00\\x18",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 17,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "500",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "500",
+    "protocol": "udp",
+    "msg": "GPL ATTACK_RESPONSE isakmp login failed",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2017121,
+    "regex": "\\x06\\x13.{11,12}?\\x0d",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "623",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET ATTACK_RESPONSE Possible IPMI 2.0 RAKP Remote SHA1 Password Hash Retrieval RAKP message 2 status code Unauthorized Name",
+    "classtype": "protocol-command-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022819,
+    "regex": "\\xff\\xff\\xfftcp/CONNECT/3/",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "500",
+    "protocol": "udp",
+    "msg": "ET ATTACK_RESPONSE Possible CVE-2016-1287 Inbound Reverse CLI Shellcode",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009285,
+    "regex": "\\x53\\x53\\x53\\x53\\x53\\x43\\x53\\x43\\x53\\xff\\xd0\\x66\\x68.{0,}?\\x66\\x53\\x89\\xe1\\x95\\x68\\xa4\\x1a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET SHELLCODE Bindshell2 Decoder Shellcode (UDP)",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019383,
+    "regex": "AUTHENTICATE\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 8,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "3653",
+    "protocol": "udp",
+    "msg": "ET RETIRED gogo6/Freenet6 Authentication Attempt",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022531,
+    "regex": "\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 8,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET RETIRED Possible 2015-7547 Malformed Server response",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  },
+  {
+    "id": 2011011,
+    "regex": "(?i)ILMI(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET SNMP Attempted UDP Access Attempt to Cisco IOS 12.1 Hidden Read/Write Community String ILMI",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2011013,
+    "regex": "(?i)cable\\-docsis(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET SNMP Attempted UDP Access Attempt to Cisco IOS 12.1 Hidden Read/Write Community String cable-docsis",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101892,
+    "regex": "\\x04\\x01\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 5,
+    "depth": 15,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "GPL SNMP null community string attempt",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016178,
+    "regex": "\\x30.{1,2}?\\x02.{0,2}?\\x04\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET SNMP missing community string attempt 1",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016179,
+    "regex": "\\x30.{0,1}?\\x02.{0,2}?\\x04\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET SNMP missing community string attempt 2",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016181,
+    "regex": "\\x30.{1,2}?\\x02.{0,2}?\\x04\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET SNMP missing community string attempt 4",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101413,
+    "regex": "private",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "GPL SNMP private access udp",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101411,
+    "regex": "public",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "GPL SNMP public access udp",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101427,
+    "regex": "08\\x02\\x01\\x00\\x04\\x06public\\xa4\\+\\x06",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "162",
+    "protocol": "udp",
+    "msg": "GPL SNMP PROTOS test-suite-trap-app attempt",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100516,
+    "regex": "\\+\\x06\\x10@\\x14\\xd1\\x02\\x19",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "GPL SNMP SNMP NT UserList",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2015856,
+    "regex": "\\x2b\\x06\\x01\\x04\\x01\\x09\\x09\\x60\\x01\\x01\\x01\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET SNMP Attempt to retrieve Cisco Config via TFTP (CISCO-CONFIG-COPY)",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2015959,
+    "regex": "s!a@m\\#n\\$p%c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "udp",
+    "msg": "ET SNMP Samsung Printer SNMP Hardcode RW Community String",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100227,
+    "regex": "%s",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "162",
+    "protocol": "udp",
+    "msg": "GPL SNMP SNMP trap Format String detected",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2003311,
+    "regex": "\\xe3\\x0d",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P Edonkey Publicize File ACK",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2003312,
+    "regex": "\\xe3\\x0a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P Edonkey Connect Request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2002760,
+    "regex": "SCP@\\x83DNA@",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET P2P GnucDNA UDP Ultrapeer Traffic",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2001796,
+    "regex": "(?i)KaZaA(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P Kazaa over UDP",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009097,
+    "regex": "\\x3d\\x4a\\xd9",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 3,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "41170",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET P2P Manolito Connection (1)",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009098,
+    "regex": "\\x3d.{1,}?\\xd9.{13,}?\\xed\\xbb",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "41170",
+    "protocol": "udp",
+    "msg": "ET P2P Manolito Ping",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008581,
+    "regex": "(?i)d1\\x3aad2\\x3aid20\\x3a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 12,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET P2P BitTorrent DHT ping request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008585,
+    "regex": "(?i)d1\\x3aad2\\x3aid20\\x3a(?-i).{55,}?(?i)e1\\x3aq13\\x3aannounce_peer1\\x3a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 14,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET P2P BitTorrent DHT announce_peers request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2010008,
+    "regex": "POST\\ /\\ HTTP/1\\..*?Oshtcp\\-streamtype\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 64,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "8247",
+    "protocol": "udp",
+    "msg": "ET P2P Octoshape P2P streaming media",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008583,
+    "regex": "(?i)d1\\x3ard2\\x3aid20\\x3a(?-i).{20,27}?(?i)5\\x3anodes(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 12,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET P2P BitTorrent DHT nodes reply",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2001298,
+    "regex": "\\xe3\\x96",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "4660:4799",
+    "protocol": "udp",
+    "msg": "ET P2P eDonkey Server Status Request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009966,
+    "regex": "\\x64.{5,}?\\x70.{4,}?\\x50\\x37",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P KuGoo P2P Connection",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2010141,
+    "regex": "\\x00\\x00\\x04.{14,19}?\\x00\\x00\\x00\\x00\\x00.{8,19}?\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\x02\\x05\\x21.{25,31}?\\x00\\x00\\x00\\x00\\x00\\x00.{20,22}?\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 3,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET P2P Vuze BT UDP Connection (2)",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2010142,
+    "regex": "\\x00\\x00\\x04.{14,19}?\\x00\\x00\\x00\\x00\\x00.{4,8}?\\x02\\x05\\x21\\x04",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 3,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P Vuze BT UDP Connection (3)",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2010143,
+    "regex": "\\x00\\x00\\x04.{14,19}?\\x00\\x00\\x00\\x00\\x00.{8,12}?\\xff\\xff\\xff\\xff",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 3,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P Vuze BT UDP Connection (4)",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009968,
+    "regex": "\\xe4\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P eMule KAD Network Connection Request(2)",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009969,
+    "regex": "\\xe4\\x50",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P eMule KAD Network Firewalled Request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009972,
+    "regex": "\\x8c\\x97",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P eMule KAD Network Server Status Request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2001809,
+    "regex": "\\x49\\x50\\x40\\x83\\x53\\x43\\x50\\x41\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 25,
+    "depth": 10,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P Limewire P2P UDP Traffic",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008584,
+    "regex": "(?i)d1\\x3aad2\\x3aid20\\x3a(?-i).{20,34}?(?i)9\\x3ainfo_hash20\\x3a(?-i).{20,}?(?i)e1\\x3aq9\\x3aget_peers1\\x3a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET P2P BitTorrent DHT get_peers request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008582,
+    "regex": "(?i)d1\\x3aad2\\x3aid20\\x3a(?-i).{20,}?(?i)6\\x3atarget20\\x3a(?-i).{20,}?(?i)e1\\x3aq9\\x3afind_node1\\x3a(?-i).{20,}?(?i)e1\\x3aq9\\x3afind_node1\\x3a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 24,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET P2P BitTorrent DHT find_node request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009967,
+    "regex": "\\xe4\\x21",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:65535",
+    "protocol": "udp",
+    "msg": "ET P2P eMule KAD Network Connection Request",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2010144,
+    "regex": "\\x00\\x00\\x04\\x17\\x27\\x10\\x19\\x80\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 12,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET P2P Vuze BT UDP Connection (5)",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2010140,
+    "regex": "\\x00\\x00\\x04.{6,11}?\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "1024:65535",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "1024:",
+    "protocol": "udp",
+    "msg": "ET P2P Vuze BT UDP Connection",
+    "classtype": "policy-violation",
+    "negated_patterns": [
+      {
+        "regex": "\\x00\\x22\\x02\\x00",
+        "modifiers": {
+          "depth": "4"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2003319,
+    "regex": "\\xe3\\x98.{0,3}?\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "[!3389,1024:65535]",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "[!3389,1024:65535]",
+    "protocol": "udp",
+    "msg": "ET P2P Edonkey Search Request (search by name)",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2010372,
+    "regex": "THCTHCTHCTHCTHC\\x20\\x20\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET SCAN Amap UDP Service Scan Detected",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008414,
+    "regex": "\\x52\\x61\\x6e\\x64\\x30\\x6d\\x53\\x54\\x52\\x49\\x4e\\x47\\x00\\x6e\\x65\\x74\\x61\\x73\\x63\\x69\\x69",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 21,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "69",
+    "protocol": "udp",
+    "msg": "ET SCAN Cisco Torch TFTP Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008560,
+    "regex": "nng\\ Snort\\ \\(Snort\\)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 90,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1434",
+    "protocol": "udp",
+    "msg": "ET SCAN NNG MS02-039 Exploit False Positive Generator - May Conceal A Genuine Attack",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008578,
+    "regex": "From\\x3a\\x20\\x22sipvicious",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Sipvicious Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2011766,
+    "regex": "\\x0d\\x0aUser\\-Agent\\x3a\\ sundayddr",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Modified Sipvicious User-Agent Detected (sundayddr)",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008598,
+    "regex": "sip\\x3asipsak@",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 90,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Sipsak SIP scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008609,
+    "regex": "SIVuS_VoIP_Scanner\\ <sip\\x3aSIVuS",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 130,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Sivus VOIP Vulnerability Scanner SIP Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008610,
+    "regex": "sip\\x3asivus\\-discovery@vopsecurity\\.org",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 110,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Sivus VOIP Vulnerability Scanner SIP Components Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008094,
+    "regex": "MSEARCH\\ \\*\\ HTTP/1\\.1.{0,}?(?i)MAN\\x3a\\ ssdp\\x3a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 18,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1900",
+    "protocol": "udp",
+    "msg": "ET SCAN External to Internal UPnP Request udp port 1900",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008526,
+    "regex": "<sip\\x3asmap@",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 80,
+    "depth": 40,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Smap VOIP Device Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008568,
+    "regex": "interesting\\-Method.*?sip\\x3a1_unusual\\.URI.*?to\\-be!sure",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Voiper Toolkit Torturer Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008577,
+    "regex": "sip\\x3atester@.*?Via\\x3a\\ SIP/2\\.0",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Voiper Fuzzing Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008640,
+    "regex": "REGISTER\\ .*?User\\-Agent\\x3a\\ Hacker",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 9,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN SIP erase_registrations/add registrations attempt",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008579,
+    "regex": "sip\\x3asipp@.*?Subject\\x3a\\ Performance\\ Test",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Sipp SIP Stress Test Detected",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008641,
+    "regex": "sip\\x3athisisthecanary@.*?sip\\x3atest@",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN sipscan probe",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008606,
+    "regex": "\\x00\\x00.{40,50}?\\x06\\x0d\\x06\\x01\\x30\\x13\\x02\\x07\\x08",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "4569",
+    "protocol": "udp",
+    "msg": "ET SCAN Enumiax Inter-Asterisk Exchange Protocol Username Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2011716,
+    "regex": "\\x0d\\x0aUser\\-Agent\\x3a\\ friendly\\-scanner",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Sipvicious User-Agent Detected (friendly-scanner)",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2025822,
+    "regex": "discover\\x3b013\\x3b",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "4070",
+    "protocol": "udp",
+    "msg": "ET SCAN HID VertX and Edge door controllers discover",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2015754,
+    "regex": "n\\x00e\\x00s\\x00s\\x00u\\x00s",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[137,138,139,445]",
+    "protocol": "udp",
+    "msg": "ET SCAN Nessus Netbios Scanning",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2017162,
+    "regex": "\\x0d\\x0aUser\\-Agent\\x3a\\x20sipcli/",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN SipCLI VOIP Scan",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2018489,
+    "regex": "CCCCCCCCCCCCCCCCCCCC.*?CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC.{0,45}?CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "10000:",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "10000:",
+    "protocol": "udp",
+    "msg": "ET SCAN NMAP OS Detection Probe",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2012204,
+    "regex": "From\\x3a\\x20\\x22sipsscuser\\x22",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5060",
+    "protocol": "udp",
+    "msg": "ET SCAN Modified Sipvicious Sundayddr Scanner (sipsscuser)",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2058707,
+    "regex": "\\x38\\xc4\\xfb\\x98\\x76\\x1f\\xfc\\xfe\\xf4\\x00\\x00\\x00\\x01\\x63\\x31\\x7b\\x62\\x36\\x3e\\xb1\\xa8\\x93\\xa8\\x61\\x98\\x8b\\x11\\x2a\\x3f\\x7c\\x1e\\xaa\\xbf\\xc0\\x63\\xad\\xb7\\x50\\x68\\xa0\\xd6\\x2d\\x0e\\x17\\x3d\\xf8\\xd4\\xf4\\x39\\x69\\x8d\\x69\\x0d\\x7d",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET SCAN ELF/Mirai Variant UDP (Inbound) M1",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2058708,
+    "regex": "\\xa5\\xe4\\x43\\xc7\\x00\\x3f\\x10\\x16\\x01\\x12\\x2f\\xf8\\x3c\\xe1\\xd0\\x5d\\x49\\x2a\\x43\\xa4\\x25\\x77\\x00\\x00\\x00\\xf2\\x60\\x25\\xd8\\xff\\xff\\xff\\xff\\xf4\\x6d\\x89\\x0b\\xdc\\x36\\x47\\xf7\\x3a\\xa5\\x38\\x8d",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET SCAN ELF/Mirai Variant UDP (Inbound) M2",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2018848,
+    "regex": "\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00.*?(?i)\\x0apassinggas\\x03net\\x00(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 10,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET DYN_DNS DYNAMIC_DNS Query to *.passinggas.net Domain (Sitelutions)",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008690,
+    "regex": "\\x0b.*?\\xc8\\x4f\\x32\\x4b\\x70\\x16\\xd3\\x01\\x12\\x78\\x5a\\x47\\xbf\\x6e\\xe1\\x88",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 1,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (1)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008691,
+    "regex": "\\x1f\\x00.*?\\xc8\\x4f\\x32\\x4b\\x70\\x16\\xd3\\x01\\x12\\x78\\x5a\\x47\\xbf\\x6e\\xe1\\x88.*?\\.\\.\\x5c\\.\\.\\x5c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (2)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008692,
+    "regex": "\\x1f\\x00.*?\\xc8\\x4f\\x32\\x4b\\x70\\x16\\xd3\\x01\\x12\\x78\\x5a\\x47\\xbf\\x6e\\xe1\\x88.*?\\.\\./\\.\\./",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (3)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008693,
+    "regex": "\\x1f\\x00.*?\\xc8\\x4f\\x32\\x4b\\x70\\x16\\xd3\\x01\\x12\\x78\\x5a\\x47\\xbf\\x6e\\xe1\\x88.*?\\x00\\x2e\\x00\\x2e\\x00\\x2f\\x00\\x2e\\x00\\x2e\\x00\\x2f",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (4)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008694,
+    "regex": "\\x1f\\x00.*?\\xc8\\x4f\\x32\\x4b\\x70\\x16\\xd3\\x01\\x12\\x78\\x5a\\x47\\xbf\\x6e\\xe1\\x88.*?\\x00\\x2e\\x00\\x2e\\x00\\x5c\\x00\\x2e\\x00\\x2e\\x00\\x5c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (5)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008696,
+    "regex": "\\x20\\x00.*?\\xc8\\x4f\\x32\\x4b\\x70\\x16\\xd3\\x01\\x12\\x78\\x5a\\x47\\xbf\\x6e\\xe1\\x88.*?\\.\\.\\x5c\\.\\.\\x5c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (7)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008697,
+    "regex": "\\x20\\x00.*?\\xc8\\x4f\\x32\\x4b\\x70\\x16\\xd3\\x01\\x12\\x78\\x5a\\x47\\xbf\\x6e\\xe1\\x88.*?\\.\\./\\.\\./",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (8)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008698,
+    "regex": "\\x20\\x00.*?\\xc8\\x4f\\x32\\x4b\\x70\\x16\\xd3\\x01\\x12\\x78\\x5a\\x47\\xbf\\x6e\\xe1\\x88.*?\\x00\\x2e\\x00\\x2e\\x00\\x2f\\x00\\x2e\\x00\\x2e\\x00\\x2f",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (9)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008699,
+    "regex": "\\x20\\x00.*?\\xc8\\x4f\\x32\\x4b\\x70\\x16\\xd3\\x01\\x12\\x78\\x5a\\x47\\xbf\\x6e\\xe1\\x88.*?\\x00\\x2e\\x00\\x2e\\x00\\x5c\\x00\\x2e\\x00\\x2e\\x00\\x5c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 (10)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2008700,
+    "regex": "\\x00\\x2e\\x00\\x2e\\x00\\x2f\\x00\\x2e\\x00\\x2e\\x00\\x2f\\x00\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x30\\x87",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "139",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067 - Known Exploit Instance",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2012317,
+    "regex": "\\x42\\x4f\\x00.{0,}?(?i)BROWSER(?-i).{0,}?\\x08\\x09\\xa8\\x0f\\x01\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[137,138,139,445]",
+    "protocol": "udp",
+    "msg": "ET NETBIOS Microsoft Windows Server 2003 Active Directory Pre-Auth BROWSER ELECTION Heap Overflow Attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": [
+      {
+        "regex": "\\x0a",
+        "modifiers": {
+          "within": "65"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2102316,
+    "regex": "\\x04\\x00.{22,38}?\\x98\\xd0\\xffk\\x12\\xa1\\x106\\x983F\\xc3\\xf8\\~4Z",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1024:",
+    "protocol": "udp",
+    "msg": "GPL NETBIOS DCERPC Workstation Service direct service access attempt",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102257,
+    "regex": "\\x04\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "135",
+    "protocol": "udp",
+    "msg": "GPL NETBIOS DCERPC Messenger Service buffer overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2009243,
+    "regex": "\\x00\\x04",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 3,
+    "src_ip": "any",
+    "src_port": "1985",
+    "direction": "->",
+    "dst_ip": "224.0.0.2",
+    "dst_port": "1985",
+    "protocol": "udp",
+    "msg": "ET INFO HSRP Active Router Changed",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2003155,
+    "regex": "\\xfe\\x80\\x00\\x00\\x00\\x00\\x00\\x00\\x80\\x00TEREDO",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 21,
+    "depth": 16,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "3544",
+    "protocol": "udp",
+    "msg": "ET INFO Microsoft TEREDO IPv6 tunneling",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2015842,
+    "regex": "\\x80\\x00\\x00\\x01\\x00\\x01.{0,}?\\x04wpad\\x00\\x00\\x01\\x00\\x01\\x04wpad\\x00\\x00\\x01\\x00\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 6,
+    "src_ip": "$HOME_NET",
+    "src_port": "5355",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO LLNMR query response to wpad",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2017120,
+    "regex": "\\x06\\x12",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "623",
+    "protocol": "udp",
+    "msg": "ET INFO Possible IPMI 2.0 RAKP Remote SHA1 Password Hash Retrieval RAKP message 1 with default BMC usernames (Admin|root|Administrator|USERID)",
+    "classtype": "protocol-command-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022973,
+    "regex": "\\x63\\x82\\x53\\x63\\x35\\x01\\x03.{0,}?(?i)\\x0c\\x04kali(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "68",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "67",
+    "protocol": "udp",
+    "msg": "ET INFO Possible Kali Linux hostname in DHCP Request Packet",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2013800,
+    "regex": "\\x63\\x68\\x72\\x6f\\x6d\\x6f\\x74\\x69\\x6e\\x67.{39,}?\\x63\\x68\\x72\\x6f\\x6d\\x6f\\x74\\x69\\x6e\\x67",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 170,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Outgoing Chromoting Session Response",
+    "classtype": "not-suspicious",
+    "negated_patterns": []
+  },
+  {
+    "id": 2013801,
+    "regex": "\\x63\\x68\\x72\\x6f\\x6d\\x6f\\x74\\x69\\x6e\\x67.{39,}?\\x63\\x68\\x72\\x6f\\x6d\\x6f\\x74\\x69\\x6e\\x67",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 170,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Incoming Chromoting Session Response",
+    "classtype": "not-suspicious",
+    "negated_patterns": []
+  },
+  {
+    "id": 2027397,
+    "regex": "\\x53\\x70\\x6f\\x74\\x55\\x64\\x70\\x30",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 8,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "57621",
+    "protocol": "udp",
+    "msg": "ET INFO Spotify P2P Client",
+    "classtype": "not-suspicious",
+    "negated_patterns": []
+  },
+  {
+    "id": 2022914,
+    "regex": "\\x00\\x00.*?\\x46\\x48\\x46\\x41\\x45\\x42\\x45",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 4,
+    "depth": 2,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "137",
+    "protocol": "udp",
+    "msg": "ET INFO NBNS Name Query Response Possible WPAD Spoof BadTunnel",
+    "classtype": "protocol-command-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2039784,
+    "regex": "\\x77\\x8c\\xde\\x71\\x90",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 8,
+    "depth": 5,
+    "src_ip": "$HOME_NET",
+    "src_port": "9993",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "9993",
+    "protocol": "udp",
+    "msg": "ET INFO ZeroTier Related Activity (udp)",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044070,
+    "regex": "\\x32\\x0d\\x0a\\x09.{9,11}?\\x10\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21116",
+    "protocol": "udp",
+    "msg": "ET INFO RustDesk Register Peer where serial=1",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044071,
+    "regex": "\\x32\\x0d\\x0a\\x09.{9,11}?\\x10\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21116",
+    "protocol": "udp",
+    "msg": "ET INFO RustDesk Register Peer where serial=0",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044072,
+    "regex": "\\x8a\\x01\\x07\\x0a\\x05",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21116",
+    "protocol": "udp",
+    "msg": "ET INFO RustDesk Get Software Update URL",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044073,
+    "regex": "\\x7a\\x53\\x0a\\x09.{19,20}?\\x2d.{4,5}?\\x2d.{4,5}?\\x2d.{4,5}?\\x2d.{12,14}?\\x1a\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21116",
+    "protocol": "udp",
+    "msg": "ET INFO RustDesk Register Public Key",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044074,
+    "regex": "\\x70\\x6f\\x6e\\x67.{0,}?\\x1a\\x0a.{0,}?\\x22\\x03.{0,}?\\x2a\\x20.{0,}?\\x32\\x06",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 5,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "21119",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO RustDesk Peer Discovery (pong)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044075,
+    "regex": "\\xb2\\x01\\x06\\x0a\\x04\\x70\\x69\\x6e\\x67",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "21119",
+    "protocol": "udp",
+    "msg": "ET INFO RustDesk Peer Discovery (ping)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2035472,
+    "regex": "\\x01.{1,8}?\\x00\\x01\\x00\\x00\\x00\\x00\\x00.*?\\x06google\\x03com",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "!53",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "!53",
+    "protocol": "udp",
+    "msg": "ET INFO Non Standard Port DNS Query to google .com (udp)",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016303,
+    "regex": "Intel\\ SDK\\ for\\ UPnP\\ devices",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "1900",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959 Vulnerable UPnP device M2",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016304,
+    "regex": "Portable\\ SDK\\ for\\ UPnP\\ devices",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "1900",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959 Vulnerable UPnP device M3",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016302,
+    "regex": "miniupnpd/1\\.",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "1900",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959 Vulnerable UPnP device M1",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2056210,
+    "regex": "\\x20.{1,9}?\\x20http",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "631",
+    "protocol": "udp",
+    "msg": "ET INFO Observed UDP cups-browsed Add Printer Packet Inbound (HTTP)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2056211,
+    "regex": "\\x20.{1,8}?\\x20ipp",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "631",
+    "protocol": "udp",
+    "msg": "ET INFO Observed UDP cups-browsed Add Printer Packet Inbound (IPP)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2062633,
+    "regex": "\\x0d\\x0a\\x20\\x20Date\\x3a.*?\\x0d\\x0a\\x20\\x20Event\\x20ID\\x3a.*?\\x0d\\x0a\\x20\\x20Task\\x3a.*?\\x0d\\x0a\\x20\\x20Level\\x3a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Observed Event Log Information From Internal Host Over UDP",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2062634,
+    "regex": "\\x0d\\x0a\\x20\\x20TCP\\x20\\x20\\x20.*?\\x20\\x20\\x20ESTABLISHED\\x20\\x20\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Observed netstat Output From Internal Host Over UDP",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2062635,
+    "regex": "\\x0d\\x0aRule\\x20source\\x3a\\x20\\x20\\x20\\x20\\x20.*?\\x0d\\x0aAction\\x3a\\x20\\x20\\x20\\x20\\x20\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Observed netsh advfirewall Output From Internal Host Over UDP",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2062636,
+    "regex": "User\\x20accounts\\x20for\\x20\\x5c\\x5c.*?\\x2d\\x2d\\x2d\\x2d\\x2d\\x2d\\x2d\\x2d.*?\\x20\\x20\\x20\\x20\\x20\\x20\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Observed net user Output From Internal Host Over UDP",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2062637,
+    "regex": "\\.exe\\x22\\x2c\\x22.*?\\.exe\\x22\\x2c\\x22.*?\\.exe\\x22\\x2c\\x22",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Observed tasklist Output From Internal Host Over UDP",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2062638,
+    "regex": "Alias\\x20name\\x20\\x20\\x20\\x20.*?\\x2d\\x2d\\x2d\\x2d\\x2d\\x2d\\x2d\\x2d.*?\\x20command\\x20completed",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Observed net localgroup Output From Internal Host Over UDP",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2063369,
+    "regex": "\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "any",
+    "src_port": "2123",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Invalid GTP Response Packet Observed",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2069042,
+    "regex": "\\x22\\x20\\x22\\x08\\x00\\x00\\x00\\x00.*?\\x68\\x6a\\x8c\\xbd\\xfe\\x63\\x4b\\x40\\x51\\x46\\xfb\\x2b\\xaf\\x33\\xe9\\xe8",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 16,
+    "depth": 8,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "[500,4500]",
+    "protocol": "udp",
+    "msg": "ET INFO IKEv2 SA_INIT with Microsoft Security Realm Vendor ID",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2033078,
+    "regex": "\\x00\\x01.{2,6}?\\x21\\x12\\xa4\\x42",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "[!3478,1023:]",
+    "protocol": "udp",
+    "msg": "ET INFO Session Traversal Utilities for NAT (STUN Binding Request On Non-Standard High Port)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016149,
+    "regex": "\\x00\\x01.{2,6}?\\x21\\x12\\xa4\\x42",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "3478",
+    "protocol": "udp",
+    "msg": "ET INFO Session Traversal Utilities for NAT (STUN Binding Request)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016150,
+    "regex": "\\x01\\x01.{2,}?\\x21\\x12\\xa4\\x42",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "3478",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET INFO Session Traversal Utilities for NAT (STUN Binding Response)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2033077,
+    "regex": "\\x00\\x01.{2,6}?\\x21\\x12\\xa4\\x42",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": ":1024",
+    "protocol": "udp",
+    "msg": "ET INFO Session Traversal Utilities for NAT (STUN Binding Request On Non-Standard Low Port)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102003,
+    "regex": "\\x04.*?\\x81\\xf1\\x03\\x01\\x04\\x9b\\x81\\xf1\\x01.*?sock.*?send",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "1434",
+    "protocol": "udp",
+    "msg": "GPL SQL Slammer Worm propagation attempt",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2001597,
+    "regex": "",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET REMOTE_ACCESS Netop Remote Control Usage",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100566,
+    "regex": "ST",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 2,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "5632",
+    "protocol": "udp",
+    "msg": "GPL REMOTE_ACCESS PCAnywhere server response",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101948,
+    "regex": "\\x00\\x00\\xfc",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 14,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "GPL DNS zone transfer UDP",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101616,
+    "regex": "(?i)\\x07version(?-i).*?(?i)\\x04bind\\x00(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "GPL DNS named version attempt",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100252,
+    "regex": "\\x09\\x80\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 16,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "GPL DNS named iquery attempt",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100256,
+    "regex": "(?i)\\x07authors(?-i).*?(?i)\\x04bind\\x00(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 12,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "GPL DNS named authors attempt",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2013894,
+    "regex": "\\x06google\\x03com\\x02br\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "53",
+    "direction": "->",
+    "dst_ip": "$DNS_SERVERS",
+    "dst_port": "any",
+    "protocol": "udp",
+    "msg": "ET DNS Excessive DNS Responses with 1 or more RR's (100+ in 10 seconds) to google.com.br possible Cache Poisoning Attempt",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2011802,
+    "regex": "\\x01.{1,8}?\\x00\\x01\\x00\\x00\\x00\\x00\\x00.*?(?i)\\x09localhost(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 2,
+    "depth": 1,
+    "src_ip": "![$SMTP_SERVERS,$DNS_SERVERS]",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$DNS_SERVERS",
+    "dst_port": "53",
+    "protocol": "udp",
+    "msg": "ET DNS DNS Lookup for localhost.DOMAIN.TLD",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2012648,
+    "regex": "\\{\\x22host_int\\x22\\x3a\\ .{0,}?\\ \\x22version\\x22\\x3a\\ \\[.{0,}?\\],\\ \\x22displayname\\x22\\x3a\\ \\x22",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 13,
+    "src_ip": "$HOME_NET",
+    "src_port": "17500",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "17500",
+    "protocol": "udp",
+    "msg": "ET FILE_SHARING Dropbox Client Broadcasting",
+    "classtype": "policy-violation",
+    "negated_patterns": []
+  }
+]

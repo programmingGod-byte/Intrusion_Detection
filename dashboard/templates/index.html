@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aethon IDS | Telemetry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+        .terminal { font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace; font-size: 12px; line-height: 1.5; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0d1117; }
+        ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8b949e; }
+        .input-box { background: #010409; border: 1px solid #30363d; color: #c9d1d9; font-family: monospace; font-size: 12px; }
+        .input-box:focus { border-color: #58a6ff; outline: none; }
+        .btn { background: #21262d; border: 1px solid #363b42; color: #c9d1d9; font-weight: 500; cursor: pointer; transition: 0.2s; }
+        .btn:hover { background: #30363d; border-color: #8b949e; }
+        .btn-danger { color: #f85149; }
+        .btn-danger:hover { background: #da3633; color: #fff; border-color: #f85149; }
+        
+        /* Log line styles */
+        .log-time { color: #8b949e; margin-right: 8px; user-select: none; }
+        .type-blocked { color: #f85149; font-weight: bold; }
+        .type-blocklisted { color: #d29922; }
+        .type-trigger { color: #bc8cff; }
+        .type-packet { color: #58a6ff; }
+        .type-error { color: #f85149; }
+        .type-ok { color: #3fb950; }
+        .type-attack { color: #d29922; font-weight: bold; }
+        .type-info { color: #c9d1d9; }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+    
+    <!-- Header -->
+    <header class="flex justify-between items-center px-4 py-2 border-b border-[#30363d] bg-[#161b22]">
+        <div class="flex items-center gap-3">
+            <h1 class="text-sm font-semibold tracking-wide">AETHON <span class="text-[#8b949e] font-normal">Telemetry & Control</span></h1>
+            <div class="w-px h-4 bg-[#30363d]"></div>
+            <span id="status-indicator" class="text-xs font-mono text-[#3fb950] flex items-center gap-1.5"><div class="w-2 h-2 rounded-full bg-[#3fb950]"></div> IDLE</span>
+        </div>
+        <div class="flex gap-4 text-xs font-mono text-[#8b949e]">
+            <span>BLOCKED: <span id="stat-blocked" class="text-[#f85149] font-bold">0</span></span>
+            <span>LISTED: <span id="stat-listed" class="text-[#d29922] font-bold">0</span></span>
+            <span>TRIGGERS: <span id="stat-triggered" class="text-[#bc8cff] font-bold">0</span></span>
+            <span>PACKETS: <span id="stat-packets" class="text-[#58a6ff] font-bold">0</span></span>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- Controls Sidebar -->
+        <aside class="w-72 border-r border-[#30363d] bg-[#0d1117] flex flex-col overflow-y-auto shrink-0">
+            <div class="p-4 space-y-6 text-sm">
+                
+                <!-- Network Setup -->
+                <div>
+                    <h2 class="text-xs font-bold text-[#8b949e] uppercase mb-3 tracking-widest">Network Configuration</h2>
+                    <div class="space-y-2">
+                        <div>
+                            <label class="text-[11px] text-[#8b949e] block mb-1">Target IP</label>
+                            <input type="text" id="target-ip" value="192.168.50.1" class="input-box w-full px-2 py-1.5 rounded">
+                        </div>
+                        <div>
+                            <label class="text-[11px] text-[#8b949e] block mb-1">Interface</label>
+                            <input type="text" id="attack-iface" value="veth1" class="input-box w-full px-2 py-1.5 rounded">
+                        </div>
+                        <button onclick="setupVeth()" class="btn w-full px-2 py-1.5 text-xs rounded mt-2">Execute veth_command.sh</button>
+                    </div>
+                </div>
+
+                <hr class="border-[#30363d]">
+
+                <!-- Attacks -->
+                <div>
+                    <h2 class="text-xs font-bold text-[#8b949e] uppercase mb-3 tracking-widest">Attack Simulation</h2>
+                    
+                    <!-- TCP Frag -->
+                    <div class="mb-4">
+                        <label class="text-[11px] font-semibold block mb-1">TCP Fragmentation Attack</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="frag-count" value="3" class="input-box w-16 px-2 py-1 text-center rounded" title="Rounds">
+                            <button onclick="launch('tcp_frag')" class="btn btn-danger flex-1 px-2 py-1 text-xs rounded">Launch</button>
+                        </div>
+                    </div>
+
+                    <!-- SYN Direct -->
+                    <div class="mb-4">
+                        <label class="text-[11px] font-semibold block mb-1">SYN Flood (Direct IP)</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="syn-same-pkts" value="100" class="input-box w-16 px-2 py-1 text-center rounded" title="Packets">
+                            <button onclick="launch('syn_same')" class="btn btn-danger flex-1 px-2 py-1 text-xs rounded">Launch</button>
+                        </div>
+                    </div>
+
+                    <!-- SYN Spoofed -->
+                    <div>
+                        <label class="text-[11px] font-semibold block mb-1">SYN Flood (Spoofed IPs)</label>
+                        <div class="flex gap-2 mb-2">
+                            <input type="number" id="syn-multi-ips" value="20" placeholder="IPs" class="input-box w-1/2 px-2 py-1 rounded" title="Source IPs">
+                            <input type="number" id="syn-multi-pkts" value="10" placeholder="Pkts" class="input-box w-1/2 px-2 py-1 rounded" title="Packets per IP">
+                        </div>
+                        <button onclick="launch('syn_multi')" class="btn btn-danger w-full px-2 py-1 text-xs rounded">Launch</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-4 mt-auto border-t border-[#30363d]">
+                <button onclick="stopAttack()" class="btn w-full px-2 py-2 text-xs rounded text-[#c9d1d9]">STOP CURRENT ATTACK</button>
+            </div>
+        </aside>
+
+        <!-- Logs Area -->
+        <main class="flex-1 flex flex-col bg-[#010409]">
+            
+            <!-- Command Output Terminal -->
+            <div class="flex-1 flex flex-col min-h-0 border-b border-[#30363d]">
+                <div class="px-4 py-1.5 bg-[#161b22] border-b border-[#30363d] flex justify-between items-center">
+                    <span class="text-[11px] font-mono text-[#8b949e]">>> SCRIPT EXECUTION OUTPUT</span>
+                    <button onclick="clearCmd()" class="text-[10px] font-semibold text-[#8b949e] hover:text-white transition-colors">CLEAR</button>
+                </div>
+                <div id="cmd-terminal" class="terminal flex-1 overflow-y-auto p-4 whitespace-pre-wrap select-text"></div>
+            </div>
+
+            <!-- Kernel Trace Terminal -->
+            <div class="flex-1 flex flex-col min-h-0">
+                <div class="px-4 py-1.5 bg-[#161b22] border-b border-[#30363d] flex justify-between items-center">
+                    <span class="text-[11px] font-mono text-[#8b949e]">/sys/kernel/debug/tracing/trace_pipe</span>
+                    <div class="flex gap-4">
+                        <button onclick="toggleScroll()" id="scroll-btn" class="text-[10px] font-semibold text-[#58a6ff] hover:text-white transition-colors">AUTO-SCROLL: ON</button>
+                        <button onclick="clearKernel()" class="text-[10px] font-semibold text-[#8b949e] hover:text-white transition-colors">CLEAR</button>
+                    </div>
+                </div>
+                <div id="kernel-terminal" class="terminal flex-1 overflow-y-auto p-4 whitespace-pre-wrap select-text"></div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

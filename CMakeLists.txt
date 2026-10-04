@@ -23,7 +23,19 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/CLIUtils/CLI11.git
     GIT_TAG        v2.4.2
 )
-FetchContent_MakeAvailable(CLI11)
+
+# Declare FluxIO from GitHub
+set(FLUXIO_BUILD_PYTHON OFF CACHE INTERNAL "")
+FetchContent_Declare(
+    FluxIO
+    GIT_REPOSITORY https://github.com/programmingGod-byte/FluxIO.git
+    GIT_TAG        main
+)
+FetchContent_MakeAvailable(CLI11 FluxIO)
+
+# Create app & link FluxIO
+add_executable(my_app main.cpp)
+target_link_libraries(my_app PRIVATE FluxIO::fluxio)
 
 # Facebook Folly-Style Root CMake Architecture
 add_subdirectory(aethon)

@@ -1,0 +1,496 @@
+[
+  {
+    "id": 2100158,
+    "regex": "INVITE",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 6,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "5060",
+    "protocol": "ip",
+    "msg": "GPL VOIP SIP INVITE message flooding",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100163,
+    "regex": "SIP/2\\.0\\ 407\\ Proxy\\ Authentication\\ Required",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 42,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "5060",
+    "protocol": "ip",
+    "msg": "GPL VOIP SIP 407 Proxy Authentication Required Flood",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100162,
+    "regex": "SIP/2\\.0\\ 401\\ Unauthorized",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 24,
+    "src_ip": "any",
+    "src_port": "5060",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL VOIP SIP 401 Unauthorized Flood",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2055641,
+    "regex": "\\x3c.{34,35}?\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 6,
+    "depth": 1,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "ET EXPLOIT Microsoft Windows Malformed IPv6 Destination Options Packet Inbound (CVE-2024-38063)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2055644,
+    "regex": "\\x60.{5,6}?\\x2c.*?\\x04\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 1,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "ET EXPLOIT Possible Microsoft Windows IPv6 Fragmentation DoS (CVE-2024-38063)",
+    "classtype": "denial-of-service",
+    "negated_patterns": []
+  },
+  {
+    "id": 2066447,
+    "regex": "\\x1f.*?\\x86\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "ET EXPLOIT FreeBSD rtsold DNSSL Remote Code Execution (CVE-2025-14558)",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2017315,
+    "regex": "VERSONEX\\x3a.{0,50}?Mr\\.Black",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 64,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "ET MALWARE DDoS.Win32.Agent.bay Covert Channel (VERSONEX and Mr.Black)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2045674,
+    "regex": "\\x44\\x30\\xcd\\x9f\\x5e\\x14\\x27\\x66",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "ET MALWARE BPFDoor V2 SCTP Magic Packet Inbound",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100498,
+    "regex": "uid=0\\x28root\\x29",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL ATTACK_RESPONSE id check returned root",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100640,
+    "regex": "O\\xff\\xfb\\x82O\\xff\\xfb\\x82O\\xff\\xfb\\x82O\\xff\\xfb\\x82",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE AIX NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102313,
+    "regex": "q\\x00\\xfb\\x00\\{\\x00\\xab\\x00q\\x00\\xfb\\x00\\{\\x00\\xab\\x00q\\x00\\xfb\\x00\\{\\x00\\xab\\x00q\\x00\\xfb\\x00\\{\\x00\\xab\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE x86 0x71FB7BAB NOOP unicode",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102312,
+    "regex": "q\\xfb\\{\\xabq\\xfb\\{\\xabq\\xfb\\{\\xabq\\xfb\\{\\xab",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE x86 0x71FB7BAB NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100639,
+    "regex": "\\x24\\x0f\\x124\\x24\\x0f\\x124\\x24\\x0f\\x124\\x24\\x0f\\x124",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE SGI NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100641,
+    "regex": "G\\xff\\x04\\x1fG\\xff\\x04\\x1fG\\xff\\x04\\x1fG\\xff\\x04\\x1f",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE Digital UNIX NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100642,
+    "regex": "\\x08!\\x02\\x80\\x08!\\x02\\x80\\x08!\\x02\\x80\\x08!\\x02\\x80",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE HP-UX NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100643,
+    "regex": "\\x0b9\\x02\\x80\\x0b9\\x02\\x80\\x0b9\\x02\\x80\\x0b9\\x02\\x80",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE HP-UX NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100644,
+    "regex": "\\x13\\xc0\\x1c\\xa6\\x13\\xc0\\x1c\\xa6\\x13\\xc0\\x1c\\xa6\\x13\\xc0\\x1c\\xa6",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE sparc NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100645,
+    "regex": "\\x80\\x1c@\\x11\\x80\\x1c@\\x11\\x80\\x1c@\\x11\\x80\\x1c@\\x11",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE sparc NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100646,
+    "regex": "\\xa6\\x1c\\xc0\\x13\\xa6\\x1c\\xc0\\x13\\xa6\\x1c\\xc0\\x13\\xa6\\x1c\\xc0\\x13",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE sparc NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100647,
+    "regex": "\\x82\\x10\\ \\x17\\x91\\xd0\\ \\x08",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE sparc setuid 0",
+    "classtype": "system-call-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100652,
+    "regex": "\\x90\\x90\\x90\\xe8\\xc0\\xff\\xff\\xff/bin/sh",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE Linux shellcode",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2025695,
+    "regex": "\\x31\\xc0\\x50\\x68\\x2f\\x2f\\x73\\x68\\x68\\x2f\\x62\\x69\\x6e\\x89\\xe3\\x50\\x53\\x89\\xe1\\xb0\\x0b\\xcd\\x80",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "ET SHELLCODE Execve(/bin/sh) Shellcode",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101424,
+    "regex": "\\xeb\\x0c\\xeb\\x0c\\xeb\\x0c\\xeb\\x0c\\xeb\\x0c\\xeb\\x0c\\xeb\\x0c\\xeb\\x0c",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "$SHELLCODE_PORTS",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "GPL SHELLCODE x86 0xEB0C NOOP",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2024057,
+    "regex": "\\x6a\\x52\\x58\\x99\\x52\\x66\\x68\\x2d\\x46\\x54\\x5b\\x52\\x48\\xb9\\x69\\x70\\x74\\x61\\x62\\x6c\\x65\\x73\\x51\\xd0\\xe0\\x28\\xc8\\x48\\xb9\\x2f\\x2f\\x73\\x62\\x69\\x6e\\x2f\\x2f\\x51\\x54\\x5f\\x52\\x53\\x57\\x54\\x5e\\x0f\\x05",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "ET SHELLCODE Linux/x86-64 - Polymorphic Flush IPTables Shellcode",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2024058,
+    "regex": "\\x31\\xff\\x57\\x6a\\x69\\x58\\x48\\xbb\\x5e\\xc4\\xd2\\xdc\\x5e\\x5e\\xe6\\xd0\\x0f\\x05\\x48\\xd1\\xcb\\xb0\\x3b\\x53\\x87\\xf7\\x54\\x99\\x5f\\x0f\\x05",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "ET SHELLCODE Linux/x86-64 - Polymorphic Setuid(0) & Execve(/bin/sh) Shellcode",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2024065,
+    "regex": "\\x6a\\x02\\x6a\\x2a\\x6a\\x10\\x6a\\x29\\x6a\\x01\\x6a\\x02.*?\\x48\\xbf\\x2f\\x2f\\x62\\x69\\x6e\\x2f\\x73\\x68",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ip",
+    "msg": "ET SHELLCODE Linux/x86-64 - Reverse Shell Shellcode",
+    "classtype": "shellcode-detect",
+    "negated_patterns": []
+  }
+]

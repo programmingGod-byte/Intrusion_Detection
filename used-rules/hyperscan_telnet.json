@@ -1,0 +1,21 @@
+[
+  {
+    "id": 2068415,
+    "regex": "\\xff\\xfa\\x22.{109,}?\\xff\\xf0",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "telnet",
+    "msg": "ET EXPLOIT Telnet SLC Option Data Buffer Overflow Attempt (CVE-2026-32746)",
+    "classtype": "web-application-attack",
+    "negated_patterns": []
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "id": 2069171,
+    "regex": "\\x06\\x0d\\x2b\\x06\\x01\\x04\\x01\\x09\\x09\\x85\\x10\\x01\\x04\\x02\\x01",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "161",
+    "protocol": "snmp",
+    "msg": "ET WEB_SERVER Cisco IOS Authenticated SNMP Remote Code Execution (CVE-2025-20352)",
+    "classtype": "attempted-user",
+    "negated_patterns": []
+  }
+]

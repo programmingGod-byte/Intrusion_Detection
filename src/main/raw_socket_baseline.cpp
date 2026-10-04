@@ -25,7 +25,7 @@ void stats_printer() {
   uint64_t last_packets = 0;
   uint64_t last_bytes = 0;
 
-  while (!global_exit.load(std::order_relaxed)) {
+  while (!global_exit.load(std::memory_order_relaxed)) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
     uint64_t current_packets = total_packets.load(std::memory_order_relaxed);

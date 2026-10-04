@@ -1,0 +1,1295 @@
+[
+  {
+    "id": 2003055,
+    "regex": "220\\-",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 4,
+    "src_ip": "$HOME_NET",
+    "src_port": "[0:20,22:24,26:118,120:138,140:444,446:464,466:586,588:901,903:1432,1434:65535]",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET HUNTING Suspicious FTP 220 Banner on Local Port (-)",
+    "classtype": "non-standard-protocol",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020585,
+    "regex": "\\x65\\x82\\xa5\\x7c.{0,10}?\\x90\\x90\\x90\\x90\\x90",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET EXPLOIT PCMan FTP Server 2.0.7 Remote Command Execution",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2024729,
+    "regex": "(?i)process\\.start(?-i).*?(?i)<service(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET EXPLOIT Possible CVE-2017-8759 Soap File DL Over FTP",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2025779,
+    "regex": "220\\x20\\x22.{400,}?\\xed\\x2e\\x45\\x22\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET EXPLOIT FTPShell client Stack Buffer Overflow",
+    "classtype": "attempted-user",
+    "negated_patterns": [
+      {
+        "regex": "\\x00",
+        "modifiers": {
+          "within": "400"
+        }
+      },
+      {
+        "regex": "\\x22",
+        "modifiers": {
+          "within": "400"
+        }
+      },
+      {
+        "regex": "\\x0b",
+        "modifiers": {
+          "within": "400"
+        }
+      },
+      {
+        "regex": "\\x0a",
+        "modifiers": {
+          "within": "400"
+        }
+      },
+      {
+        "regex": "\\x0d",
+        "modifiers": {
+          "within": "400"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2013543,
+    "regex": "iGrabber\\ Logs",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE W32/iGrabber Info Stealer FTP Upload",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2014239,
+    "regex": "USER\\ onthelinux",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE W32.Duptwux/Ganelp FTP Username - onthelinux",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2018980,
+    "regex": "CWD\\ \\x2e\\x2e\\x2fKeyLog_History",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 21,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Machete FTP activity",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2026741,
+    "regex": "STOR\\ PC\\x3a\\x20.{0,}?/Orion\\ Logger\\ \\-\\ System\\ Details\\x3a\\x20",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 9,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE MSIL.Orion Stealer Exfil via FTP",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2027888,
+    "regex": "STOR\\x20FIREPERF\\.zip",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 17,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE [TGI] Py.Machete FTP Exfil 1",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2027889,
+    "regex": "STOR\\x20CRHOMEPER\\.zip",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 18,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE [TGI] Py.Machete FTP Exfil 2",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2020158,
+    "regex": "STOR\\ .*?\\.bin\\x0d\\x0a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Mini/Cosmic Duke variant FTP upload",
+    "classtype": "targeted-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2029927,
+    "regex": "STOR\\x20PW_.{0,}?_20.{0,}?_.{0,}?_.{0,}?_.{0,}?_.{0,}?\\.html\\x0d\\x0a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 8,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE AgentTesla Exfil via FTP",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2030156,
+    "regex": "STOR\\ .{0,}?/UserName=.{0,}?_MachineName=.{0,}?_",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 5,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Hakbit/Thanos Ransomware Exfil via FTP",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2031482,
+    "regex": "RETR\\x20/frog/usoprive\\.xsl",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Malicious XSL file download (FTP)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034690,
+    "regex": "RETR\\x20/board/",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Kimsuky Related FTP File Download",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2034890,
+    "regex": "VICTIM\\-PC__.*?/screen/.*?\\.jpg",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE TA453 Related Activity (FTP)",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2014757,
+    "regex": "USER\\ griptoloji\\x0d\\x0a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Win32/Comrerop Checkin to FTP server",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044254,
+    "regex": "USER\\ winuser\\x0d\\x0a.*?PASS\\ eclip2e12\\#\\x0d\\x0a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Win32/WhiskerSpy - FTP - Observed Creds",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044255,
+    "regex": "STOR\\ l",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Win32/WhiskerSpy - FTP STOR Command M1",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2044256,
+    "regex": "STOR\\ h",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Win32/WhiskerSpy - FTP STOR Command M2",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2014111,
+    "regex": "(?i)MKD\\ UFR_Stealer(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 15,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Win32.UFRStealer.A issuing MKD command FTP",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2018416,
+    "regex": "(?i)STOR\\ ftpchk3\\.php\\x0d\\x0a(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE ftpchk3.php upload attempted",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2023911,
+    "regex": "USER\\ ",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE Miniduke variant FTP upload",
+    "classtype": "targeted-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2033205,
+    "regex": "(?i)Kanzas\\ City(?-i).*?System\\ IT\\ Inc.*?\\x55\\x04\\x03.{1,8}?\\x06server",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE REvil Exfil SFTP Certificate Inbound",
+    "classtype": "targeted-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2068693,
+    "regex": "USER.{0,}?PASS.{0,}?PASV.{0,}?STOR\\ archive4\\.zip",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE LucidRook FTP C2 Activity (Exfil Host Info)",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2068694,
+    "regex": "USER.{0,}?PASS.{0,}?PASV.{0,}?RETR\\ archive1\\.zip",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET MALWARE LucidRook FTP C2 Activity (Download Payload)",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2013263,
+    "regex": "(?i)pass\\ nessus@(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 12,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET SCAN Nessus FTP Scan detected (ftp_anonymous.nasl)",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2013264,
+    "regex": "(?i)MKD(?-i).*?(?i)Nessus(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 3,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET SCAN Nessus FTP Scan detected (ftp_writeable_directories.nasl)",
+    "classtype": "attempted-recon",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101888,
+    "regex": "(?i)SITE(?-i).{0,}?(?i)CPWD(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP SITE CPWD overflow attempt",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100334,
+    "regex": "\\.forward",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP .forward",
+    "classtype": "suspicious-filename-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100349,
+    "regex": "MKD\\ ",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP MKD overflow",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100354,
+    "regex": "pass\\ \\-iss@iss",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP iss scan",
+    "classtype": "suspicious-login",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100355,
+    "regex": "(?i)pass\\ wh00t(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP pass wh00t",
+    "classtype": "suspicious-login",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100356,
+    "regex": "(?i)RETR(?-i).*?passwd",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP passwd retrieval attempt",
+    "classtype": "suspicious-filename-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100357,
+    "regex": "pass\\ \\-cklaus",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP piss scan",
+    "classtype": "suspicious-login",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100358,
+    "regex": "pass\\ \\-saint",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP saint scan",
+    "classtype": "suspicious-login",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100359,
+    "regex": "pass\\ \\-satan",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP satan scan",
+    "classtype": "suspicious-login",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100361,
+    "regex": "(?i)SITE(?-i).{0,}?(?i)EXEC(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP SITE EXEC attempt",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2100362,
+    "regex": "(?i)\\ \\-\\-use\\-compress\\-program\\ (?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP tar parameters",
+    "classtype": "bad-unknown",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101529,
+    "regex": "(?i)SITE(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP SITE overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101562,
+    "regex": "(?i)SITE(?-i).{0,}?(?i)CHOWN(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP SITE CHOWN overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101621,
+    "regex": "(?i)CMD(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP CMD overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101622,
+    "regex": "(?i)RNFR\\ (?-i).*?(?i)\\ \\./\\./(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP RNFR ././ attempt",
+    "classtype": "misc-attack",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101623,
+    "regex": "(?i)MODE(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP invalid MODE",
+    "classtype": "protocol-command-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101624,
+    "regex": "PWD",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP large PWD command",
+    "classtype": "protocol-command-decode",
+    "negated_patterns": [
+      {
+        "regex": "\\x0a",
+        "modifiers": {
+          "within": "7",
+          "nocase": true
+        }
+      }
+    ]
+  },
+  {
+    "id": 2101728,
+    "regex": "CWD\\ .*?\\ \\~\\x0d\\x0a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP CWD ~<CR><NEWLINE> attempt",
+    "classtype": "denial-of-service",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101734,
+    "regex": "(?i)USER\\x20(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP USER overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101779,
+    "regex": "CWD\\ .*?\\ \\.\\.\\.\\.",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP CWD .... attempt",
+    "classtype": "denial-of-service",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101864,
+    "regex": "(?i)SITE(?-i).{1,}?(?i)NEWER(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP SITE NEWER attempt",
+    "classtype": "attempted-dos",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101919,
+    "regex": "(?i)CWD(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP CWD overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101920,
+    "regex": "(?i)SITE(?-i).{0,}?(?i)NEWER(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "protocol": "ftp",
+    "msg": "GPL FTP SITE NEWER overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101921,
+    "regex": "(?i)SITE(?-i).{1,}?(?i)ZIPCHK(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "protocol": "ftp",
+    "msg": "GPL FTP SITE ZIPCHK overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101927,
+    "regex": "authorized_keys",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP authorized_keys file transferred",
+    "classtype": "suspicious-filename-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101928,
+    "regex": "(?i)RETR(?-i).*?shadow",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP shadow retrieval attempt",
+    "classtype": "suspicious-filename-detect",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101972,
+    "regex": "(?i)PASS(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "21",
+    "protocol": "ftp",
+    "msg": "GPL FTP PASS overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101973,
+    "regex": "(?i)MKD(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP MKD overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101974,
+    "regex": "(?i)REST(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP REST overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101975,
+    "regex": "(?i)DELE(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP DELE overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101976,
+    "regex": "(?i)RMD(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP RMD overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102391,
+    "regex": "(?i)APPE(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP APPE overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102416,
+    "regex": "(?i)MDTM(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP invalid MDTM command attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102449,
+    "regex": "(?i)ALLO(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP ALLO overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2102546,
+    "regex": "(?i)MDTM(?-i)",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP MDTM overflow attempt",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2016687,
+    "regex": "USER\\ anonymous\\x0d\\x0aPASS\\ Java1\\.",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET FTP Outbound Java Anonymous FTP Login",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2101992,
+    "regex": "(?i)LIST(?-i).{1,}?\\.\\..{1,}?\\.\\.",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "GPL FTP LIST directory traversal attempt",
+    "classtype": "protocol-command-decode",
+    "negated_patterns": []
+  },
+  {
+    "id": 2014906,
+    "regex": "RETR.{0,}?\\.exe\\x0d\\x0a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": 4,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ftp",
+    "msg": "ET INFO .exe File requested over FTP",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  }
+]

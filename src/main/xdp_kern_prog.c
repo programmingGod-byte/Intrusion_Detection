@@ -9,32 +9,41 @@
 
 #define AETHON_MAX_IPS 65536
 #define AETHON_MAX_QUEUE_SIZE 64
-#define MINUTE 60000000000ULL
-#define AETHON_LIMIT_TOKEN 600
+#define SECOND_NS 1000000000ULL
+#define AETHON_PER_CORE_BURST 10ULL
+#define AETHON_PER_CORE_REFILL_PER_SEC 2ULL
 #define AETHON_MAX_XDP_RETURN_TYPE 5
 
-
-// IP blocking map
+// getting the no of queeu map
 struct {
-    __uint(type, BPF_MAP_TYPE_HASH); // globally blocked ips
+    __uint(type, BPF_MAP_TYPE_ARRAY);
+    __uint(max_entries, 1);
+    __type(key,__u32);
+    __type(value,__u32);
+} queue_config_map SEC(".maps");
+
+// IP blocking map (global blocklist)
+struct {
+    __uint(type, BPF_MAP_TYPE_HASH);
     __uint(max_entries, AETHON_MAX_IPS);
     __type(key, struct aethon_ip_address);
     __type(value, __u64);
 } aethon_ip_blockist SEC(".maps");
 
-
-struct rate_limit_state{
+// Lockless per-CPU rate limiting state struct
+struct rate_limit_state {
     __u64 tokens;
     __u64 last_updated;
+    __u64 drop_count;
 };
 
+// 100% Lock-Free Per-CPU map (Zero cross-core lock contention!)
 struct {
-    __uint(type,BPF_MAP_TYPE_PERCPU_HASH); // single cpu
+    __uint(type, BPF_MAP_TYPE_PERCPU_HASH);
     __uint(max_entries, AETHON_MAX_IPS);
-    __type(key,struct aethon_ip_address);
+    __type(key, struct aethon_ip_address);
     __type(value, struct rate_limit_state);
 } aethon_ip_ratelimit SEC(".maps");
-
 
 // afxdp NIC queue to AF_XDP 
 struct {
@@ -45,24 +54,7 @@ struct {
 } aethon_xsks_map SEC(".maps");
 
 
-
-// stats map
-struct {
-  __uint(type, BPF_MAP_TYPE_PERCPU_ARRAY);
-  __type(key, __u32);
-  __type(value, struct datarec);
-  __uint(max_entries, XDP_ACTION_MAX);
-} aetho_xdp_stats_map SEC(".maps");
-
-
-// rate limiting state
-struct aethon_rate_limit_state{
-    __u64 tokens;
-    __u64 last_updated;
-};
-
-
-// records maps (PER CLIMITER)
+// records maps (PER CLIMITER) // for all XDP actions
 struct {
     __uint(type,BPF_MAP_TYPE_PERCPU_ARRAY);
     __type(key,__u32);
@@ -99,6 +91,7 @@ int aethon_xdp_prog_main(struct xdp_md * ctx) {
         return XDP_DROP;
 
     // 2. Parse IP Header & Extract src_ip FIRST
+    
     struct aethon_ip_address src_ip = {};
     if (eth->h_proto == bpf_htons(ETH_P_IP)) {
         struct iphdr *iph = (struct iphdr *)(eth + 1);
@@ -120,37 +113,99 @@ int aethon_xdp_prog_main(struct xdp_md * ctx) {
 
     // 3. Blocklist Check (Using the extracted src_ip)
     if (bpf_map_lookup_elem(&aethon_ip_blockist, &src_ip)) {
+         bpf_printk("IP BLOCKLISTED - DROP\n");
         action = XDP_DROP;
         goto out;
     }
 
     __u64 now = bpf_ktime_get_ns();
-    struct aethon_rate_limit_state *state = bpf_map_lookup_elem(&aethon_ip_ratelimit, &src_ip);
+    struct rate_limit_state *state = bpf_map_lookup_elem(&aethon_ip_ratelimit, &src_ip);
     if (!state) {
-        struct aethon_rate_limit_state init_state = {
-            .tokens = AETHON_LIMIT_TOKEN - 1,
-            .last_updated = now
+        // Key doesn't exist yet; allocate in per-CPU hash map
+        struct rate_limit_state init_state = {
+            .tokens = AETHON_PER_CORE_BURST - 1,
+            .last_updated = now,
+            .drop_count = 0
         };
         bpf_map_update_elem(&aethon_ip_ratelimit, &src_ip, &init_state, BPF_ANY);
+    } else if (state->last_updated == 0) {
+        // Key exists, but THIS specific CPU core is seeing it for the first time.
+        // Initialize this core's local slice cleanly:
+        state->tokens = AETHON_PER_CORE_BURST - 1;
+        state->last_updated = now;
+        state->drop_count = 0;
     } else {
         __u64 elapsed = now - state->last_updated;
-        __u64 tokens_to_add = (elapsed * AETHON_LIMIT_TOKEN) / MINUTE;
+        __u64 tokens_to_add = (elapsed * AETHON_PER_CORE_REFILL_PER_SEC) / SECOND_NS;
         if (tokens_to_add > 0) {
             __u64 new_tokens = state->tokens + tokens_to_add;
-            state->tokens = (new_tokens > AETHON_LIMIT_TOKEN) ? AETHON_LIMIT_TOKEN : new_tokens;
+            state->tokens = (new_tokens > AETHON_PER_CORE_BURST) ? AETHON_PER_CORE_BURST : new_tokens;
             state->last_updated = now;
         }
 
         if (state->tokens == 0) {
+            state->drop_count += 1;
+            bpf_printk("RATE LIMIT EXCEEDED - DROP\n");
+
+            // Escalate to global blocklist if flood persists on this core
+            if (state->drop_count >= 8) {
+                __u64 flag = 1;
+                bpf_map_update_elem(&aethon_ip_blockist, &src_ip, &flag, BPF_ANY);
+                bpf_printk("IP BLOCKLISTED DUE TO FLOOD\n");
+            }
+
             action = XDP_DROP;
             goto out;
         }
         state->tokens -= 1;
     }
 
-    __u32 queue_idx = ctx->rx_queue_index;
-    action = bpf_redirect_map(&aethon_xsks_map, queue_idx, 0);
-    bpf_printk("Packet received, redirect map ret: %d, qid: %d\n", action, queue_idx);
+    // 5. Attack Checks (only runs if rate limiter passed)
+    if (eth->h_proto == bpf_htons(ETH_P_IP)) {
+        struct iphdr *iph_check = (struct iphdr *)(eth + 1);
+        if ((void *)(iph_check + 1) <= data_end) {
+            __u16 frag_off_check = bpf_ntohs(iph_check->frag_off);
+            __u8 is_fragment_check = (frag_off_check & 0x3FFF) != 0 || (frag_off_check & 0x2000) != 0;
+
+            if (is_fragment_check && iph_check->protocol == IPPROTO_TCP) {
+                __u64 flag = 1;
+                bpf_map_update_elem(&aethon_ip_blockist, &src_ip, &flag, BPF_ANY);
+                bpf_printk("TCP FRAGMENT ATTACK BLOCKED\n");
+                action = XDP_DROP;
+                goto out;
+            }
+        }
+    }
+
+    
+    // Dynamic queue routing
+    __u32 key = 0;
+    __u32 *num_queues_ptr  = (__u32 * )bpf_map_lookup_elem(&queue_config_map, &key);
+    __u32 dynamic_num_queues = (num_queues_ptr && *num_queues_ptr > 0) ? *num_queues_ptr : 1;
+    
+    // Spread incoming hardware queues evenly across active worker queues
+    __u32 target_queue = ctx->rx_queue_index % dynamic_num_queues;
+
+    if (eth->h_proto == bpf_htons(ETH_P_IP)) {
+        struct iphdr *iph = (struct iphdr *)(eth + 1);
+        if ((void *)(iph + 1) > data_end) return XDP_DROP;
+        __u16 frag_off = bpf_ntohs(iph->frag_off);
+        __u8 is_fragment = (frag_off & 0x3FFF) != 0 || (frag_off & 0x2000) != 0;
+
+        if (is_fragment) {
+            // For IP fragments (UDP / other), route all fragments of the flow to the SAME worker queue
+            __u64 ip_hash = (__u64)iph->saddr + (__u64)iph->daddr;
+            target_queue = ip_hash % dynamic_num_queues;
+        }
+    }
+
+    // Safety bounds check for the eBPF kernel verifier
+    if (target_queue >= dynamic_num_queues) {
+        target_queue = 0;
+    }
+
+    action = bpf_redirect_map(&aethon_xsks_map, target_queue, 0);
+    bpf_printk("Packet received, redirect map ret: %d, qid: %d\n", action, target_queue);
 
 out:
     stats_record_count(ctx, action);

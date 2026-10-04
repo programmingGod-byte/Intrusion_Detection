@@ -2,45 +2,25 @@
 #include <iostream>
 #include <thread>
 #include <vector>
-
 #include <chrono>
 #include <atomic>
 #include <iomanip>
-
 #include <sched.h>
 #include <pthread.h>
-
-// False sharing prevention: align counters on separate 64-byte CPU cachelines
-alignas(64) std::atomic<uint64_t> total_packets{0};
-alignas(64) std::atomic<uint64_t> total_bytes{0};
-
 #include <poll.h>
 
-// Zero-copy, stack-allocated, power-of-two circular fallback ring (0 malloc, 0 memmove)
-template <size_t Capacity = 2048>
-struct alignas(64) FallbackRing {
-  static_assert((Capacity & (Capacity - 1)) == 0, "Capacity must be power of 2");
-  static constexpr size_t MASK = Capacity - 1;
+namespace aethon {
+namespace xdp {
 
-  uint64_t ring[Capacity];
-  uint32_t head = 0;
-  uint32_t tail = 0;
-
-  AETHON_ALWAYS_INLINE bool empty() const noexcept { return head == tail; }
-  AETHON_ALWAYS_INLINE size_t size() const noexcept { return head - tail; }
-
-  AETHON_ALWAYS_INLINE void push(uint64_t addr) noexcept {
-    ring[head++ & MASK] = addr;
-  }
-
-  AETHON_ALWAYS_INLINE uint64_t get(size_t offset = 0) const noexcept {
-    return ring[(tail + offset) & MASK];
-  }
-
-  AETHON_ALWAYS_INLINE void advance(size_t count) noexcept {
-    tail += count;
-  }
+// Global packet and byte counters, aligned on separate 64-byte CPU cachelines
+struct alignas(implementation::hardware_destructive_interference_size) CaptureStats {
+  alignas(implementation::hardware_destructive_interference_size) std::atomic<uint64_t> total_packets{0};
+  alignas(implementation::hardware_destructive_interference_size) std::atomic<uint64_t> total_bytes{0};
 };
+
+inline CaptureStats g_stats;
+
+inline std::atomic<bool> g_running{true};
 
 static inline void set_cpu_affinity(int core_id) {
   cpu_set_t cpuset;
@@ -49,26 +29,42 @@ static inline void set_cpu_affinity(int core_id) {
   pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset);
 }
 
-void rx_worker(int queue_id) {
-  // Pin this worker thread to its dedicated CPU core for maximum L1/L2 cache locality
-  set_cpu_affinity(queue_id % std::thread::hardware_concurrency());
+// Templated worker that accepts any AFXDPEngine configuration
+template <typename Engine>
+void rx_worker(Engine &engine, int queue_id) {
+  using Config = typename Engine::config_type;
 
-  auto *sock = aethon::xdp::xsk_sockets[queue_id].socket_info;
+  // Pin this worker thread to its dedicated CPU core (skip Core 0 for OS)
+  int core_count = std::thread::hardware_concurrency();
+  int available_worker_cores = core_count > 1 ? core_count - 1 : 1;
+  int target_core = (queue_id % available_worker_cores) + 1; // +1 to skip Core 0
+  
+  if (core_count == 1) {
+      target_core = 0; // Fallback for single-core machines
+  }
+  
+  set_cpu_affinity(target_core);
+
+  auto *sock = engine.get_socket(queue_id);
+  if (!sock) {
+    std::cerr << "[Queue " << queue_id << "] Error: Invalid socket pointer!\n";
+    return;
+  }
+
   int sock_fd = xsk_socket__fd(sock->xsk);
-  std::cout << "[Queue " << queue_id << "] Worker started on Core " 
-            << (queue_id % std::thread::hardware_concurrency()) << "\n";
+  std::cout << "[Queue " << queue_id << "] Worker started on Core " << target_core << "\n";
 
   // Tell Linux to monitor our AF_XDP socket
   struct pollfd fds[1];
   fds[0].fd = sock_fd;
   fds[0].events = POLLIN;
 
-  // Ultra-fast stack-allocated ring buffer
-  FallbackRing<2048> fallback_ring;
+  // Ultra-fast stack-allocated ring buffer with capacity defined by template Config
+  FallbackRing<Config::FALLBACK_CAPACITY> fallback_ring;
 
-  while (true) {
+  while (g_running.load(std::memory_order_relaxed)) {
     uint32_t idx_rx = 0;
-    unsigned int rcvd = xsk_ring_cons__peek(&sock->rx, 64, &idx_rx);
+    unsigned int rcvd = xsk_ring_cons__peek(&sock->rx, Config::BATCH_SIZE, &idx_rx);
     
     if (AETHON_UNLIKELY(!rcvd)) {
         // If we have pending fallback buffers, try to flush them to the Fill Ring now
@@ -85,9 +81,8 @@ void rx_worker(int queue_id) {
             }
         }
 
-        if (xsk_ring_prod__needs_wakeup(&sock->umen->fq)) {
-            poll(fds, 1, 10);
-        }
+        // Put thread to sleep waiting for new packets or fill ring wake-up (reduces idle CPU to ~0%)
+        poll(fds, 1, 50);
         continue;
     }
 
@@ -102,9 +97,9 @@ void rx_worker(int queue_id) {
       fallback_ring.push(desc->addr);
     }
 
-    // Update global atomic counters (relaxed ordering for low contention)
-    total_packets.fetch_add(rcvd, std::memory_order_relaxed);
-    total_bytes.fetch_add(batch_bytes, std::memory_order_relaxed);
+    // Update atomic counters (relaxed ordering for low contention)
+    g_stats.total_packets.fetch_add(rcvd, std::memory_order_relaxed);
+    g_stats.total_bytes.fetch_add(batch_bytes, std::memory_order_relaxed);
 
     // Release the consumed descriptors in the RX ring
     xsk_ring_cons__release(&sock->rx, rcvd);
@@ -125,15 +120,19 @@ void rx_worker(int queue_id) {
   }
 }
 
-void stats_printer() {
+inline void stats_printer() {
+  // Pin telemetry thread strictly to Core 0 (alongside Linux OS & IRQs)
+  // so packet workers on Cores 1+ have 100% uninterrupted CPU time
+  set_cpu_affinity(0);
+
   uint64_t last_packets = 0;
   uint64_t last_bytes = 0;
 
-  while (true) {
+  while (g_running.load(std::memory_order_relaxed)) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    uint64_t current_packets = total_packets.load(std::memory_order_relaxed);
-    uint64_t current_bytes = total_bytes.load(std::memory_order_relaxed);
+    uint64_t current_packets = g_stats.total_packets.load(std::memory_order_relaxed);
+    uint64_t current_bytes = g_stats.total_bytes.load(std::memory_order_relaxed);
 
     uint64_t pps = current_packets - last_packets;
     uint64_t bps = current_bytes - last_bytes;
@@ -148,18 +147,42 @@ void stats_printer() {
   }
 }
 
+// ============================================================================
+// PARAMETER CONFIGURATION
+// ============================================================================
+// DefaultEngine uses XdpConfig with 4096 frames (8MB UMEM), 2048 ring sizes, 64 batch.
+// You can define custom configs here if needed.
+using ActiveEngine = DefaultEngine;
+
+static void sig_handler(int) {
+  g_running.store(false, std::memory_order_relaxed);
+}
+
+} // namespace xdp
+} // namespace aethon
+
+#include <csignal>
+
 int main(int argc, char **argv) {
+  using namespace aethon::xdp;
+
+  std::signal(SIGINT, sig_handler);
+  std::signal(SIGTERM, sig_handler);
+
   const char *ifname = (argc > 1) ? argv[1] : "veth0";
   const char *prog_path = (argc > 2) ? argv[2] : "src/main/xdp_kern_prog.o";
 
   std::cout << "Starting AF_XDP on interface: " << ifname << "\n";
   std::cout << "Using eBPF Program: " << prog_path << "\n";
 
-  // Initialize all hardware queues
-  setup_af_xdp_for_all_queue(ifname, prog_path, "xdp",
-                             XDP_MODE_SKB, "aethon_xsks_map");
+  ActiveEngine engine;
+  if (!engine.setup(ifname, prog_path, "aethon_xdp_prog_main",
+                    XDP_MODE_SKB, "aethon_xsks_map", "queue_config_map")) {
+    std::cerr << "Failed to initialize AF_XDP engine.\n";
+    return 1;
+  }
 
-  int num_queues = aethon::xdp::total_active_queues;
+  int num_queues = engine.active_queues();
   std::cout << "Running on " << num_queues << " queues...\n";
 
   // Spawn 1 thread per queue
@@ -169,12 +192,13 @@ int main(int argc, char **argv) {
   workers.emplace_back(stats_printer);
 
   for (int q = 0; q < num_queues; ++q) {
-    workers.emplace_back(rx_worker, q);
+    workers.emplace_back(rx_worker<ActiveEngine>, std::ref(engine), q);
   }
 
   for (auto &w : workers) {
     w.join();
   }
 
+  std::cout << "\n[Engine] Gracefully stopped all workers.\n";
   return 0;
 }

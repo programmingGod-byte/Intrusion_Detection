@@ -1,0 +1,311 @@
+[
+  {
+    "id": 2022369,
+    "regex": "\\x14.{0,}?resume@appgate\\.com",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 6,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "$SSH_PORTS",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET EXPLOIT Possible CVE-2016-0777 Server Advertises Suspicious Roaming Support",
+    "classtype": "attempted-user",
+    "negated_patterns": [
+      {
+        "regex": "AppGateSSH_5\\.2",
+        "modifiers": {}
+      }
+    ]
+  },
+  {
+    "id": 2061798,
+    "regex": "\\x14\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET EXPLOIT SSH Client Key Exchange Init Cookie Null",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2061797,
+    "regex": "exec.{0,1}?\\x62",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET EXPLOIT SSH Erlang/OTP SSH Server Unencryped Channel Request (Message Type 98) (CVE-2025-32433)",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2057246,
+    "regex": "SSH\\-2\\.0\\-D8pjE\\x0d\\x0a",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET MALWARE [NCSC] Pygmy Goat SSH Banner",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2057247,
+    "regex": "\\x29\\xcc\\xf0\\xcc\\x16\\xc5\\x46\\x6e\\x52\\x19\\x82\\x8e\\x86\\x65\\x42\\x8c\\x1f\\x1a\\xd4\\xc3\\xa5\\xb1\\xcb\\xfc\\xc0\\x26\\x6c\\x31\\x3c\\x5c\\x90\\x3a\\x24\\x7d\\xe4\\xd3\\x57\\x6d\\xda\\x8e\\xcb\\xf4\\x66\\xd1\\xcb\\x81\\x4f\\x63\\xfd\\x4a\\xfa\\x06\\xe4\\x7e\\x4c\\xa0\\x95\\x91\\xbd\\xcb\\x97\\xa4\\xb3\\x0f",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": 120,
+    "depth": 64,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$EXTERNAL_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET MALWARE [NCSC] Pygmy Goat SSH ed25519 Key",
+    "classtype": "trojan-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2059673,
+    "regex": "SSH\\-2\\.0\\-OpenSSH_8\\.6p1\\ ",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET MALWARE Cindy C2 SSH Server Banner",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2059674,
+    "regex": "SSH\\-2\\.0\\-OpenSSH_8\\.6p1\\ ",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET MALWARE Moonly C2 SSH Server Banner",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2059675,
+    "regex": "SSH\\-2\\.0\\-OpenSSH_8\\.6p1\\ ",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET MALWARE Nosviak C2 SSH Server Banner",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2059676,
+    "regex": "SSH\\-2\\.0\\-OpenSSH_8\\.6p1\\ ",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET MALWARE RCNC C2 SSH Server Banner",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2059677,
+    "regex": "SSH\\-2\\.0\\-OpenSSH_8\\.6p1\\ ",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET MALWARE Sentinel C2 SSH Server Banner",
+    "classtype": "command-and-control",
+    "negated_patterns": []
+  },
+  {
+    "id": 2006546,
+    "regex": "SSH\\-.{0,20}?libssh",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "22",
+    "protocol": "ssh",
+    "msg": "ET SCAN LibSSH Based Frequent SSH Connections Likely BruteForce Attack",
+    "classtype": "attempted-admin",
+    "negated_patterns": []
+  },
+  {
+    "id": 2019876,
+    "regex": "PUTTY",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$EXTERNAL_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "$HOME_NET",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET SCAN SSH BruteForce Tool with fake PUTTY version",
+    "classtype": "network-scan",
+    "negated_patterns": []
+  },
+  {
+    "id": 2054407,
+    "regex": "SSH\\-.*?\\-OpenSSH_",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "any",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "[$HOME_NET,$HTTP_SERVERS]",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET INFO Server Responded with Vulnerable OpenSSH Version (CVE-2024-6409)",
+    "classtype": "successful-recon-largescale",
+    "negated_patterns": []
+  },
+  {
+    "id": 2061790,
+    "regex": "Erlang/",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET INFO Potentially Vulnerable Erlang/OTP SSH Server Banner (CVE-2025-32433)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2061806,
+    "regex": "ConfD\\-",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET INFO Potentially Vulnerable Cisco ConfD SSH Server Banner (CVE-2025-32433)",
+    "classtype": "misc-activity",
+    "negated_patterns": []
+  },
+  {
+    "id": 2048645,
+    "regex": "SSH\\-2\\.0\\-dropbear_2016\\.74",
+    "flags": [
+      "HS_FLAG_DOTALL",
+      "HS_FLAG_SINGLEMATCH"
+    ],
+    "offset": null,
+    "depth": null,
+    "src_ip": "$HOME_NET",
+    "src_port": "any",
+    "direction": "->",
+    "dst_ip": "any",
+    "dst_port": "any",
+    "protocol": "ssh",
+    "msg": "ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL-series Dropbear SSH Banner - Possible SSH Login attempt",
+    "classtype": "suspicious-login",
+    "negated_patterns": []
+  }
+]
