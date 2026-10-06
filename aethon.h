@@ -77,6 +77,28 @@ constexpr bool kIsLinux = false;
 #endif
 #endif
 
+#if defined(__clang__)
+
+    #define AETHON_PRAGMA(x) _Pragma(#x)
+    #define AETHON_UNROLL(n) AETHON_PRAGMA(clang loop unroll_count(n))
+
+#elif defined(__GNUC__)
+
+    #define AETHON_PRAGMA(x) _Pragma(#x)
+    #define AETHON_UNROLL(n) AETHON_PRAGMA(GCC unroll n)
+
+#elif defined(_MSC_VER)
+
+    #define AETHON_UNROLL(n) __pragma(loop(unroll))
+
+#else
+
+    #define AETHON_UNROLL(n)
+
+#endif
+
+
+
 #ifdef AETHON_SANITIZE_ADDRESS
 #if defined(__clang__)
 #if __has_attribute(__no_sanitize__)

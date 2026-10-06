@@ -1,5 +1,12 @@
 #include "../af_xdp_header.h"
+#include "aethon/aethon.h"
+#include <cstddef>
+#include <cstdint>
 #include <iostream>
+#include <net/ethernet.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <netinet/udp.h>
 #include <thread>
 #include <vector>
 #include <chrono>
@@ -8,7 +15,17 @@
 #include <sched.h>
 #include <pthread.h>
 #include <poll.h>
+#include "udp_assembler.cpp"
+#include "ip_address.cpp"
 
+/*
+  For IPv4 UDP
+  [ Ethernet Header (14B) ][ IPv4 Header (20B) ][ Payload / UDP Header ]
+^                        ^                    ^
+|                        |                    |
+pkt                      pkt + 14             pkt + 14 + iph->ihl*4
+
+*/
 namespace aethon {
 namespace xdp {
 
@@ -62,6 +79,9 @@ void rx_worker(Engine &engine, int queue_id) {
   // Ultra-fast stack-allocated ring buffer with capacity defined by template Config
   FallbackRing<Config::FALLBACK_CAPACITY> fallback_ring;
 
+  // Per-worker-thread UDP assembler engine (dedicated Core-pinned instance)
+  UDPIpv4Assembler::UDPassemblerEngine assembler;
+
   while (g_running.load(std::memory_order_relaxed)) {
     uint32_t idx_rx = 0;
     unsigned int rcvd = xsk_ring_cons__peek(&sock->rx, Config::BATCH_SIZE, &idx_rx);
@@ -92,7 +112,69 @@ void rx_worker(Engine &engine, int queue_id) {
       if (i + 4 < rcvd) {
         AETHON_BUILTIN_PREFETCH(xsk_ring_cons__rx_desc(&sock->rx, idx_rx + i + 4), 0, 1);
       }
-      const auto *desc = xsk_ring_cons__rx_desc(&sock->rx, idx_rx + i);
+      const auto *__restrict__ desc = xsk_ring_cons__rx_desc(&sock->rx, idx_rx + i);
+
+      /* PACKET PROCESSING LOGIC */
+      const uint8_t *__restrict__ pkt = reinterpret_cast<const uint8_t *>(
+          xsk_umem__get_data(sock->umen->buffer, desc->addr));
+      const auto *__restrict__ eth = reinterpret_cast<const struct ether_header *>(pkt);
+
+      if (AETHON_LIKELY(ntohs(eth->ether_type) == ETHERTYPE_IP)) {
+        if (AETHON_LIKELY(desc->len >= sizeof(struct ether_header) + sizeof(struct iphdr))) {
+          const auto *__restrict__ iph = reinterpret_cast<const struct iphdr *>(pkt + sizeof(struct ether_header));
+
+          // Host IP filter: Accept traffic for our interface private IPs, broadcast, or multicast
+          const uint32_t dst_ip = iph->daddr;
+          const bool is_for_this_host = g_host_ips.contains(dst_ip) ||
+                                        (dst_ip == INADDR_BROADCAST) ||
+                                        (IN_MULTICAST(ntohl(dst_ip)));
+
+          if (AETHON_LIKELY(is_for_this_host && iph->protocol == IPPROTO_UDP)) {
+            uint16_t frag_field = ntohs(iph->frag_off);
+            bool more_fragments = (frag_field & IP_MF) != 0;
+            uint16_t frag_offset = (frag_field & IP_OFFMASK) * 8;
+            
+            size_t ip_hdr_len = iph->ihl * 4;
+            const uint8_t *__restrict__ frag_payload = reinterpret_cast<const uint8_t *>(iph) + ip_hdr_len;
+            uint16_t frag_len = ntohs(iph->tot_len) - ip_hdr_len;
+
+            // 99.5% of packets are unfragmented (expect 1 with 0.995 probability)
+            if (AETHON_BUILTIN_EXPECT_WITH_PROBABILITY((!more_fragments && frag_offset == 0), 1, 0.995)) {
+              if (AETHON_LIKELY(frag_len >= sizeof(struct udphdr))) {
+                const auto *__restrict__ udph = reinterpret_cast<const struct udphdr *>(frag_payload);
+                const uint8_t *__restrict__ udp_app_payload = frag_payload + sizeof(struct udphdr);
+                size_t udp_app_len = frag_len - sizeof(struct udphdr);
+
+                // Fast Path: Payload available for Hyperscan scanning
+                (void)udph;
+                (void)udp_app_payload;
+                (void)udp_app_len;
+              }
+            } else {
+              // Fragmented Packet Path
+              UDPIpv4Assembler::FragmentKey key;
+              key.src_ip   = iph->saddr;
+              key.dst_ip   = iph->daddr;
+              key.ip_id    = ntohs(iph->id);
+              key.protocol = iph->protocol;
+
+              uint64_t now_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(
+                  std::chrono::steady_clock::now().time_since_epoch()).count();
+
+              UDPIpv4Assembler::AssemblyResult res = assembler.process_fragment(
+                  key, frag_offset, frag_payload, frag_len, more_fragments, now_ns);
+
+              if (AETHON_UNLIKELY(res.is_complete)) {
+                // Reassembled Datagram: Full payload available for Hyperscan scanning
+                (void)res;
+
+                assembler.release_completed(res);
+              }
+            }
+          }
+        }
+      }
+
       batch_bytes += desc->len;
       fallback_ring.push(desc->addr);
     }
@@ -171,6 +253,9 @@ int main(int argc, char **argv) {
 
   const char *ifname = (argc > 1) ? argv[1] : "veth0";
   const char *prog_path = (argc > 2) ? argv[2] : "src/main/xdp_kern_prog.o";
+
+  // Discover and cache all local IPv4 addresses on this interface (AWS private IPs)
+  aethon::load_interface_ips(ifname);
 
   std::cout << "Starting AF_XDP on interface: " << ifname << "\n";
   std::cout << "Using eBPF Program: " << prog_path << "\n";
