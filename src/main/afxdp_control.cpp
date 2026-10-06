@@ -123,9 +123,14 @@ void rx_worker(Engine &engine, int queue_id) {
         if (AETHON_LIKELY(desc->len >= sizeof(struct ether_header) + sizeof(struct iphdr))) {
           const auto *__restrict__ iph = reinterpret_cast<const struct iphdr *>(pkt + sizeof(struct ether_header));
 
+          // Validate IPv4 checksum (reject corrupted or checksum-evasion packets)
+          if (AETHON_UNLIKELY(!Ipv4::is_valid_ipv4_checksum(iph))) {
+            goto recycle_slot;
+          }
+
           // Host IP filter: Accept traffic for our interface private IPs, broadcast, or multicast
           const uint32_t dst_ip = iph->daddr;
-          const bool is_for_this_host = g_host_ips.contains(dst_ip) ||
+          const bool is_for_this_host = Ipv4::g_host_ips.contains(dst_ip) ||
                                         (dst_ip == INADDR_BROADCAST) ||
                                         (IN_MULTICAST(ntohl(dst_ip)));
 
@@ -175,6 +180,7 @@ void rx_worker(Engine &engine, int queue_id) {
         }
       }
 
+recycle_slot:
       batch_bytes += desc->len;
       fallback_ring.push(desc->addr);
     }
@@ -255,7 +261,7 @@ int main(int argc, char **argv) {
   const char *prog_path = (argc > 2) ? argv[2] : "src/main/xdp_kern_prog.o";
 
   // Discover and cache all local IPv4 addresses on this interface (AWS private IPs)
-  aethon::load_interface_ips(ifname);
+  aethon::Ipv4::load_interface_ips(ifname);
 
   std::cout << "Starting AF_XDP on interface: " << ifname << "\n";
   std::cout << "Using eBPF Program: " << prog_path << "\n";
