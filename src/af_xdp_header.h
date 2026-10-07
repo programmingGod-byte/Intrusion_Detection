@@ -128,7 +128,6 @@ struct alignas(
     implementation::hardware_constructive_interference_size) QueueSlot {
   aethon_xsk_socket_info *socket_info{nullptr};
 };
-
 // Query available NIC queues using ethtool ioctl
 inline int get_nic_queue_count(const char *ifname) {
   struct ethtool_channels channels {};
