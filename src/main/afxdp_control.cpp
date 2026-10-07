@@ -7,6 +7,7 @@
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/udp.h>
+#include <netinet/ip_icmp.h>
 #include <thread>
 #include <vector>
 #include <chrono>
@@ -44,6 +45,35 @@ static inline void set_cpu_affinity(int core_id) {
   CPU_ZERO(&cpuset);
   CPU_SET(core_id, &cpuset);
   pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset);
+}
+
+static inline uint16_t get_checksum(const uint8_t *pkt,size_t len){
+  uint32_t sum=0;
+  while (len >= 2) {
+    sum += (static_cast<uint16_t>(pkt[0]) << 8)|static_cast<uint16_t>(pkt[1]);
+    pkt += 2;
+    len -= 2;
+  }
+
+  if (len) sum += static_cast<uint16_t>(pkt[0]) << 8;
+  while (sum >> 16)
+    sum = (sum & 0xFFFF) + (sum >> 16);
+  return static_cast<uint16_t>(~sum);
+}
+
+static inline void free_completion_ring(aethon_xsk_socket_info* sock){
+  uint32_t idx=0;
+  unsigned int completed=xsk_ring_cons__peek(&sock->umen->cq,32,&idx);
+  if (AETHON_LIKELY(completed==0)) return;
+  uint32_t idx_fq=0;
+  unsigned int avail=xsk_ring_prod__reserve(&sock->umen->fq,completed,&idx_fq);
+  if (AETHON_UNLIKELY(avail==0)) return;
+  for (int i=0;i<avail;i++){
+    uint64_t addr=*xsk_ring_cons__comp_addr(&sock->umen->cq,idx+i);
+    *xsk_ring_prod__fill_addr(&sock->umen->fq,idx_fq+i)=addr;
+  }
+  xsk_ring_prod__submit(&sock->umen->fq,avail);
+  xsk_ring_cons__release(&sock->umen->cq,avail);
 }
 
 // Templated worker that accepts any AFXDPEngine configuration
@@ -85,6 +115,7 @@ void rx_worker(Engine &engine, int queue_id) {
   while (g_running.load(std::memory_order_relaxed)) {
     uint32_t idx_rx = 0;
     unsigned int rcvd = xsk_ring_cons__peek(&sock->rx, Config::BATCH_SIZE, &idx_rx);
+    free_completion_ring(sock);
     
     if (AETHON_UNLIKELY(!rcvd)) {
         // If we have pending fallback buffers, try to flush them to the Fill Ring now
@@ -115,13 +146,13 @@ void rx_worker(Engine &engine, int queue_id) {
       const auto *__restrict__ desc = xsk_ring_cons__rx_desc(&sock->rx, idx_rx + i);
 
       /* PACKET PROCESSING LOGIC */
-      const uint8_t *__restrict__ pkt = reinterpret_cast<const uint8_t *>(
+      uint8_t *__restrict__ pkt = reinterpret_cast<uint8_t *>(
           xsk_umem__get_data(sock->umen->buffer, desc->addr));
       const auto *__restrict__ eth = reinterpret_cast<const struct ether_header *>(pkt);
 
       if (AETHON_LIKELY(ntohs(eth->ether_type) == ETHERTYPE_IP)) {
         if (AETHON_LIKELY(desc->len >= sizeof(struct ether_header) + sizeof(struct iphdr))) {
-          const auto *__restrict__ iph = reinterpret_cast<const struct iphdr *>(pkt + sizeof(struct ether_header));
+          auto *__restrict__ iph = reinterpret_cast<struct iphdr *>(pkt + sizeof(struct ether_header));
 
           // Validate IPv4 checksum (reject corrupted or checksum-evasion packets)
           if (AETHON_UNLIKELY(!Ipv4::is_valid_ipv4_checksum(iph))) {
@@ -176,6 +207,41 @@ void rx_worker(Engine &engine, int queue_id) {
                 assembler.release_completed(res);
               }
             }
+          }else if (AETHON_BUILTIN_EXPECT_WITH_PROBABILITY(is_for_this_host && iph->protocol==IPPROTO_ICMP,1,0.01)){
+            const size_t ip_hdr_len=iph->ihl*4;
+            if (AETHON_UNLIKELY(ip_hdr_len<sizeof(struct iphdr))) goto recycle_slot;
+            const size_t ip_total_len=ntohs(iph->tot_len);
+
+            if (ip_total_len<ip_hdr_len+sizeof(struct icmphdr)) goto recycle_slot;
+            if (AETHON_UNLIKELY(ip_total_len > desc->len - sizeof(struct ether_header))) goto recycle_slot;
+            if (AETHON_UNLIKELY(iph->ihl < 5)) goto recycle_slot;
+
+            auto* __restrict__ icmph=reinterpret_cast<struct icmphdr*>(reinterpret_cast<uint8_t*>(iph)+ip_hdr_len);
+            if (AETHON_LIKELY(icmph->type==ICMP_ECHO && icmph->code==0)){
+              auto* __restrict__ icmp_eth=reinterpret_cast<struct ether_header*>(pkt);
+              auto* __restrict__ icmp_iph=reinterpret_cast<struct iphdr*>(pkt+sizeof(ether_header));
+
+              uint8_t temp_mac[ETH_ALEN];
+              memcpy(temp_mac,icmp_eth->ether_shost,ETH_ALEN);
+              memcpy(icmp_eth->ether_shost,icmp_eth->ether_dhost,ETH_ALEN);
+              memcpy(icmp_eth->ether_dhost,temp_mac,ETH_ALEN);
+
+              std::swap(icmp_iph->saddr,icmp_iph->daddr);
+              icmph->type=ICMP_ECHOREPLY;
+              icmph->checksum=0;
+              icmph->checksum=htons(get_checksum(reinterpret_cast<const uint8_t*>(icmph),ip_total_len-ip_hdr_len));
+              icmp_iph->check=0;
+              icmp_iph->check=htons(get_checksum(reinterpret_cast<uint8_t*>(icmp_iph),ip_hdr_len));
+
+              uint32_t idx;
+              if (AETHON_UNLIKELY(xsk_ring_prod__reserve(&sock->tx,1,&idx)!=1)) goto recycle_slot;
+              struct xdp_desc* tx_desc=xsk_ring_prod__tx_desc(&sock->tx,idx);
+              tx_desc->addr=desc->addr;
+              tx_desc->len=desc->len;
+
+              xsk_ring_prod__submit(&sock->tx,1);
+              continue;
+            }else goto recycle_slot;
           }
         }
       }
