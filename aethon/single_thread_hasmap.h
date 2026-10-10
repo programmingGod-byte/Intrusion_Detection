@@ -35,15 +35,7 @@ template <> struct SingleThreadDefaultHash<std::string> {
   }
 };
 
-/**
- * SingleThreadHashMap
- * 
- * High-performance, single-threaded open-addressing hash table with:
- * 1. ZERO Atomics / CAS: Plain L1 memory access, zero MESI bus locking overhead.
- * 2. Backward-Shift Deletion: ZERO tombstones! Elements shifted backwards upon erase,
- *    preventing probe degradation and eliminating latency spikes permanently.
- * 3. Cacheline prefetching for ultra-low latency linear probing.
- */
+
 template <typename Key, typename Value, Key EmptyKey = Key{},
           typename Hash = SingleThreadDefaultHash<Key>>
 class SingleThreadHashMap {
@@ -74,7 +66,6 @@ public:
 
     capacity_ = capacity;
     mask_ = capacity_ - 1;
-    // Cacheline-aligned allocation via aethon smart_allocate
     cells_ = implementation::smart_allocate<Cell, implementation::hardware_destructive_interference_size>(capacity_);
     for (size_t i = 0; i < capacity_; ++i) {
       new (&cells_[i]) Cell();
@@ -126,7 +117,6 @@ public:
     return *this;
   }
 
-  // Insert or update with arguments forwarded to Value constructor
   template <typename... Args>
   AETHON_ALWAYS_INLINE bool emplace(const Key &key, Args &&...args) {
     AETHON_SAFE_CHECK(key != EmptyKey,
@@ -167,7 +157,6 @@ public:
     return emplace(key, std::move(val));
   }
 
-  // Look up key, returns pointer to Value or nullptr if not found (Zero copies!)
   AETHON_ALWAYS_INLINE Value *find(const Key &key) noexcept {
     AETHON_SAFE_CHECK(key != EmptyKey, "Cannot search for EmptyKey!");
 
@@ -183,7 +172,7 @@ public:
       }
 
       if (k == EmptyKey) {
-        return nullptr; // Not found; linear probe stops immediately!
+        return nullptr; 
       }
 
       idx = (idx + 1) & mask_;
@@ -201,20 +190,12 @@ public:
     return find(key) != nullptr;
   }
 
-  /**
-   * Backward-Shift Deletion:
-   * 1. Frees cells_[idx].
-   * 2. Loops forward checking subsequent chained entries.
-   * 3. Shifts elements backwards to fill the hole if they hash <= hole.
-   * 4. Leaves ZERO tombstones! Preserves true O(1) performance indefinitely.
-   */
   AETHON_ALWAYS_INLINE bool erase(const Key &key) noexcept {
     AETHON_SAFE_CHECK(key != EmptyKey, "Cannot erase EmptyKey!");
 
     size_t i = hash_key(key) & mask_;
     size_t probes = 0;
 
-    // Phase 1: Locate the key to delete
     while (AETHON_LIKELY(probes < capacity_)) {
       if (cells_[i].key == key) {
         break; // Found the target slot
@@ -230,7 +211,6 @@ public:
       return false;
     }
 
-    // Phase 2: Backward-shift loop to fill hole without tombstones
     size_t j = i; // 'i' is current empty hole
 
     while (true) {
@@ -240,12 +220,8 @@ public:
         break; // Reached end of continuous cluster
       }
 
-      // Calculate natural original home slot of element at 'j'
       size_t k = hash_key(cells_[j].key) & mask_;
 
-      // Check cyclically if slot 'i' (the hole) is between 'k' (ideal home) and 'j' (current slot)
-      // True condition: ((i <= j) ? (i < k && k <= j) : (i < k || k <= j)) is false.
-      // Inverted: can element at 'j' move backward into hole 'i'?
       bool can_shift = false;
       if (i <= j) {
         can_shift = (k <= i || k > j);
@@ -254,7 +230,6 @@ public:
       }
 
       if (can_shift) {
-        // Shift element backwards into hole 'i'
         cells_[i].key = cells_[j].key;
         cells_[i].val = std::move(cells_[j].val);
 
@@ -262,7 +237,6 @@ public:
       }
     }
 
-    // Clear final hole
     cells_[i].key = EmptyKey;
     if constexpr (!std::is_trivially_destructible<Value>::value) {
       cells_[i].val.~Value();
